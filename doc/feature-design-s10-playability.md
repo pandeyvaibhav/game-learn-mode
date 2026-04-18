@@ -3,11 +3,11 @@
 | | |
 |---|---|
 | **Document** | `doc/feature-design-s10-playability.md` |
-| **Version** | 1.0 (Draft) |
+| **Version** | 1.1 |
 | **Date** | 2026-04-18 |
 | **Authors** | Vaibhav Pandey (Owner) · Claude Opus 4.7 (AI pair) |
-| **Status** | Draft — awaiting review |
-| **Related** | [BACKLOG.md](../BACKLOG.md) (S10) · [feature-design-p0-safety-mobile.md](feature-design-p0-safety-mobile.md) · [.github/agents/animation-generator.agent.md](../.github/agents/animation-generator.agent.md) |
+| **Status** | **Delivered** — agent built, orchestrator wired, awaiting first pipeline run for acceptance |
+| **Related** | [BACKLOG.md](../BACKLOG.md) (S10) · [feature-design-p0-safety-mobile.md](feature-design-p0-safety-mobile.md) · [.github/agents/playability-reviewer.agent.md](../.github/agents/playability-reviewer.agent.md) · [.github/agents/animation-generator.agent.md](../.github/agents/animation-generator.agent.md) |
 
 ---
 
@@ -173,11 +173,11 @@ Retry cap: 2 (same as S1/S2). On 3rd S10 failure, mark topic `blocked-playabilit
 
 ## 7. Acceptance
 
-- [ ] `.github/agents/playability-reviewer.agent.md` exists and is callable by the orchestrator.
-- [ ] Orchestrator chains S1 → S10 on every animation; publish is blocked without both.
-- [ ] Seeding a known-busy animation (many buttons, dense text) at Year 1 produces FAIL with specific rule citations.
-- [ ] Seeding [counting-to-100.html](../animations/year-1/maths/counting-to-100.html) (the gold-standard reference, per C3) produces PASS.
-- [ ] Pipeline report includes S10 pass/fail/blocked counts.
+- [x] `.github/agents/playability-reviewer.agent.md` exists and is callable by the orchestrator.
+- [x] Orchestrator chains S1 → S10 on every animation; publish is blocked without both. *(Step 2g, with re-run-S1-after-simplification guard per Hard Rule 9)*
+- [x] Pipeline report includes S10 pass/fail/blocked counts. *(Step 4 summary updated)*
+- [ ] Seeding a known-busy animation (many buttons, dense text) at Year 1 produces FAIL with specific rule citations. *(deferred to first pipeline run)*
+- [ ] Seeding [counting-to-100.html](../animations/year-1/maths/counting-to-100.html) (the gold-standard reference, per C3) produces PASS. *(deferred to first pipeline run)*
 
 ---
 
@@ -206,3 +206,4 @@ Retry cap: 2 (same as S1/S2). On 3rd S10 failure, mark topic `blocked-playabilit
 | Version | Date | Authors | Change |
 |---|---|---|---|
 | 1.0 | 2026-04-18 | Vaibhav Pandey · Claude Opus 4.7 | Initial draft — rubric, agent spec, orchestrator placement, acceptance. |
+| 1.1 | 2026-04-18 | Vaibhav Pandey · Claude Opus 4.7 | Delivery pass. Agent file created, orchestrator Step 2g added, Hard Rule 9 ensures S1 re-runs after any S10-driven simplification. Acceptance: 3/5 items ticked; 2 deferred to first Year-3 `--force` run through the new gate. |

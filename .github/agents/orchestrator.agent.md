@@ -134,15 +134,30 @@ year: {year}
 ```
 
 Parse the verdict:
-- `PASS` → mark the todo done.
+- `PASS` → proceed to 2g.
 - `FAIL` → re-dispatch the animation agent with S1 findings. Retry up to **2 times**. On third failure, mark **blocked-safety-animation** and move on.
-- `BLOCKED` → mark **blocked-topic-animation**.
+- `BLOCKED` → mark **blocked-topic-animation**, skip 2g.
 
 S2 is not run on animations — factual claims in the animation are drawn from the already-S2-cleared content file.
 
-### 2g — Mark todo done
+### 2g — Review gate: Playability (S10)
 
-Content file cleared by S1 + S2, animation cleared by S1 → mark the todo item as done.
+Once S1 passes on the animation, dispatch `.github/agents/playability-reviewer.agent.md` with:
+
+```
+target_file: {animation_path}
+subject: {subject}
+year: {year}
+```
+
+Parse the first line:
+- `S10 VERDICT: PASS` → proceed to 2h.
+- `S10 VERDICT: FAIL` → re-dispatch the animation agent with the S10 findings appended as "Revision notes — simplify for Year {year} bar:". Then **re-run S1 on the animation** before re-running S10 (a simplification rewrite can reintroduce safety issues). Retry up to **2 times**. On third failure, mark **blocked-playability** and move on.
+- `S10 VERDICT: BLOCKED` → archetype mismatch for the year. Mark **blocked-archetype**, escalate to human, skip 2h.
+
+### 2h — Mark todo done
+
+Content cleared by S1 + S2, animation cleared by S1 + S10 → mark the todo item as done.
 
 ---
 
@@ -180,7 +195,8 @@ Scope: {filter applied or "full curriculum"}
 - Skipped (already existed): {N}
 - Safety review (S1) — passes / fails / blocked: {P}/{F}/{B}
 - Factual review (S2) — passes / fails / blocked: {P}/{F}/{B}
-- Topics blocked by reviewers (list by reason): {blocked-safety, blocked-accuracy, blocked-topic}
+- Playability review (S10) — passes / fails / blocked: {P}/{F}/{B}
+- Topics blocked by reviewers (list by reason): {blocked-safety, blocked-accuracy, blocked-topic, blocked-playability, blocked-archetype}
 - Errors: {list or "none"}
 
 ## Phase 2 — App Build
@@ -228,6 +244,7 @@ If the user provides arguments, filter the working list before the loop:
 3. **No external dependencies** — every generated file must be self-contained vanilla HTML/JS/CSS or plain markdown.
 4. **No npm, no CDNs, no package.json** — zero build tooling.
 5. **Idempotent by default** — skip existing files unless `--force`.
-6. **No content reaches the child without passing S1, and no lesson without passing S2.** A generator confirmation alone is not sufficient — both reviewer verdicts must be recorded.
+6. **No content reaches the child without passing S1; no lesson without passing S2; no animation without passing S10.** A generator confirmation alone is not sufficient — every required reviewer verdict must be recorded.
 7. **Reviewers never edit files.** If a file needs changes, the orchestrator must re-dispatch the original generator with the reviewer's findings.
 8. **Retry cap is 2 per reviewer.** After that, mark the topic blocked and continue — never loop forever, never fall back to publishing a failed file.
+9. **After any animation rewrite, re-run S1 before re-running S10.** A simplification pass can reintroduce unsafe phrasing or imagery.

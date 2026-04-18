@@ -32,10 +32,11 @@ Safety gates land first so new content is generated under review; mobile fixes c
 3. ~~**S2** — Factual-accuracy review agent~~ ✅ done 2026-04-18
 4. ~~**M1** — Wrap lesson tables for mobile overflow~~ ✅ done 2026-04-18
 5. ~~**M2** — Enforce 44px touch targets + 16px text baseline~~ ✅ done 2026-04-18 (new animations only; M6 retrofits existing 20)
-6. **C2** — Fill Year 1/2/4/5/6 lesson content *(now unblocked — runs under S1/S2 gates)*
-7. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
-8. **P3** — Progress tracking (localStorage first)
-9. **M6** — Retrofit existing animations to child-baseline.css
+6. ~~**S10** — Game-playability reviewer agent~~ ✅ done 2026-04-18
+7. **C2** — Fill Year 1/2/4/5/6 lesson content *(now unblocked — runs under S1/S2/S10 gates)*
+8. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
+9. **P3** — Progress tracking (localStorage first)
+10. **M6** — Retrofit existing animations to child-baseline.css
 
 ---
 
@@ -54,7 +55,7 @@ Child-facing product with LLM-generated content — these controls are non-negot
 | S7 | Reading-level check (Flesch / age-appropriate grade) per lesson so content doesn't drift above target year | P2 | todo | Automated inside S1 or as separate lint. |
 | S8 | Report-a-problem button on every lesson/animation → logs topic + URL for review | P2 | todo | Feedback loop for issues safety gates miss. |
 | S9 | Safety runbook — what to do if unsafe content is found in production (rollback, re-gen, postmortem) | P2 | todo | Living doc; link from top-level README. |
-| S10 | **Game-playability reviewer agent** — scores each animation on child-playability (≤3 rules, minimal reading, obvious next action, kind feedback). Blocks publish on fail | P1 | todo | Fills the gap S1 doesn't cover: S1 judges *safety*, S10 judges *whether a 6-year-old can play it*. Design: [doc/feature-design-s10-playability.md](doc/feature-design-s10-playability.md). |
+| S10 | **Game-playability reviewer agent** — scores each animation on child-playability (≤3 rules, minimal reading, obvious next action, kind feedback). Blocks publish on fail | P1 | done | Reviewer at [.github/agents/playability-reviewer.agent.md](.github/agents/playability-reviewer.agent.md); orchestrator Step 2g enforces it after S1 on every animation. Design: [doc/feature-design-s10-playability.md](doc/feature-design-s10-playability.md). |
 
 ## Mobile & accessibility
 
