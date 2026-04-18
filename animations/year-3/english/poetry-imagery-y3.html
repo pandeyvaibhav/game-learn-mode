@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poetry — Imagery — Year 3 English | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    .sort-instruction{font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem}
+    .buckets{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem}
+    .bucket{flex:1;min-width:140px;max-width:200px;background:var(--surface2);border:2px dashed var(--border);border-radius:var(--radius);padding:.75rem;min-height:120px;transition:border-color .15s}
+    .bucket.over{border-color:var(--primary)}
+    .bucket-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.5rem;text-align:center;font-weight:700}
+    .phrases{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+    .phrase{background:var(--accent2);color:#0f172a;border-radius:8px;padding:.4rem .8rem;font-size:.85rem;cursor:grab;user-select:none;font-weight:600}
+    .phrase.correct-place{background:var(--success)}
+    .phrase.wrong-place{background:var(--error)}
+    .dropped{margin-top:.3rem}
+    .check-btn{background:var(--primary);color:#0f172a;border:none;border-radius:10px;padding:.55rem 1.2rem;font-size:.9rem;font-weight:700;cursor:pointer;display:block;margin:0 auto}
+    .result{text-align:center;font-size:.9rem;min-height:1.4em;margin-top:.5rem}
+
+    /* Quiz */
+    .q-text{font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+    .opts{display:flex;flex-direction:column;gap:.4rem}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · English</p>
+    <h1>Poetry — Imagery</h1>
+    <p class="subtitle">Sort similes and personification, then test your poetry skills!</p>
+  </header>
+
+  <!-- Sorting activity -->
+  <div class="card">
+    <p class="card-title">Simile or Personification?</p>
+    <p class="sort-instruction">Click each phrase to sort it into the correct bucket.</p>
+    <div class="buckets">
+      <div class="bucket" id="bucketSimile" data-type="simile">
+        <div class="bucket-label">Simile</div>
+      </div>
+      <div class="bucket" id="bucketPerson" data-type="personification">
+        <div class="bucket-label">Personification</div>
+      </div>
+    </div>
+    <div class="phrases" id="phrases"></div>
+    <button class="check-btn" id="sortCheck">Check</button>
+    <div class="result" id="sortResult" aria-live="polite"></div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Imagery Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    /* ── Sorting ── */
+    const PHRASES = [
+      { text: "as brave as a lion", type: "simile" },
+      { text: "the trees danced in the wind", type: "personification" },
+      { text: "her eyes sparkled like diamonds", type: "simile" },
+      { text: "the moon smiled down", type: "personification" },
+      { text: "quick as a flash", type: "simile" },
+      { text: "the old house groaned", type: "personification" },
+      { text: "the river swallowed the path", type: "personification" },
+      { text: "cold like ice", type: "simile" }
+    ];
+
+    const phrasesEl = document.getElementById('phrases');
+    const bucketSim = document.getElementById('bucketSimile');
+    const bucketPer = document.getElementById('bucketPerson');
+    const sortResult = document.getElementById('sortResult');
+    let selectedBucket = null;
+
+    const items = shuffle(PHRASES).slice(0, 6);
+    const placed = new Map();
+
+    items.forEach(function(item, idx) {
+      const el = document.createElement('div');
+      el.className = 'phrase';
+      el.textContent = item.text;
+      el.dataset.idx = idx;
+      el.addEventListener('click', function() {
+        if (placed.has(idx)) return;
+        /* Toggle: click phrase, then click bucket */
+        if (el.style.outline) {
+          el.style.outline = '';
+          selectedBucket = null;
+          return;
+        }
+        /* Auto place: first click goes to simile, second click moves */
+        el.style.outline = '2px solid var(--primary)';
+        const handler = function(e) {
+          const bucket = e.currentTarget;
+          const clone = document.createElement('div');
+          clone.className = 'phrase dropped';
+          clone.textContent = item.text;
+          clone.dataset.idx = idx;
+          clone.dataset.placed = bucket.dataset.type;
+          bucket.appendChild(clone);
+          el.style.display = 'none';
+          placed.set(idx, bucket.dataset.type);
+          el.style.outline = '';
+          bucketSim.removeEventListener('click', handler);
+          bucketPer.removeEventListener('click', handler);
+        };
+        bucketSim.addEventListener('click', handler, { once: true });
+        bucketPer.addEventListener('click', handler, { once: true });
+      });
+      phrasesEl.appendChild(el);
+    });
+
+    document.getElementById('sortCheck').addEventListener('click', function() {
+      if (placed.size < items.length) {
+        sortResult.textContent = 'Sort all phrases first!';
+        sortResult.style.color = 'var(--text-muted)';
+        return;
+      }
+      let correct = 0;
+      document.querySelectorAll('.dropped').forEach(function(el) {
+        const idx = parseInt(el.dataset.idx, 10);
+        const placedType = el.dataset.placed;
+        if (placedType === items[idx].type) {
+          el.classList.add('correct-place');
+          correct++;
+        } else {
+          el.classList.add('wrong-place');
+        }
+      });
+      sortResult.textContent = correct + ' / ' + items.length + ' correct!';
+      sortResult.style.color = correct === items.length ? 'var(--success)' : 'var(--error)';
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q: "\"The wind howled like a wolf\" — what technique is this?", a: "Simile", d: ["Personification","Alliteration","Rhyme"] },
+      { q: "\"The shadows tiptoed between the cars\" — what technique?", a: "Personification", d: ["Simile","Onomatopoeia","Rhyme"] },
+      { q: "Which word signals a simile?", a: "like", d: ["the","very","and"] },
+      { q: "\"Her smile was as bright as the sun.\" What is compared to the sun?", a: "Her smile", d: ["The sky","Her eyes","The day"] },
+      { q: "Why do poets use imagery?", a: "To create vivid pictures in the reader's mind", d: ["To make poems longer","To confuse the reader","Because they have to"] }
+    ];
+
+    let sc = 0, qi = 0;
+    const qs = shuffle(QUESTIONS).slice(0, 4);
+    const quizEl = document.getElementById('quiz');
+    const fbEl = document.getElementById('fb');
+    const scEl = document.getElementById('score');
+    document.getElementById('maxS').textContent = qs.length;
+
+    function renderQ() {
+      if (qi >= qs.length) {
+        quizEl.innerHTML = '';
+        const p = document.createElement('p'); p.className = 'q-text'; p.style.color = 'var(--primary)'; p.style.textAlign = 'center';
+        p.textContent = 'Brilliant! ' + sc + ' / ' + qs.length + '!';
+        quizEl.appendChild(p); fbEl.textContent = ''; return;
+      }
+      const q = qs[qi]; const opts = shuffle([q.a, ...q.d]);
+      quizEl.innerHTML = ''; fbEl.textContent = '';
+      const qt = document.createElement('p'); qt.className = 'q-text'; qt.textContent = (qi+1) + '. ' + q.q; quizEl.appendChild(qt);
+      const od = document.createElement('div'); od.className = 'opts';
+      opts.forEach(function(o) {
+        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.textContent = o;
+        btn.addEventListener('click', function() {
+          od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+          if (o === q.a) { btn.classList.add('correct','bounce'); sc++; scEl.textContent = sc; fbEl.textContent = '\u2713 Correct!'; fbEl.style.color = 'var(--success)'; }
+          else { btn.classList.add('wrong','shake'); od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');}); fbEl.textContent = '\u2717 Answer: ' + q.a; fbEl.style.color = 'var(--error)'; }
+          qi++; setTimeout(renderQ, 1200);
+        });
+        od.appendChild(btn);
+      });
+      quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

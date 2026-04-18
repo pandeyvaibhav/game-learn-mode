@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fractions — Year 3 Maths | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Pizza slicer */
+    .slicer{display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .pizza-wrap{position:relative;width:240px;height:240px}
+    .pizza-canvas{width:100%;height:100%}
+    .slicer-controls{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:center}
+    .s-label{font-size:.85rem;color:var(--text-muted)}
+    .s-select{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.4rem .6rem;font-size:1rem}
+    .fraction-display{font-size:1.6rem;font-weight:800;color:var(--primary);text-align:center}
+    .fraction-type{font-size:.85rem;color:var(--accent);text-align:center}
+
+    /* Quiz */
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:1rem;font-weight:700;text-align:center}
+    .opts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1.1rem;font-size:.95rem;cursor:pointer;color:var(--text);transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;border-color:var(--success);font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a;border-color:var(--error)}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted)}.score-bar span{color:var(--primary);font-weight:700}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · Maths</p>
+    <h1>Fractions</h1>
+    <p class="subtitle">Slice the pizza and explore unit and non-unit fractions!</p>
+  </header>
+
+  <!-- Pizza Slicer -->
+  <div class="card">
+    <p class="card-title">Pizza Slicer</p>
+    <div class="slicer">
+      <div class="slicer-controls">
+        <span class="s-label">Slices</span>
+        <select class="s-select" id="denom" aria-label="Number of slices">
+          <option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>8</option><option>10</option>
+        </select>
+        <span class="s-label">Eaten</span>
+        <select class="s-select" id="numer" aria-label="Slices eaten">
+          <option selected>1</option>
+        </select>
+      </div>
+      <div class="pizza-wrap">
+        <canvas class="pizza-canvas" id="pizza" width="240" height="240" role="img" aria-label="Pizza fraction diagram"></canvas>
+      </div>
+      <div class="fraction-display" id="frac-display" aria-live="polite">1/4</div>
+      <div class="fraction-type" id="frac-type" aria-live="polite">Unit fraction</div>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Fraction Challenge</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="max">5</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Pizza Slicer ── */
+    const canvas = document.getElementById('pizza');
+    const ctx = canvas.getContext('2d');
+    const denomSel = document.getElementById('denom');
+    const numerSel = document.getElementById('numer');
+    const fracDisplay = document.getElementById('frac-display');
+    const fracType = document.getElementById('frac-type');
+    const cx = 120, cy = 120, r = 100;
+
+    function updateNumerOptions() {
+      const d = parseInt(denomSel.value, 10);
+      const prev = parseInt(numerSel.value, 10);
+      numerSel.innerHTML = '';
+      for (let i = 0; i <= d; i++) {
+        const opt = document.createElement('option');
+        opt.value = i; opt.textContent = i;
+        if (i === Math.min(prev, d)) opt.selected = true;
+        numerSel.appendChild(opt);
+      }
+    }
+
+    function drawPizza() {
+      const d = parseInt(denomSel.value, 10);
+      const n = parseInt(numerSel.value, 10);
+      ctx.clearRect(0, 0, 240, 240);
+
+      for (let i = 0; i < d; i++) {
+        const start = (i / d) * Math.PI * 2 - Math.PI / 2;
+        const end = ((i + 1) / d) * Math.PI * 2 - Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, start, end);
+        ctx.closePath();
+        ctx.fillStyle = i < n ? '#fbbf24' : '#273344';
+        ctx.fill();
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+      /* crust ring */
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(148,163,184,0.3)';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      fracDisplay.textContent = n + '/' + d;
+      fracType.textContent = n === 0 ? 'Zero — nothing eaten!' : n === 1 ? 'Unit fraction' : 'Non-unit fraction';
+    }
+
+    denomSel.addEventListener('change', function() { updateNumerOptions(); drawPizza(); });
+    numerSel.addEventListener('change', drawPizza);
+    updateNumerOptions();
+    drawPizza();
+
+    /* ── Quiz ── */
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    const QUESTIONS = [
+      { q: "2/5 + 1/5 = ?", a: "3/5", d: ["2/5","3/10","1/5"] },
+      { q: "4/8 − 1/8 = ?", a: "3/8", d: ["5/8","2/8","4/8"] },
+      { q: "Which is a unit fraction?", a: "1/6", d: ["3/6","2/6","5/6"] },
+      { q: "3/7 + 2/7 = ?", a: "5/7", d: ["6/7","5/14","1/7"] },
+      { q: "6/9 − 4/9 = ?", a: "2/9", d: ["3/9","10/9","4/9"] },
+      { q: "In 3/4, what is the denominator?", a: "4", d: ["3","7","1"] },
+      { q: "1/3 + 1/3 = ?", a: "2/3", d: ["1/3","2/6","1/6"] },
+      { q: "5/10 − 3/10 = ?", a: "2/10", d: ["3/10","8/10","5/10"] }
+    ];
+
+    let score = 0, qIdx = 0;
+    const qs = shuffle(QUESTIONS).slice(0, 5);
+    const quizEl = document.getElementById('quiz');
+    const fbEl = document.getElementById('fb');
+    const scoreEl = document.getElementById('score');
+
+    function renderQ() {
+      if (qIdx >= qs.length) {
+        quizEl.innerHTML = '';
+        const p = document.createElement('p');
+        p.className = 'q-text'; p.style.color = 'var(--primary)';
+        p.textContent = 'Great job! ' + score + ' out of ' + qs.length + '!';
+        quizEl.appendChild(p);
+        fbEl.textContent = ''; return;
+      }
+      const q = qs[qIdx];
+      const opts = shuffle([q.a, ...q.d]);
+      quizEl.innerHTML = ''; fbEl.textContent = '';
+      const qt = document.createElement('p'); qt.className = 'q-text';
+      qt.textContent = (qIdx+1) + '. ' + q.q; quizEl.appendChild(qt);
+      const od = document.createElement('div'); od.className = 'opts';
+      opts.forEach(function(o) {
+        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.textContent = o;
+        btn.addEventListener('click', function() {
+          od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+          if (o === q.a) { btn.classList.add('correct','bounce'); score++; scoreEl.textContent = score; fbEl.textContent = '\u2713 Correct!'; fbEl.style.color = 'var(--success)'; }
+          else { btn.classList.add('wrong','shake'); od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');}); fbEl.textContent = '\u2717 Answer: ' + q.a; fbEl.style.color = 'var(--error)'; }
+          qIdx++; setTimeout(renderQ, 1100);
+        });
+        od.appendChild(btn);
+      });
+      quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

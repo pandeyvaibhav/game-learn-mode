@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone Age to Iron Age — Year 3 History | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Timeline */
+    .timeline{position:relative;display:flex;flex-direction:column;gap:0;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:3px;background:var(--border);border-radius:3px}
+    .tl-slot{position:relative;min-height:58px;display:flex;align-items:center;padding:.4rem 0}
+    .tl-dot{position:absolute;left:-23px;width:16px;height:16px;border-radius:50%;border:3px solid var(--border);background:var(--surface)}
+    .tl-slot.filled .tl-dot{background:var(--success);border-color:var(--success)}
+    .tl-slot.wrong .tl-dot{background:var(--error);border-color:var(--error)}
+    .tl-label{font-size:.78rem;color:var(--text-muted);margin-bottom:.15rem}
+    .tl-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem .8rem;font-size:.85rem;min-width:180px}
+
+    /* Drag chips */
+    .drag-pool{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1rem}
+    .drag-chip{background:var(--accent);color:#0f172a;font-weight:700;border:none;border-radius:10px;padding:.45rem 1rem;font-size:.85rem;cursor:grab;user-select:none;transition:opacity .15s}
+    .drag-chip:active{cursor:grabbing;opacity:.7}
+    .drag-chip.used{opacity:.3;pointer-events:none}
+
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+
+    /* Quiz */
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:.95rem;font-weight:600}
+    .opts{display:flex;flex-direction:column;gap:.4rem}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · History</p>
+    <h1>Stone Age to Iron Age</h1>
+    <p class="subtitle">Put events in order on the timeline!</p>
+  </header>
+
+  <!-- Timeline Drag -->
+  <div class="card">
+    <p class="card-title">Timeline Challenge</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click an event chip, then click the correct slot on the timeline. Earliest at the top!</p>
+    <div class="drag-pool" id="pool"></div>
+    <div class="timeline" id="timeline"></div>
+    <div class="score-bar">Score: <span id="tlScore">0</span> / <span id="tlMax">0</span></div>
+    <p class="fb" id="tlFb" aria-live="polite"></p>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">History Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    /* ── Timeline ── */
+    const EVENTS = [
+      { label:'~800,000 BC', text:'First humans arrive in Britain', order:0 },
+      { label:'~4000 BC', text:'Farming begins (Neolithic)', order:1 },
+      { label:'~3000 BC', text:'Stonehenge construction starts', order:2 },
+      { label:'~2500 BC', text:'Bronze Age begins — bronze tools', order:3 },
+      { label:'~800 BC', text:'Iron Age begins — Celts & hillforts', order:4 },
+      { label:'AD 43', text:'Romans invade Britain', order:5 }
+    ];
+
+    const pool = document.getElementById('pool');
+    const tl = document.getElementById('timeline');
+    const tlFb = document.getElementById('tlFb');
+    const tlScEl = document.getElementById('tlScore');
+    let tlSc = 0;
+    let selected = null;
+    document.getElementById('tlMax').textContent = EVENTS.length;
+
+    // Build slots (in order)
+    EVENTS.forEach(function(ev, i) {
+      const slot = document.createElement('div');
+      slot.className = 'tl-slot';
+      slot.dataset.order = i;
+      slot.innerHTML = '<div class="tl-dot"></div><div><div class="tl-label">' + ev.label + '</div><div class="tl-card" id="slot' + i + '">?</div></div>';
+      slot.addEventListener('click', function() {
+        if (!selected) { tlFb.textContent = 'Select an event first!'; tlFb.style.color = 'var(--accent)'; return; }
+        if (slot.classList.contains('filled')) return;
+        const correct = parseInt(selected.dataset.order) === i;
+        const cardEl = document.getElementById('slot' + i);
+        if (correct) {
+          cardEl.textContent = selected.textContent;
+          slot.classList.add('filled');
+          selected.classList.add('used');
+          tlSc++; tlScEl.textContent = tlSc;
+          tlFb.textContent = '\u2713 Correct!'; tlFb.style.color = 'var(--success)';
+          selected = null;
+        } else {
+          slot.classList.add('wrong');
+          setTimeout(function() { slot.classList.remove('wrong'); }, 600);
+          tlFb.textContent = '\u2717 Try a different slot!'; tlFb.style.color = 'var(--error)';
+        }
+      });
+      tl.appendChild(slot);
+    });
+
+    // Build chips (shuffled)
+    shuffle(EVENTS).forEach(function(ev) {
+      const chip = document.createElement('button');
+      chip.className = 'drag-chip';
+      chip.textContent = ev.text;
+      chip.dataset.order = ev.order;
+      chip.addEventListener('click', function() {
+        if (chip.classList.contains('used')) return;
+        pool.querySelectorAll('.drag-chip').forEach(function(c) { c.style.outline = 'none'; });
+        chip.style.outline = '3px solid var(--primary)';
+        selected = chip;
+      });
+      pool.appendChild(chip);
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q:"What did Stone Age people use to make tools?", a:"Flint (stone)", d:["Bronze","Iron","Plastic"] },
+      { q:"What changed during the Neolithic period?", a:"People started farming", d:["Romans invaded","Iron was discovered","People left Britain"] },
+      { q:"Which two metals make bronze?", a:"Copper and tin", d:["Iron and gold","Silver and tin","Lead and copper"] },
+      { q:"What were Iron Age hillforts used for?", a:"Protection and defence", d:["Growing crops","Storing water","Making pottery"] },
+      { q:"Who invaded Britain in AD 43?", a:"The Romans", d:["The Vikings","The Celts","The Saxons"] },
+      { q:"Why is Stonehenge so remarkable?", a:"Huge stones were moved over 150 miles", d:["It was built yesterday","It is made of plastic","It is the tallest building in Britain"] }
+    ];
+
+    let sc=0,qi=0;
+    const qs=shuffle(QUESTIONS).slice(0,5);
+    const quizEl=document.getElementById('quiz');
+    const fbEl=document.getElementById('fb');
+    const scEl=document.getElementById('score');
+    document.getElementById('maxS').textContent=qs.length;
+
+    function renderQ(){
+      if(qi>=qs.length){quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.cssText='color:var(--primary);text-align:center;';p.textContent='Well done, historian! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      const q=qs[qi];const opts=shuffle([q.a,...q.d]);quizEl.innerHTML='';fbEl.textContent='';
+      const qt=document.createElement('p');qt.className='q-text';qt.textContent=(qi+1)+'. '+q.q;quizEl.appendChild(qt);
+      const od=document.createElement('div');od.className='opts';
+      opts.forEach(function(o){const btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+        btn.addEventListener('click',function(){od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+        if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
+        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
+        qi++;setTimeout(renderQ,1100);});od.appendChild(btn);});quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

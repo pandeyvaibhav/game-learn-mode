@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narrative Writing — Year 3 English | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Sentence scramble */
+    .scramble{display:flex;flex-direction:column;gap:1rem}
+    .drop-zone{min-height:60px;border:2px dashed var(--border);border-radius:var(--radius-sm);padding:.75rem;display:flex;flex-wrap:wrap;gap:.4rem;transition:border-color .15s}
+    .drop-zone.over{border-color:var(--primary)}
+    .word-bank{display:flex;flex-wrap:wrap;gap:.4rem}
+    .word{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.45rem .85rem;font-size:.9rem;cursor:grab;user-select:none;transition:background .12s,transform .12s}
+    .word:active{cursor:grabbing}
+    .word.placed{opacity:.35;pointer-events:none}
+    .check-btn{background:var(--primary);color:#0f172a;border:none;border-radius:10px;padding:.6rem 1.4rem;font-size:.92rem;font-weight:700;cursor:pointer;align-self:center}
+    .check-btn:hover{background:var(--primary-dark,#d97706)}
+    .result{text-align:center;font-size:.9rem;font-weight:600;min-height:1.4em}
+
+    /* Show don't tell quiz */
+    .sdt-area{display:flex;flex-direction:column;gap:1rem}
+    .sdt-q{font-size:.95rem;font-weight:600;line-height:1.5}
+    .sdt-opts{display:flex;flex-direction:column;gap:.4rem}
+    .sdt-opt{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.6rem 1rem;font-size:.88rem;cursor:pointer;text-align:left;transition:background .12s}
+    .sdt-opt:hover{border-color:var(--accent)}
+    .sdt-opt.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .sdt-opt.wrong{background:var(--error);color:#0f172a}
+    .sdt-opt.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted)}.score-bar span{color:var(--primary);font-weight:700}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · English</p>
+    <h1>Narrative Writing</h1>
+    <p class="subtitle">Unscramble sentences and spot "show don't tell"!</p>
+  </header>
+
+  <!-- Sentence Scrambler -->
+  <div class="card">
+    <p class="card-title">Sentence Scrambler</p>
+    <div class="scramble">
+      <p style="font-size:.85rem;color:var(--text-muted);">Drag the words into the correct order to build a great story opening:</p>
+      <div class="drop-zone" id="dropZone" role="list" aria-label="Drop words here in order"></div>
+      <div class="word-bank" id="wordBank" role="list" aria-label="Available words"></div>
+      <button class="check-btn" id="checkBtn">Check Order</button>
+      <div class="result" id="scrambleResult" aria-live="polite"></div>
+      <button class="check-btn" id="nextBtn" style="display:none;background:var(--accent);">Next Sentence</button>
+    </div>
+  </div>
+
+  <!-- Show Don't Tell Quiz -->
+  <div class="card">
+    <p class="card-title">Show Don't Tell Challenge</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="sdt-area" id="sdtArea"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Sentence Scrambler ── */
+    const SENTENCES = [
+      { words:["The","old","wooden","gate","creaked","as","Priya","pushed","it","open."], display:"The old wooden gate creaked as Priya pushed it open." },
+      { words:["Deep","in","the","forest,","a","twig","snapped","under","her","foot."], display:"Deep in the forest, a twig snapped under her foot." },
+      { words:["Frost","coated","the","windows","and","her","breath","hung","in","white","clouds."], display:"Frost coated the windows and her breath hung in white clouds." }
+    ];
+
+    let sIdx = 0;
+    const dropZone = document.getElementById('dropZone');
+    const wordBank = document.getElementById('wordBank');
+    const checkBtn = document.getElementById('checkBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const scrambleResult = document.getElementById('scrambleResult');
+
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    function loadSentence() {
+      const s = SENTENCES[sIdx % SENTENCES.length];
+      const shuffled = shuffle(s.words);
+      dropZone.innerHTML = '';
+      wordBank.innerHTML = '';
+      scrambleResult.textContent = '';
+      checkBtn.style.display = '';
+      nextBtn.style.display = 'none';
+
+      shuffled.forEach(function(w, i) {
+        const el = document.createElement('div');
+        el.className = 'word';
+        el.textContent = w;
+        el.draggable = true;
+        el.dataset.word = w;
+        el.dataset.idx = i;
+        el.setAttribute('role', 'listitem');
+        el.addEventListener('dragstart', function(e) {
+          e.dataTransfer.setData('text/plain', i + '|' + w);
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        el.addEventListener('click', function() {
+          if (el.classList.contains('placed')) return;
+          const clone = el.cloneNode(true);
+          clone.draggable = false;
+          clone.style.cursor = 'pointer';
+          clone.addEventListener('click', function() {
+            dropZone.removeChild(clone);
+            el.classList.remove('placed');
+          });
+          dropZone.appendChild(clone);
+          el.classList.add('placed');
+        });
+        wordBank.appendChild(el);
+      });
+    }
+
+    dropZone.addEventListener('dragover', function(e) { e.preventDefault(); dropZone.classList.add('over'); });
+    dropZone.addEventListener('dragleave', function() { dropZone.classList.remove('over'); });
+    dropZone.addEventListener('drop', function(e) {
+      e.preventDefault(); dropZone.classList.remove('over');
+      const parts = e.dataTransfer.getData('text/plain').split('|');
+      const idx = parts[0]; const w = parts[1];
+      const src = wordBank.querySelector('[data-idx="' + idx + '"]');
+      if (src && !src.classList.contains('placed')) {
+        const clone = document.createElement('div');
+        clone.className = 'word'; clone.textContent = w;
+        clone.addEventListener('click', function() { dropZone.removeChild(clone); src.classList.remove('placed'); });
+        dropZone.appendChild(clone);
+        src.classList.add('placed');
+      }
+    });
+
+    checkBtn.addEventListener('click', function() {
+      const s = SENTENCES[sIdx % SENTENCES.length];
+      const placed = Array.from(dropZone.children).map(function(el) { return el.textContent; });
+      if (placed.length !== s.words.length) {
+        scrambleResult.textContent = 'Place all the words first!';
+        scrambleResult.style.color = 'var(--text-muted)';
+        return;
+      }
+      const correct = placed.join(' ') === s.words.join(' ');
+      if (correct) {
+        scrambleResult.textContent = '\u2713 Perfect sentence!';
+        scrambleResult.style.color = 'var(--success)';
+        checkBtn.style.display = 'none';
+        nextBtn.style.display = '';
+      } else {
+        scrambleResult.textContent = '\u2717 Not quite — try rearranging!';
+        scrambleResult.style.color = 'var(--error)';
+      }
+    });
+
+    nextBtn.addEventListener('click', function() { sIdx++; loadSentence(); });
+    loadSentence();
+
+    /* ── Show Don't Tell Quiz ── */
+    const SDT = [
+      { q:"Which sentence SHOWS that Sam is nervous?", a:"Sam's palms were sweaty and he kept glancing at the door.", d:["Sam was nervous.","Sam felt a bit worried about it."] },
+      { q:"Which sentence SHOWS anger?", a:"She slammed the book on the table and stormed out.", d:["She was angry.","She felt really cross with him."] },
+      { q:"Which sentence SHOWS it is a hot day?", a:"Heat shimmered above the tarmac and sweat trickled down his neck.", d:["It was a hot day.","The weather was warm and sunny."] },
+      { q:"Which sentence SHOWS excitement?", a:"Lily bounced on her toes, her eyes wide, barely able to stand still.", d:["Lily was excited.","Lily felt very happy and excited."] },
+      { q:"Which sentence SHOWS tiredness?", a:"His eyelids drooped and his head kept nodding forward.", d:["He was very tired.","He felt exhausted after the long day."] }
+    ];
+
+    let sdtScore = 0, sdtIdx = 0;
+    const sdtQs = shuffle(SDT).slice(0, 4);
+    const sdtArea = document.getElementById('sdtArea');
+    const fbEl = document.getElementById('fb');
+    const scEl = document.getElementById('score');
+    document.getElementById('maxS').textContent = sdtQs.length;
+
+    function renderSDT() {
+      if (sdtIdx >= sdtQs.length) {
+        sdtArea.innerHTML = '';
+        const p = document.createElement('p');
+        p.className = 'sdt-q'; p.style.color = 'var(--primary)'; p.style.textAlign = 'center';
+        p.textContent = 'Great job! ' + sdtScore + ' / ' + sdtQs.length + '!';
+        sdtArea.appendChild(p); fbEl.textContent = ''; return;
+      }
+      const q = sdtQs[sdtIdx];
+      const opts = shuffle([q.a, ...q.d]);
+      sdtArea.innerHTML = ''; fbEl.textContent = '';
+
+      const qEl = document.createElement('p'); qEl.className = 'sdt-q';
+      qEl.textContent = (sdtIdx + 1) + '. ' + q.q; sdtArea.appendChild(qEl);
+
+      const optsEl = document.createElement('div'); optsEl.className = 'sdt-opts';
+      opts.forEach(function(o) {
+        const btn = document.createElement('button'); btn.className = 'sdt-opt'; btn.textContent = o;
+        btn.addEventListener('click', function() {
+          optsEl.querySelectorAll('.sdt-opt').forEach(function(b) { b.classList.add('disabled'); });
+          if (o === q.a) {
+            btn.classList.add('correct','bounce'); sdtScore++; scEl.textContent = sdtScore;
+            fbEl.textContent = '\u2713 That\'s showing, not telling!'; fbEl.style.color = 'var(--success)';
+          } else {
+            btn.classList.add('wrong','shake');
+            optsEl.querySelectorAll('.sdt-opt').forEach(function(b) { if(b.textContent===q.a) b.classList.add('correct'); });
+            fbEl.textContent = '\u2717 The showing sentence uses actions and senses.'; fbEl.style.color = 'var(--error)';
+          }
+          sdtIdx++; setTimeout(renderSDT, 1400);
+        });
+        optsEl.appendChild(btn);
+      });
+      sdtArea.appendChild(optsEl);
+    }
+    renderSDT();
+  </script>
+</body>
+</html>

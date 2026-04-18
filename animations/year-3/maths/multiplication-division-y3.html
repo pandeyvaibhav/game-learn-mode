@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiplication and Division — Year 3 Maths | Game Learn</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --surface2: #273344;
+      --border: rgba(148,163,184,0.15); --primary: #fbbf24; --primary-dark: #d97706;
+      --accent: #38bdf8; --accent2: #a78bfa; --success: #34d399; --error: #f87171;
+      --text: #e2e8f0; --text-muted: #94a3b8; --radius: 16px; --radius-sm: 8px;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 1.5rem 1rem 3rem; gap: 1.5rem; }
+    header { text-align: center; max-width: 640px; width: 100%; }
+    .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .4rem; }
+    h1 { font-size: clamp(1.4rem,4vw,2rem); font-weight: 800; color: var(--primary); }
+    .subtitle { color: var(--text-muted); font-size: .9rem; margin-top: .5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; width: 100%; max-width: 640px; }
+    .card-title { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+
+    /* Array Builder */
+    .array-controls { display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .arr-label { font-size: .85rem; color: var(--text-muted); }
+    .arr-select { background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .4rem .6rem; font-size: 1rem; }
+    .array-grid { display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; }
+    .array-row { display: flex; gap: 4px; }
+    .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); opacity: 0; }
+    .array-result { text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-top: .75rem; }
+
+    /* Quiz */
+    .quiz-area { display: flex; flex-direction: column; gap: 1rem; }
+    .q-text { font-size: 1.1rem; font-weight: 700; text-align: center; }
+    .opts { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+    .opt-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: .6rem 1.2rem; font-size: 1rem; cursor: pointer; color: var(--text); transition: background .12s, border-color .12s; }
+    .opt-btn:hover { border-color: var(--accent); }
+    .opt-btn.correct { background: var(--success); color: #0f172a; border-color: var(--success); font-weight: 700; }
+    .opt-btn.wrong { background: var(--error); color: #0f172a; border-color: var(--error); }
+    .opt-btn.disabled { pointer-events: none; opacity: .5; }
+    .feedback { text-align: center; font-size: .9rem; min-height: 1.2em; }
+    .score-bar { text-align: center; font-size: .9rem; color: var(--text-muted); }
+    .score-bar span { color: var(--primary); font-weight: 700; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: .5rem; justify-content: center; margin-bottom: .5rem; }
+    .tab-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 20px; padding: .4rem 1rem; font-size: .82rem; cursor: pointer; }
+    .tab-btn.active { background: var(--primary); color: #0f172a; border-color: var(--primary); font-weight: 700; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .bounce { animation: bounce .4s ease; }
+      .shake { animation: shake .35s ease; }
+      .pop { animation: pop .3s ease both; }
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+    @keyframes pop { from{opacity:0;transform:scale(.3)} to{opacity:1;transform:scale(1)} }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · Maths</p>
+    <h1>Multiplication &amp; Division</h1>
+    <p class="subtitle">Build arrays and practise your 3, 4 and 8 times tables!</p>
+  </header>
+
+  <!-- Array Builder -->
+  <div class="card">
+    <p class="card-title">Array Builder</p>
+    <div class="array-controls">
+      <span class="arr-label">Rows</span>
+      <select class="arr-select" id="rows-sel" aria-label="Number of rows">
+        <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+      </select>
+      <span class="arr-label">×</span>
+      <select class="arr-select" id="cols-sel" aria-label="Number of columns">
+        <option>1</option><option>2</option><option selected>4</option><option>3</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+      </select>
+    </div>
+    <div class="array-grid" id="array-grid" role="img" aria-label="Multiplication array"></div>
+    <div class="array-result" id="array-result" aria-live="polite"></div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Times Table Challenge</p>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-table="3">× 3</button>
+      <button class="tab-btn" data-table="4">× 4</button>
+      <button class="tab-btn" data-table="8">× 8</button>
+      <button class="tab-btn" data-table="mix">Mix</button>
+    </div>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="max">5</span></div>
+    <div class="quiz-area" id="quiz-area"></div>
+    <p class="feedback" id="feedback" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Array Builder ── */
+    const rowsSel = document.getElementById('rows-sel');
+    const colsSel = document.getElementById('cols-sel');
+    const gridEl = document.getElementById('array-grid');
+    const resultEl = document.getElementById('array-result');
+
+    function buildArray() {
+      const r = parseInt(rowsSel.value, 10);
+      const c = parseInt(colsSel.value, 10);
+      gridEl.innerHTML = '';
+      let delay = 0;
+      for (let i = 0; i < r; i++) {
+        const row = document.createElement('div');
+        row.className = 'array-row';
+        for (let j = 0; j < c; j++) {
+          const dot = document.createElement('div');
+          dot.className = 'dot pop';
+          dot.style.animationDelay = delay + 'ms';
+          delay += 30;
+          row.appendChild(dot);
+        }
+        gridEl.appendChild(row);
+      }
+      resultEl.textContent = r + ' \u00d7 ' + c + ' = ' + (r * c);
+    }
+
+    rowsSel.addEventListener('change', buildArray);
+    colsSel.addEventListener('change', buildArray);
+    buildArray();
+
+    /* ── Quiz ── */
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function makeQuestions(table) {
+      const qs = [];
+      const tables = table === 'mix' ? [3, 4, 8] : [parseInt(table, 10)];
+      tables.forEach(function(t) {
+        for (let i = 1; i <= 12; i++) {
+          const answer = i * t;
+          const d1 = answer + t;
+          const d2 = answer - t;
+          const d3 = answer + 1;
+          const dists = [d1, d2, d3].filter(function(v) { return v > 0 && v !== answer; });
+          while (dists.length < 3) dists.push(answer + dists.length + 2);
+          qs.push({ q: i + ' \u00d7 ' + t, a: String(answer), d: dists.slice(0, 3).map(String) });
+        }
+      });
+      return shuffle(qs).slice(0, 5);
+    }
+
+    let currentTable = '3';
+    let questions = [];
+    let qIdx = 0;
+    let score = 0;
+    const quizArea = document.getElementById('quiz-area');
+    const feedbackEl = document.getElementById('feedback');
+    const scoreEl = document.getElementById('score');
+    const maxEl = document.getElementById('max');
+
+    function startQuiz() {
+      questions = makeQuestions(currentTable);
+      qIdx = 0; score = 0;
+      scoreEl.textContent = '0';
+      maxEl.textContent = questions.length;
+      renderQ();
+    }
+
+    function renderQ() {
+      if (qIdx >= questions.length) {
+        quizArea.innerHTML = '';
+        const p = document.createElement('p');
+        p.className = 'q-text';
+        p.style.color = 'var(--primary)';
+        p.textContent = 'Well done! ' + score + ' out of ' + questions.length + ' correct!';
+        quizArea.appendChild(p);
+        feedbackEl.textContent = '';
+        return;
+      }
+      const q = questions[qIdx];
+      const opts = shuffle([q.a, ...q.d]);
+      quizArea.innerHTML = '';
+      feedbackEl.textContent = '';
+
+      const qText = document.createElement('p');
+      qText.className = 'q-text';
+      qText.textContent = q.q + ' = ?';
+      quizArea.appendChild(qText);
+
+      const optsDiv = document.createElement('div');
+      optsDiv.className = 'opts';
+      opts.forEach(function(o) {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.textContent = o;
+        btn.addEventListener('click', function() {
+          optsDiv.querySelectorAll('.opt-btn').forEach(function(b) { b.classList.add('disabled'); });
+          if (o === q.a) {
+            btn.classList.add('correct', 'bounce');
+            score++;
+            scoreEl.textContent = score;
+            feedbackEl.textContent = '\u2713 Correct!';
+            feedbackEl.style.color = 'var(--success)';
+          } else {
+            btn.classList.add('wrong', 'shake');
+            optsDiv.querySelectorAll('.opt-btn').forEach(function(b) { if (b.textContent === q.a) b.classList.add('correct'); });
+            feedbackEl.textContent = '\u2717 The answer is ' + q.a;
+            feedbackEl.style.color = 'var(--error)';
+          }
+          qIdx++;
+          setTimeout(renderQ, 1100);
+        });
+        optsDiv.appendChild(btn);
+      });
+      quizArea.appendChild(optsDiv);
+    }
+
+    /* Tabs */
+    document.getElementById('tabs').addEventListener('click', function(e) {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentTable = btn.dataset.table;
+      startQuiz();
+    });
+
+    startQuiz();
+  </script>
+</body>
+</html>

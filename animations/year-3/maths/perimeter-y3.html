@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perimeter — Year 3 Maths | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    canvas{display:block;margin:0 auto;border-radius:var(--radius-sm);background:var(--surface2)}
+    .shape-info{text-align:center;margin-top:1rem;font-size:1.1rem;font-weight:700;color:var(--primary)}
+    .shape-detail{text-align:center;font-size:.85rem;color:var(--text-muted);margin-top:.35rem}
+    .btn-row{display:flex;gap:.6rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+    .action-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:.5rem 1.1rem;font-size:.88rem;cursor:pointer;transition:background .12s}
+    .action-btn:hover{background:var(--primary);color:#0f172a;border-color:var(--primary)}
+
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:1rem;font-weight:700;text-align:center}
+    .opts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1.1rem;font-size:.95rem;cursor:pointer;color:var(--text);transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;border-color:var(--success);font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a;border-color:var(--error)}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted)}.score-bar span{color:var(--primary);font-weight:700}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · Maths</p>
+    <h1>Perimeter</h1>
+    <p class="subtitle">Walk around shapes and add up their sides!</p>
+  </header>
+
+  <!-- Shape Explorer -->
+  <div class="card">
+    <p class="card-title">Shape Explorer</p>
+    <canvas id="shapeCanvas" width="400" height="300" role="img" aria-label="Shape with labelled sides"></canvas>
+    <div class="shape-info" id="shapeInfo" aria-live="polite"></div>
+    <div class="shape-detail" id="shapeDetail"></div>
+    <div class="btn-row">
+      <button class="action-btn" id="btnNew">New Shape</button>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Perimeter Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">5</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Shape Explorer ── */
+    const cv = document.getElementById('shapeCanvas');
+    const cx = cv.getContext('2d');
+    const infoEl = document.getElementById('shapeInfo');
+    const detailEl = document.getElementById('shapeDetail');
+
+    const SHAPES = [
+      { name:'Square', sides:[5,5,5,5], pts:[[60,40],[240,40],[240,220],[60,220]] },
+      { name:'Rectangle', sides:[8,4,8,4], pts:[[40,80],[340,80],[340,220],[40,220]] },
+      { name:'Rectangle', sides:[10,3,10,3], pts:[[20,100],[360,100],[360,200],[20,200]] },
+      { name:'Triangle', sides:[6,6,6], pts:[[200,30],[60,250],[340,250]] },
+      { name:'Triangle', sides:[5,7,8], pts:[[180,30],[40,250],[360,250]] },
+      { name:'L-shape', sides:[2,3,3,2,5,5], pts:[[60,40],[200,40],[200,140],[320,140],[320,260],[60,260]] }
+    ];
+
+    function drawShape(shape) {
+      cx.clearRect(0, 0, 400, 300);
+      const pts = shape.pts;
+      cx.beginPath();
+      cx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length; i++) cx.lineTo(pts[i][0], pts[i][1]);
+      cx.closePath();
+      cx.fillStyle = 'rgba(251,191,36,0.12)';
+      cx.fill();
+      cx.strokeStyle = '#fbbf24';
+      cx.lineWidth = 3;
+      cx.stroke();
+
+      /* Labels */
+      cx.font = '700 14px system-ui';
+      cx.fillStyle = '#38bdf8';
+      cx.textAlign = 'center';
+      cx.textBaseline = 'middle';
+      for (let i = 0; i < pts.length; i++) {
+        const next = (i + 1) % pts.length;
+        const mx = (pts[i][0] + pts[next][0]) / 2;
+        const my = (pts[i][1] + pts[next][1]) / 2;
+        const dx = pts[next][0] - pts[i][0];
+        const dy = pts[next][1] - pts[i][1];
+        const len = Math.sqrt(dx*dx + dy*dy);
+        const nx = -dy / len * 18;
+        const ny = dx / len * 18;
+        cx.fillText(shape.sides[i] + ' cm', mx + nx, my + ny);
+      }
+
+      const perim = shape.sides.reduce(function(a, b) { return a + b; }, 0);
+      infoEl.textContent = 'Perimeter = ' + shape.sides.join(' + ') + ' = ' + perim + ' cm';
+      detailEl.textContent = shape.name + ' — ' + shape.sides.length + ' sides';
+    }
+
+    let shapeIdx = 0;
+    function nextShape() {
+      drawShape(SHAPES[shapeIdx]);
+      shapeIdx = (shapeIdx + 1) % SHAPES.length;
+    }
+    document.getElementById('btnNew').addEventListener('click', nextShape);
+    nextShape();
+
+    /* ── Quiz ── */
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    const QUESTIONS = [
+      { q: "Square with sides 7 cm. Perimeter?", a: "28 cm", d: ["21 cm","14 cm","35 cm"] },
+      { q: "Rectangle: 9 cm by 4 cm. Perimeter?", a: "26 cm", d: ["36 cm","22 cm","13 cm"] },
+      { q: "Triangle: 5 cm, 6 cm, 7 cm. Perimeter?", a: "18 cm", d: ["15 cm","20 cm","17 cm"] },
+      { q: "Rectangle: 12 cm by 5 cm. Perimeter?", a: "34 cm", d: ["60 cm","30 cm","24 cm"] },
+      { q: "Equilateral triangle: 8 cm sides. Perimeter?", a: "24 cm", d: ["16 cm","32 cm","18 cm"] },
+      { q: "Square with sides 10 cm. Perimeter?", a: "40 cm", d: ["100 cm","30 cm","20 cm"] },
+      { q: "Rectangle: 6 cm by 3 cm. Perimeter?", a: "18 cm", d: ["9 cm","24 cm","12 cm"] }
+    ];
+
+    let sc = 0, qi = 0;
+    const qs = shuffle(QUESTIONS).slice(0, 5);
+    const quizEl = document.getElementById('quiz');
+    const fbEl = document.getElementById('fb');
+    const scEl = document.getElementById('score');
+
+    function renderQ() {
+      if (qi >= qs.length) {
+        quizEl.innerHTML = '';
+        const p = document.createElement('p'); p.className = 'q-text'; p.style.color = 'var(--primary)';
+        p.textContent = 'Well done! ' + sc + ' / ' + qs.length + ' correct!';
+        quizEl.appendChild(p); fbEl.textContent = ''; return;
+      }
+      const q = qs[qi]; const opts = shuffle([q.a, ...q.d]);
+      quizEl.innerHTML = ''; fbEl.textContent = '';
+      const qt = document.createElement('p'); qt.className = 'q-text';
+      qt.textContent = (qi+1) + '. ' + q.q; quizEl.appendChild(qt);
+      const od = document.createElement('div'); od.className = 'opts';
+      opts.forEach(function(o){
+        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.textContent = o;
+        btn.addEventListener('click', function(){
+          od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+          if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
+          else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
+          qi++;setTimeout(renderQ,1100);
+        });
+        od.appendChild(btn);
+      });
+      quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

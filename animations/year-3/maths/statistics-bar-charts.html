@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics — Bar Charts — Year 3 Maths | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Bar chart builder */
+    .builder{display:flex;flex-direction:column;gap:1rem}
+    .bar-area{display:flex;align-items:flex-end;gap:.6rem;justify-content:center;height:220px;border-bottom:2px solid var(--border);padding-bottom:.5rem}
+    .bar-col{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1;max-width:80px}
+    .bar{width:100%;border-radius:6px 6px 0 0;transition:height .3s ease;cursor:pointer}
+    .bar-val{font-size:.82rem;font-weight:700;color:var(--primary)}
+    .bar-label{font-size:.75rem;color:var(--text-muted);text-align:center}
+    .bar-btns{display:flex;gap:.3rem}
+    .b-btn{width:28px;height:28px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .b-btn:hover{background:var(--primary);color:#0f172a}
+    .chart-total{text-align:center;font-size:.9rem;color:var(--text-muted)}
+    .chart-total span{color:var(--primary);font-weight:700}
+
+    /* Quiz */
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:1rem;font-weight:700;text-align:center}
+    .opts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1.1rem;font-size:.95rem;cursor:pointer;color:var(--text);transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted)}.score-bar span{color:var(--primary);font-weight:700}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · Maths</p>
+    <h1>Bar Charts</h1>
+    <p class="subtitle">Build your own bar chart and answer questions about data!</p>
+  </header>
+
+  <!-- Bar chart builder -->
+  <div class="card">
+    <p class="card-title">Bar Chart Builder</p>
+    <div class="builder">
+      <div class="bar-area" id="barArea"></div>
+      <div class="chart-total">Total: <span id="total">0</span></div>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Data Detective Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">5</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Bar Chart Builder ── */
+    const COLOURS = ['#fbbf24','#38bdf8','#a78bfa','#34d399','#f87171'];
+    const ITEMS = [
+      { label:'Apples', val:4 },
+      { label:'Bananas', val:6 },
+      { label:'Oranges', val:3 },
+      { label:'Grapes', val:8 },
+      { label:'Pears', val:5 }
+    ];
+    const MAX = 12;
+    const barArea = document.getElementById('barArea');
+    const totalEl = document.getElementById('total');
+
+    function buildBars() {
+      barArea.innerHTML = '';
+      ITEMS.forEach(function(item, i) {
+        const col = document.createElement('div');
+        col.className = 'bar-col';
+
+        const valEl = document.createElement('div');
+        valEl.className = 'bar-val';
+        valEl.textContent = item.val;
+        valEl.id = 'bv-' + i;
+
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.background = COLOURS[i % COLOURS.length];
+        bar.style.height = (item.val / MAX * 180) + 'px';
+        bar.id = 'bar-' + i;
+        bar.setAttribute('aria-label', item.label + ': ' + item.val);
+
+        const label = document.createElement('div');
+        label.className = 'bar-label';
+        label.textContent = item.label;
+
+        const btns = document.createElement('div');
+        btns.className = 'bar-btns';
+        const plus = document.createElement('button');
+        plus.className = 'b-btn'; plus.textContent = '+'; plus.setAttribute('aria-label','Increase ' + item.label);
+        plus.addEventListener('click', function() { if(item.val < MAX){item.val++;updateBar(i);} });
+        const minus = document.createElement('button');
+        minus.className = 'b-btn'; minus.textContent = '−'; minus.setAttribute('aria-label','Decrease ' + item.label);
+        minus.addEventListener('click', function() { if(item.val > 0){item.val--;updateBar(i);} });
+        btns.appendChild(plus); btns.appendChild(minus);
+
+        col.appendChild(valEl);
+        col.appendChild(bar);
+        col.appendChild(label);
+        col.appendChild(btns);
+        barArea.appendChild(col);
+      });
+      updateTotal();
+    }
+
+    function updateBar(i) {
+      const bar = document.getElementById('bar-' + i);
+      const valEl = document.getElementById('bv-' + i);
+      bar.style.height = (ITEMS[i].val / MAX * 180) + 'px';
+      valEl.textContent = ITEMS[i].val;
+      bar.setAttribute('aria-label', ITEMS[i].label + ': ' + ITEMS[i].val);
+      updateTotal();
+    }
+
+    function updateTotal() {
+      totalEl.textContent = ITEMS.reduce(function(s,it){return s+it.val;},0);
+    }
+
+    buildBars();
+
+    /* ── Quiz ── */
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    const QUESTIONS = [
+      { q:"A bar chart shows: Dogs 10, Cats 7, Fish 4. Which pet is most popular?", a:"Dogs", d:["Cats","Fish","Rabbits"] },
+      { q:"Dogs 10, Cats 7. How many more children chose Dogs?", a:"3", d:["7","17","10"] },
+      { q:"In a pictogram each symbol = 2 children. 6 children = how many symbols?", a:"3", d:["6","12","2"] },
+      { q:"Bar chart shows: Red 5, Blue 8, Green 3. Total votes?", a:"16", d:["13","15","18"] },
+      { q:"Which axis usually shows the categories?", a:"The bottom (horizontal) axis", d:["The side (vertical) axis","Both axes","Neither axis"] },
+      { q:"If each symbol in a pictogram = 5, and a row has 4 symbols, the value is?", a:"20", d:["4","5","9"] },
+      { q:"Bar chart: Apples 9, Bananas 6. Difference?", a:"3", d:["15","6","9"] }
+    ];
+
+    let sc = 0, qi = 0;
+    const qs = shuffle(QUESTIONS).slice(0,5);
+    const quizEl = document.getElementById('quiz');
+    const fbEl = document.getElementById('fb');
+    const scEl = document.getElementById('score');
+
+    function renderQ(){
+      if(qi>=qs.length){quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.color='var(--primary)';p.textContent='Great work! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      const q=qs[qi];const opts=shuffle([q.a,...q.d]);quizEl.innerHTML='';fbEl.textContent='';
+      const qt=document.createElement('p');qt.className='q-text';qt.textContent=(qi+1)+'. '+q.q;quizEl.appendChild(qt);
+      const od=document.createElement('div');od.className='opts';
+      opts.forEach(function(o){const btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+        btn.addEventListener('click',function(){od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+        if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
+        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
+        qi++;setTimeout(renderQ,1100);});od.appendChild(btn);});quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Value to 1000 — Year 3 Maths | Game Learn</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #273344;
+      --border: rgba(148,163,184,0.15);
+      --primary: #fbbf24;
+      --primary-dark: #d97706;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --success: #34d399;
+      --error: #f87171;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 1.5rem 1rem 3rem; gap: 1.5rem;
+    }
+    header { text-align: center; max-width: 640px; width: 100%; }
+    .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .4rem; }
+    h1 { font-size: clamp(1.4rem,4vw,2rem); font-weight: 800; color: var(--primary); }
+    .subtitle { color: var(--text-muted); font-size: .9rem; margin-top: .5rem; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; width: 100%; max-width: 640px;
+    }
+    .card-title { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+
+    /* Number Machine */
+    .machine { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+    .columns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .col { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+    .col-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+    .col-value {
+      width: 80px; height: 80px; border-radius: var(--radius);
+      background: var(--surface2); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 800; color: var(--primary);
+      transition: border-color .15s;
+    }
+    .col-value.active { border-color: var(--primary); }
+    .col-btns { display: flex; gap: .4rem; }
+    .col-btn {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); font-size: 1.1rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .12s;
+    }
+    .col-btn:hover { background: var(--primary); color: #0f172a; }
+
+    .number-display {
+      font-size: 2.5rem; font-weight: 800; color: var(--accent);
+      letter-spacing: .05em;
+    }
+    .expanded {
+      font-size: 1rem; color: var(--text-muted);
+    }
+
+    /* Quiz */
+    .quiz { display: flex; flex-direction: column; gap: 1rem; }
+    .quiz-q { font-size: .95rem; font-weight: 600; }
+    .quiz-opts { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .quiz-opt {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: .55rem 1rem; font-size: .88rem;
+      cursor: pointer; transition: background .12s, border-color .12s;
+    }
+    .quiz-opt:hover { border-color: var(--accent); }
+    .quiz-opt.correct { background: var(--success); color: #0f172a; border-color: var(--success); font-weight: 700; }
+    .quiz-opt.wrong { background: var(--error); color: #0f172a; border-color: var(--error); }
+    .quiz-opt.disabled { pointer-events: none; opacity: .6; }
+    .quiz-feedback { font-size: .85rem; min-height: 1.2em; }
+
+    .score-bar {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      font-size: .9rem; color: var(--text-muted);
+    }
+    .score-bar span { color: var(--primary); font-weight: 700; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .bounce { animation: bounce .4s ease; }
+      .shake { animation: shake .35s ease; }
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .fade-in { animation: fadeInUp .4s ease both; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="tag">Year 3 · Maths</p>
+    <h1>Place Value to 1000</h1>
+    <p class="subtitle">Build numbers with hundreds, tens and ones — then test yourself!</p>
+  </header>
+
+  <!-- Number Machine -->
+  <div class="card">
+    <p class="card-title">Number Machine</p>
+    <div class="machine">
+      <div class="columns" id="columns">
+        <div class="col">
+          <span class="col-label">Hundreds</span>
+          <div class="col-value" id="h-val" aria-label="Hundreds digit">0</div>
+          <div class="col-btns">
+            <button class="col-btn" data-col="h" data-dir="1" aria-label="Increase hundreds">+</button>
+            <button class="col-btn" data-col="h" data-dir="-1" aria-label="Decrease hundreds">−</button>
+          </div>
+        </div>
+        <div class="col">
+          <span class="col-label">Tens</span>
+          <div class="col-value" id="t-val" aria-label="Tens digit">0</div>
+          <div class="col-btns">
+            <button class="col-btn" data-col="t" data-dir="1" aria-label="Increase tens">+</button>
+            <button class="col-btn" data-col="t" data-dir="-1" aria-label="Decrease tens">−</button>
+          </div>
+        </div>
+        <div class="col">
+          <span class="col-label">Ones</span>
+          <div class="col-value" id="o-val" aria-label="Ones digit">0</div>
+          <div class="col-btns">
+            <button class="col-btn" data-col="o" data-dir="1" aria-label="Increase ones">+</button>
+            <button class="col-btn" data-col="o" data-dir="-1" aria-label="Decrease ones">−</button>
+          </div>
+        </div>
+      </div>
+      <div class="number-display" id="total" aria-live="polite">0</div>
+      <div class="expanded" id="expanded">0 + 0 + 0 = 0</div>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Quick Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="max-score">0</span></div>
+    <div class="quiz" id="quiz"></div>
+    <p class="quiz-feedback" id="feedback" aria-live="polite"></p>
+  </div>
+
+  <script>
+    /* ── Number Machine ── */
+    const digits = { h: 0, t: 0, o: 0 };
+    const hVal = document.getElementById('h-val');
+    const tVal = document.getElementById('t-val');
+    const oVal = document.getElementById('o-val');
+    const totalEl = document.getElementById('total');
+    const expandedEl = document.getElementById('expanded');
+
+    function updateMachine() {
+      hVal.textContent = digits.h;
+      tVal.textContent = digits.t;
+      oVal.textContent = digits.o;
+      const num = digits.h * 100 + digits.t * 10 + digits.o;
+      totalEl.textContent = num;
+      expandedEl.textContent = (digits.h * 100) + ' + ' + (digits.t * 10) + ' + ' + digits.o + ' = ' + num;
+    }
+
+    document.getElementById('columns').addEventListener('click', function(e) {
+      const btn = e.target.closest('.col-btn');
+      if (!btn) return;
+      const col = btn.dataset.col;
+      const dir = parseInt(btn.dataset.dir, 10);
+      digits[col] = Math.max(0, Math.min(9, digits[col] + dir));
+      const valEl = document.getElementById(col === 'h' ? 'h-val' : col === 't' ? 't-val' : 'o-val');
+      valEl.classList.remove('active');
+      void valEl.offsetWidth;
+      valEl.classList.add('active');
+      setTimeout(function() { valEl.classList.remove('active'); }, 300);
+      updateMachine();
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q: "What is the value of the digit 6 in 638?", a: "600", d: ["60", "6", "630"] },
+      { q: "Partition 472: 400 + ? + 2", a: "70", d: ["7", "40", "72"] },
+      { q: "Which is greater: 589 or 598?", a: "598", d: ["589", "They are equal", "Cannot tell"] },
+      { q: "Round 345 to the nearest 10.", a: "350", d: ["340", "300", "400"] },
+      { q: "Round 651 to the nearest 100.", a: "700", d: ["600", "650", "660"] },
+      { q: "What number is 300 + 50 + 9?", a: "359", d: ["395", "539", "350"] },
+      { q: "In 807, how many tens are there?", a: "0", d: ["8", "7", "80"] },
+      { q: "Round 485 to the nearest 100.", a: "500", d: ["400", "490", "480"] }
+    ];
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    let score = 0;
+    let qIndex = 0;
+    const quizEl = document.getElementById('quiz');
+    const feedbackEl = document.getElementById('feedback');
+    const scoreEl = document.getElementById('score');
+    const maxEl = document.getElementById('max-score');
+    const shuffled = shuffle(QUESTIONS).slice(0, 5);
+    maxEl.textContent = shuffled.length;
+
+    function renderQuestion() {
+      if (qIndex >= shuffled.length) {
+        quizEl.innerHTML = '';
+        const done = document.createElement('p');
+        done.style.cssText = 'text-align:center;font-size:1.2rem;font-weight:700;color:var(--primary);padding:1rem 0;';
+        done.textContent = 'Well done! You scored ' + score + ' out of ' + shuffled.length + '!';
+        quizEl.appendChild(done);
+        feedbackEl.textContent = '';
+        return;
+      }
+      const q = shuffled[qIndex];
+      const opts = shuffle([q.a, ...q.d]);
+      quizEl.innerHTML = '';
+      feedbackEl.textContent = '';
+
+      const qEl = document.createElement('p');
+      qEl.className = 'quiz-q fade-in';
+      qEl.textContent = (qIndex + 1) + '. ' + q.q;
+      quizEl.appendChild(qEl);
+
+      const optsEl = document.createElement('div');
+      optsEl.className = 'quiz-opts fade-in';
+      opts.forEach(function(opt) {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt';
+        btn.textContent = opt;
+        btn.setAttribute('role', 'option');
+        btn.addEventListener('click', function() {
+          const allBtns = optsEl.querySelectorAll('.quiz-opt');
+          allBtns.forEach(function(b) { b.classList.add('disabled'); });
+          if (opt === q.a) {
+            btn.classList.add('correct', 'bounce');
+            score++;
+            scoreEl.textContent = score;
+            feedbackEl.textContent = '✓ Correct!';
+            feedbackEl.style.color = 'var(--success)';
+          } else {
+            btn.classList.add('wrong', 'shake');
+            allBtns.forEach(function(b) { if (b.textContent === q.a) b.classList.add('correct'); });
+            feedbackEl.textContent = '✗ The answer is ' + q.a;
+            feedbackEl.style.color = 'var(--error)';
+          }
+          qIndex++;
+          setTimeout(renderQuestion, 1200);
+        });
+        optsEl.appendChild(btn);
+      });
+      quizEl.appendChild(optsEl);
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>

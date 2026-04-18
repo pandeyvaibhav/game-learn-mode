@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ancient Egypt — Year 3 History | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Hieroglyph Decoder */
+    .hiero-grid{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1rem}
+    .hiero-sym{width:50px;height:50px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;cursor:pointer;transition:border-color .2s,transform .2s}
+    .hiero-sym:hover{transform:scale(1.08)}
+    .hiero-sym.sel{border-color:var(--primary)}
+    .decode-area{display:flex;gap:.3rem;justify-content:center;flex-wrap:wrap;margin-bottom:.75rem;min-height:40px}
+    .decode-slot{width:36px;height:36px;background:var(--surface2);border:1px dashed var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--primary)}
+    .decode-word{font-size:.9rem;font-weight:600;text-align:center;min-height:1.2em;margin-bottom:.5rem}
+
+    /* Mummification Steps */
+    .mummy-steps{display:flex;flex-direction:column;gap:.5rem}
+    .step-slot{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.5rem .8rem;font-size:.85rem;min-height:38px;display:flex;align-items:center;gap:.5rem}
+    .step-num{width:24px;height:24px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+    .step-slot.filled .step-num{background:var(--success);color:#0f172a}
+    .step-slot.wrong-step .step-num{background:var(--error);color:#0f172a}
+    .step-pool{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1rem}
+    .step-chip{background:var(--accent);color:#0f172a;font-weight:700;border:none;border-radius:10px;padding:.4rem .9rem;font-size:.82rem;cursor:pointer;transition:opacity .15s}
+    .step-chip.used{opacity:.3;pointer-events:none}
+
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted)}.score-bar span{color:var(--primary);font-weight:700}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+
+    /* Quiz */
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:.95rem;font-weight:600}
+    .opts{display:flex;flex-direction:column;gap:.4rem}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · History</p>
+    <h1>Ancient Egypt</h1>
+    <p class="subtitle">Decode hieroglyphs and learn about mummies!</p>
+  </header>
+
+  <!-- Hieroglyph Decoder -->
+  <div class="card">
+    <p class="card-title">Hieroglyph Decoder</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click the symbols in the right order to spell the secret word!</p>
+    <div class="decode-word" id="clue"></div>
+    <div class="decode-area" id="decodeArea"></div>
+    <div class="hiero-grid" id="hieroGrid"></div>
+    <p class="fb" id="hieroFb" aria-live="polite"></p>
+    <button class="opt-btn" id="nextWord" style="display:none;margin:0 auto;font-size:.82rem;">Next Word</button>
+  </div>
+
+  <!-- Mummification Order -->
+  <div class="card">
+    <p class="card-title">Mummification Steps — Put Them In Order!</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click steps in the correct order (1 → 5).</p>
+    <div class="step-pool" id="stepPool"></div>
+    <div class="mummy-steps" id="mummySteps"></div>
+    <div class="score-bar">Correct: <span id="mScore">0</span> / 5</div>
+    <p class="fb" id="mFb" aria-live="polite"></p>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Egypt Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    /* ── Hieroglyph Decoder ── */
+    const HIERO_MAP = {
+      'A':'𓄿','B':'𓃀','C':'𓎡','D':'𓂧','E':'𓇋','F':'𓆑','G':'𓎼','H':'𓉔',
+      'I':'𓇋','K':'𓎡','L':'𓃭','M':'𓅓','N':'𓈖','O':'𓍯','P':'𓊪','R':'𓂋',
+      'S':'𓋴','T':'𓏏','U':'𓅱','W':'𓅱','Y':'𓏭'
+    };
+    const WORDS = [
+      { word:'NILE', clue:'The great river of Egypt' },
+      { word:'PHARAOH', clue:'The ruler of Egypt' },
+      { word:'PYRAMID', clue:'A huge stone tomb' },
+      { word:'MUMMY', clue:'A preserved body' },
+      { word:'CAT', clue:'A sacred animal in Egypt' }
+    ];
+    let wIdx = 0;
+    const clueEl = document.getElementById('clue');
+    const decodeEl = document.getElementById('decodeArea');
+    const hieroEl = document.getElementById('hieroGrid');
+    const hieroFb = document.getElementById('hieroFb');
+    const nextBtn = document.getElementById('nextWord');
+    let curLetters = [];
+    let curPos = 0;
+
+    function loadWord() {
+      if (wIdx >= WORDS.length) { clueEl.textContent = 'All words decoded!'; clueEl.style.color = 'var(--primary)'; hieroEl.innerHTML = ''; decodeEl.innerHTML = ''; nextBtn.style.display = 'none'; hieroFb.textContent = ''; return; }
+      const w = WORDS[wIdx];
+      clueEl.textContent = 'Clue: ' + w.clue;
+      curLetters = w.word.split('');
+      curPos = 0;
+      hieroFb.textContent = '';
+      nextBtn.style.display = 'none';
+
+      // Build slots
+      decodeEl.innerHTML = '';
+      curLetters.forEach(function() {
+        const slot = document.createElement('div');
+        slot.className = 'decode-slot';
+        decodeEl.appendChild(slot);
+      });
+
+      // Build symbol buttons (shuffled, only unique letters)
+      hieroEl.innerHTML = '';
+      const unique = [];
+      const seen = {};
+      curLetters.forEach(function(l) { if (!seen[l]) { seen[l] = true; unique.push(l); } });
+      // add a few distractors
+      var extras = ['D','G','K','W','F'];
+      extras.forEach(function(e) { if (!seen[e] && HIERO_MAP[e]) unique.push(e); });
+      shuffle(unique).forEach(function(letter) {
+        const sym = document.createElement('button');
+        sym.className = 'hiero-sym';
+        sym.textContent = HIERO_MAP[letter] || '?';
+        sym.dataset.letter = letter;
+        sym.addEventListener('click', function() {
+          if (curPos >= curLetters.length) return;
+          if (letter === curLetters[curPos]) {
+            decodeEl.children[curPos].textContent = letter;
+            decodeEl.children[curPos].classList.add('bounce');
+            curPos++;
+            if (curPos >= curLetters.length) {
+              hieroFb.textContent = '\u2713 You decoded: ' + WORDS[wIdx].word + '!';
+              hieroFb.style.color = 'var(--success)';
+              wIdx++;
+              nextBtn.style.display = 'block';
+            }
+          } else {
+            sym.classList.add('shake');
+            setTimeout(function() { sym.classList.remove('shake'); }, 400);
+            hieroFb.textContent = '\u2717 Try another symbol!';
+            hieroFb.style.color = 'var(--error)';
+          }
+        });
+        hieroEl.appendChild(sym);
+      });
+    }
+    nextBtn.addEventListener('click', loadWord);
+    loadWord();
+
+    /* ── Mummification Steps ── */
+    const STEPS = [
+      'Remove the organs and store in canopic jars',
+      'Dry the body with natron salt for 40 days',
+      'Wrap the body tightly in linen bandages',
+      'Place a death mask over the face',
+      'Put the mummy inside a sarcophagus'
+    ];
+    const stepPool = document.getElementById('stepPool');
+    const mummyEl = document.getElementById('mummySteps');
+    const mFb = document.getElementById('mFb');
+    const mScEl = document.getElementById('mScore');
+    let mSc = 0, mPos = 0;
+
+    // Build slots
+    STEPS.forEach(function(_, i) {
+      const slot = document.createElement('div');
+      slot.className = 'step-slot';
+      slot.innerHTML = '<div class="step-num">' + (i + 1) + '</div><span id="sText' + i + '">?</span>';
+      mummyEl.appendChild(slot);
+    });
+
+    // Build chips (shuffled)
+    shuffle(STEPS.map(function(s, i) { return { text: s, order: i }; })).forEach(function(step) {
+      const chip = document.createElement('button');
+      chip.className = 'step-chip';
+      chip.textContent = step.text;
+      chip.addEventListener('click', function() {
+        if (chip.classList.contains('used')) return;
+        if (step.order === mPos) {
+          chip.classList.add('used');
+          document.getElementById('sText' + mPos).textContent = step.text;
+          mummyEl.children[mPos].classList.add('filled');
+          mSc++; mScEl.textContent = mSc;
+          mFb.textContent = '\u2713 Step ' + (mPos + 1) + ' correct!';
+          mFb.style.color = 'var(--success)';
+          mPos++;
+        } else {
+          mummyEl.children[mPos].classList.add('wrong-step');
+          setTimeout(function() { mummyEl.children[mPos].classList.remove('wrong-step'); }, 500);
+          mFb.textContent = '\u2717 That\'s not the next step. Try again!';
+          mFb.style.color = 'var(--error)';
+        }
+      });
+      stepPool.appendChild(chip);
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q:"Why was the River Nile so important?", a:"Its floods left fertile soil for farming", d:["It was a good place to swim","Pharaohs liked boating","It made the desert cold"] },
+      { q:"What is a sarcophagus?", a:"A stone coffin for a mummy", d:["A type of pyramid","A writing tool","A boat"] },
+      { q:"Who discovered Tutankhamun's tomb?", a:"Howard Carter", d:["Cleopatra","Julius Caesar","Indiana Jones"] },
+      { q:"How many hieroglyphs were there?", a:"Over 700", d:["26 (like our alphabet)","10","Just 5"] },
+      { q:"What animal was sacred in Ancient Egypt?", a:"Cat", d:["Dog","Horse","Elephant"] }
+    ];
+
+    let sc=0,qi=0;
+    const qs=shuffle(QUESTIONS).slice(0,5);
+    const quizEl=document.getElementById('quiz');
+    const fbEl=document.getElementById('fb');
+    const scEl=document.getElementById('score');
+    document.getElementById('maxS').textContent=qs.length;
+
+    function renderQ(){
+      if(qi>=qs.length){quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.cssText='color:var(--primary);text-align:center;';p.textContent='Amazing pharaoh! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      const q=qs[qi];const opts=shuffle([q.a,...q.d]);quizEl.innerHTML='';fbEl.textContent='';
+      const qt=document.createElement('p');qt.className='q-text';qt.textContent=(qi+1)+'. '+q.q;quizEl.appendChild(qt);
+      const od=document.createElement('div');od.className='opts';
+      opts.forEach(function(o){const btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+        btn.addEventListener('click',function(){od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+        if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
+        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
+        qi++;setTimeout(renderQ,1100);});od.appendChild(btn);});quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

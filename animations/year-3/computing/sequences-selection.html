@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequences and Selection — Year 3 Computing | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    /* Flowchart Builder */
+    .flow-area{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .flow-slot{width:220px;min-height:44px;background:var(--surface2);border:2px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer;transition:border-color .2s;text-align:center;padding:.3rem .5rem}
+    .flow-slot.filled{border-style:solid;border-color:var(--success)}
+    .flow-slot.wrong-slot{border-color:var(--error)}
+    .flow-arrow{font-size:1rem;color:var(--text-muted)}
+    .flow-branch{display:flex;gap:1rem;align-items:flex-start}
+    .branch-label{font-size:.72rem;font-weight:700;text-transform:uppercase;margin-bottom:.2rem;text-align:center}
+    .yes-label{color:var(--success)}
+    .no-label{color:var(--error)}
+
+    .block-pool{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.75rem}
+    .block-chip{background:var(--accent);color:#0f172a;font-weight:700;border:none;border-radius:10px;padding:.4rem .9rem;font-size:.82rem;cursor:pointer;transition:opacity .15s}
+    .block-chip.used{opacity:.3;pointer-events:none}
+    .block-chip.sel{outline:3px solid var(--primary)}
+
+    /* Sequence Sorter */
+    .seq-slots{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem}
+    .seq-slot{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.45rem .8rem;font-size:.85rem;display:flex;align-items:center;gap:.5rem;min-height:38px}
+    .seq-num{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+    .seq-slot.filled .seq-num{background:var(--success);color:#0f172a}
+
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.75rem}.score-bar span{color:var(--primary);font-weight:700}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+
+    /* Quiz */
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:.95rem;font-weight:600}
+    .opts{display:flex;flex-direction:column;gap:.4rem}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · Computing</p>
+    <h1>Sequences and Selection</h1>
+    <p class="subtitle">Build a flowchart and put instructions in order!</p>
+  </header>
+
+  <!-- Flowchart Builder -->
+  <div class="card">
+    <p class="card-title">Flowchart Builder</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click a block, then click the correct slot to build the flowchart.</p>
+    <div class="flow-area" id="flowArea">
+      <div class="flow-slot" id="fs0" data-answer="START">?</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-slot" id="fs1" data-answer="Is it raining?" style="border-radius:50%;width:220px;height:60px">?</div>
+      <div class="flow-branch">
+        <div style="text-align:center">
+          <div class="branch-label yes-label">YES ↓</div>
+          <div class="flow-slot" id="fs2" data-answer="Take umbrella">?</div>
+        </div>
+        <div style="text-align:center">
+          <div class="branch-label no-label">NO ↓</div>
+          <div class="flow-slot" id="fs3" data-answer="Wear sunglasses">?</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-slot" id="fs4" data-answer="Go outside">?</div>
+    </div>
+    <div class="block-pool" id="blockPool"></div>
+    <div class="score-bar">Correct: <span id="fScore">0</span> / 5</div>
+    <p class="fb" id="fFb" aria-live="polite"></p>
+  </div>
+
+  <!-- Sequence Sorter -->
+  <div class="card">
+    <p class="card-title">Sequence Sorter — Making Toast</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click the steps in the correct order (1 → 4).</p>
+    <div class="seq-slots" id="seqSlots"></div>
+    <div class="block-pool" id="seqPool"></div>
+    <div class="score-bar">Correct: <span id="sScore">0</span> / 4</div>
+    <p class="fb" id="sFb" aria-live="polite"></p>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Computing Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    /* ── Flowchart Builder ── */
+    const BLOCKS = ['START','Is it raining?','Take umbrella','Wear sunglasses','Go outside'];
+    const bpEl = document.getElementById('blockPool');
+    const fFb = document.getElementById('fFb');
+    const fScEl = document.getElementById('fScore');
+    let fSc = 0, selBlock = null;
+
+    shuffle(BLOCKS).forEach(function(b) {
+      const chip = document.createElement('button');
+      chip.className = 'block-chip';
+      chip.textContent = b;
+      chip.addEventListener('click', function() {
+        bpEl.querySelectorAll('.block-chip').forEach(function(c) { c.classList.remove('sel'); });
+        chip.classList.add('sel');
+        selBlock = { text: b, el: chip };
+      });
+      bpEl.appendChild(chip);
+    });
+
+    document.querySelectorAll('.flow-slot').forEach(function(slot) {
+      slot.addEventListener('click', function() {
+        if (!selBlock) { fFb.textContent = 'Pick a block first!'; fFb.style.color = 'var(--accent)'; return; }
+        if (slot.classList.contains('filled')) return;
+        if (selBlock.text === slot.dataset.answer) {
+          slot.textContent = selBlock.text;
+          slot.classList.add('filled','bounce');
+          selBlock.el.classList.add('used');
+          fSc++; fScEl.textContent = fSc;
+          fFb.textContent = '\u2713 Correct!'; fFb.style.color = 'var(--success)';
+          selBlock = null;
+        } else {
+          slot.classList.add('wrong-slot');
+          setTimeout(function() { slot.classList.remove('wrong-slot'); }, 500);
+          fFb.textContent = '\u2717 That block doesn\'t go there!'; fFb.style.color = 'var(--error)';
+        }
+      });
+    });
+
+    /* ── Sequence Sorter ── */
+    const SEQ_STEPS = [
+      'Put bread in the toaster',
+      'Press the lever down',
+      'Wait for toast to pop up',
+      'Spread butter on the toast'
+    ];
+    const seqSlots = document.getElementById('seqSlots');
+    const seqPool = document.getElementById('seqPool');
+    const sFb = document.getElementById('sFb');
+    const sScEl = document.getElementById('sScore');
+    let sSc = 0, sPos = 0;
+
+    SEQ_STEPS.forEach(function(_, i) {
+      const slot = document.createElement('div');
+      slot.className = 'seq-slot';
+      slot.innerHTML = '<div class="seq-num">' + (i+1) + '</div><span id="st' + i + '">?</span>';
+      seqSlots.appendChild(slot);
+    });
+
+    shuffle(SEQ_STEPS.map(function(s, i) { return { text: s, order: i }; })).forEach(function(step) {
+      const chip = document.createElement('button');
+      chip.className = 'block-chip';
+      chip.textContent = step.text;
+      chip.addEventListener('click', function() {
+        if (chip.classList.contains('used')) return;
+        if (step.order === sPos) {
+          chip.classList.add('used');
+          document.getElementById('st' + sPos).textContent = step.text;
+          seqSlots.children[sPos].classList.add('filled');
+          sSc++; sScEl.textContent = sSc;
+          sFb.textContent = '\u2713 Step ' + (sPos+1) + ' correct!'; sFb.style.color = 'var(--success)';
+          sPos++;
+        } else {
+          sFb.textContent = '\u2717 That\'s not the next step!'; sFb.style.color = 'var(--error)';
+        }
+      });
+      seqPool.appendChild(chip);
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q:"What is a sequence in computing?", a:"Instructions carried out in order", d:["A type of computer","A random list","A game character"] },
+      { q:"What does 'selection' mean?", a:"The program checks a condition and chooses what to do", d:["Picking your favourite colour","Turning the computer off","Drawing a picture"] },
+      { q:"In Scratch, what shape are condition blocks?", a:"Diamond (pointed ends)", d:["Square","Circle","Triangle"] },
+      { q:"What is debugging?", a:"Finding and fixing mistakes in a program", d:["Breaking a program on purpose","Deleting all the code","Adding more bugs"] },
+      { q:"Why does order matter in a sequence?", a:"Changing the order gives a different (often wrong) result", d:["It doesn't matter","Computers like alphabetical order","Longer programs are better"] }
+    ];
+
+    let sc=0,qi=0;
+    const qs=shuffle(QUESTIONS).slice(0,5);
+    const quizEl=document.getElementById('quiz');
+    const fbEl=document.getElementById('fb');
+    const scEl=document.getElementById('score');
+    document.getElementById('maxS').textContent=qs.length;
+
+    function renderQ(){
+      if(qi>=qs.length){quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.cssText='color:var(--primary);text-align:center;';p.textContent='Top coder! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      const q=qs[qi];const opts=shuffle([q.a,...q.d]);quizEl.innerHTML='';fbEl.textContent='';
+      const qt=document.createElement('p');qt.className='q-text';qt.textContent=(qi+1)+'. '+q.q;quizEl.appendChild(qt);
+      const od=document.createElement('div');od.className='opts';
+      opts.forEach(function(o){const btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+        btn.addEventListener('click',function(){od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+        if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
+        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
+        qi++;setTimeout(renderQ,1100);});od.appendChild(btn);});quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

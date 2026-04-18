@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conjunctions and Clauses — Year 3 English | Game Learn</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+    header{text-align:center;max-width:640px;width:100%}
+    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+
+    .match-game{display:flex;flex-direction:column;gap:1rem}
+    .match-instruction{font-size:.85rem;color:var(--text-muted)}
+    .clauses-row{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+    .clause-card{background:var(--surface2);border:2px solid var(--border);border-radius:10px;padding:.6rem .9rem;font-size:.88rem;cursor:pointer;transition:border-color .15s,background .15s;max-width:280px;text-align:center}
+    .clause-card.selected{border-color:var(--primary);background:rgba(251,191,36,.1)}
+    .clause-card.matched{border-color:var(--success);background:rgba(52,211,153,.12);pointer-events:none}
+    .clause-card.wrong-match{border-color:var(--error)}
+    .match-fb{text-align:center;font-size:.88rem;min-height:1.2em}
+
+    .quiz-area{display:flex;flex-direction:column;gap:1rem}
+    .q-text{font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+    .opts{display:flex;flex-direction:column;gap:.4rem}
+    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
+    .opt-btn:hover{border-color:var(--accent)}
+    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+    .opt-btn.wrong{background:var(--error);color:#0f172a}
+    .opt-btn.disabled{pointer-events:none;opacity:.5}
+    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+
+    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Year 3 · English</p>
+    <h1>Conjunctions &amp; Clauses</h1>
+    <p class="subtitle">Match clauses together and pick the right conjunction!</p>
+  </header>
+
+  <!-- Clause Matching -->
+  <div class="card">
+    <p class="card-title">Clause Matcher</p>
+    <div class="match-game">
+      <p class="match-instruction">Click a main clause, then click the subordinate clause that completes the sentence.</p>
+      <div id="mainClauses" class="clauses-row"></div>
+      <div id="subClauses" class="clauses-row"></div>
+      <p class="match-fb" id="matchFb" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Conjunction Quiz</p>
+    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <div class="quiz-area" id="quiz"></div>
+    <p class="fb" id="fb" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+    /* ── Clause Matching ── */
+    const PAIRS = [
+      { main:"I wore my coat", sub:"because it was raining." },
+      { main:"She stayed awake", sub:"until the film ended." },
+      { main:"We went outside", sub:"when the sun came out." },
+      { main:"He still smiled", sub:"although he lost the game." }
+    ];
+
+    const mainEl = document.getElementById('mainClauses');
+    const subEl = document.getElementById('subClauses');
+    const matchFb = document.getElementById('matchFb');
+    let selectedMain = null;
+    let matchesFound = 0;
+
+    const shuffledMains = shuffle(PAIRS.map(function(p,i){ return {text:p.main, idx:i}; }));
+    const shuffledSubs = shuffle(PAIRS.map(function(p,i){ return {text:p.sub, idx:i}; }));
+
+    shuffledMains.forEach(function(m) {
+      const card = document.createElement('div');
+      card.className = 'clause-card';
+      card.textContent = m.text;
+      card.dataset.idx = m.idx;
+      card.dataset.type = 'main';
+      card.addEventListener('click', function() {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('.clause-card.selected').forEach(function(c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        selectedMain = m.idx;
+      });
+      mainEl.appendChild(card);
+    });
+
+    shuffledSubs.forEach(function(s) {
+      const card = document.createElement('div');
+      card.className = 'clause-card';
+      card.textContent = s.text;
+      card.dataset.idx = s.idx;
+      card.dataset.type = 'sub';
+      card.addEventListener('click', function() {
+        if (card.classList.contains('matched') || selectedMain === null) return;
+        if (parseInt(card.dataset.idx, 10) === selectedMain) {
+          card.classList.add('matched','bounce');
+          const mainCard = mainEl.querySelector('[data-idx="' + selectedMain + '"]');
+          mainCard.classList.add('matched','bounce');
+          matchFb.textContent = '\u2713 Great match!';
+          matchFb.style.color = 'var(--success)';
+          matchesFound++;
+          if (matchesFound === PAIRS.length) {
+            matchFb.textContent = '\u2713 All matched! Brilliant!';
+          }
+        } else {
+          card.classList.add('wrong-match','shake');
+          setTimeout(function() { card.classList.remove('wrong-match','shake'); }, 600);
+          matchFb.textContent = '\u2717 Try again — read both parts carefully.';
+          matchFb.style.color = 'var(--error)';
+        }
+        selectedMain = null;
+        document.querySelectorAll('.clause-card.selected').forEach(function(c) { c.classList.remove('selected'); });
+      });
+      subEl.appendChild(card);
+    });
+
+    /* ── Quiz ── */
+    const QUESTIONS = [
+      { q:"Which conjunction shows a reason?", a:"because", d:["when","although","while"] },
+      { q:"\"___ it was dark, she wasn't scared.\" Which conjunction fits?", a:"Although", d:["Because","Until","When"] },
+      { q:"Where does the comma go when the subordinate clause is first?", a:"After the subordinate clause", d:["At the very end","Before the conjunction","There is no comma"] },
+      { q:"Which is a subordinate clause?", a:"because the bus was late", d:["I walked to school","The cat sat down","She ran quickly"] },
+      { q:"\"I will wait ___ you come back.\" Best conjunction?", a:"until", d:["because","although","and"] },
+      { q:"\"___ the bell rang, everyone sat down.\" Best conjunction?", a:"When", d:["Because","Although","But"] }
+    ];
+
+    let sc = 0, qi = 0;
+    const qs = shuffle(QUESTIONS).slice(0, 5);
+    const quizEl = document.getElementById('quiz');
+    const fbEl = document.getElementById('fb');
+    const scEl = document.getElementById('score');
+    document.getElementById('maxS').textContent = qs.length;
+
+    function renderQ() {
+      if (qi >= qs.length) { quizEl.innerHTML = ''; const p = document.createElement('p'); p.className = 'q-text'; p.style.color = 'var(--primary)'; p.style.textAlign = 'center'; p.textContent = 'Fantastic! ' + sc + ' / ' + qs.length + '!'; quizEl.appendChild(p); fbEl.textContent = ''; return; }
+      const q = qs[qi]; const opts = shuffle([q.a, ...q.d]); quizEl.innerHTML = ''; fbEl.textContent = '';
+      const qt = document.createElement('p'); qt.className = 'q-text'; qt.textContent = (qi+1) + '. ' + q.q; quizEl.appendChild(qt);
+      const od = document.createElement('div'); od.className = 'opts';
+      opts.forEach(function(o) {
+        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.textContent = o;
+        btn.addEventListener('click', function() {
+          od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
+          if (o === q.a) { btn.classList.add('correct','bounce'); sc++; scEl.textContent = sc; fbEl.textContent = '\u2713 Correct!'; fbEl.style.color = 'var(--success)'; }
+          else { btn.classList.add('wrong','shake'); od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');}); fbEl.textContent = '\u2717 Answer: ' + q.a; fbEl.style.color = 'var(--error)'; }
+          qi++; setTimeout(renderQ, 1100);
+        }); od.appendChild(btn);
+      }); quizEl.appendChild(od);
+    }
+    renderQ();
+  </script>
+</body>
+</html>

@@ -297,7 +297,67 @@ block-beta
 
 ---
 
-## 6. File Naming and Path Conventions
+## 6. Content Lifecycle Management
+
+After the initial pipeline run, content is managed through `content-updates/CONTENT_CHANGES.md` and the **Content Editor agent** — no need to re-run the full pipeline.
+
+```mermaid
+flowchart TD
+    EDIT["✏️ Edit\ncontent-updates/CONTENT_CHANGES.md\nAdd a change block with status: pending"]
+
+    subgraph TYPES["Change Types"]
+        T1["ADD_TOPIC\nNew topic → curriculum + content + animation"]
+        T2["ADD_SECTION\nNew section appended to existing lesson"]
+        T3["UPDATE_SECTION\nReplace a section in an existing lesson"]
+        T4["REMOVE_SECTION\nDelete a section from a lesson"]
+        T5["REMOVE_TOPIC\nDelete from curriculum + files"]
+        T6["REGENERATE\nForce-redo content and/or animation"]
+        T7["UPDATE_ANIMATION\nRegenerate animation only"]
+    end
+
+    CE["🛠️ Content Editor Agent\n@content-editor apply changes"]
+
+    EDIT --> CE
+    CE --> T1 & T2 & T3 & T4 & T5 & T6 & T7
+
+    T1 -->|"dispatches"| SA["Subject Agent\n+ Animation Agent"]
+    T6 -->|"dispatches"| SA
+    T7 -->|"dispatches"| AA["Animation Agent"]
+
+    CE -->|"updates status → done"| EDIT
+    CE -->|"appends entry"| CL["content-updates/CHANGE_LOG.md"]
+    T5 -->|"records deletion"| DL["content-updates/DELETION_LOG.md"]
+```
+
+### Content-updates directory
+
+```
+content-updates/
+├── CONTENT_CHANGES.md   ← you edit this — change manifest
+├── CHANGE_LOG.md        ← auto-written by Content Editor agent
+└── DELETION_LOG.md      ← audit log for removed topics
+```
+
+### Example change block (add a section)
+
+```
+type: ADD_SECTION
+status: pending
+year: 3
+subject: maths
+slug: place-value-1000
+section_title: Real World Connection
+after_section: Did You Know?
+content: |
+  ## Real World Connection
+  Place value is used every day — prices, distances, populations...
+```
+
+Select **Content Editor** in Copilot Chat and type: `apply changes`
+
+---
+
+## 7. File Naming and Path Conventions
 
 Every file in the system is named by a consistent pattern derived from the curriculum slug.
 
