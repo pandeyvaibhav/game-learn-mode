@@ -3,66 +3,87 @@ year: 1
 subject: history
 topic: Changes Within Living Memory
 slug: changes-living-memory
-key_concepts: [transport then and now, technology then and now, toys then and now]
+key_concepts: [transport, technology, toys]
 age_range: "5-6"
 animation: ../../animations/year-1/history/changes-living-memory.html
 ---
 
 # Changes Within Living Memory — Year 1 History
 
-## Big Question
-How have everyday things changed since your grandparents were young?
-
 ## What We're Learning
-In this lesson you will learn how **transport**, **technology**, and **toys** have changed within living memory — that means during the lifetimes of people alive today, like your grandparents.
+You are going to learn about how life has changed within living memory — that means during your grandparents' and parents' lifetimes. You will compare toys, transport and technology from the past with today.
 
-## Key History Words
+## Key Words
 | Word | What it means |
 |---|---|
-| living memory | things people alive today can remember |
-| past | the time before now |
-| present | the time right now |
-| technology | machines and gadgets people use (phones, computers…) |
-| transport | ways of getting from place to place |
+| Living memory | Things people alive today can remember |
+| Past | A time before now |
+| Present | The time we are in now |
+| Old | From a long time ago |
+| New | From recently or now |
+| Compare | Looking at two things to see how they are the same or different |
 
-## The History Explained
+## Let's Explore
 
-### Transport — Then and Now
-| Then (Grandparents' time) | Now |
+### Toys — then and now
+
+| Past (Grandparents' time) | Present (Now) |
 |---|---|
-| Horse and cart | Cars and lorries |
-| Steam trains | Electric trains |
-| Propeller aeroplanes | Jet aeroplanes |
-| Few people had cars | Most families have a car |
+| Wooden spinning top | Tablet games |
+| Rag doll | Electronic toys |
+| Tin soldiers | Action figures |
+| Hoop and stick | Scooter |
+| Marbles | Video games |
 
-### Technology — Then and Now
-| Then | Now |
+### Transport — then and now
+
+| Past | Present |
 |---|---|
-| No internet | Computers and tablets everywhere |
-| Rotary dial telephones | Smartphones |
-| Black-and-white TV (a few channels) | Colour TV, streaming |
-| Letters and postcards | Email and video calls |
+| Horse and cart | Car |
+| Steam train | Electric train |
+| Penny-farthing bicycle | Modern bicycle |
+| No aeroplanes | Aeroplanes everywhere |
 
-### Toys — Then and Now
-| Then | Now |
+### Technology — then and now
+
+| Past | Present |
 |---|---|
-| Wooden toys, marbles | Plastic toys, video games |
-| Skipping ropes, hoops | Scooters, tablets |
-| Dolls made of cloth | Electronic dolls that talk |
+| No television | Smart TV |
+| Letters in the post | Email and texts |
+| Vinyl records | Music streaming |
+| Rotary telephone | Smartphone |
 
-### What Stayed the Same?
-Some things haven't changed much: children still love playing outside, reading stories, and spending time with family.
+### Example — What is the same?
+Children in the past **still played games and had fun**, just like you!
+The toys just looked different.
 
-## Quick Quiz
-1. What does "living memory" mean? → *Things people alive today can remember*
-2. Name one way transport has changed. → *We now have cars instead of horse and carts*
-3. How did people watch TV when grandparents were young? → *Black-and-white TV with only a few channels*
-4. Name a toy from the past. → *Marbles, wooden toys, skipping ropes*
+### Example — What is different?
+Your grandparents did not have tablets or the internet when they were young.
 
-## History in the Real World
-Asking older relatives about their childhood is a great way to learn history. Museums often have "then and now" displays where you can see old objects next to modern ones.
+## Try It Yourself
+
+1. Name one toy children played with long ago.
+2. How did people travel before cars were invented?
+3. What do we use now instead of writing letters?
+4. Is a rag doll from the past or the present?
+5. Ask a grandparent or older person: "What was your favourite toy?"
+
+<details>
+<summary>Check your answers</summary>
+
+1. Wooden spinning top, rag doll, marbles, hoop and stick (any one)
+2. Horses, horse and cart, walking, boats
+3. Email, text messages, phone calls
+4. The past
+5. (Your own answer from asking someone!)
+
+</details>
+
+## Did You Know? 🏛️
+The first television was demonstrated in 1926 by a Scottish inventor called John Logie Baird. The picture was tiny and in black and white!
 
 ## Learning Checklist
-- [ ] I can describe how transport has changed
-- [ ] I can describe how technology has changed
+- [ ] I can describe what life was like in the past
 - [ ] I can compare old and new toys
+- [ ] I can compare old and new transport
+- [ ] I can explain how technology has changed

@@ -1,115 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Addition and Subtraction — Year 1 Maths | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addition and Subtraction — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.apples{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center;font-size:1.6rem;margin:.5rem 0;min-height:2.2rem}
-.sum-display{text-align:center;font-size:1.5rem;font-weight:800;color:var(--accent);margin:.5rem 0;min-height:2rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin:.5rem 0}
-.num-btn{width:44px;height:44px;border-radius:12px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:700;cursor:pointer;transition:border-color .15s}
-.num-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-.new-btn:hover{border-color:var(--accent)}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 1 · Maths</p>
 <h1>Addition and Subtraction</h1>
-<p class="subtitle">Add and take away numbers up to 20!</p>
-</header>
-
-<!-- Apple Counter -->
-<div class="card">
-<p class="card-title">Apple Adding Machine</p>
-<div class="apples" id="apples"></div>
-<div class="sum-display" id="sumDisp">? + ? = ?</div>
-<div class="num-row" id="ansRow"></div>
-<p class="fb" id="addFb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="addSc">0</span></div>
-<button class="new-btn" id="newAdd">New Question</button>
+<p class="subtitle">Year 1 Maths — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
 </div>
-
-<!-- Number Bonds to 10 -->
-<div class="card">
-<p class="card-title">Number Bonds to 10</p>
-<p style="font-size:.88rem;color:var(--text-muted);margin-bottom:.5rem;text-align:center">What goes with this number to make 10?</p>
-<div class="sum-display" id="bondQ">?</div>
-<div class="num-row" id="bondRow"></div>
-<p class="fb" id="bondFb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="bondSc">0</span></div>
-<button class="new-btn" id="newBond">New Question</button>
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
 </div>
-
 <script>
-function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-
-/* ── Apple Adder ── */
-var addSc=0,aA,aB;
-var applesEl=document.getElementById('apples'),sumEl=document.getElementById('sumDisp'),ansRow=document.getElementById('ansRow'),addFb=document.getElementById('addFb'),addScEl=document.getElementById('addSc');
-function newAdd(){
-  aA=rnd(1,9);aB=rnd(1,9);
-  applesEl.innerHTML='';
-  for(var i=0;i<aA;i++) applesEl.innerHTML+='🍎';
-  applesEl.innerHTML+=' <span style="font-size:1.3rem;color:var(--primary)">+</span> ';
-  for(var i=0;i<aB;i++) applesEl.innerHTML+='🍏';
-  sumEl.textContent=aA+' + '+aB+' = ?';
-  addFb.textContent='';
-  ansRow.innerHTML='';
-  var opts=[aA+aB];
-  while(opts.length<4){var n=rnd(2,18);if(opts.indexOf(n)===-1)opts.push(n);}
-  opts.sort(function(){return Math.random()-.5;});
-  opts.forEach(function(n){
-    var b=document.createElement('button');b.className='num-btn';b.textContent=n;
-    b.addEventListener('click',function(){
-      ansRow.querySelectorAll('.num-btn').forEach(function(x){x.disabled=true;});
-      if(n===aA+aB){b.style.borderColor='var(--success)';b.classList.add('bounce');addSc++;addScEl.textContent=addSc;addFb.textContent='✓ '+aA+' + '+aB+' = '+n;addFb.style.color='var(--success)';}
-      else{b.style.borderColor='var(--error)';b.classList.add('shake');addFb.textContent='✗ Answer: '+(aA+aB);addFb.style.color='var(--error)';}
-    });ansRow.appendChild(b);
-  });
-}
-document.getElementById('newAdd').addEventListener('click',newAdd);
-newAdd();
-
-/* ── Number Bonds ── */
-var bondSc2=0,bondN;
-var bondQ=document.getElementById('bondQ'),bondRow=document.getElementById('bondRow'),bondFb=document.getElementById('bondFb'),bondScEl=document.getElementById('bondSc');
-function newBond(){
-  bondN=rnd(0,10);
-  bondQ.textContent=bondN+' + ? = 10';
-  bondFb.textContent='';
-  bondRow.innerHTML='';
-  var ans=10-bondN;
-  var opts=[ans];
-  while(opts.length<4){var n=rnd(0,10);if(opts.indexOf(n)===-1)opts.push(n);}
-  opts.sort(function(){return Math.random()-.5;});
-  opts.forEach(function(n){
-    var b=document.createElement('button');b.className='num-btn';b.textContent=n;
-    b.addEventListener('click',function(){
-      bondRow.querySelectorAll('.num-btn').forEach(function(x){x.disabled=true;});
-      if(n===ans){b.style.borderColor='var(--success)';b.classList.add('bounce');bondSc2++;bondScEl.textContent=bondSc2;bondFb.textContent='✓ '+bondN+' + '+n+' = 10';bondFb.style.color='var(--success)';}
-      else{b.style.borderColor='var(--error)';b.classList.add('shake');bondFb.textContent='✗ Answer: '+ans;bondFb.style.color='var(--error)';}
-    });bondRow.appendChild(b);
-  });
-}
-document.getElementById('newBond').addEventListener('click',newBond);
-newBond();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"What is 3 + 4?",answer:"7",options:["6","7","8","5"]},
+    {text:"What is 10 − 3?",answer:"7",options:["5","6","7","8"]},
+    {text:"Which two numbers make 10? 6 + __?",answer:"4",options:["3","4","5","6"]},
+    {text:"What is 8 + 5?",answer:"13",options:["12","13","14","11"]},
+    {text:"What is 15 − 7?",answer:"8",options:["7","8","9","6"]},
+    {text:"What is 2 + 9?",answer:"11",options:["10","11","12","9"]},
+    {text:"In a part-whole model, the whole is 10 and one part is 3. What is the other part?",answer:"7",options:["5","6","7","8"]},
+    {text:"What is 14 − 6?",answer:"8",options:["7","8","9","10"]},
+    {text:"What is 7 + 7?",answer:"14",options:["12","13","14","15"]},
+    {text:"What is 20 − 5?",answer:"15",options:["14","15","16","13"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
+  }
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

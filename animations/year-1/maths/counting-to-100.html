@@ -1,359 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Counting to 100 — Year 1 Maths | Game Learn</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface2: #273344;
-      --border: rgba(148,163,184,0.15);
-      --primary: #fbbf24;
-      --accent: #38bdf8;
-      --success: #34d399;
-      --error: #f87171;
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-    }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1.5rem 1rem 4rem;
-      gap: 1.25rem;
-    }
-
-    header { text-align: center; max-width: 640px; width: 100%; }
-    .year-tag {
-      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: .4rem;
-    }
-    h1 { font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 800; color: var(--primary); }
-    .subtitle { color: var(--text-muted); font-size: .9rem; margin-top: .4rem; }
-
-    /* ── Score bar ── */
-    .scorebar {
-      display: flex; gap: 2rem; justify-content: center; align-items: center;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 50px; padding: .6rem 2rem; font-size: .9rem;
-    }
-    .scorebar span { color: var(--text-muted); }
-    .scorebar strong { color: var(--primary); font-size: 1.1rem; }
-
-    /* ── Game card ── */
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 1.5rem; width: 100%; max-width: 580px;
-      display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
-    }
-
-    /* ── Number grid (1–100) ── */
-    .grid-wrap { width: 100%; overflow-x: auto; }
-    .number-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 4px;
-      min-width: 280px;
-    }
-    .cell {
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 8px;
-      background: var(--surface2);
-      border: 2px solid transparent;
-      font-size: clamp(.6rem, 1.5vw, .85rem);
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .15s, border-color .15s, transform .1s;
-      user-select: none;
-    }
-    .cell:hover { background: #2d3e52; border-color: var(--accent); }
-    .cell.lit {
-      background: var(--primary);
-      color: #0f172a;
-      border-color: var(--primary);
-    }
-    .cell.target {
-      border-color: var(--accent);
-      animation: pulse-border .8s ease infinite alternate;
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      .cell.bounce { animation: bounce .35s ease; }
-      .cell.shake  { animation: shake .35s ease; }
-    }
-    @keyframes pulse-border {
-      from { border-color: var(--accent); box-shadow: 0 0 0 0 rgba(56,189,248,.4); }
-      to   { border-color: var(--accent); box-shadow: 0 0 0 6px rgba(56,189,248,0); }
-    }
-    @keyframes bounce {
-      0%,100% { transform: scale(1); }
-      50%      { transform: scale(1.25); }
-    }
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      25%     { transform: translateX(-6px); }
-      75%     { transform: translateX(6px); }
-    }
-
-    /* ── Instruction / feedback ── */
-    .instruction {
-      font-size: 1.05rem; font-weight: 600; text-align: center;
-      min-height: 2.5rem; color: var(--text);
-    }
-    .feedback {
-      font-size: .9rem; text-align: center; color: var(--text-muted);
-      min-height: 1.4rem;
-    }
-    .feedback.ok  { color: var(--success); }
-    .feedback.bad { color: var(--error); }
-
-    /* ── Mode selector ── */
-    .modes {
-      display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center;
-    }
-    .mode-btn {
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text); border-radius: 50px; padding: .45rem 1rem;
-      font-size: .82rem; cursor: pointer; transition: background .15s, border-color .15s;
-    }
-    .mode-btn:hover, .mode-btn.active {
-      background: var(--primary); color: #0f172a; border-color: var(--primary); font-weight: 700;
-    }
-
-    /* ── Next button ── */
-    .next-btn {
-      background: var(--primary); color: #0f172a; border: none;
-      border-radius: 50px; padding: .7rem 2.5rem; font-size: 1rem;
-      font-weight: 700; cursor: pointer; display: none;
-      transition: transform .1s, background .15s;
-    }
-    .next-btn:hover { background: #f59e0b; transform: scale(1.04); }
-    .next-btn.show { display: block; }
-
-    /* ── Celebration ── */
-    .celebration {
-      display: none; text-align: center; font-size: 1.2rem;
-      font-weight: 700; color: var(--success);
-    }
-    .celebration.show { display: block; }
-    .stars { font-size: 2rem; display: block; margin-top: .3rem; }
-
-    /* ── Live region for screen readers ── */
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; overflow: hidden;
-      clip: rect(0,0,0,0); white-space: nowrap;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counting to 100 — Quiz</title>
+<style>
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-
-  <header>
-    <p class="year-tag">Year 1 · Maths</p>
-    <h1>Counting to 100</h1>
-    <p class="subtitle">Click the right number on the grid!</p>
-  </header>
-
-  <div class="scorebar" aria-label="Score board">
-    <div><span>Score</span><br><strong id="score">0</strong></div>
-    <div><span>Round</span><br><strong id="round">1 / 10</strong></div>
-    <div><span>Streak</span><br><strong id="streak">0 🔥</strong></div>
-  </div>
-
-  <div class="modes" role="group" aria-label="Game mode">
-    <button class="mode-btn active" data-mode="find">🔎 Find the number</button>
-    <button class="mode-btn" data-mode="after">➡️ What comes after?</button>
-    <button class="mode-btn" data-mode="before">⬅️ What comes before?</button>
-    <button class="mode-btn" data-mode="count10">🔟 Count in 10s</button>
-  </div>
-
-  <div class="card" role="main">
-    <p class="instruction" id="instruction" aria-live="polite">Loading…</p>
-    <div class="grid-wrap">
-      <div class="number-grid" id="grid" role="grid" aria-label="Number grid 1 to 100"></div>
-    </div>
-    <p class="feedback" id="feedback" aria-live="polite" aria-atomic="true"></p>
-    <button class="next-btn" id="nextBtn">Next →</button>
-    <div class="celebration" id="celebration" aria-live="assertive">
-      All done! Amazing counting! 🎉
-      <span class="stars">⭐⭐⭐</span>
-    </div>
-  </div>
-
-  <div aria-live="polite" class="sr-only" id="srAnnounce"></div>
-
+<h1>Counting to 100</h1>
+<p class="subtitle">Year 1 Maths — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
+</div>
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
+</div>
 <script>
-  // ── State ──────────────────────────────────────────────
-  const TOTAL_ROUNDS = 10;
-  let mode = 'find';
-  let target = 0;
-  let score = 0;
-  let round = 0;
-  let streak = 0;
-  let answered = false;
-  let litNumbers = new Set(); // numbers already found this session
-
-  // ── Build grid ─────────────────────────────────────────
-  const grid = document.getElementById('grid');
-
-  function buildGrid() {
-    grid.innerHTML = '';
-    for (let n = 1; n <= 100; n++) {
-      const cell = document.createElement('div');
-      cell.className = 'cell';
-      cell.textContent = n;
-      cell.dataset.n = n;
-      cell.setAttribute('role', 'gridcell');
-      cell.setAttribute('aria-label', `Number ${n}`);
-      cell.setAttribute('tabindex', '0');
-      if (litNumbers.has(n)) cell.classList.add('lit');
-      cell.addEventListener('click', () => handleCellClick(n, cell));
-      cell.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCellClick(n, cell); }
-      });
-      grid.appendChild(cell);
-    }
-  }
-
-  function cellEl(n) {
-    return grid.querySelector(`[data-n="${n}"]`);
-  }
-
-  // ── Questions per mode ──────────────────────────────────
-  function generateQuestion() {
-    if (mode === 'find') {
-      target = randInt(1, 100);
-      document.getElementById('instruction').textContent = `Find the number ${target}`;
-    } else if (mode === 'after') {
-      target = randInt(1, 99);
-      const question = target;
-      target = target + 1;
-      document.getElementById('instruction').textContent = `What number comes after ${question}?`;
-    } else if (mode === 'before') {
-      target = randInt(2, 100);
-      const question = target;
-      target = target - 1;
-      document.getElementById('instruction').textContent = `What number comes before ${question}?`;
-    } else if (mode === 'count10') {
-      const base = randInt(1, 9);
-      target = base * 10;
-      document.getElementById('instruction').textContent = `Can you find a number in the tens? Click ${target}`;
-    }
-    clearTargetHighlight();
-    const el = cellEl(target);
-    if (el) el.classList.add('target');
-  }
-
-  function clearTargetHighlight() {
-    grid.querySelectorAll('.target').forEach(c => c.classList.remove('target'));
-  }
-
-  // ── Interaction ─────────────────────────────────────────
-  function handleCellClick(n, cell) {
-    if (answered) return;
-    if (n === target) {
-      answered = true;
-      score++;
-      streak++;
-      litNumbers.add(n);
-      cell.classList.remove('target');
-      cell.classList.add('lit');
-      animateCell(cell, 'bounce');
-      showFeedback('✅ Correct! Well done!', 'ok');
-      announce(`Correct! ${n} is right.`);
-      updateScore();
-      document.getElementById('nextBtn').classList.add('show');
-    } else {
-      streak = 0;
-      animateCell(cell, 'shake');
-      showFeedback(`❌ Not quite — that's ${n}. Try again!`, 'bad');
-      announce(`That is ${n}. Try again.`);
-      updateScore();
-    }
-  }
-
-  function animateCell(el, cls) {
-    el.classList.remove('bounce', 'shake');
-    void el.offsetWidth; // reflow to restart animation
-    el.classList.add(cls);
-    el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
-  }
-
-  function showFeedback(msg, type) {
-    const fb = document.getElementById('feedback');
-    fb.textContent = msg;
-    fb.className = `feedback ${type}`;
-  }
-
-  function announce(msg) {
-    const sr = document.getElementById('srAnnounce');
-    sr.textContent = '';
-    requestAnimationFrame(() => { sr.textContent = msg; });
-  }
-
-  function updateScore() {
-    document.getElementById('score').textContent = score;
-    document.getElementById('round').textContent = `${Math.min(round+1, TOTAL_ROUNDS)} / ${TOTAL_ROUNDS}`;
-    document.getElementById('streak').textContent = `${streak} 🔥`;
-  }
-
-  // ── Next round ───────────────────────────────────────────
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    round++;
-    answered = false;
-    document.getElementById('nextBtn').classList.remove('show');
-    showFeedback('', '');
-    if (round >= TOTAL_ROUNDS) {
-      endGame();
-    } else {
-      generateQuestion();
-    }
-  });
-
-  function endGame() {
-    document.getElementById('instruction').textContent = `You scored ${score} out of ${TOTAL_ROUNDS}!`;
-    clearTargetHighlight();
-    document.getElementById('celebration').classList.add('show');
-    document.getElementById('nextBtn').classList.remove('show');
-    announce(`Game over. You scored ${score} out of ${TOTAL_ROUNDS}`);
-  }
-
-  // ── Mode switching ───────────────────────────────────────
-  document.querySelectorAll('.mode-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      mode = btn.dataset.mode;
-      resetGame();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"What number comes after 7?",answer:"8",options:["6","8","9","10"]},
+    {text:"Count backwards: 5, 4, 3, __?",answer:"2",options:["1","2","6","0"]},
+    {text:"What comes next? 10, 20, 30, __?",answer:"40",options:["35","40","50","31"]},
+    {text:"Which number is between 14 and 16?",answer:"15",options:["13","15","17","14"]},
+    {text:"Count back from 10: what is 10, 9, 8, __?",answer:"7",options:["6","7","11","5"]},
+    {text:"What number is one more than 19?",answer:"20",options:["18","20","21","17"]},
+    {text:"Fill the gap: 50, 60, __, 80",answer:"70",options:["65","70","75","90"]},
+    {text:"What number comes before 1?",answer:"0",options:["0","2","1","10"]},
+    {text:"Count in tens: 30, 40, 50, __?",answer:"60",options:["55","60","70","51"]},
+    {text:"What is one less than 100?",answer:"99",options:["99","98","101","90"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
     });
-  });
-
-  function resetGame() {
-    score = 0; round = 0; streak = 0; answered = false;
-    litNumbers.clear();
-    document.getElementById('celebration').classList.remove('show');
-    document.getElementById('nextBtn').classList.remove('show');
-    showFeedback('', '');
-    updateScore();
-    buildGrid();
-    generateQuestion();
   }
-
-  // ── Utilities ────────────────────────────────────────────
-  function randInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
   }
-
-  // ── Init ─────────────────────────────────────────────────
-  buildGrid();
-  generateQuestion();
-  updateScore();
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

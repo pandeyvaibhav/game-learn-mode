@@ -10,49 +10,78 @@ animation: ../../animations/year-1/history/significant-historical-events-y1.html
 
 # Significant Historical Events — Year 1 History
 
-## Big Question
-What happened during the Great Fire of London, and why do we remember the 5th of November?
-
 ## What We're Learning
-In this lesson you will learn about two important events from British history: the **Gunpowder Plot** (Bonfire Night) and the **Great Fire of London**.
+You are going to learn about two important events from British history: **Bonfire Night** (the Gunpowder Plot) and the **Great Fire of London**.
 
-## Key History Words
+## Key Words
 | Word | What it means |
 |---|---|
-| plot | a secret plan |
-| Parliament | the building where laws are made for the country |
-| fire | flames that burn and destroy things |
-| bakery | a shop where bread and cakes are made |
-| memorial | something that helps us remember an event |
+| Plot | A secret plan |
+| Parliament | The building where laws are made in London |
+| Gunpowder | An explosive powder |
+| Bonfire Night | 5th November — we remember the Gunpowder Plot |
+| Great Fire | The huge fire that burned much of London in 1666 |
+| Samuel Pepys | A man who wrote about the Great Fire in his diary |
 
-## The History Explained
+## Let's Explore
 
-### The Gunpowder Plot — 1605
-- A group of men, led by **Guy Fawkes**, planned to blow up the Houses of Parliament.
-- They hid **barrels of gunpowder** underneath the building.
-- The plot was **discovered** before it could happen.
-- Guy Fawkes was caught and arrested.
-- Every year on **5th November** we remember with bonfires and fireworks — **Bonfire Night**.
+### The Gunpowder Plot (1605)
 
-### The Great Fire of London — 1666
-- The fire started in a **bakery** on Pudding Lane on **2nd September 1666**.
-- London's houses were made of **wood** and very close together.
-- The fire spread quickly and burned for **four days**.
-- Thousands of homes, churches, and even St Paul's Cathedral were destroyed.
-- After the fire, London was rebuilt with **stone and brick** to be safer.
-- A tall monument called **The Monument** was built to remember the fire.
+```
+📅 5th November 1605
+```
 
-## Quick Quiz
-1. Who was caught under Parliament? → *Guy Fawkes*
-2. When is Bonfire Night? → *5th November*
-3. Where did the Great Fire of London start? → *A bakery on Pudding Lane*
-4. How long did the Great Fire burn? → *Four days*
-5. Why did the fire spread so quickly? → *Houses were made of wood and very close together*
+- A group of men were angry with **King James I**.
+- They made a secret **plot** to blow up the Houses of Parliament.
+- **Guy Fawkes** was found guarding barrels of gunpowder in the cellar.
+- The plot **failed** and Guy Fawkes was arrested.
+- Every year on **5th November** we have bonfires and fireworks to remember.
 
-## History in the Real World
-We still celebrate Bonfire Night each year with fireworks. The Monument still stands in London, and you can climb to the top. Learning about the Great Fire helped people build safer cities.
+### The Great Fire of London (1666)
+
+```
+📅 2nd September 1666
+```
+
+- The fire started in a **bakery** on Pudding Lane.
+- It spread quickly because the houses were made of **wood** and very close together.
+- The fire burned for **four days**.
+- About **13,000 houses** were destroyed.
+- **Samuel Pepys** wrote about it in his famous diary.
+- After the fire, houses were rebuilt with **brick and stone** instead of wood.
+
+### Timeline
+
+```
+1605                          1666
+  |                             |
+  Gunpowder Plot               Great Fire of London
+```
+
+## Try It Yourself
+
+1. Who was found with the gunpowder under Parliament?
+2. When is Bonfire Night?
+3. Where did the Great Fire of London start?
+4. Why did the fire spread so quickly?
+5. What were the new houses built with after the fire?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Guy Fawkes
+2. 5th November
+3. A bakery on Pudding Lane
+4. The houses were made of wood and were very close together
+5. Brick and stone
+
+</details>
+
+## Did You Know? 🏛️
+Samuel Pepys was so worried about the Great Fire reaching his house that he buried his favourite cheese and wine in the garden to keep them safe!
 
 ## Learning Checklist
-- [ ] I know what the Gunpowder Plot was
-- [ ] I know when and where the Great Fire of London started
-- [ ] I can explain why the fire spread so quickly
+- [ ] I can retell the story of the Gunpowder Plot
+- [ ] I know why we celebrate Bonfire Night
+- [ ] I can retell the story of the Great Fire of London
+- [ ] I know how London changed after the fire

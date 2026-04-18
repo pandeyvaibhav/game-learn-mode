@@ -3,69 +3,81 @@ year: 1
 subject: english
 topic: Storytelling
 slug: storytelling
-key_concepts: [story structure, beginning/middle/end, characters, setting]
+key_concepts: [beginning, middle, end, characters, setting]
 age_range: "5-6"
 animation: ../../animations/year-1/english/storytelling.html
 ---
 
 # Storytelling — Year 1 English
 
-## Big Question
-What are the main parts of a story?
-
 ## What We're Learning
-In this lesson you will learn about the three parts of every story: the **beginning**, the **middle**, and the **end**. You will also discover what **characters** and **settings** are.
+You are going to learn about the parts of a story. Every good story has a **beginning**, a **middle** and an **end**. It also has **characters** and a **setting**.
 
-## Key English Words
+## Key Words
 | Word | What it means |
 |---|---|
-| story | something that tells us about characters and what happens to them |
-| beginning | the start of the story — where we meet the characters |
-| middle | the main part — where the problem or adventure happens |
-| end | the final part — where the problem is solved |
-| character | a person or animal in a story |
-| setting | where and when the story takes place |
+| Beginning | The start of the story — we meet the characters |
+| Middle | The main part where something happens (the problem) |
+| End | How the story finishes (the problem is solved) |
+| Character | A person or animal in the story |
+| Setting | Where and when the story happens |
+| Plot | What happens in the story |
 
-## The English Explained
+## Let's Explore
 
-### Story Structure
-Every story has three parts:
+### The three parts of a story
 
 ```
-📖 BEGINNING → MIDDLE → END
+📖 Beginning  →  📖 Middle  →  📖 End
+  (Who? Where?)  (What happens?)  (How does it end?)
 ```
 
-1. **Beginning** — We meet the characters and learn the setting.
-   *Once upon a time, a little bear lived in a forest.*
+### Example — The Three Little Pigs
 
-2. **Middle** — Something exciting or tricky happens.
-   *The bear got lost and couldn't find the way home.*
+**Beginning:** Three little pigs leave home to build their own houses.
+**Middle:** A wolf blows down the straw house and the stick house.
+**Middle:** The pigs run to the brick house.
+**End:** The wolf cannot blow down the brick house. The pigs are safe!
 
-3. **End** — The problem is solved and we learn how it all turns out.
-   *A friendly owl showed the bear the path, and he arrived home safely.*
+### Characters and setting
+- **Characters:** The three pigs and the wolf
+- **Setting:** In the countryside, near a forest
 
-### Characters
-Characters are **who** the story is about:
-- A brave princess 👸
-- A cheeky monkey 🐒
-- A kind teacher 👨‍🏫
+### Story starters
+Good stories often start with:
+- "Once upon a time …"
+- "One sunny morning …"
+- "Long, long ago …"
 
-### Setting
-The setting is **where** and **when**:
-- A castle, long ago 🏰
-- A school, this morning 🏫
-- A spaceship, in the future 🚀
+### Story endings
+- "… and they lived happily ever after."
+- "… and from that day on …"
+- "The end."
 
-## Quick Quiz
-1. What are the three parts of a story? → *Beginning, middle, end*
-2. What is a character? → *A person or animal in a story*
-3. What is the setting? → *Where and when the story happens*
-4. Which part of the story has the problem? → *The middle*
+## Try It Yourself
 
-## English in the Real World
-Every film, cartoon, game, and bedtime story uses the same beginning-middle-end pattern. When you tell a friend what happened at playtime, you are storytelling!
+1. What are the three parts of a story?
+2. Who are the characters in "Goldilocks and the Three Bears"?
+3. What is the setting of "Jack and the Beanstalk"?
+4. Think of a story you know — what happens in the middle?
+5. Write a sentence to start your own story.
+
+<details>
+<summary>Check your answers</summary>
+
+1. Beginning, middle, end
+2. Goldilocks, Daddy Bear, Mummy Bear, Baby Bear
+3. Jack's house and the giant's castle in the clouds
+4. (Your own answer!)
+5. (Your own answer — remember a capital letter and full stop!)
+
+</details>
+
+## Did You Know? 📚
+People have been telling stories for thousands of years — even before writing was invented! Stories were told around campfires and passed from parents to children.
 
 ## Learning Checklist
-- [ ] I can describe the beginning, middle, and end of a story
+- [ ] I know that stories have a beginning, middle and end
 - [ ] I can name the characters in a story
 - [ ] I can describe the setting of a story
+- [ ] I can retell a story in my own words

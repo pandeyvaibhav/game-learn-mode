@@ -3,61 +3,91 @@ year: 1
 subject: maths
 topic: Measurement — Weight
 slug: measurement-weight
-key_concepts: [heavier, lighter, balance scales, grams]
+key_concepts: [heavier, lighter, balance scales]
 age_range: "5-6"
 animation: ../../animations/year-1/maths/measurement-weight.html
 ---
 
 # Measurement — Weight — Year 1 Maths
 
-## Big Question
-How can we tell which object is heavier or lighter?
-
 ## What We're Learning
-In this lesson you will learn how to compare weights using words like **heavier** and **lighter**. You will discover how **balance scales** work and begin to understand grams.
+You are going to learn how to compare and measure weight. You will use balance scales and words like heavier and lighter.
 
-## Key Maths Words
+## Key Words
 | Word | What it means |
 |---|---|
-| weight | how heavy something is |
-| heavier | weighs more |
-| lighter | weighs less |
-| balance scales | a tool with two pans — the heavier side goes down |
-| grams (g) | a unit for measuring weight |
+| Weight | How heavy something is |
+| Heavier | Weighs more than something else |
+| Lighter | Weighs less than something else |
+| Balance scales | A tool with two sides to compare weights |
+| Equal | Both sides weigh the same |
+| Non-standard unit | Measuring weight with everyday objects like cubes |
 
-## The Maths Explained
+## Let's Explore
 
-### Comparing Weight
-Hold one object in each hand. Which one pulls your hand down more? That one is **heavier**.
+### Using balance scales
 
-### Balance Scales
 ```
-   heavier ↓         ↑ lighter
-   ┌───┐            ┌───┐
-   │ 🍎│            │ 🍓│
-   └───┘            └───┘
-     ╲                ╱
-       ╲            ╱
-         ╲________╱
-            ▲
+    ⚖️
+   / \
+  🍎   🧸
+ (down) (up)
 ```
-The heavier side goes **down**. The lighter side goes **up**. If both sides are level, the objects weigh the **same**.
 
-### Ordering by Weight
-Lightest → Heaviest:
-1. 🪶 Feather
-2. 🍎 Apple
-3. 📚 Book
+The apple side goes **down** → the apple is **heavier**.
+The teddy side goes **up** → the teddy is **lighter**.
 
-## Quick Quiz
-1. Which word means "weighs more"? → *Heavier*
-2. On a balance scale, which side goes down? → *The heavier side*
-3. Put in order lightest to heaviest: book, feather, apple → *Feather, apple, book*
+### If the scales are level
 
-## Maths in the Real World
-Supermarkets weigh fruit and vegetables so you pay the right price. Bakers carefully weigh flour and sugar to make cakes taste perfect. Even astronauts study weight — things feel weightless in space!
+```
+    ⚖️
+   / \
+  🍊   🍊
+ (level)
+```
+
+They are **equal** — they weigh the same.
+
+### Measuring with cubes
+How many cubes balance a banana?
+
+```
+    ⚖️
+   / \
+  🍌   🟦🟦🟦🟦🟦
+       (5 cubes)
+```
+
+The banana weighs the same as **5 cubes**.
+
+### Example — Which is heavier?
+A book balances 8 cubes. A shoe balances 12 cubes.
+The shoe is **heavier** because 12 is more than 8.
+
+## Try It Yourself
+
+1. On balance scales, which side goes down — the heavier or lighter object?
+2. A toy car balances 3 cubes. A ball balances 6 cubes. Which is lighter?
+3. If both sides of a balance are level, what does that mean?
+4. Hold a pencil in one hand and a water bottle in the other — which is heavier?
+5. Put in order, lightest to heaviest: 10 cubes, 2 cubes, 7 cubes.
+
+<details>
+<summary>Check your answers</summary>
+
+1. The heavier object
+2. The toy car
+3. They weigh the same (are equal)
+4. The water bottle
+5. 2 cubes, 7 cubes, 10 cubes
+
+</details>
+
+## Did You Know? 🧮
+The heaviest animal in the world is the blue whale. It can weigh as much as 33 elephants!
 
 ## Learning Checklist
-- [ ] I can compare two objects and say which is heavier or lighter
-- [ ] I know how balance scales work
+- [ ] I can use the words heavier, lighter and equal
+- [ ] I can compare weights using balance scales
+- [ ] I can measure weight using non-standard units
 - [ ] I can put objects in order by weight

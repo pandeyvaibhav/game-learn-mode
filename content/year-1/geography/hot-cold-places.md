@@ -3,58 +3,91 @@ year: 1
 subject: geography
 topic: Hot and Cold Places
 slug: hot-cold-places
-key_concepts: [North Pole, South Pole, equator, Africa, Arctic]
+key_concepts: [North Pole, South Pole, equator]
 age_range: "5-6"
 animation: ../../animations/year-1/geography/hot-cold-places.html
 ---
 
 # Hot and Cold Places — Year 1 Geography
 
-## Big Question
-Why are some places on Earth very hot and others very cold?
-
 ## What We're Learning
-In this lesson you will learn about the **equator**, the **North Pole**, and the **South Pole**. You will discover why places near the equator are hot and places near the poles are cold.
+You are going to learn about hot and cold places around the world. You will find out where the equator, the North Pole and the South Pole are, and why some places are hotter than others.
 
-## Key Geography Words
+## Key Words
 | Word | What it means |
 |---|---|
-| equator | an imaginary line around the middle of the Earth |
-| North Pole | the very top of the Earth — extremely cold |
-| South Pole | the very bottom of the Earth — extremely cold |
-| Arctic | the frozen area around the North Pole |
-| climate | the usual weather of a place over a long time |
-| continent | a very large area of land (e.g. Africa, Europe) |
+| Equator | An imaginary line around the middle of the Earth |
+| North Pole | The very top of the Earth — very cold |
+| South Pole | The very bottom of the Earth — very cold |
+| Climate | The usual weather in a place over a long time |
+| Continent | A very large area of land (there are seven) |
+| Temperature | How hot or cold something is |
 
-## The Geography Explained
+## Let's Explore
 
-### The Equator
-The **equator** is an imaginary line around the middle of the Earth. Places near the equator get the most direct sunlight, so they are **hot** all year round.
+### The Earth
 
-### The Poles
-The **North Pole** (Arctic) and **South Pole** (Antarctica) are at the very top and bottom of the Earth. They get very little direct sunlight, so they are **extremely cold** with lots of ice and snow.
+```
+        ❄️ North Pole
+        ------
+       /      \
+      /        \
+  ☀️ --- Equator --- ☀️
+      \        /
+       \      /
+        ------
+        ❄️ South Pole
+```
 
-### Hot and Cold Compared
-| Hot Places (near equator) | Cold Places (near poles) |
+### Hot places — near the equator
+Places near the equator get the most sunlight, so they are very **hot**.
+
+| Place | What it is like |
 |---|---|
-| Africa, parts of South America | Arctic, Antarctica |
-| Hot sun, tropical forests, deserts | Ice, snow, freezing winds |
-| Animals: elephants, lions, parrots | Animals: polar bears, penguins, seals |
+| Sahara Desert (Africa) | Very hot and dry, lots of sand |
+| Amazon Rainforest (South America) | Very hot and wet, lots of trees |
+| India | Hot, with heavy rain (monsoon) |
 
-### The UK
-The United Kingdom is between the equator and the North Pole, so it has **mild** weather — not too hot, not too cold, with four seasons.
+### Cold places — near the poles
+Places near the North Pole and South Pole get very little sunlight, so they are very **cold**.
 
-## Quick Quiz
-1. Where is the equator? → *Around the middle of the Earth*
-2. Are places near the equator hot or cold? → *Hot*
-3. Name one cold place. → *The Arctic or Antarctica*
-4. Why are the poles cold? → *They get very little direct sunlight*
-5. Where does the UK sit? → *Between the equator and the North Pole*
+| Place | What it is like |
+|---|---|
+| Arctic (North Pole) | Covered in ice and snow, polar bears live here |
+| Antarctica (South Pole) | The coldest place on Earth, penguins live here |
+| Iceland | Very cold, has glaciers and volcanoes |
 
-## Geography in the Real World
-Explorers like Roald Amundsen travelled to the South Pole. People who live near the equator build homes to stay cool, while people in the Arctic wear thick fur coats and build igloos.
+### Example — Why are some places hot?
+Places near the equator are closer to where the sun shines most directly. The sunlight is stronger, so it is hotter.
+
+### What do people wear?
+- Hot places: thin clothes, shorts, sun hats
+- Cold places: thick coats, gloves, woolly hats
+
+## Try It Yourself
+
+1. Where is the equator?
+2. Name a very cold place.
+3. Are places near the equator hot or cold?
+4. What animals live near the South Pole?
+5. Why is the North Pole so cold?
+
+<details>
+<summary>Check your answers</summary>
+
+1. An imaginary line around the middle of the Earth
+2. Arctic, Antarctica, Iceland (any one)
+3. Hot
+4. Penguins
+5. It is very far from the equator and gets very little direct sunlight
+
+</details>
+
+## Did You Know? 🌍
+Antarctica is the coldest place on Earth. The temperature once dropped to −89°C! That is so cold that if you threw boiling water in the air, it would freeze before it hit the ground!
 
 ## Learning Checklist
-- [ ] I know where the equator is on a globe
-- [ ] I can explain why some places are hot and some are cold
-- [ ] I can name animals that live in hot and cold places
+- [ ] I know where the equator is
+- [ ] I know where the North Pole and South Pole are
+- [ ] I can name hot places and cold places
+- [ ] I understand why some places are hotter than others

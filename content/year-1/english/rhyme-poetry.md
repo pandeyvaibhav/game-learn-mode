@@ -3,63 +3,85 @@ year: 1
 subject: english
 topic: Rhyme and Poetry
 slug: rhyme-poetry
-key_concepts: [nursery rhymes, rhyming pairs, rhythm clapping]
+key_concepts: [nursery rhymes, rhyming pairs, rhythm]
 age_range: "5-6"
 animation: ../../animations/year-1/english/rhyme-poetry.html
 ---
 
 # Rhyme and Poetry — Year 1 English
 
-## Big Question
-What makes words rhyme, and why is poetry fun?
-
 ## What We're Learning
-In this lesson you will learn what **rhyming words** are, spot rhymes in nursery rhymes, and clap along to the **rhythm** of a poem.
+You are going to learn about rhyming words and poetry. You will spot words that sound the same at the end and enjoy the rhythm and patterns in poems.
 
-## Key English Words
+## Key Words
 | Word | What it means |
 |---|---|
-| rhyme | words that end with the same sound (cat/hat) |
-| rhythm | the beat or pattern of sounds in a poem |
-| poem | a piece of writing with rhythm and often rhyme |
-| nursery rhyme | a traditional song or poem for young children |
-| verse | a section (like a paragraph) of a poem |
+| Rhyme | Words that have the same ending sound |
+| Rhyming pair | Two words that rhyme (cat, hat) |
+| Rhythm | The beat or pattern in a poem |
+| Poem | A piece of writing with rhythm and sometimes rhyme |
+| Nursery rhyme | A traditional poem or song for young children |
+| Verse | A group of lines in a poem (like a paragraph) |
 
-## The English Explained
+## Let's Explore
 
-### What Is Rhyme?
-Two words **rhyme** when they end with the same sound:
-- **cat** – **hat** – **mat** – **sat**
-- **dog** – **log** – **fog**
-- **sun** – **fun** – **run**
+### What are rhyming words?
+Rhyming words sound the same at the end:
 
-### Rhyme in Nursery Rhymes
-> Twinkle, twinkle, little **star**,
-> How I wonder what you **are**.
+```
+cat  →  hat  →  mat  →  sat
+dog  →  log  →  fog  →  jog
+sun  →  fun  →  run  →  bun
+```
 
-"Star" and "are" rhyme!
+### A nursery rhyme
 
 > Humpty Dumpty sat on a **wall**,
 > Humpty Dumpty had a great **fall**.
+> All the king's horses and all the king's **men**,
+> Couldn't put Humpty together **again**.
 
-"Wall" and "fall" rhyme!
+"Wall" and "fall" rhyme. "Men" and "again" rhyme.
 
-### Rhythm — The Beat
-Poems have a **beat** you can clap:
-> 👏 Twin 👏 kle 👏 twin 👏 kle 👏 lit 👏 tle 👏 star
+### Clapping the rhythm
+Try clapping along:
 
-Try clapping the syllables in your favourite nursery rhyme.
+> **Twin** - kle **twin** - kle **lit** - tle **star**
 
-## Quick Quiz
-1. Which word rhymes with "cat"? (bat / dog / sun) → *Bat*
-2. What is rhythm? → *The beat or pattern of sounds in a poem*
-3. Find the rhyming pair: "The mouse ran up the clock" → *No rhyme in that line! The full rhyme is clock/struck.*
-4. Give a word that rhymes with "day". → *play, say, way*
+Each clap is one beat. Poems have a pattern of beats — that is the **rhythm**.
 
-## English in the Real World
-Rhyme and rhythm are everywhere — in songs on the radio, playground chants, and birthday cards. Poets use rhyme to make words memorable and fun to say.
+### Example — Find the rhyme
+Which word rhymes with "moon"?
+- book
+- **spoon** ✓
+- milk
+
+"Moon" and "spoon" both end in "-oon".
+
+## Try It Yourself
+
+1. Which word rhymes with "dog"? (cat, log, pen)
+2. Think of a word that rhymes with "bed".
+3. How many rhyming pairs can you find? (fun, hat, sun, cat, run, mat)
+4. Finish this line: "I see a bee sitting in a ___."
+5. Clap the rhythm of "Baa Baa Black Sheep". How many beats in the first line?
+
+<details>
+<summary>Check your answers</summary>
+
+1. log
+2. red, said, fed, head (any is correct!)
+3. Three pairs: fun/sun/run, hat/cat/mat
+4. tree (or any word that rhymes with bee)
+5. 7 beats: Baa-baa-black-sheep-have-you-a-ny
+
+</details>
+
+## Did You Know? 📚
+Nursery rhymes are very old! "Jack and Jill" was written over 250 years ago. Some people think it is about a real king and queen!
 
 ## Learning Checklist
-- [ ] I can spot words that rhyme
+- [ ] I can spot rhyming words
+- [ ] I can think of my own rhyming pairs
 - [ ] I can clap the rhythm of a poem
-- [ ] I can think of my own rhyming words
+- [ ] I can enjoy and recite nursery rhymes

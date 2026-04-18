@@ -1,115 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Measurement — Length — Year 1 Maths | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Measurement — Length — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.bar-area{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
-.bar-row{display:flex;align-items:center;gap:.5rem}
-.bar-label{width:60px;font-size:.85rem;text-align:right}
-.bar{height:28px;border-radius:6px;display:flex;align-items:center;padding-left:.5rem;font-size:.78rem;font-weight:700;color:#0f172a;transition:width .4s ease}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.num-btn{min-width:80px;padding:.5rem .8rem;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:.88rem;cursor:pointer;text-align:center}
-.num-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 1 · Maths</p>
 <h1>Measurement — Length</h1>
-<p class="subtitle">Compare lengths and measure with cubes!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Which is Longer?</p>
-<div class="bar-area" id="bars"></div>
-<p style="font-size:.88rem;color:var(--text-muted);text-align:center;margin-bottom:.5rem" id="compQ"></p>
-<div class="num-row" id="compOpts"></div>
-<p class="fb" id="compFb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="compSc">0</span></div>
-<button class="new-btn" id="newComp">New Question</button>
+<p class="subtitle">Year 1 Maths — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
 </div>
-
-<div class="card">
-<p class="card-title">How Many Cubes Long?</p>
-<div id="cubeArea" style="display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin-bottom:.75rem"></div>
-<p style="font-size:.88rem;text-align:center;margin-bottom:.5rem" id="cubeQ"></p>
-<div class="num-row" id="cubeOpts"></div>
-<p class="fb" id="cubeFb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="cubeSc">0</span></div>
-<button class="new-btn" id="newCube">New Question</button>
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
 </div>
-
 <script>
-function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-
-/* ── Compare ── */
-var ITEMS=['🖍️ Crayon','📏 Ruler','✏️ Pencil','🖊️ Pen','📎 Clip'];
-var COLOURS=['#f87171','#38bdf8','#fbbf24','#34d399','#a78bfa'];
-var compSc=0;
-function newComp(){
-  var pick=shuffle(ITEMS).slice(0,2);
-  var lenA=rnd(2,8),lenB=rnd(2,8);
-  while(lenB===lenA)lenB=rnd(2,8);
-  var bars=document.getElementById('bars');bars.innerHTML='';
-  [[pick[0],lenA,COLOURS[0]],[pick[1],lenB,COLOURS[1]]].forEach(function(r){
-    var row=document.createElement('div');row.className='bar-row';
-    row.innerHTML='<span class="bar-label">'+r[0]+'</span><div class="bar" style="width:'+r[1]*40+'px;background:'+r[2]+'">'+r[1]+' cubes</div>';
-    bars.appendChild(row);
-  });
-  document.getElementById('compQ').textContent='Which is longer?';
-  var fb=document.getElementById('compFb');fb.textContent='';
-  var opts=document.getElementById('compOpts');opts.innerHTML='';
-  var ans=lenA>lenB?pick[0]:pick[1];
-  shuffle(pick).forEach(function(p){
-    var btn=document.createElement('button');btn.className='num-btn';btn.textContent=p;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.num-btn').forEach(function(b){b.disabled=true;});
-      if(p===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');compSc++;document.getElementById('compSc').textContent=compSc;fb.textContent='✓ Correct!';fb.style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');fb.textContent='✗ The '+ans+' is longer!';fb.style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-}
-document.getElementById('newComp').addEventListener('click',newComp);newComp();
-
-/* ── Cube Measuring ── */
-var cubeSc=0;
-function newCubeQ(){
-  var len=rnd(2,10);
-  var area=document.getElementById('cubeArea');area.innerHTML='';
-  for(var i=0;i<len;i++){var c=document.createElement('div');c.style.cssText='width:28px;height:28px;background:var(--accent);border-radius:4px;border:1px solid rgba(0,0,0,.2)';area.appendChild(c);}
-  document.getElementById('cubeQ').textContent='How many cubes long is this?';
-  var fb=document.getElementById('cubeFb');fb.textContent='';
-  var opts=document.getElementById('cubeOpts');opts.innerHTML='';
-  var choices=[len];
-  while(choices.length<4){var n=rnd(1,12);if(choices.indexOf(n)===-1)choices.push(n);}
-  shuffle(choices).forEach(function(n){
-    var btn=document.createElement('button');btn.className='num-btn';btn.textContent=n;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.num-btn').forEach(function(b){b.disabled=true;});
-      if(n===len){btn.style.borderColor='var(--success)';btn.classList.add('bounce');cubeSc++;document.getElementById('cubeSc').textContent=cubeSc;fb.textContent='✓ '+len+' cubes!';fb.style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');fb.textContent='✗ It is '+len+' cubes long.';fb.style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-}
-document.getElementById('newCube').addEventListener('click',newCubeQ);newCubeQ();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"Which word means 'not as long'?",answer:"Shorter",options:["Longer","Shorter","Taller","Wider"]},
+    {text:"A pencil is 5 cubes long. A pen is 8 cubes. Which is longer?",answer:"The pen",options:["The pencil","The pen","They are equal","Cannot tell"]},
+    {text:"What do we call measuring with cubes instead of a ruler?",answer:"Non-standard units",options:["Standard units","Non-standard units","Guessing","Counting"]},
+    {text:"Sam is 9 cubes tall. Mia is 7 cubes tall. Who is taller?",answer:"Sam",options:["Sam","Mia","They are equal","Cannot tell"]},
+    {text:"Why must we line things up from the same point to compare?",answer:"To make it fair",options:["To make it fair","To make it faster","Because the teacher said","It looks nicer"]},
+    {text:"A book is 6 cubes long. A ruler is 10 cubes. How much longer is the ruler?",answer:"4 cubes",options:["2 cubes","4 cubes","6 cubes","16 cubes"]},
+    {text:"Which word means 'higher from bottom to top'?",answer:"Taller",options:["Longer","Shorter","Taller","Smaller"]},
+    {text:"Put in order, shortest to longest: 7, 3, 5 cubes",answer:"3, 5, 7",options:["7, 5, 3","3, 5, 7","5, 3, 7","3, 7, 5"]},
+    {text:"What could you use to measure a table if you have no ruler?",answer:"Paper clips",options:["Nothing","Paper clips","Your eyes only","A watch"]},
+    {text:"Two ribbons: A is 4 cubes, B is 4 cubes. What can we say?",answer:"They are the same length",options:["A is longer","B is longer","They are the same length","We cannot tell"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
+  }
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

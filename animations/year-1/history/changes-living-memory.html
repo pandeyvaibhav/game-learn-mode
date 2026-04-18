@@ -1,82 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Changes Within Living Memory — Year 1 History | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changes in Living Memory — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);min-width:80px;text-align:center}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 1 · History</p>
-<h1>Changes Within Living Memory</h1>
-<p class="subtitle">Then or now? Sort the objects!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Then or Now?</p>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">Next Question</button>
+<h1>Changes in Living Memory</h1>
+<p class="subtitle">Year 1 History — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
 </div>
-
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
+</div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var QS=[
-{q:'Horse and cart for getting around',ans:'Then',opts:['Then','Now']},
-{q:'Smartphones',ans:'Now',opts:['Then','Now']},
-{q:'Black-and-white TV with 3 channels',ans:'Then',opts:['Then','Now']},
-{q:'Electric trains',ans:'Now',opts:['Then','Now']},
-{q:'Wooden spinning tops',ans:'Then',opts:['Then','Now']},
-{q:'Video games on tablets',ans:'Now',opts:['Then','Now']},
-{q:'Rotary dial telephone',ans:'Then',opts:['Then','Now']},
-{q:'Video calls with family far away',ans:'Now',opts:['Then','Now']},
-{q:'Sending a letter by post',ans:'Then',opts:['Then','Now']},
-{q:'Streaming TV shows on demand',ans:'Now',opts:['Then','Now']},
-{q:'Marbles and skipping ropes',ans:'Then',opts:['Then','Now']},
-{q:'Jet aeroplanes',ans:'Now',opts:['Then','Now']}
-];
-var pool=shuffle(QS);var idx=0;var sc=0;
-function show(){
-  if(idx>=pool.length) pool=shuffle(QS),idx=0;
-  var q=pool[idx];
-  document.getElementById('qTxt').textContent=q.q;
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  q.opts.forEach(function(o){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ It\'s "'+q.ans+'"';document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-  idx++;
-}
-document.getElementById('next').addEventListener('click',show);show();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"'Living memory' means things people alive today can…",answer:"Remember",options:["Read about","Remember","Imagine","Draw"]},
+    {text:"Long ago, people did NOT have…",answer:"Smartphones",options:["Clothes","Food","Smartphones","Houses"]},
+    {text:"How did people travel before cars?",answer:"Horse and cart",options:["Aeroplane","Horse and cart","Rocket","Submarine"]},
+    {text:"What did children play with before video games?",answer:"Wooden toys and dolls",options:["Tablets","Wooden toys and dolls","Robots","Nothing"]},
+    {text:"What can grandparents tell us about?",answer:"What life was like when they were young",options:["The future","What life was like when they were young","Dinosaurs","Space travel"]},
+    {text:"Which came first: a black-and-white TV or a colour TV?",answer:"Black-and-white TV",options:["Colour TV","Black-and-white TV","A tablet","A smart TV"]},
+    {text:"How have schools changed?",answer:"Children used chalk and slates",options:["Nothing has changed","Children used chalk and slates","There were no teachers","Schools had robots"]},
+    {text:"Which is an old way to wash clothes?",answer:"By hand with a washboard",options:["In a washing machine","By hand with a washboard","In a dishwasher","With a vacuum"]},
+    {text:"What is a timeline?",answer:"Events shown in order",options:["A type of clock","A long line of string","Events shown in order","A list of names"]},
+    {text:"Why is it useful to learn about the past?",answer:"We understand how things have changed",options:["It is not useful","We understand how things have changed","To feel sad","To forget today"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
+  }
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

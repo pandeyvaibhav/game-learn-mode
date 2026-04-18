@@ -3,60 +3,94 @@ year: 1
 subject: geography
 topic: Our Local Area
 slug: local-area
-key_concepts: [school surroundings, maps, aerial photos, compass directions]
+key_concepts: [maps, aerial photographs, compass directions]
 age_range: "5-6"
 animation: ../../animations/year-1/geography/local-area.html
 ---
 
 # Our Local Area — Year 1 Geography
 
-## Big Question
-What is around our school, and how can a map help us find things?
-
 ## What We're Learning
-In this lesson you will learn to describe what is in your **local area**, look at **aerial photos** (bird's-eye view), use a simple **map**, and understand basic **compass directions**.
+You are going to learn about the area around your school. You will use simple maps, aerial photographs and compass directions to describe where things are.
 
-## Key Geography Words
+## Key Words
 | Word | What it means |
 |---|---|
-| local area | the place around your school and home |
-| map | a drawing that shows where things are from above |
-| aerial photo | a photograph taken from high up (like a bird would see) |
-| compass | a tool that shows North, South, East, and West |
-| human feature | something built by people (road, shop, bridge) |
-| physical feature | something natural (river, hill, tree) |
+| Map | A drawing that shows where things are from above |
+| Aerial photograph | A photo taken from high up (like from an aeroplane) |
+| Compass | A tool that shows directions (North, South, East, West) |
+| Landmark | An important building or feature you can spot easily |
+| Route | The way you go from one place to another |
+| Local area | The places near where you live or go to school |
 
-## The Geography Explained
+## Let's Explore
 
-### What Is in Our Local Area?
-Walk outside your school and you might see:
-- **Human features**: roads, houses, shops, a park, a church, lampposts
-- **Physical features**: trees, rivers, hills, ponds
+### What is in our local area?
+Look around your school. You might see:
+- Houses and flats
+- Shops and a post office
+- A park or playground
+- Roads and paths
+- A church, mosque or temple
+- A library or community centre
 
-### Maps and Aerial Photos
-A **map** is like looking down from above. An **aerial photo** is a real photograph from high up (from a plane or satellite). Both show where things are.
+### Using a simple map
 
-### Compass Directions
 ```
-       N (North)
-       ↑
-W ←    ✦    → E (East)
-       ↓
-       S (South)
+      N
+      ↑
+  W ←   → E
+      ↓
+      S
+
+  [Park]     [Shop]
+     |          |
+  ---School-----
+     |
+  [Houses]
 ```
-North is at the top of most maps.
 
-## Quick Quiz
-1. What is an aerial photo? → *A photo taken from high up, looking down*
-2. Name a human feature you might see near school. → *A road, shop, house, or bridge*
-3. Name a physical feature. → *A tree, river, or hill*
-4. What are the four compass directions? → *North, South, East, West*
+The park is **north** of the school.
+The houses are **south** of the school.
 
-## Geography in the Real World
-Delivery drivers use maps every day to find addresses. Town planners use aerial photos to decide where to build new houses and roads.
+### Compass directions
+
+| Direction | Short | Where on the map |
+|---|---|---|
+| North | N | Up |
+| South | S | Down |
+| East | E | Right |
+| West | W | Left |
+
+A way to remember: **N**ever **E**at **S**hredded **W**heat (going clockwise).
+
+### Aerial photographs
+An aerial photo shows how things look from above — like a bird's-eye view. Roads look like grey lines. Green spaces are parks.
+
+## Try It Yourself
+
+1. Name three things you might see in your local area.
+2. What does a map show?
+3. If you face north and turn right, which direction do you face?
+4. What is an aerial photograph?
+5. Describe the route from your classroom to the playground.
+
+<details>
+<summary>Check your answers</summary>
+
+1. Any three from: houses, shops, park, roads, school, church etc.
+2. Where things are, shown from above
+3. East
+4. A photograph taken from high up, like from a plane
+5. (Your own answer!)
+
+</details>
+
+## Did You Know? 🌍
+The oldest known map is over 3,000 years old! It was scratched into a clay tablet in ancient Babylon (modern-day Iraq).
 
 ## Learning Checklist
 - [ ] I can describe features in my local area
-- [ ] I know the difference between human and physical features
 - [ ] I can use a simple map
 - [ ] I know the four compass directions
+- [ ] I can describe a route using direction words

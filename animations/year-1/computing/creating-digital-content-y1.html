@@ -1,122 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Creating Digital Content — Year 1 Computing | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creating Digital Content — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.canvas-wrap{position:relative;margin-bottom:.5rem}
-canvas{background:#fff;border-radius:var(--radius-sm);display:block;width:100%;cursor:crosshair}
-.palette{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
-.color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer}
-.color-btn.active{border-color:var(--primary)}
-.tool-row{display:flex;gap:.4rem;flex-wrap:wrap}
-.tool-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.8rem;cursor:pointer;color:var(--text)}
-.tool-btn:hover{border-color:var(--accent)}
-
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);min-width:80px;text-align:center}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 1 · Computing</p>
 <h1>Creating Digital Content</h1>
-<p class="subtitle">Draw a picture and take the quiz!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Mini Drawing Pad</p>
-<div class="palette" id="palette"></div>
-<div class="canvas-wrap"><canvas id="cv" width="580" height="300"></canvas></div>
-<div class="tool-row">
-<button class="tool-btn" id="clearBtn">Clear</button>
-<button class="tool-btn" id="thinBtn">Thin</button>
-<button class="tool-btn" id="thickBtn">Thick</button>
+<p class="subtitle">Year 1 Computing — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
 </div>
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
 </div>
-
-<div class="card">
-<p class="card-title">Quiz</p>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">Next Question</button>
-</div>
-
 <script>
-/* Drawing pad */
-var cv=document.getElementById('cv');var ctx=cv.getContext('2d');
-var drawing=false;var color='#000000';var lw=4;
-var COLORS=['#000000','#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#9b59b6','#ecf0f1'];
-var palEl=document.getElementById('palette');
-COLORS.forEach(function(c){
-  var b=document.createElement('button');b.className='color-btn';b.style.background=c;
-  if(c===color) b.classList.add('active');
-  b.addEventListener('click',function(){
-    palEl.querySelectorAll('.color-btn').forEach(function(x){x.classList.remove('active');});
-    b.classList.add('active');color=c;
-  });palEl.appendChild(b);
-});
-function getPos(e){var r=cv.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*(cv.width/r.width),y:(t.clientY-r.top)*(cv.height/r.height)};}
-cv.addEventListener('mousedown',function(e){drawing=true;var p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
-cv.addEventListener('mousemove',function(e){if(!drawing)return;var p=getPos(e);ctx.lineWidth=lw;ctx.strokeStyle=color;ctx.lineCap='round';ctx.lineTo(p.x,p.y);ctx.stroke();});
-cv.addEventListener('mouseup',function(){drawing=false;});
-cv.addEventListener('mouseleave',function(){drawing=false;});
-cv.addEventListener('touchstart',function(e){e.preventDefault();drawing=true;var p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);},{passive:false});
-cv.addEventListener('touchmove',function(e){e.preventDefault();if(!drawing)return;var p=getPos(e);ctx.lineWidth=lw;ctx.strokeStyle=color;ctx.lineCap='round';ctx.lineTo(p.x,p.y);ctx.stroke();},{passive:false});
-cv.addEventListener('touchend',function(){drawing=false;});
-document.getElementById('clearBtn').addEventListener('click',function(){ctx.clearRect(0,0,cv.width,cv.height);});
-document.getElementById('thinBtn').addEventListener('click',function(){lw=2;});
-document.getElementById('thickBtn').addEventListener('click',function(){lw=8;});
-
-/* Quiz */
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var QS=[
-{q:'What is digital content?',ans:'Things made on a computer',opts:['Things made on a computer','Paper drawings','Lego models']},
-{q:'Which key makes a space between words?',ans:'Space bar',opts:['Space bar','Enter','Shift']},
-{q:'Why should you save your work?',ans:'So you can find it again',opts:['So you can find it again','To make it colourful','To print it']},
-{q:'What does the Backspace key do?',ans:'Deletes a mistake',opts:['Deletes a mistake','Makes a capital letter','Starts a new line']},
-{q:'What does the Shift key do?',ans:'Makes a capital letter',opts:['Makes a capital letter','Saves your work','Adds a space']},
-{q:'What tool fills a shape with colour?',ans:'Fill tool',opts:['Fill tool','Pencil','Eraser']}
-];
-var pool=shuffle(QS);var idx=0;var sc=0;
-function show(){
-  if(idx>=pool.length) pool=shuffle(QS),idx=0;
-  var q=pool[idx];
-  document.getElementById('qTxt').textContent=q.q;
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  shuffle(q.opts).forEach(function(o){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-  idx++;
-}
-document.getElementById('next').addEventListener('click',show);show();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"What do you use a keyboard for?",answer:"Typing letters and numbers",options:["Drawing pictures","Typing letters and numbers","Playing music","Eating lunch"]},
+    {text:"What does a mouse help you do?",answer:"Click and move the pointer",options:["Type words","Click and move the pointer","Print a picture","Turn off the screen"]},
+    {text:"What does 'Save' mean on a computer?",answer:"Keep your work so you can find it later",options:["Delete your work","Keep your work so you can find it later","Turn off the computer","Close the window"]},
+    {text:"Which tool lets you draw on a computer?",answer:"A paint program",options:["A calculator","A paint program","A keyboard only","A printer"]},
+    {text:"What happens if you do not save your work?",answer:"You might lose it",options:["It saves by itself","You might lose it","It prints","Nothing happens"]},
+    {text:"Which is a piece of digital content?",answer:"A picture you drew on a tablet",options:["A paper drawing","A picture you drew on a tablet","A wooden block","A pencil"]},
+    {text:"How do you undo a mistake on a computer?",answer:"Press the Undo button",options:["Turn it off","Press the Undo button","Use an eraser on the screen","Shake the mouse"]},
+    {text:"What is a 'file'?",answer:"A saved piece of work on a computer",options:["A folder on a shelf","A saved piece of work on a computer","A type of pen","A sheet of paper"]},
+    {text:"Which key adds a space between words?",answer:"The space bar",options:["Enter","Shift","The space bar","Backspace"]},
+    {text:"Why is it good to create things on a computer?",answer:"You can change and share them easily",options:["You cannot change them","You can change and share them easily","Computers are toys","It is always faster"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
+  }
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

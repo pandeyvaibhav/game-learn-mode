@@ -3,60 +3,87 @@ year: 1
 subject: computing
 topic: Creating Digital Content
 slug: creating-digital-content-y1
-key_concepts: [drawing with computers, keyboard basics, saving work]
+key_concepts: [drawing, keyboard skills, saving]
 age_range: "5-6"
 animation: ../../animations/year-1/computing/creating-digital-content-y1.html
 ---
 
 # Creating Digital Content — Year 1 Computing
 
-## Big Question
-How can we use a computer to draw, write, and save our work?
-
 ## What We're Learning
-In this lesson you will learn how to create things on a computer — **drawing pictures**, using the **keyboard** to type, and **saving** your work so you don't lose it.
+You are going to learn how to create things on a computer. You will practise using a keyboard and mouse, drawing pictures on screen, and saving your work.
 
-## Key Computing Words
+## Key Words
 | Word | What it means |
 |---|---|
-| digital content | things made on a computer (pictures, text, music) |
-| keyboard | the buttons with letters and numbers you press to type |
-| mouse | a tool you move with your hand to point and click |
-| save | store your work so you can find it again later |
-| file | a saved piece of work on the computer |
+| Digital | Something made or stored on a computer |
+| Keyboard | The part with letter and number keys for typing |
+| Mouse | The part you move to point and click on screen |
+| Click | Pressing the button on a mouse |
+| Save | Keeping your work so you can open it again later |
+| File | A piece of work saved on the computer |
 
-## The Computing Explained
+## Let's Explore
 
-### Drawing with Computers
-Computer drawing programs let you:
-- Choose **colours** from a palette
-- Draw with a **brush** or **pencil** tool
-- Fill shapes with colour using a **fill** tool
-- **Undo** a mistake with one click!
+### Parts of a computer
 
-### Using the Keyboard
-Important keys to know:
-| Key | What it does |
-|---|---|
-| Letters A–Z | type letters |
-| Space bar | makes a gap between words |
-| Shift | makes a capital letter |
-| Backspace / Delete | removes a mistake |
-| Enter | starts a new line |
+```
+  📺 Screen (monitor) — shows what you are doing
+  ⌨️ Keyboard — for typing letters and numbers
+  🖱️ Mouse — for clicking and pointing
+```
 
-### Saving Your Work
-Always **save** your work! Click the save button or press Ctrl + S. Give your file a name so you can find it again.
+### Using a mouse
+- **Move** the mouse to move the pointer on screen
+- **Click** (press the left button once) to select something
+- **Double-click** (press twice quickly) to open something
+- **Drag** (hold the button and move) to draw or move things
 
-## Quick Quiz
-1. What is digital content? → *Things made on a computer, like pictures and text*
-2. Which key makes a gap between words? → *The space bar*
-3. Why should you save your work? → *So you don't lose it and can find it again*
-4. Name one thing you can do with a drawing program. → *Draw, colour, fill shapes, undo mistakes*
+### Using a keyboard
+- **Letter keys** — type letters (a, b, c …)
+- **Number keys** — type numbers (1, 2, 3 …)
+- **Space bar** — the big key at the bottom, makes a space
+- **Enter** — starts a new line
+- **Backspace** — deletes the letter before the cursor
 
-## Computing in the Real World
-Artists use drawing tablets to create cartoons and films. Writers use keyboards to write books. Every document, photo, and video you see on a computer is a saved file.
+### Drawing on a computer
+You can use a painting program to:
+- Choose colours
+- Draw lines and shapes
+- Fill areas with colour
+- Add stamps or stickers
+
+### Saving your work
+Always save your work! If you do not save it, it will be lost when the computer turns off.
+
+```
+File → Save → Choose a name → Click Save
+```
+
+## Try It Yourself
+
+1. Name two parts of a computer.
+2. What does the mouse do?
+3. Which key makes a space between words?
+4. Why is it important to save your work?
+5. Draw a picture using a computer painting program.
+
+<details>
+<summary>Check your answers</summary>
+
+1. Any two: screen, keyboard, mouse (also: speakers, printer)
+2. It moves the pointer on screen and lets you click on things
+3. The space bar
+4. So you do not lose your work when the computer turns off
+5. (Have a go!)
+
+</details>
+
+## Did You Know? 💻
+The first computer mouse was made of wood! It was invented in 1964 by Douglas Engelbart. It got its name because the cable at the back looked like a mouse's tail!
 
 ## Learning Checklist
-- [ ] I can use a drawing program to create a picture
-- [ ] I know the names of important keys on the keyboard
-- [ ] I can save my work on a computer
+- [ ] I can use a mouse to click and drag
+- [ ] I can use a keyboard to type letters and numbers
+- [ ] I can create a picture on a computer
+- [ ] I know how to save my work

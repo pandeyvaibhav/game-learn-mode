@@ -1,93 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Phonics Phase 3 — Year 1 English | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phonics Phase 3 — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.word-display{text-align:center;font-size:2rem;font-weight:800;color:var(--accent);letter-spacing:.2em;margin:.5rem 0}
-.digraph-hl{color:var(--primary)}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:center;min-width:70px}
-.opt-btn:hover{border-color:var(--accent)}
-.opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
-.opt-btn.wrong{background:var(--error);color:#0f172a}
-.opt-btn.disabled{pointer-events:none;opacity:.5}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
+  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
+  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
+  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
+  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
+  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .opt-btn.correct{border-color:var(--success);background:#166534}
+  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
+  .opt-btn:disabled{cursor:default;opacity:.85}
+  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
+  .feedback.correct-fb{color:var(--success)}
+  .feedback.wrong-fb{color:var(--error)}
+  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
+  .next-btn:hover{opacity:.9}
+  .result{display:none;text-align:center}
+  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
+  .result .stars{font-size:2.5rem;margin:.75rem 0}
+  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
+  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
+  .play-again:hover{opacity:.9}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 1 · English</p>
 <h1>Phonics — Phase 3</h1>
-<p class="subtitle">Spot the digraph in each word!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Find the Digraph</p>
-<p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.5rem;text-align:center">Which digraph is hiding in this word?</p>
-<div class="word-display" id="word"></div>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">Next Word</button>
+<p class="subtitle">Year 1 English — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea">
+  <div class="q-text" id="qText"></div>
+  <div class="opts" id="opts"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="nextBtn">Next →</button>
 </div>
-
+<div class="result" id="result">
+  <h2>Quiz Complete!</h2>
+  <div class="stars" id="stars"></div>
+  <div class="score-msg" id="scoreMsg"></div>
+  <button class="play-again" id="playAgain">Play Again</button>
+</div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var WORDS=[
-{word:'ship',digraph:'sh'},{word:'chat',digraph:'ch'},{word:'this',digraph:'th'},
-{word:'rain',digraph:'ai'},{word:'tree',digraph:'ee'},{word:'boat',digraph:'oa'},
-{word:'moon',digraph:'oo'},{word:'fish',digraph:'sh'},{word:'much',digraph:'ch'},
-{word:'with',digraph:'th'},{word:'tail',digraph:'ai'},{word:'sheep',digraph:'ee'},
-{word:'coat',digraph:'oa'},{word:'food',digraph:'oo'},{word:'shop',digraph:'sh'}
-];
-var ALL_DG=['ch','sh','th','ai','ee','oa','oo'];
-var pool=shuffle(WORDS);var idx=0;var sc=0;
-
-function show(){
-  if(idx>=pool.length) pool=shuffle(WORDS),idx=0;
-  var w=pool[idx];
-  var wEl=document.getElementById('word');
-  // Highlight digraph
-  var hl=w.word.replace(w.digraph,'<span class="digraph-hl">'+w.digraph+'</span>');
-  wEl.innerHTML=w.word.toUpperCase(); // Don't reveal yet
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  var choices=[w.digraph];
-  var rest=ALL_DG.filter(function(d){return d!==w.digraph;});
-  choices=choices.concat(shuffle(rest).slice(0,3));
-  shuffle(choices).forEach(function(d){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=d;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
-      if(d===w.digraph){
-        btn.classList.add('correct','bounce');sc++;document.getElementById('sc').textContent=sc;
-        wEl.innerHTML=w.word.replace(w.digraph,'<span class="digraph-hl">'+w.digraph+'</span>').toUpperCase();
-        document.getElementById('fb').textContent='✓ The digraph is "'+w.digraph+'"!';document.getElementById('fb').style.color='var(--success)';
-      } else {
-        btn.classList.add('wrong','shake');
-        document.getElementById('fb').textContent='✗ The digraph is "'+w.digraph+'".';document.getElementById('fb').style.color='var(--error)';
-      }
-    });opts.appendChild(btn);
-  });
-  idx++;
-}
-document.getElementById('next').addEventListener('click',show);show();
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  const qs=[
+    {text:"Which digraph is in the word 'ship'?",answer:"sh",options:["ch","sh","th","ng"]},
+    {text:"What sound does 'ch' make?",answer:"ch as in chip",options:["sh as in shop","ch as in chip","th as in thin","ng as in ring"]},
+    {text:"Which word has the 'th' digraph?",answer:"this",options:["ship","chip","this","ring"]},
+    {text:"What vowel digraph is in 'moon'?",answer:"oo",options:["ai","ee","oo","oa"]},
+    {text:"Blend the sounds: sh-o-p. What word is it?",answer:"shop",options:["chop","ship","shop","stop"]},
+    {text:"Which vowel digraph is in 'rain'?",answer:"ai",options:["ai","ee","oi","oa"]},
+    {text:"What is a digraph?",answer:"Two letters, one sound",options:["One letter, one sound","Two letters, one sound","Three letters, one sound","Two letters, two sounds"]},
+    {text:"Which word has the 'ee' digraph?",answer:"tree",options:["rain","boat","tree","coin"]},
+    {text:"What digraph is in 'ring'?",answer:"ng",options:["ch","sh","th","ng"]},
+    {text:"Which word has the 'oa' digraph?",answer:"boat",options:["moon","feet","boat","coin"]}
+  ];
+  let idx=0,sc=0;
+  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+  function show(){
+    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
+    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
+    optsEl.innerHTML='';
+    shuffle([...q.options]).forEach(o=>{
+      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
+      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,chosen,answer){
+    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
+    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
+    nextBtn.style.display='block';
+  }
+  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
+  function end(){
+    qaEl.style.display='none';resultEl.style.display='block';
+    const pct=sc/qs.length;
+    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
+    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
+  }
+  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
+  shuffle(qs);show();
+})();
 </script>
 </body>
 </html>

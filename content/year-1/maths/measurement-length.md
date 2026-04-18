@@ -3,60 +3,83 @@ year: 1
 subject: maths
 topic: Measurement — Length
 slug: measurement-length
-key_concepts: [longer, shorter, taller, measuring with non-standard units]
+key_concepts: [longer, shorter, non-standard units]
 age_range: "5-6"
 animation: ../../animations/year-1/maths/measurement-length.html
 ---
 
 # Measurement — Length — Year 1 Maths
 
-## Big Question
-How can we find out how long or tall something is?
-
 ## What We're Learning
-In this lesson you will learn how to compare lengths using words like **longer**, **shorter**, and **taller**. You will also measure things using objects like cubes or paperclips.
+You are going to learn how to compare and measure lengths. You will use words like longer, shorter and taller, and measure using objects like cubes and paper clips.
 
-## Key Maths Words
+## Key Words
 | Word | What it means |
 |---|---|
-| length | how long something is from one end to the other |
-| height | how tall something is from bottom to top |
-| longer | when one thing stretches further than another |
-| shorter | when one thing is not as long as another |
-| taller | when one thing reaches higher than another |
-| measure | to find out how long, tall, or wide something is |
+| Length | How long something is from one end to the other |
+| Longer | More length than something else |
+| Shorter | Less length than something else |
+| Taller | Higher from bottom to top |
+| Non-standard unit | Measuring with everyday objects instead of a ruler |
+| Compare | Looking at two things to see which is bigger or smaller |
 
-## The Maths Explained
+## Let's Explore
 
-### Comparing Length
-Line things up at the same starting point, then see which goes further:
+### Comparing lengths
+Look at two pencils. Which one is longer?
 
-🖍️🖍️🖍️🖍️🖍️ ← longer
-🖍️🖍️🖍️ ← shorter
+```
+Pencil A: ========
+Pencil B: ============
+```
 
-### Measuring with Objects
-Before rulers, we can measure with things like **cubes**:
-- The pencil is **6 cubes** long.
-- The rubber is **2 cubes** long.
-- The pencil is **longer** than the rubber.
+Pencil B is **longer**. Pencil A is **shorter**.
 
-**Important:** Line the objects up with no gaps!
+### Measuring with cubes
+You can measure by lining up cubes:
 
-### Ordering by Length
-Put things in order from shortest to longest:
-1. Rubber (2 cubes)
-2. Crayon (4 cubes)
-3. Pencil (6 cubes)
+```
+[📏] = [🟦][🟦][🟦][🟦][🟦]
+```
 
-## Quick Quiz
-1. Which word means "how tall something is"? → *Height*
-2. If a book is 5 cubes long and a pencil is 3 cubes long, which is longer? → *The book*
-3. What must you do when measuring? → *Line up at the same starting point with no gaps*
+The book is **5 cubes** long.
 
-## Maths in the Real World
-Builders measure wood to make sure it is the right length. Doctors measure how tall you are to see how much you have grown. Even baking uses measurement — how wide should a cookie be?
+### Important rule
+Always start measuring from the same point!
+
+```
+✓ |🟦🟦🟦🟦🟦|  (lined up)
+✗   🟦🟦🟦🟦🟦  (not lined up — wrong!)
+```
+
+### Example — Who is taller?
+Sam is 8 cubes tall. Amy is 10 cubes tall.
+Amy is **taller** because 10 is more than 8.
+
+## Try It Yourself
+
+1. Which word means "not as long"?
+2. A crayon is 6 cubes long. A pen is 9 cubes long. Which is longer?
+3. Why do we need to line objects up when comparing?
+4. Measure your shoe using your thumb — how many thumbs long is it?
+5. Put in order, shortest to longest: 4 cubes, 7 cubes, 2 cubes.
+
+<details>
+<summary>Check your answers</summary>
+
+1. Shorter
+2. The pen
+3. So we get a fair comparison
+4. (Your own answer!)
+5. 2 cubes, 4 cubes, 7 cubes
+
+</details>
+
+## Did You Know? 🧮
+Long ago, people measured using their feet! That is where the measurement "foot" comes from. Different people had different sized feet, so it was not very accurate!
 
 ## Learning Checklist
-- [ ] I can compare two things and say which is longer or shorter
-- [ ] I can measure using cubes or other objects
-- [ ] I can put things in order by length
+- [ ] I can use the words longer, shorter and taller
+- [ ] I can compare lengths of objects
+- [ ] I can measure using non-standard units
+- [ ] I know to line objects up from the same point

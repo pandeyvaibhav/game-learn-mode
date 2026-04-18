@@ -10,62 +10,77 @@ animation: ../../animations/year-1/science/animals-including-humans.html
 
 # Animals Including Humans — Year 1 Science
 
-## Big Question
-What body parts do we have, and how do our senses help us?
-
 ## What We're Learning
-In this lesson you will learn the names of important **body parts**, explore our five **senses**, and discover what humans and animals need to survive.
+You are going to learn about different groups of animals and how our bodies work. You will explore the five senses and learn what animals need to survive.
 
-## Key Science Words
+## Key Words
 | Word | What it means |
 |---|---|
-| body part | a section of our body (arm, leg, eye…) |
-| senses | sight, hearing, touch, smell, and taste |
-| mammal | an animal with fur or hair that feeds milk to its young |
-| reptile | a cold-blooded animal with scales (lizard, snake) |
-| basic needs | things living things must have — food, water, air, shelter |
+| Mammal | An animal with fur or hair that feeds its babies milk |
+| Bird | An animal with feathers, wings and a beak |
+| Reptile | An animal with scaly skin (like a lizard or snake) |
+| Amphibian | An animal that lives on land and in water (like a frog) |
+| Fish | An animal that lives in water and breathes through gills |
+| Senses | The five ways we learn about the world around us |
 
-## The Science Explained
+## Let's Explore
 
-### Our Body Parts
-Head, neck, shoulders, arms, hands, chest, tummy, legs, knees, feet, toes, fingers, elbows.
+### Animal groups
 
-### The Five Senses
-| Sense | Body Part | What it does |
+| Group | Features | Examples |
 |---|---|---|
-| Sight | 👀 Eyes | see colours, shapes, movement |
-| Hearing | 👂 Ears | hear sounds and voices |
-| Touch | ✋ Skin | feel hot, cold, soft, rough |
-| Smell | 👃 Nose | smell flowers, food, smoke |
-| Taste | 👅 Tongue | taste sweet, salty, sour, bitter |
+| Mammals | Fur or hair, warm blood, feed babies milk | Cat, dog, human |
+| Birds | Feathers, wings, lay eggs | Robin, penguin, eagle |
+| Reptiles | Scaly dry skin, lay eggs | Snake, lizard, tortoise |
+| Amphibians | Smooth wet skin, live on land and water | Frog, toad, newt |
+| Fish | Scales, fins, gills, live in water | Goldfish, shark, salmon |
+| Insects | Six legs, three body parts | Bee, ant, ladybird |
 
-### Animal Groups
-| Group | Examples | Key Feature |
+### The five senses
+
+| Sense | Body part | What it does |
 |---|---|---|
-| Mammals | cat, dog, whale | fur/hair, feeds milk |
-| Birds | robin, penguin | feathers, beak |
-| Reptiles | lizard, snake | scales, cold-blooded |
-| Fish | goldfish, shark | fins, gills, live in water |
-| Amphibians | frog, newt | moist skin, live on land and in water |
+| Sight | Eyes 👀 | We see things |
+| Hearing | Ears 👂 | We hear sounds |
+| Touch | Skin ✋ | We feel things |
+| Smell | Nose 👃 | We smell things |
+| Taste | Tongue 👅 | We taste things |
 
-### Basic Needs
-All animals (including humans) need:
-- **Food** for energy
-- **Water** to drink
-- **Air** to breathe
-- **Shelter** for safety
+### What do animals need?
+All animals need:
+- **Food** — to give them energy
+- **Water** — to drink
+- **Air** — to breathe
+- **Shelter** — a safe place to live
 
-## Quick Quiz
-1. Name the five senses. → *Sight, hearing, touch, smell, taste*
-2. Which body part do we use to hear? → *Ears*
-3. What group does a cat belong to? → *Mammals*
-4. Name two basic needs of all animals. → *Food and water (also air and shelter)*
+### Example — Name that animal group!
+A frog has smooth wet skin and lives near ponds.
+It is an **amphibian**.
 
-## Science in the Real World
-Doctors and nurses learn about body parts so they can help people get better. Zookeepers make sure every animal has the right food, water, and shelter.
+## Try It Yourself
+
+1. What group does a robin belong to?
+2. How many senses do humans have?
+3. Which body part do we use to smell?
+4. Name one thing all animals need to survive.
+5. A goldfish has scales and fins. What group is it in?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Birds
+2. Five
+3. Nose
+4. Food, water, air or shelter (any one)
+5. Fish
+
+</details>
+
+## Did You Know? 🔬
+A dog's sense of smell is about 40 times better than a human's! That is why dogs are used to sniff out lost people and hidden objects.
 
 ## Learning Checklist
-- [ ] I can name the main body parts
-- [ ] I can match each sense to the correct body part
-- [ ] I can sort animals into groups
-- [ ] I know what all animals need to survive
+- [ ] I can name the main animal groups
+- [ ] I can name the five senses and the body parts used
+- [ ] I can say what animals need to survive
+- [ ] I can sort animals into the correct group
