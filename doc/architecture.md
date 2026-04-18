@@ -330,7 +330,9 @@ game-learn-mode/
 │       ├── geography-agent.agent.md
 │       ├── computing-agent.agent.md
 │       ├── animation-generator.agent.md
-│       └── animation-designer.agent.md
+│       ├── animation-designer.agent.md
+│       ├── ui-designer.agent.md       ← Phase 2: design system + styles.css
+│       └── app-generator.agent.md     ← Phase 2: SPA shell (index.html + app.js)
 │
 ├── content/                       ← generated lesson markdown
 │   ├── PIPELINE_REPORT.md

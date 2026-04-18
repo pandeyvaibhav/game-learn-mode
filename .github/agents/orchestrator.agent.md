@@ -1,8 +1,8 @@
 ---
 name: Learning Content Orchestrator
-description: "Master orchestrator for the primary school game-learn-mode pipeline. Reads curriculum/curriculum.md, iterates every year × subject × topic combination, dispatches the appropriate subject agent to generate lesson content, then dispatches the animation agent to generate a paired HTML animation. Run this agent to rebuild or update the entire content library. Trigger phrases: generate all content, run content pipeline, regenerate curriculum, build learning library, orchestrate content generation."
+description: "Master orchestrator for the primary school game-learn-mode pipeline. Phase 1: reads curriculum/curriculum.md, iterates every year × subject × topic, dispatches subject agents to generate lesson content, then dispatches the animation agent to generate paired HTML games. Phase 2: dispatches UI Designer then App Generator to build the hosting app. Run this agent to rebuild or update the entire content library and app. Trigger phrases: generate all content, run content pipeline, regenerate curriculum, build learning library, orchestrate content generation, build everything."
 tools: [read, write, edit, todo, search]
-argument-hint: "Optionally specify a scope filter: year (1–6), subject (maths/english/science/history/geography/computing), or topic slug. Without a filter the full curriculum is processed."
+argument-hint: "Scope filters: year (1–6), subject, topic slug, --force. Phase flags: --content-only (skip app build), --app-only (skip content, rebuild app). Default: run both phases."
 user-invocable: true
 ---
 
@@ -58,12 +58,12 @@ Choose the subject agent from this map:
 
 | Subject | Agent file |
 |---|---|
-| maths | `agents/maths-agent.agent.md` |
-| english | `agents/english-agent.agent.md` |
-| science | `agents/science-agent.agent.md` |
-| history | `agents/history-agent.agent.md` |
-| geography | `agents/geography-agent.agent.md` |
-| computing | `agents/computing-agent.agent.md` |
+| maths | `.github/agents/maths-agent.agent.md` |
+| english | `.github/agents/english-agent.agent.md` |
+| science | `.github/agents/science-agent.agent.md` |
+| history | `.github/agents/history-agent.agent.md` |
+| geography | `.github/agents/geography-agent.agent.md` |
+| computing | `.github/agents/computing-agent.agent.md` |
 
 Pass the agent this context block in the task prompt:
 
@@ -80,7 +80,7 @@ Wait for the agent to confirm the file is written before proceeding.
 
 ### 2c — Dispatch Animation Agent
 
-After the content file is written, dispatch `agents/animation-generator.agent.md` with:
+After the content file is written, dispatch `.github/agents/animation-generator.agent.md` with:
 
 ```
 year: {year}
@@ -99,21 +99,49 @@ Both files confirmed → mark the todo item as done.
 
 ---
 
-## Step 3 — Summary Report
+## Step 3 — Phase 2: Build the App
 
-After the loop completes, write a summary to `content/PIPELINE_REPORT.md`:
+Skip Phase 2 if `--content-only` was passed or if a scope filter is active (year/subject/topic).
+
+### 3a — Dispatch UI Designer
+
+Dispatch `.github/agents/ui-designer.agent.md` with no arguments.
+
+Wait for confirmation: `DONE: app/styles.css` and `DONE: app/design-system.md`.
+
+### 3b — Dispatch App Generator
+
+Dispatch `.github/agents/app-generator.agent.md` with no arguments.
+
+Wait for confirmation: `DONE: app/index.html`, `DONE: app/app.js`, `DONE: app/curriculum.json`.
+
+---
+
+## Step 4 — Summary Report
+
+After both phases complete, write a summary to `content/PIPELINE_REPORT.md`:
 
 ```markdown
 # Pipeline Run Report
 Date: {ISO date}
 Scope: {filter applied or "full curriculum"}
 
-## Results
+## Phase 1 — Content & Animations
 - Topics processed: {N}
 - Content files written: {N}
 - Animation files written: {N}
 - Skipped (already existed): {N}
 - Errors: {list or "none"}
+
+## Phase 2 — App Build
+- UI Designer: {done | skipped}
+- App Generator: {done | skipped}
+- App entry point: app/index.html
+
+## How to run the app
+  cd {repo root}
+  python -m http.server 8080
+  open http://localhost:8080/app/
 
 ## File Tree
 {list all generated paths}
@@ -146,7 +174,7 @@ If the user provides arguments, filter the working list before the loop:
 ## Hard Rules
 
 1. **Read curriculum.md before any generation** — do not hard-code topic lists.
-2. **Never write outside `content/` and `animations/`** — do not touch `curriculum/` or `agents/`.
+2. **Phase 1 writes only to `content/` and `animations/`** — do not touch `curriculum/` or `.github/agents/`. Phase 2 writes only to `app/`.
 3. **No external dependencies** — every generated file must be self-contained vanilla HTML/JS/CSS or plain markdown.
 4. **No npm, no CDNs, no package.json** — zero build tooling.
 5. **Idempotent by default** — skip existing files unless `--force`.
