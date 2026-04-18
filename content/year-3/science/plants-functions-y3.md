@@ -101,3 +101,7 @@ Without photosynthesis, there would be no oxygen for animals to breathe and no f
 - [ ] I can describe what plants need to survive
 - [ ] I can explain how pollination works
 - [ ] I can name different ways seeds are dispersed
+
+## Sources
+- UK National Curriculum — Science, Year 3: Plants — identify and describe the functions of different parts of flowering plants; explore the requirements of plants for life and growth
+- BBC Bitesize — "How do plants grow and reproduce?" (KS2 Science)

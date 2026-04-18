@@ -3,7 +3,7 @@ year: 3
 subject: english
 topic: Poetry — Imagery
 slug: poetry-imagery-y3
-key_concepts: [similes, personification, imagery, performing poems]
+key_concepts: [Similes, personification, imagery, performing poems]
 age_range: "7-8"
 animation: ../../animations/year-3/english/poetry-imagery-y3.html
 ---
@@ -11,17 +11,17 @@ animation: ../../animations/year-3/english/poetry-imagery-y3.html
 # Poetry — Imagery — Year 3 English
 
 ## What We're Learning
-In this lesson you will explore the magic of **imagery** in poetry. You will learn how poets use **similes** and **personification** to paint pictures with words — and you will have a go at performing a poem out loud!
+You are going to explore the magic of **imagery** in poetry. You will learn how poets use **similes** and **personification** to paint pictures with words — and you will have a go at performing a poem out loud.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| imagery | words that create pictures in the reader's mind |
-| simile | comparing two things using "like" or "as" (e.g. "as brave as a lion") |
-| personification | giving human actions or feelings to non-human things (e.g. "the wind whispered") |
-| verse | a group of lines in a poem (like a paragraph in a story) |
-| perform | reading a poem aloud with expression, pace, and feeling |
-| rhythm | the beat or pattern of sounds in a poem |
+| Imagery | Words that create pictures in the reader's mind |
+| Simile | Comparing two things using "like" or "as" (e.g. "as brave as a lion") |
+| Personification | Giving human actions or feelings to non-human things (e.g. "the wind whispered") |
+| Verse | A group of lines in a poem (like a paragraph in a story) |
+| Perform | Reading a poem aloud with expression, pace, and feeling |
+| Rhythm | The beat or pattern of sounds in a poem |
 
 ## Let's Learn Together
 
@@ -43,9 +43,9 @@ Similes help the reader imagine exactly what something looks, sounds, or feels l
 - The **moon smiled** down at the sleeping village.
 - The old house **groaned** in the wind.
 
-Trees can't really dance, but describing them this way makes the poem feel alive!
+Trees cannot really dance, but describing them this way makes the poem feel alive!
 
-### Putting it together — annotated poem
+### Putting It Together — Annotated Poem
 
 > **The Storm**
 >
@@ -90,3 +90,7 @@ Read this poem aloud. Try changing your voice: slow and gentle for "sleepy sun y
 - [ ] I can identify similes in a poem
 - [ ] I can spot personification and explain its effect
 - [ ] I can perform a poem with expression
+
+## Sources
+- UK National Curriculum — English, Year 3: reading — recognise different forms of poetry; writing — use figurative language
+- BBC Bitesize — "What is a simile?" and "What is personification?" (KS2 English)

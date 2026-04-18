@@ -97,3 +97,7 @@ The 8 times table is really the 2 times table **doubled** and then **doubled aga
 - [ ] I can recall the 3, 4 and 8 times tables
 - [ ] I can use multiplication and division as inverses
 - [ ] I can solve multiplication and division word problems
+
+## Sources
+- UK National Curriculum — Maths, Year 3: Number — multiplication and division (recall and use multiplication and division facts for the 3, 4 and 8 multiplication tables)
+- NCETM — Year 3 Multiplication and Division Teaching Resources

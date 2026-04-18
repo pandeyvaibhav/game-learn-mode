@@ -109,3 +109,7 @@ The first bar chart was drawn by a Scottish man called **William Playfair** in 1
 - [ ] I can read information from a bar chart
 - [ ] I can draw a bar chart with a title, labels and scale
 - [ ] I can use a pictogram where each symbol represents more than one
+
+## Sources
+- UK National Curriculum — Maths, Year 3: Statistics — interpret and present data using bar charts, pictograms and tables
+- BBC Bitesize — "How to read bar charts and pictograms" (KS2 Maths)

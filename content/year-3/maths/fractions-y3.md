@@ -97,3 +97,7 @@ The word "fraction" comes from the Latin word **fractio**, meaning "to break." A
 - [ ] I can name the numerator and denominator of a fraction
 - [ ] I know the difference between unit and non-unit fractions
 - [ ] I can add and subtract fractions with the same denominator
+
+## Sources
+- UK National Curriculum — Maths, Year 3: Number — fractions (recognise, find and write fractions of a discrete set of objects; add and subtract fractions with the same denominator)
+- BBC Bitesize — "What are fractions?" (KS2 Maths)

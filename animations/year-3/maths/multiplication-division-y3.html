@@ -5,16 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Multiplication and Division — Year 3 Maths | Game Learn</title>
   <style>
+    /* ── Child Baseline (animations/_shared/child-baseline.css) ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0f172a; --surface: #1e293b; --surface2: #273344;
       --border: rgba(148,163,184,0.15); --primary: #fbbf24; --primary-dark: #d97706;
       --accent: #38bdf8; --accent2: #a78bfa; --success: #34d399; --error: #f87171;
       --text: #e2e8f0; --text-muted: #94a3b8; --radius: 16px; --radius-sm: 8px;
+      --tap-min: 44px; --tap-primary: 56px; --tap-gap: 12px;
+      --child-font-base: 18px; --child-font-prompt: 20px; --child-font-answer: 22px;
+      --radius-child: 16px;
     }
+    html { font-size: 100%; }
     body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: var(--child-font-base); line-height: 1.55;
+      -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
       min-height: 100vh; display: flex; flex-direction: column; align-items: center;
       padding: 1.5rem 1rem 3rem; gap: 1.5rem; }
+    button,[role="button"],a.btn,.tap,[tabindex]:not([tabindex="-1"]),input[type="button"],input[type="submit"]{min-height:var(--tap-min);min-width:var(--tap-min);padding:.65rem 1rem;font-size:var(--child-font-answer);border-radius:var(--radius-child);touch-action:manipulation}
+    .primary-tap,button.primary,[role="button"].primary{min-height:var(--tap-primary);min-width:var(--tap-primary);font-size:var(--child-font-answer);font-weight:700}
+    :focus-visible{outline:3px solid #ffd166;outline-offset:3px;border-radius:var(--radius-child)}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+    p,li,label,.prompt,.instruction{font-size:var(--child-font-prompt);line-height:1.55;max-width:42ch}
+    img,svg,canvas{max-width:100%;height:auto}
+    html,body{overflow-x:hidden}
     header { text-align: center; max-width: 640px; width: 100%; }
     .tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .4rem; }
     h1 { font-size: clamp(1.4rem,4vw,2rem); font-weight: 800; color: var(--primary); }

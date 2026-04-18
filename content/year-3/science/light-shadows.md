@@ -72,3 +72,7 @@ Shadow puppetry is an ancient art form from Southeast Asia — performers hold c
 - [ ] I can name several light sources
 - [ ] I can explain how shadows are formed
 - [ ] I can describe how shadows change throughout the day
+
+## Sources
+- UK National Curriculum — Science, Year 3: Light — recognise that they need light in order to see things and that dark is the absence of light; notice that light is reflected from surfaces
+- BBC Bitesize — "How are shadows made?" (KS2 Science)

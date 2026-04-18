@@ -133,6 +133,7 @@
         root.style.colorScheme = meta.mode;
         try { localStorage.setItem('theme', theme); } catch (_) {}
         syncActive();
+        window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
       }
 
       function playFlash(theme, rect) {

@@ -3,91 +3,110 @@ year: 3
 subject: computing
 topic: Data and Information
 slug: data-information-y3
-key_concepts: [collecting data, databases, searching]
+key_concepts: [Collecting data, databases, searching]
 age_range: "7-8"
 animation: ../../animations/year-3/computing/data-information-y3.html
 ---
 
 # Data and Information — Year 3 Computing
 
-## Big Question
-What is the difference between data and information, and how do computers help us organise and search through it?
-
 ## What We're Learning
-In this lesson you will find out what **data** really means, learn how it becomes useful **information**, and discover how **databases** help us store, sort, and search data quickly.
+You are going to learn the difference between **data** and **information**. You will find out how to collect data, organise it in a simple database, and search for what you need. This is how computers help us answer questions quickly.
 
 ## Key Computing Words
 | Word | What it means |
 |---|---|
-| data | raw facts and figures that have not been organised yet (e.g. numbers, words, measurements) |
-| information | data that has been organised so it makes sense and is useful |
-| database | an organised collection of data stored on a computer |
-| record | one entry in a database (e.g. one person, one animal, one book) |
-| field | a single piece of data inside a record (e.g. name, age, colour) |
-| sort | putting data in order (A–Z, smallest to largest, etc.) |
-| filter | showing only the records that match a rule (e.g. "show only red things") |
-| search | looking through data to find specific information |
+| Data | Facts and figures that have not been organised yet |
+| Information | Data that has been organised so it makes sense and is useful |
+| Database | A collection of data stored in an organised way so you can search it |
+| Record | One entry in a database — for example, one animal or one book |
+| Field | A category in a database — for example, "colour" or "number of legs" |
+| Search | Looking through a database to find records that match what you need |
+| Sort | Putting records in order, such as A to Z or smallest to largest |
+| Filter | Showing only records that match a rule |
 
-## The Computing Explained
+## The Big Idea
+Imagine you have a big box of different coloured building bricks. The bricks on their own are just **data** — lots of pieces with no particular order. If you sort them by colour into separate trays, now you have useful **information**. You can quickly find all the red bricks when you need them.
 
-### Data vs Information
-**Data** on its own does not mean much:
-> 32, sunny, London, Tuesday
+A **database** is like those sorted trays, but on a computer. Each item stored is called a **record**. Each piece of detail about that item is called a **field**.
 
-When we **organise** it, it becomes **information**:
-> On Tuesday it was 32 °C and sunny in London.
+For example, a database of classroom pets might look like this:
 
-Computers are brilliant at turning huge amounts of data into useful information very quickly.
+```
+| Name    | Animal  | Colour | Legs |
+|---------|---------|--------|------|
+| Snowy   | Rabbit  | White  | 4    |
+| Bubbles | Fish    | Orange | 0    |
+| Pip     | Hamster | Brown  | 4    |
+```
 
-### What is a Database?
-A **database** is like a super-organised table. Each **row** is a **record** and each **column** is a **field**.
+Each row is a record. Each column is a field.
 
-| Name | Animal | Colour | Legs |
-|---|---|---|---|
-| Max | Dog | Brown | 4 |
-| Whiskers | Cat | Black | 4 |
-| Polly | Parrot | Green | 2 |
-| Slinky | Snake | Yellow | 0 |
+### Sorting Data
 
-In this database:
-- There are **4 records** (Max, Whiskers, Polly, Slinky).
-- There are **4 fields** (Name, Animal, Colour, Legs).
-
-### Sorting
 You can **sort** a database to put records in order:
-- **Sort by Legs (smallest first):** Slinky (0) → Polly (2) → Max (4) → Whiskers (4)
-- **Sort by Name (A–Z):** Max → Polly → Slinky → Whiskers
+- Sort by Name (A–Z): Bubbles → Pip → Snowy
+- Sort by Legs (smallest first): Bubbles (0) → Pip (4) → Snowy (4)
 
-### Filtering
+### Filtering Data
+
 You can **filter** to show only records that match a rule:
-- **Filter: Legs = 4** → shows Max and Whiskers
-- **Filter: Colour = Green** → shows Polly
+- Filter: Legs = 4 → shows Snowy and Pip
+- Filter: Colour = Orange → shows Bubbles
 
 ### Searching
-**Searching** means looking for one specific piece of data:
-- **Search: "Parrot"** → finds Polly's record
 
-Search engines like Google are really just enormous databases with billions of records!
+**Searching** means looking for one specific piece of data:
+- Search for "Rabbit" → finds Snowy's record
 
 ### Collecting Your Own Data
+
 To build a database, you need to **collect data**:
 1. Decide what question you want to answer.
-2. Choose which **fields** to record.
+2. Choose which fields to record.
 3. Collect the data carefully and accurately.
 4. Enter it into a table or computer program.
-5. Sort, filter, or search to find answers!
+5. Sort, filter, or search to find your answers.
 
-## Quick Quiz
-1. What is the difference between data and information? → *Data is raw facts; information is data that has been organised to make sense*
-2. What is a record in a database? → *One entry (one row) — e.g. one animal*
-3. What is a field? → *A single piece of data in a record (one column) — e.g. colour*
-4. What does "filter" mean? → *Showing only records that match a specific rule*
-5. Give an example of a real-world database. → *A library catalogue, a school register, or a search engine*
+## Unplugged Activity
+**Paper Database**
 
-## Computing in the Real World
-Databases are everywhere! Your school uses one to keep track of pupils, doctors use them for patient records, and libraries use them so you can search for books. Every time you search for a video online, a database finds matching results in a fraction of a second from billions of entries.
+1. Choose a topic with your class — for example, favourite fruits.
+2. Each person writes their name and favourite fruit on a small card.
+3. Collect all the cards and lay them on a table — this is your raw data.
+4. Sort the cards into groups by fruit type.
+5. Count how many people chose each fruit.
+6. Answer questions: "How many people chose apples?" "Which fruit is most popular?"
+
+You have just turned data (individual cards) into information (sorted groups with totals).
+
+## On the Computer
+**Building a Simple Database**
+
+1. Open a blank spreadsheet on the classroom computer.
+2. In row 1, type your field names: Name, Type, Colour, Size.
+3. In the rows below, enter at least 6 records — you could use classroom objects, animals, or books.
+4. Use the sort tool to put your records in alphabetical order by Name.
+5. Use the filter tool to show only records where one field matches a value — for example, all items that are "blue".
+6. Write down what you found. You have turned data into information!
+
+## Challenge
+Create a database of at least 10 animals. Include fields for name, type, habitat, and number of legs. Write three questions that someone could answer by searching your database. Swap with a partner and try to answer each other's questions.
+
+## Stay Safe Online
+When you collect data, never include personal details like home addresses or phone numbers. In class activities, first names are enough. If you use a shared computer, remember to log out when you finish so nobody can change your work.
+
+## Think Like a Computer Scientist
+1. What is the difference between data and information?
+2. Look at the pet database above. What would you type to search for all animals with 0 legs?
+3. What would happen if you forgot to include the "Legs" field in your database?
+4. How would you design a database to help a librarian find books quickly?
 
 ## Learning Checklist
 - [ ] I can explain the difference between data and information
-- [ ] I can describe what a database, record, and field are
-- [ ] I can sort and filter data to answer questions
+- [ ] I can create a simple database with records and fields
+- [ ] I can search and sort a database to answer questions
+
+## Sources
+- UK National Curriculum — Computing, Year 3: use search technologies effectively; select, use and combine a variety of software to collect and present data and information
+- Barefoot Computing — Data and Information Teaching Resources (KS2)

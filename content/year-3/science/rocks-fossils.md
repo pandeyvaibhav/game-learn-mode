@@ -67,3 +67,7 @@ The cliffs of Dover in England are made of white **chalk** — a sedimentary roc
 - [ ] I can name the three types of rock and give an example of each
 - [ ] I can explain how fossils form in sedimentary rock
 - [ ] I can describe the rock cycle in simple terms
+
+## Sources
+- UK National Curriculum — Science, Year 3: Rocks — compare and group together different kinds of rocks; describe in simple terms how fossils are formed
+- BBC Bitesize — "What are the three types of rock?" (KS2 Science)

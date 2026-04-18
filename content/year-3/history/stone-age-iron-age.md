@@ -76,3 +76,7 @@ You can visit **Stonehenge** in Wiltshire — scientists are still debating exac
 - [ ] I can describe how life changed from the Stone Age to the Iron Age
 - [ ] I can explain why farming was such an important change
 - [ ] I can name key artefacts and sites from prehistoric Britain
+
+## Sources
+- UK National Curriculum — History, Year 3: changes in Britain from the Stone Age to the Iron Age
+- BBC Bitesize — "What was life like in the Stone Age?" (KS2 History)

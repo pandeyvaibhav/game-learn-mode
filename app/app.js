@@ -297,6 +297,37 @@ async function renderLesson(year, subject, slug) {
   return wrap;
 }
 
+// ── Theme bridge for iframes ─────────────────────────────────────────
+function injectThemeIntoIframe(iframe) {
+  try {
+    const doc = iframe.contentDocument;
+    if (!doc || !doc.documentElement) return;
+    const cs = getComputedStyle(document.documentElement);
+    const style = doc.documentElement.style;
+    // Map parent theme variables → animation CSS variables
+    style.setProperty('--bg',         cs.getPropertyValue('--bg').trim());
+    style.setProperty('--surface',    cs.getPropertyValue('--surface-raised').trim());
+    style.setProperty('--surface2',   cs.getPropertyValue('--surface-card').trim());
+    style.setProperty('--border',     cs.getPropertyValue('--border').trim());
+    style.setProperty('--primary',    cs.getPropertyValue('--primary').trim());
+    style.setProperty('--accent',     cs.getPropertyValue('--accent-cool').trim());
+    style.setProperty('--success',    cs.getPropertyValue('--success').trim());
+    style.setProperty('--error',      cs.getPropertyValue('--error').trim());
+    style.setProperty('--text',       cs.getPropertyValue('--text').trim());
+    style.setProperty('--text-muted', cs.getPropertyValue('--text-muted').trim());
+    // Also match the font
+    style.setProperty('font-family', cs.getPropertyValue('--font').trim());
+    // Set body background directly for full coverage
+    if (doc.body) doc.body.style.background = cs.getPropertyValue('--bg').trim();
+  } catch (_) { /* cross-origin or not loaded yet — ignore */ }
+}
+
+// Re-inject theme into any active game iframe when theme changes
+window.addEventListener('themechange', () => {
+  const iframe = document.querySelector('#animView iframe');
+  if (iframe) injectThemeIntoIframe(iframe);
+});
+
 // ── View: Play ───────────────────────────────────────────────────────
 function renderPlay(year, subject, slug) {
   document.getElementById('root').style.display = 'none';
@@ -335,8 +366,9 @@ function renderPlay(year, subject, slug) {
     src: animPath,
     title: topic ? `${topic.title} interactive game` : 'Learning game',
     loading: 'lazy',
-    sandbox: 'allow-scripts',
+    sandbox: 'allow-scripts allow-same-origin',
   });
+  iframe.addEventListener('load', () => injectThemeIntoIframe(iframe));
 
   view.appendChild(bar);
   view.appendChild(iframe);

@@ -85,3 +85,7 @@ Magnets are used in everyday life more than you might think! **Fridge magnets** 
 - [ ] I can describe forces as pushes and pulls
 - [ ] I can explain what friction is and give examples
 - [ ] I can predict whether two magnets will attract or repel
+
+## Sources
+- UK National Curriculum — Science, Year 3: Forces and Magnets — compare how things move on different surfaces; notice that some forces need contact and some act at a distance
+- BBC Bitesize — "What are forces?" and "How do magnets work?" (KS2 Science)

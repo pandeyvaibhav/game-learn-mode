@@ -74,3 +74,7 @@ You can see real mummies and Egyptian artefacts at the **British Museum** in Lon
 - [ ] I can explain why the River Nile was important to Egypt
 - [ ] I can describe how mummies were made
 - [ ] I can say what hieroglyphics were and why they matter
+
+## Sources
+- UK National Curriculum — History, Year 3: the achievements of the earliest civilisations — Ancient Egypt
+- British Museum — "Ancient Egypt" Learning Resources (KS2)

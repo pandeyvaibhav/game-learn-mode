@@ -54,6 +54,7 @@ Child-facing product with LLM-generated content — these controls are non-negot
 | S7 | Reading-level check (Flesch / age-appropriate grade) per lesson so content doesn't drift above target year | P2 | todo | Automated inside S1 or as separate lint. |
 | S8 | Report-a-problem button on every lesson/animation → logs topic + URL for review | P2 | todo | Feedback loop for issues safety gates miss. |
 | S9 | Safety runbook — what to do if unsafe content is found in production (rollback, re-gen, postmortem) | P2 | todo | Living doc; link from top-level README. |
+| S10 | **Game-playability reviewer agent** — scores each animation on child-playability (≤3 rules, minimal reading, obvious next action, kind feedback). Blocks publish on fail | P1 | todo | Fills the gap S1 doesn't cover: S1 judges *safety*, S10 judges *whether a 6-year-old can play it*. Design: [doc/feature-design-s10-playability.md](doc/feature-design-s10-playability.md). |
 
 ## Mobile & accessibility
 
@@ -92,6 +93,7 @@ Child-facing product with LLM-generated content — these controls are non-negot
 | L4 | Offline support (service worker, cache curriculum + viewed lessons) | P2 | todo | Useful for tablets without reliable wifi. |
 | L2 | Badge / reward system for completed topics | P2 | todo | Motivation layer. Depends on P3. |
 | L3 | Parent / teacher dashboard view | P3 | parked | Out of scope for self-serve child product unless requested. |
+| L5 | **Adaptive learning** — difficulty branches per child based on performance (serve easier variant on 2 wrong, harder on 3 right in a row) | P2 | parked | Concept is P1, build depends on **P3** (progress tracking) landing first. Lightweight v1 = rule-based on per-topic streaks; real v2 = per-child difficulty model. No design doc yet — revisit once P3 ships. |
 
 ## Content pipeline
 

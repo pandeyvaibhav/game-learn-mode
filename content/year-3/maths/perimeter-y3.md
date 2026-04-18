@@ -99,3 +99,7 @@ The word "perimeter" comes from the Greek words **peri** (around) and **metron**
 - [ ] I can explain what perimeter means
 - [ ] I can calculate the perimeter of rectangles and other shapes
 - [ ] I can find missing side lengths in rectilinear shapes
+
+## Sources
+- UK National Curriculum — Maths, Year 3: Measurement — measure the perimeter of simple 2D shapes
+- BBC Bitesize — "How to work out the perimeter of a shape" (KS2 Maths)

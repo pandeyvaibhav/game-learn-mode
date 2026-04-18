@@ -105,3 +105,7 @@ The number 1000 is also called "one thousand" and it takes about **17 minutes** 
 - [ ] I can partition a 3-digit number into hundreds, tens and ones
 - [ ] I can compare two 3-digit numbers using < > and =
 - [ ] I can round a number to the nearest 10 and nearest 100
+
+## Sources
+- UK National Curriculum — Maths, Year 3: Number — number and place value (recognise the place value of each digit in a 3-digit number)
+- BBC Bitesize — "What is place value?" (KS2 Maths)
