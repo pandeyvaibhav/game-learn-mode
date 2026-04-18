@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Light and Shadows — Year 3 Science | Game Learn</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #273344;
+      --border: rgba(148,163,184,0.15);
+      --primary: #fbbf24;
+      --accent: #38bdf8;
+      --success: #34d399;
+      --error: #f87171;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 1.5rem 1rem 4rem; gap: 1.25rem;
+    }
+    header { text-align: center; max-width: 640px; width: 100%; }
+    .year-tag { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .4rem; }
+    h1 { font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 800; color: var(--primary); }
+    .subtitle { color: var(--text-muted); font-size: .9rem; margin-top: .4rem; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.5rem; width: 100%; max-width: 640px;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .card-title { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ── Shadow puppet stage ── */
+    .stage-wrap {
+      position: relative; width: 100%; aspect-ratio: 16/7;
+      border-radius: 12px; overflow: hidden; background: #020617;
+      cursor: ew-resize; touch-action: none;
+    }
+    canvas {
+      display: block; width: 100%; height: 100%;
+    }
+
+    .stage-label {
+      font-size: .78rem; color: var(--text-muted); text-align: center;
+    }
+
+    /* ── Controls ── */
+    .controls {
+      display: flex; flex-direction: column; gap: .75rem;
+    }
+    .control-row {
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    }
+    .control-row label { font-size: .85rem; color: var(--text-muted); min-width: 110px; }
+    input[type="range"] {
+      flex: 1; min-width: 120px; accent-color: var(--primary);
+      height: 6px; cursor: pointer;
+    }
+    .val-badge {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: .2rem .55rem; font-size: .82rem;
+      font-weight: 600; color: var(--primary); min-width: 52px; text-align: center;
+    }
+
+    /* ── Object selector ── */
+    .obj-selector {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+    .obj-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 10px; padding: .4rem .9rem;
+      font-size: .82rem; cursor: pointer; transition: background .12s, border-color .12s;
+    }
+    .obj-btn:hover, .obj-btn.active {
+      background: var(--primary); color: #0f172a; border-color: var(--primary); font-weight: 700;
+    }
+
+    /* ── Fact panel ── */
+    .fact-panel {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem; font-size: .88rem; line-height: 1.5;
+    }
+    .fact-panel strong { color: var(--accent); }
+
+    /* ── Quiz ── */
+    .quiz-section { display: flex; flex-direction: column; gap: .75rem; }
+    .quiz-q { font-size: .95rem; font-weight: 600; }
+    .quiz-opts { display: flex; flex-direction: column; gap: .4rem; }
+    .quiz-opt {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: .55rem 1rem; font-size: .88rem;
+      cursor: pointer; transition: background .12s, border-color .12s; text-align: left;
+    }
+    .quiz-opt:hover { border-color: var(--accent); }
+    .quiz-opt.correct { background: rgba(52,211,153,.18); border-color: var(--success); color: var(--success); }
+    .quiz-opt.wrong   { background: rgba(248,113,113,.18); border-color: var(--error);   color: var(--error); }
+    .quiz-feedback { font-size: .85rem; min-height: 1.2rem; color: var(--text-muted); }
+    .quiz-feedback.ok  { color: var(--success); }
+    .quiz-feedback.bad { color: var(--error); }
+    .next-q-btn {
+      align-self: flex-start;
+      background: var(--primary); color: #0f172a; border: none;
+      border-radius: 50px; padding: .55rem 1.5rem; font-size: .88rem;
+      font-weight: 700; cursor: pointer; display: none;
+    }
+    .next-q-btn.show { display: block; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .bounce-in { animation: bounceIn .4s ease; }
+    }
+    @keyframes bounceIn {
+      0%   { transform: scale(.8); opacity: 0; }
+      70%  { transform: scale(1.06); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="year-tag">Year 3 · Science</p>
+    <h1>Light and Shadows</h1>
+    <p class="subtitle">Drag the object to explore how shadows change — then test your knowledge!</p>
+  </header>
+
+  <!-- Shadow puppet simulator -->
+  <div class="card">
+    <p class="card-title">Shadow Puppet Simulator</p>
+    <div class="stage-wrap" id="stage" aria-label="Shadow puppet stage. Drag to move the object." role="img">
+      <canvas id="stageCanvas"></canvas>
+    </div>
+    <p class="stage-label">← Drag the object left/right (or use the slider below)</p>
+
+    <div class="controls">
+      <div class="control-row">
+        <label for="posSlider">Object position</label>
+        <input type="range" id="posSlider" min="0" max="100" value="50" aria-label="Move object left to right" />
+        <span class="val-badge" id="posLabel">Middle</span>
+      </div>
+      <div class="control-row">
+        <label for="sizeSlider">Object size</label>
+        <input type="range" id="sizeSlider" min="20" max="80" value="40" aria-label="Change object size" />
+        <span class="val-badge" id="sizeLabel">40</span>
+      </div>
+    </div>
+
+    <div class="control-row">
+      <label style="font-size:.82rem;color:var(--text-muted)">Object shape:</label>
+      <div class="obj-selector" role="group" aria-label="Choose object shape">
+        <button class="obj-btn active" data-shape="circle" aria-pressed="true">⚽ Ball</button>
+        <button class="obj-btn" data-shape="rect" aria-pressed="false">📦 Box</button>
+        <button class="obj-btn" data-shape="tree" aria-pressed="false">🌲 Tree</button>
+        <button class="obj-btn" data-shape="person" aria-pressed="false">🧍 Person</button>
+      </div>
+    </div>
+
+    <div class="fact-panel" id="factPanel" aria-live="polite">
+      <strong>What's happening?</strong> The light source (☀️ sun) is on the left. The object blocks the light and creates a <strong>shadow</strong> on the opposite side. Move the object closer to the light — what happens to the shadow?
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card">
+    <p class="card-title">Quick Quiz — Test What You Know!</p>
+    <div class="quiz-section" id="quizSection" aria-live="polite">
+      <p class="quiz-q" id="quizQ"></p>
+      <div class="quiz-opts" id="quizOpts"></div>
+      <p class="quiz-feedback" id="quizFeedback"></p>
+      <button class="next-q-btn" id="nextQBtn">Next question →</button>
+    </div>
+    <p id="quizDone" style="display:none; color:var(--success); font-weight:700; font-size:1rem;">
+      🎉 Quiz complete! You know your shadows!
+    </p>
+  </div>
+
+  <div class="sr-only" aria-live="polite" id="srOut"></div>
+
+<script>
+  // ── Canvas setup ───────────────────────────────────────
+  const canvas = document.getElementById('stageCanvas');
+  const ctx    = canvas.getContext('2d');
+  const stageEl = document.getElementById('stage');
+
+  let W = 0, H = 0;
+  let objPos  = 0.5;   // 0..1, horizontal position of object
+  let objSize = 40;    // radius in logical units
+  let objShape = 'circle';
+
+  function resize() {
+    const rect = stageEl.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width  = Math.round(W * devicePixelRatio);
+    canvas.height = Math.round(H * devicePixelRatio);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    draw();
+  }
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(stageEl);
+
+  // ── Draw ───────────────────────────────────────────────
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Background gradient — dark room
+    const bg = ctx.createLinearGradient(0, 0, W, 0);
+    bg.addColorStop(0, '#1c1408');
+    bg.addColorStop(1, '#020617');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Light source (sun) — fixed at left
+    const lightX = W * 0.07;
+    const lightY = H * 0.5;
+    const lightR = H * 0.12;
+
+    // Ambient glow
+    const glow = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, H * 0.6);
+    glow.addColorStop(0, 'rgba(251,191,36,0.22)');
+    glow.addColorStop(1, 'rgba(251,191,36,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+
+    // Sun circle
+    ctx.beginPath();
+    ctx.arc(lightX, lightY, lightR, 0, Math.PI * 2);
+    ctx.fillStyle = '#fbbf24';
+    ctx.fill();
+
+    // Sun rays
+    ctx.strokeStyle = 'rgba(251,191,36,0.6)';
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const r1 = lightR + 4;
+      const r2 = lightR + 14;
+      ctx.beginPath();
+      ctx.moveTo(lightX + Math.cos(angle) * r1, lightY + Math.sin(angle) * r1);
+      ctx.lineTo(lightX + Math.cos(angle) * r2, lightY + Math.sin(angle) * r2);
+      ctx.stroke();
+    }
+
+    // Object position
+    const objX = W * 0.2 + (W * 0.55) * objPos;
+    const objY = H * 0.5;
+    const r    = (objSize / 100) * H * 0.45;
+
+    // Shadow calculation
+    // Direction from light to object
+    const dx = objX - lightX;
+    const dy = objY - lightY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const nx = dx / dist;
+    const ny = dy / dist;
+
+    // Shadow stretches away from light, length inversely proportional to distance
+    const shadowLen = Math.max(20, 300 / (dist / H) * 0.6);
+    const shadowScaleX = 1 + (shadowLen / (r * 2));
+    const shadowScaleY = 0.35;
+
+    // Draw shadow (ellipse behind object)
+    ctx.save();
+    ctx.translate(objX + nx * (r + shadowLen * 0.35), objY + ny * r * 0.3);
+    ctx.rotate(Math.atan2(ny, nx));
+    ctx.scale(shadowScaleX, shadowScaleY);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r, r, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,0,0,0.7)';
+    ctx.fill();
+    ctx.restore();
+
+    // Draw object
+    ctx.save();
+    ctx.translate(objX, objY);
+    drawShape(r);
+    ctx.restore();
+
+    // Screen (wall) on right
+    ctx.fillStyle = '#334155';
+    ctx.fillRect(W * 0.87, 0, W * 0.04, H);
+
+    // Labels
+    ctx.fillStyle = 'rgba(148,163,184,0.7)';
+    ctx.font = `${Math.max(9, H * 0.07)}px 'Segoe UI', system-ui`;
+    ctx.textAlign = 'center';
+    ctx.fillText('☀️', lightX, H * 0.15);
+    ctx.fillText('Wall', W * 0.915, H * 0.12);
+  }
+
+  function drawShape(r) {
+    if (objShape === 'circle') {
+      ctx.beginPath();
+      ctx.arc(0, 0, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#38bdf8';
+      ctx.fill();
+      ctx.strokeStyle = '#7dd3fc';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    } else if (objShape === 'rect') {
+      ctx.fillStyle = '#a78bfa';
+      ctx.strokeStyle = '#c4b5fd';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(-r * 0.9, -r * 0.9, r * 1.8, r * 1.8, 4);
+      ctx.fill(); ctx.stroke();
+    } else if (objShape === 'tree') {
+      // Simple triangle tree
+      ctx.fillStyle = '#34d399';
+      ctx.beginPath();
+      ctx.moveTo(0, -r);
+      ctx.lineTo(r * 0.7, r * 0.5);
+      ctx.lineTo(-r * 0.7, r * 0.5);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#a16207';
+      ctx.fillRect(-r * 0.12, r * 0.4, r * 0.24, r * 0.6);
+    } else if (objShape === 'person') {
+      // Simple stick person
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = Math.max(2, r * 0.14);
+      ctx.lineCap = 'round';
+      // Head
+      ctx.beginPath();
+      ctx.arc(0, -r * 0.65, r * 0.22, 0, Math.PI * 2);
+      ctx.fillStyle = '#fbbf24';
+      ctx.fill();
+      // Body
+      ctx.beginPath();
+      ctx.moveTo(0, -r * 0.43); ctx.lineTo(0, r * 0.2);
+      ctx.stroke();
+      // Arms
+      ctx.beginPath();
+      ctx.moveTo(-r * 0.4, -r * 0.1); ctx.lineTo(r * 0.4, -r * 0.1);
+      ctx.stroke();
+      // Legs
+      ctx.beginPath();
+      ctx.moveTo(0, r * 0.2); ctx.lineTo(-r * 0.35, r * 0.7);
+      ctx.moveTo(0, r * 0.2); ctx.lineTo(r * 0.35, r * 0.7);
+      ctx.stroke();
+    }
+  }
+
+  // ── Dragging ───────────────────────────────────────────
+  let dragging = false;
+
+  function posFromEvent(e) {
+    const rect = stageEl.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return Math.max(0, Math.min(1, (clientX - rect.left - W * 0.2) / (W * 0.55)));
+  }
+
+  stageEl.addEventListener('mousedown',  e => { dragging = true; updatePos(e); });
+  stageEl.addEventListener('touchstart', e => { dragging = true; updatePos(e); }, { passive: true });
+  window.addEventListener('mousemove',  e => { if (dragging) updatePos(e); });
+  window.addEventListener('touchmove',  e => { if (dragging) updatePos(e); }, { passive: true });
+  window.addEventListener('mouseup',   () => { dragging = false; });
+  window.addEventListener('touchend',  () => { dragging = false; });
+
+  function updatePos(e) {
+    objPos = posFromEvent(e);
+    document.getElementById('posSlider').value = Math.round(objPos * 100);
+    updatePosLabel();
+    draw();
+    updateFact();
+  }
+
+  // ── Sliders ────────────────────────────────────────────
+  const posSlider  = document.getElementById('posSlider');
+  const sizeSlider = document.getElementById('sizeSlider');
+
+  posSlider.addEventListener('input', () => {
+    objPos = posSlider.value / 100;
+    updatePosLabel();
+    draw();
+    updateFact();
+  });
+
+  sizeSlider.addEventListener('input', () => {
+    objSize = parseInt(sizeSlider.value, 10);
+    document.getElementById('sizeLabel').textContent = objSize;
+    draw();
+  });
+
+  function updatePosLabel() {
+    const p = Math.round(objPos * 100);
+    const label = p < 30 ? 'Near light' : p > 70 ? 'Near wall' : 'Middle';
+    document.getElementById('posLabel').textContent = label;
+  }
+
+  // ── Object shape ────────────────────────────────────────
+  document.querySelectorAll('.obj-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.obj-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      objShape = btn.dataset.shape;
+      draw();
+    });
+  });
+
+  // ── Fact updates ────────────────────────────────────────
+  const FACTS = {
+    near:   '☀️ → <strong>Object is close to the light:</strong> The shadow is <strong>long and large</strong>. The object blocks more of the light rays.',
+    middle: '🌤️ → <strong>Object is in the middle:</strong> The shadow is a <strong>medium size</strong>. Moving closer to the light makes it longer!',
+    far:    '🌑 → <strong>Object is near the wall:</strong> The shadow is <strong>short and sharp</strong>. The object is far from the light, so less light is blocked at an angle.',
+  };
+
+  function updateFact() {
+    const p = objPos;
+    const panel = document.getElementById('factPanel');
+    const key = p < 0.33 ? 'near' : p < 0.66 ? 'middle' : 'far';
+    panel.innerHTML = FACTS[key];
+    panel.classList.add('bounce-in');
+    panel.addEventListener('animationend', () => panel.classList.remove('bounce-in'), { once: true });
+  }
+
+  // ── Quiz ───────────────────────────────────────────────
+  const QUESTIONS = [
+    {
+      q: 'What does an object need to create a shadow?',
+      opts: ['A light source behind it', 'Water', 'A mirror', 'Wind'],
+      ans: 0,
+      explain: 'Correct! A shadow forms when an object blocks light from a light source.'
+    },
+    {
+      q: 'If you move an object closer to a light source, its shadow becomes…',
+      opts: ['Smaller', 'The same size', 'Larger', 'Disappears'],
+      ans: 2,
+      explain: 'Yes! Closer to the light = more light blocked at an angle = bigger, longer shadow.'
+    },
+    {
+      q: 'Which of these is a light SOURCE?',
+      opts: ['A mirror', 'The Moon', 'The Sun', 'A shadow'],
+      ans: 2,
+      explain: 'The Sun produces its own light. The Moon only reflects sunlight — it is not a source!'
+    },
+    {
+      q: 'Shadows always appear on which side of the object?',
+      opts: ['The same side as the light', 'The opposite side from the light', 'Underneath the object', 'Above the object'],
+      ans: 1,
+      explain: 'Shadows form on the opposite side — the light cannot pass through the object to reach that side.'
+    },
+    {
+      q: 'Which material would NOT create a shadow?',
+      opts: ['Wood', 'Metal', 'Clear glass', 'Cardboard'],
+      ans: 2,
+      explain: 'Clear glass lets light through (it is transparent), so it creates no shadow — or only a faint one!'
+    }
+  ];
+
+  let qIdx = 0;
+  let quizAnswered = false;
+
+  function renderQuestion() {
+    if (qIdx >= QUESTIONS.length) {
+      document.getElementById('quizSection').style.display = 'none';
+      document.getElementById('quizDone').style.display = 'block';
+      return;
+    }
+    const q = QUESTIONS[qIdx];
+    quizAnswered = false;
+    document.getElementById('quizQ').textContent = `Q${qIdx + 1}. ${q.q}`;
+    document.getElementById('quizFeedback').textContent = '';
+    document.getElementById('quizFeedback').className = 'quiz-feedback';
+    document.getElementById('nextQBtn').classList.remove('show');
+
+    const optsEl = document.getElementById('quizOpts');
+    optsEl.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.setAttribute('aria-label', `Option ${i + 1}: ${opt}`);
+      btn.addEventListener('click', () => handleAnswer(i, btn));
+      optsEl.appendChild(btn);
+    });
+  }
+
+  function handleAnswer(idx, btn) {
+    if (quizAnswered) return;
+    quizAnswered = true;
+    const q = QUESTIONS[qIdx];
+    const fb = document.getElementById('quizFeedback');
+    const allBtns = document.querySelectorAll('.quiz-opt');
+
+    allBtns.forEach(b => { b.style.pointerEvents = 'none'; });
+
+    if (idx === q.ans) {
+      btn.classList.add('correct');
+      fb.textContent = '✅ ' + q.explain;
+      fb.className = 'quiz-feedback ok';
+      announce('Correct! ' + q.explain);
+    } else {
+      btn.classList.add('wrong');
+      allBtns[q.ans].classList.add('correct');
+      fb.textContent = '❌ Not quite. ' + q.explain;
+      fb.className = 'quiz-feedback bad';
+      announce('Wrong. ' + q.explain);
+    }
+    document.getElementById('nextQBtn').classList.add('show');
+  }
+
+  document.getElementById('nextQBtn').addEventListener('click', () => {
+    qIdx++;
+    renderQuestion();
+  });
+
+  function announce(msg) {
+    const el = document.getElementById('srOut');
+    el.textContent = '';
+    requestAnimationFrame(() => { el.textContent = msg; });
+  }
+
+  // ── Init ───────────────────────────────────────────────
+  resize();
+  renderQuestion();
+</script>
+</body>
+</html>

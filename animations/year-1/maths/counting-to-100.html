@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counting to 100 — Year 1 Maths | Game Learn</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #273344;
+      --border: rgba(148,163,184,0.15);
+      --primary: #fbbf24;
+      --accent: #38bdf8;
+      --success: #34d399;
+      --error: #f87171;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 4rem;
+      gap: 1.25rem;
+    }
+
+    header { text-align: center; max-width: 640px; width: 100%; }
+    .year-tag {
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .4rem;
+    }
+    h1 { font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 800; color: var(--primary); }
+    .subtitle { color: var(--text-muted); font-size: .9rem; margin-top: .4rem; }
+
+    /* ── Score bar ── */
+    .scorebar {
+      display: flex; gap: 2rem; justify-content: center; align-items: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50px; padding: .6rem 2rem; font-size: .9rem;
+    }
+    .scorebar span { color: var(--text-muted); }
+    .scorebar strong { color: var(--primary); font-size: 1.1rem; }
+
+    /* ── Game card ── */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.5rem; width: 100%; max-width: 580px;
+      display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    }
+
+    /* ── Number grid (1–100) ── */
+    .grid-wrap { width: 100%; overflow-x: auto; }
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 4px;
+      min-width: 280px;
+    }
+    .cell {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      background: var(--surface2);
+      border: 2px solid transparent;
+      font-size: clamp(.6rem, 1.5vw, .85rem);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, transform .1s;
+      user-select: none;
+    }
+    .cell:hover { background: #2d3e52; border-color: var(--accent); }
+    .cell.lit {
+      background: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+    }
+    .cell.target {
+      border-color: var(--accent);
+      animation: pulse-border .8s ease infinite alternate;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .cell.bounce { animation: bounce .35s ease; }
+      .cell.shake  { animation: shake .35s ease; }
+    }
+    @keyframes pulse-border {
+      from { border-color: var(--accent); box-shadow: 0 0 0 0 rgba(56,189,248,.4); }
+      to   { border-color: var(--accent); box-shadow: 0 0 0 6px rgba(56,189,248,0); }
+    }
+    @keyframes bounce {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.25); }
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%     { transform: translateX(-6px); }
+      75%     { transform: translateX(6px); }
+    }
+
+    /* ── Instruction / feedback ── */
+    .instruction {
+      font-size: 1.05rem; font-weight: 600; text-align: center;
+      min-height: 2.5rem; color: var(--text);
+    }
+    .feedback {
+      font-size: .9rem; text-align: center; color: var(--text-muted);
+      min-height: 1.4rem;
+    }
+    .feedback.ok  { color: var(--success); }
+    .feedback.bad { color: var(--error); }
+
+    /* ── Mode selector ── */
+    .modes {
+      display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .mode-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 50px; padding: .45rem 1rem;
+      font-size: .82rem; cursor: pointer; transition: background .15s, border-color .15s;
+    }
+    .mode-btn:hover, .mode-btn.active {
+      background: var(--primary); color: #0f172a; border-color: var(--primary); font-weight: 700;
+    }
+
+    /* ── Next button ── */
+    .next-btn {
+      background: var(--primary); color: #0f172a; border: none;
+      border-radius: 50px; padding: .7rem 2.5rem; font-size: 1rem;
+      font-weight: 700; cursor: pointer; display: none;
+      transition: transform .1s, background .15s;
+    }
+    .next-btn:hover { background: #f59e0b; transform: scale(1.04); }
+    .next-btn.show { display: block; }
+
+    /* ── Celebration ── */
+    .celebration {
+      display: none; text-align: center; font-size: 1.2rem;
+      font-weight: 700; color: var(--success);
+    }
+    .celebration.show { display: block; }
+    .stars { font-size: 2rem; display: block; margin-top: .3rem; }
+
+    /* ── Live region for screen readers ── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="year-tag">Year 1 · Maths</p>
+    <h1>Counting to 100</h1>
+    <p class="subtitle">Click the right number on the grid!</p>
+  </header>
+
+  <div class="scorebar" aria-label="Score board">
+    <div><span>Score</span><br><strong id="score">0</strong></div>
+    <div><span>Round</span><br><strong id="round">1 / 10</strong></div>
+    <div><span>Streak</span><br><strong id="streak">0 🔥</strong></div>
+  </div>
+
+  <div class="modes" role="group" aria-label="Game mode">
+    <button class="mode-btn active" data-mode="find">🔎 Find the number</button>
+    <button class="mode-btn" data-mode="after">➡️ What comes after?</button>
+    <button class="mode-btn" data-mode="before">⬅️ What comes before?</button>
+    <button class="mode-btn" data-mode="count10">🔟 Count in 10s</button>
+  </div>
+
+  <div class="card" role="main">
+    <p class="instruction" id="instruction" aria-live="polite">Loading…</p>
+    <div class="grid-wrap">
+      <div class="number-grid" id="grid" role="grid" aria-label="Number grid 1 to 100"></div>
+    </div>
+    <p class="feedback" id="feedback" aria-live="polite" aria-atomic="true"></p>
+    <button class="next-btn" id="nextBtn">Next →</button>
+    <div class="celebration" id="celebration" aria-live="assertive">
+      All done! Amazing counting! 🎉
+      <span class="stars">⭐⭐⭐</span>
+    </div>
+  </div>
+
+  <div aria-live="polite" class="sr-only" id="srAnnounce"></div>
+
+<script>
+  // ── State ──────────────────────────────────────────────
+  const TOTAL_ROUNDS = 10;
+  let mode = 'find';
+  let target = 0;
+  let score = 0;
+  let round = 0;
+  let streak = 0;
+  let answered = false;
+  let litNumbers = new Set(); // numbers already found this session
+
+  // ── Build grid ─────────────────────────────────────────
+  const grid = document.getElementById('grid');
+
+  function buildGrid() {
+    grid.innerHTML = '';
+    for (let n = 1; n <= 100; n++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.textContent = n;
+      cell.dataset.n = n;
+      cell.setAttribute('role', 'gridcell');
+      cell.setAttribute('aria-label', `Number ${n}`);
+      cell.setAttribute('tabindex', '0');
+      if (litNumbers.has(n)) cell.classList.add('lit');
+      cell.addEventListener('click', () => handleCellClick(n, cell));
+      cell.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCellClick(n, cell); }
+      });
+      grid.appendChild(cell);
+    }
+  }
+
+  function cellEl(n) {
+    return grid.querySelector(`[data-n="${n}"]`);
+  }
+
+  // ── Questions per mode ──────────────────────────────────
+  function generateQuestion() {
+    if (mode === 'find') {
+      target = randInt(1, 100);
+      document.getElementById('instruction').textContent = `Find the number ${target}`;
+    } else if (mode === 'after') {
+      target = randInt(1, 99);
+      const question = target;
+      target = target + 1;
+      document.getElementById('instruction').textContent = `What number comes after ${question}?`;
+    } else if (mode === 'before') {
+      target = randInt(2, 100);
+      const question = target;
+      target = target - 1;
+      document.getElementById('instruction').textContent = `What number comes before ${question}?`;
+    } else if (mode === 'count10') {
+      const base = randInt(1, 9);
+      target = base * 10;
+      document.getElementById('instruction').textContent = `Can you find a number in the tens? Click ${target}`;
+    }
+    clearTargetHighlight();
+    const el = cellEl(target);
+    if (el) el.classList.add('target');
+  }
+
+  function clearTargetHighlight() {
+    grid.querySelectorAll('.target').forEach(c => c.classList.remove('target'));
+  }
+
+  // ── Interaction ─────────────────────────────────────────
+  function handleCellClick(n, cell) {
+    if (answered) return;
+    if (n === target) {
+      answered = true;
+      score++;
+      streak++;
+      litNumbers.add(n);
+      cell.classList.remove('target');
+      cell.classList.add('lit');
+      animateCell(cell, 'bounce');
+      showFeedback('✅ Correct! Well done!', 'ok');
+      announce(`Correct! ${n} is right.`);
+      updateScore();
+      document.getElementById('nextBtn').classList.add('show');
+    } else {
+      streak = 0;
+      animateCell(cell, 'shake');
+      showFeedback(`❌ Not quite — that's ${n}. Try again!`, 'bad');
+      announce(`That is ${n}. Try again.`);
+      updateScore();
+    }
+  }
+
+  function animateCell(el, cls) {
+    el.classList.remove('bounce', 'shake');
+    void el.offsetWidth; // reflow to restart animation
+    el.classList.add(cls);
+    el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
+  }
+
+  function showFeedback(msg, type) {
+    const fb = document.getElementById('feedback');
+    fb.textContent = msg;
+    fb.className = `feedback ${type}`;
+  }
+
+  function announce(msg) {
+    const sr = document.getElementById('srAnnounce');
+    sr.textContent = '';
+    requestAnimationFrame(() => { sr.textContent = msg; });
+  }
+
+  function updateScore() {
+    document.getElementById('score').textContent = score;
+    document.getElementById('round').textContent = `${Math.min(round+1, TOTAL_ROUNDS)} / ${TOTAL_ROUNDS}`;
+    document.getElementById('streak').textContent = `${streak} 🔥`;
+  }
+
+  // ── Next round ───────────────────────────────────────────
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    round++;
+    answered = false;
+    document.getElementById('nextBtn').classList.remove('show');
+    showFeedback('', '');
+    if (round >= TOTAL_ROUNDS) {
+      endGame();
+    } else {
+      generateQuestion();
+    }
+  });
+
+  function endGame() {
+    document.getElementById('instruction').textContent = `You scored ${score} out of ${TOTAL_ROUNDS}!`;
+    clearTargetHighlight();
+    document.getElementById('celebration').classList.add('show');
+    document.getElementById('nextBtn').classList.remove('show');
+    announce(`Game over. You scored ${score} out of ${TOTAL_ROUNDS}`);
+  }
+
+  // ── Mode switching ───────────────────────────────────────
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      mode = btn.dataset.mode;
+      resetGame();
+    });
+  });
+
+  function resetGame() {
+    score = 0; round = 0; streak = 0; answered = false;
+    litNumbers.clear();
+    document.getElementById('celebration').classList.remove('show');
+    document.getElementById('nextBtn').classList.remove('show');
+    showFeedback('', '');
+    updateScore();
+    buildGrid();
+    generateQuestion();
+  }
+
+  // ── Utilities ────────────────────────────────────────────
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // ── Init ─────────────────────────────────────────────────
+  buildGrid();
+  generateQuestion();
+  updateScore();
+</script>
+</body>
+</html>

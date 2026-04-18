@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation Demo + Primary School Code Lab</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0c1420;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #f6d365 0%, #7da8e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      text-align: center;
+      margin-top: -2rem;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: #131e2e;
+      border: 1px solid rgba(125, 168, 232, 0.15);
+      border-radius: 24px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    /* ── 1. Particle canvas ── */
+    #particleCanvas {
+      border-radius: 16px;
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16/7;
+      cursor: crosshair;
+    }
+
+    /* ── 2. Orbit rings ── */
+    .orbit-stage {
+      width: 220px; height: 220px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .orbit-core {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f6d365, #e8901a);
+      box-shadow: 0 0 24px #f6d36599, 0 0 60px #f6d36533;
+      z-index: 2;
+      animation: pulse-core 2s ease-in-out infinite;
+    }
+    @keyframes pulse-core {
+      0%,100%{ transform:scale(1); box-shadow:0 0 24px #f6d36599,0 0 60px #f6d36533; }
+      50%    { transform:scale(1.12); box-shadow:0 0 36px #f6d365cc,0 0 80px #f6d36566; }
+    }
+    .ring { position:absolute; border-radius:50%; border:1.5px solid transparent; }
+    .ring-1 { width:100px;height:100px; border-color:#7da8e855; animation:spin 3s linear infinite; }
+    .ring-2 { width:150px;height:150px; border-color:#f6d36544; animation:spin 5s linear infinite reverse; }
+    .ring-3 { width:200px;height:200px; border-color:#5b8dd933; animation:spin 8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .dot { position:absolute; border-radius:50%; top:50%; transform-origin:center center; }
+    .ring-1 .dot { width:10px;height:10px;background:#7da8e8;margin-top:-5px;left:calc(50% - 5px);box-shadow:0 0 8px #7da8e8;animation:counter-spin 3s linear infinite; }
+    .ring-2 .dot { width:8px;height:8px;background:#f6d365;margin-top:-4px;left:calc(50% - 4px);box-shadow:0 0 8px #f6d365;animation:counter-spin-rev 5s linear infinite; }
+    .ring-3 .dot { width:12px;height:12px;background:#5b8dd9;margin-top:-6px;left:calc(50% - 6px);box-shadow:0 0 10px #5b8dd9;animation:counter-spin 8s linear infinite; }
+    @keyframes counter-spin    { to { transform:translateY(-50px) rotate(-360deg); } }
+    @keyframes counter-spin-rev{ to { transform:translateY(-75px) rotate(360deg); } }
+
+    /* ── 3. Typewriter ── */
+    .typewriter-wrap { font-family:'Courier New',monospace; font-size:1.1rem; color:#7da8e8; min-height:2.2rem; display:flex; align-items:center; }
+    .cursor { display:inline-block; width:2px; height:1.2em; background:#f6d365; margin-left:2px; animation:blink .7s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── 4. SVG morph ── */
+    .morph-svg { width:180px;height:180px; filter:drop-shadow(0 0 16px #7da8e855); }
+
+    /* ── 5. Stagger bars ── */
+    .bars { display:flex; align-items:flex-end; gap:6px; height:80px; }
+    .bar  { width:18px; border-radius:4px 4px 0 0; animation:bar-bounce 1.4s ease-in-out infinite; }
+    .bar:nth-child(1){background:#f6d365;animation-delay:0s}
+    .bar:nth-child(2){background:#f6b26b;animation-delay:.1s}
+    .bar:nth-child(3){background:#e8901a;animation-delay:.2s}
+    .bar:nth-child(4){background:#7da8e8;animation-delay:.3s}
+    .bar:nth-child(5){background:#5b8dd9;animation-delay:.4s}
+    .bar:nth-child(6){background:#4a7bc8;animation-delay:.5s}
+    .bar:nth-child(7){background:#7da8e8;animation-delay:.6s}
+    .bar:nth-child(8){background:#f6d365;animation-delay:.7s}
+    @keyframes bar-bounce { 0%,100%{height:12px} 50%{height:72px} }
+
+    /* ── 6. Blob ── */
+    .blob-wrap { width:200px;height:200px;position:relative;display:flex;align-items:center;justify-content:center; }
+    .blob { width:160px;height:160px;background:linear-gradient(135deg,#f6d365,#7da8e8,#5b8dd9);border-radius:60% 40% 70% 30%/50% 60% 40% 70%;animation:morph-blob 6s ease-in-out infinite,spin-slow 12s linear infinite;filter:blur(1px);opacity:.85; }
+    @keyframes morph-blob {
+      0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 70%}
+      25%    {border-radius:30% 70% 40% 60%/60% 30% 70% 40%}
+      50%    {border-radius:50% 50% 30% 70%/70% 40% 60% 30%}
+      75%    {border-radius:40% 60% 60% 40%/30% 70% 50% 50%}
+    }
+    @keyframes spin-slow { to{transform:rotate(360deg)} }
+    .blob-label { position:absolute;font-size:.85rem;font-weight:600;color:#0c1420;pointer-events:none; }
+
+    .row { display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;width:100%;max-width:720px; }
+    .row .card { max-width:340px;flex:1 1 280px; }
+
+
+    /* ══════════════════════════════════════════════════════════════
+       PRIMARY SCHOOL CODE LAB
+    ══════════════════════════════════════════════════════════════ */
+    .lab-divider {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 0 0.5rem;
+    }
+    .lab-divider h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #4ade80 0%, #60a5fa 60%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    .lab-divider p {
+      color: #64748b;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .lab-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125,168,232,0.3), transparent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* shared edu-card overrides */
+    .edu-card {
+      align-items: stretch;
+      gap: 1rem;
+    }
+    .game-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(96, 165, 250, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: #60a5fa;
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      width: fit-content;
+    }
+    .edu-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .edu-card .game-desc {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .edu-btn {
+      padding: 0.55rem 1.4rem;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .edu-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+    .edu-btn:active { transform: translateY(0); }
+    .edu-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(125,168,232,0.2);
+      border-radius: 12px;
+      color: #e2e8f0;
+      font-size: 1rem;
+      padding: 0.5rem 0.9rem;
+    }
+    .edu-input:focus { outline: none; border-color: #60a5fa; }
+
+
+    /* ─────────────────────────────────
+       GAME 1 — SPELLING BEE
+    ───────────────────────────────── */
+    .spell-prompt-wrap {
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .spell-emoji { font-size: 4rem; line-height: 1; display: block; }
+    .spell-hint  { font-size: 0.8rem; color: #64748b; margin-top: 0.35rem; }
+    .spell-row   { display: flex; gap: 0.75rem; align-items: center; }
+    .spell-row .edu-input { flex: 1; }
+    .spell-result {
+      min-height: 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 10px;
+      padding: 0.35rem 0.75rem;
+      transition: all 0.3s;
+    }
+    .spell-result.correct { background: rgba(74,222,128,0.12); color: #4ade80; }
+    .spell-result.wrong   { background: rgba(248,113,113,0.12); color: #f87171; animation: shake 0.4s; }
+    .spell-score-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8; }
+    .spell-score-val { color: #f6d365; font-weight: 700; font-size: 1.1rem; }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-8px)}
+      40%{transform:translateX(8px)}
+      60%{transform:translateX(-6px)}
+      80%{transform:translateX(6px)}
+    }
+
+
+    /* ─────────────────────────────────
+       GAME 2 — MATH MONSTER
+    ───────────────────────────────── */
+    .monster-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .monster-face {
+      width: 110px; height: 110px;
+      background: radial-gradient(circle at 40% 35%, #5b8dd9, #1e3a5f);
+      border-radius: 50% 50% 42% 42%;
+      position: relative;
+      box-shadow: 0 0 28px rgba(91,141,217,0.45);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .monster-face.nom { animation: nom-nom 0.4s; }
+    @keyframes nom-nom {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.15) rotate(-4deg)}
+    }
+    .monster-eye {
+      position: absolute;
+      width: 22px; height: 22px;
+      background: #fff;
+      border-radius: 50%;
+      top: 28px;
+    }
+    .monster-eye.left  { left: 22px; }
+    .monster-eye.right { right: 22px; }
+    .monster-pupil {
+      position: absolute;
+      width: 11px; height: 11px;
+      background: #0c1420;
+      border-radius: 50%;
+      top: 5px; left: 5px;
+      transition: transform 0.2s;
+    }
+    .monster-mouth {
+      position: absolute;
+      bottom: 18px; left: 50%;
+      transform: translateX(-50%);
+      width: 62px; height: 28px;
+      background: #0c1420;
+      border-radius: 0 0 32px 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 800; color: #f6d365;
+      overflow: hidden;
+      transition: height 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .monster-horns::before,
+    .monster-horns::after {
+      content: '';
+      position: absolute;
+      top: -14px;
+      width: 14px; height: 22px;
+      background: #1e3a5f;
+      border-radius: 50% 50% 0 0;
+    }
+    .monster-horns::before { left: 22px; transform: rotate(-12deg); }
+    .monster-horns::after  { right: 22px; transform: rotate(12deg); }
+    .mm-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .mm-controls .edu-input { width: 72px; text-align: center; }
+    .mm-op-select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(125,168,232,0.2);
+      border-radius: 10px;
+      color: #f6d365;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+    }
+    .mm-op-select:focus { outline: none; border-color: #60a5fa; }
+    .mm-result-text {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-align: center;
+      min-height: 1.4rem;
+    }
+
+
+    /* ─────────────────────────────────
+       GAME 3 — ANIMAL HABITAT
+    ───────────────────────────────── */
+    .habitat-select-wrap {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .habitat-btn {
+      padding: 0.5rem 1.1rem;
+      border: 2px solid transparent;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(255,255,255,0.05);
+      color: #cbd5e1;
+    }
+    .habitat-btn.active, .habitat-btn:hover { border-color: currentColor; transform: translateY(-2px); }
+    .habitat-btn.forest  { color: #4ade80; }
+    .habitat-btn.ocean   { color: #38bdf8; }
+    .habitat-btn.desert  { color: #fb923c; }
+    .habitat-btn.arctic  { color: #a5f3fc; }
+
+    .habitat-display {
+      width: 100%;
+      border-radius: 18px;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: background 0.7s ease;
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(125,168,232,0.15);
+    }
+    .habitat-display.forest  { background: linear-gradient(180deg, #0d2818 0%, #1a5c2a 55%, #2d8a3e 100%); }
+    .habitat-display.ocean   { background: linear-gradient(180deg, #03346e 0%, #0566b8 50%, #0ea5e9 100%); }
+    .habitat-display.desert  { background: linear-gradient(180deg, #7c3300 0%, #c65c00 45%, #f97316 100%); }
+    .habitat-display.arctic  { background: linear-gradient(180deg, #0c2a4a 0%, #1e4976 50%, #bfdbfe 100%); }
+
+    .habitat-scene {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .habitat-animal {
+      text-align: center;
+      animation: pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .habitat-animal span:first-child { font-size: 2.8rem; display: block; }
+    .habitat-animal span:last-child  { font-size: 0.7rem; color: rgba(255,255,255,0.75); font-weight: 600; }
+    @keyframes pop-in { from{transform:scale(0) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+    .habitat-label {
+      position: absolute;
+      top: 0.75rem; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap;
+    }
+    .habitat-placeholder {
+      color: #334155;
+      font-size: 0.9rem;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+
+    /* ─────────────────────────────────
+       GAME 4 — HISTORY TIMELINE
+    ───────────────────────────────── */
+    .timeline-scroll {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .timeline-track {
+      position: relative;
+      min-width: 560px;
+      padding: 2.5rem 2rem 1rem;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 2rem; right: 2rem;
+      top: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, #f6d365, #7da8e8);
+      border-radius: 2px;
+    }
+    .timeline-events {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tl-event {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+    .tl-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #f6d365;
+      border: 3px solid #0c1420;
+      box-shadow: 0 0 12px #f6d36588;
+      z-index: 1;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .tl-event:hover .tl-dot { transform: scale(1.5); }
+    .tl-date {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #f6d365;
+      margin-top: 0.2rem;
+    }
+    .tl-label {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      max-width: 80px;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .tl-popup {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.85);
+      background: #1e3a5f;
+      border: 1px solid rgba(125,168,232,0.3);
+      border-radius: 14px;
+      padding: 0.75rem 1rem;
+      width: 170px;
+      font-size: 0.78rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 10;
+      text-align: center;
+    }
+    .tl-popup::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top-color: rgba(125,168,232,0.3);
+    }
+    .tl-event:hover .tl-popup,
+    .tl-event:focus .tl-popup {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    .tl-popup strong { color: #f6d365; display: block; margin-bottom: 0.25rem; }
+    .timeline-legend {
+      font-size: 0.75rem;
+      color: #475569;
+      text-align: center;
+    }
+
+
+    /* ─────────────────────────────────
+       GAME 5 — STATES OF MATTER
+    ───────────────────────────────── */
+    .matter-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .matter-btn {
+      padding: 0.55rem 1.25rem;
+      border: 2px solid;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .matter-btn:hover { transform: translateY(-2px); }
+    .matter-btn.solid-btn  { border-color: #60a5fa; color: #60a5fa; }
+    .matter-btn.liquid-btn { border-color: #38bdf8; color: #38bdf8; }
+    .matter-btn.gas-btn    { border-color: #fb923c; color: #fb923c; }
+    .matter-btn.active { color: #0c1420; }
+    .matter-btn.solid-btn.active  { background: #60a5fa; }
+    .matter-btn.liquid-btn.active { background: #38bdf8; }
+    .matter-btn.gas-btn.active    { background: #fb923c; }
+
+    #matterCanvas {
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16 / 7;
+      border-radius: 16px;
+      display: block;
+      background: #080f1a;
+    }
+    .matter-info-box {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      text-align: center;
+      min-height: 2.8rem;
+      transition: all 0.3s;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+
+  <!-- ════════════════════ PRIMARY SCHOOL CODE LAB ════════════════════ -->
+  <div class="lab-divider">
+    <div class="lab-rule"></div>
+    <h2>🎮 Primary School Code Lab</h2>
+    <p>Five mini-games that turn primary school subjects into code you can see and touch</p>
+  </div>
+
+
+  <!-- ── GAME 1: SPELLING BEE ── -->
+  <div class="card edu-card">
+    <div class="game-badge">Game 1 · English / Literacy</div>
+    <h3>🐝 Spelling Bee Visualiser</h3>
+    <p class="game-desc">Look at the emoji clue — type the word and hit Check. Get it right to score a point and unlock the next word! <em style="color:#64748b">Teaches: if/else logic, string comparison.</em></p>
+
+    <div class="spell-prompt-wrap">
+      <span class="spell-emoji" id="spellEmoji">🐱</span>
+      <span class="spell-hint" id="spellHint">What animal is this?</span>
+    </div>
+
+    <div class="spell-row">
+      <input class="edu-input" type="text" id="spellInput" placeholder="Type the word…" autocomplete="off" />
+      <button class="edu-btn" style="background:#f6d365;color:#0c1420" onclick="checkSpelling()">Check ✓</button>
+    </div>
+
+    <div class="spell-result" id="spellResult"></div>
+
+    <div class="spell-score-row">
+      <span>Score: <span class="spell-score-val" id="spellScore">0</span></span>
+      <span id="spellWordNum" style="color:#475569">Word 1 of 10</span>
+    </div>
+  </div>
+
+
+  <!-- ── GAME 2: MATH MONSTER ── -->
+  <div class="card edu-card">
+    <div class="game-badge">Game 2 · Mathematics</div>
+    <h3>🧟 Math Monster Calculator</h3>
+    <p class="game-desc">Enter two numbers, pick an operation, and feed the monster! The answer appears in its mouth. <em style="color:#64748b">Teaches: variables, operators, arithmetic.</em></p>
+
+    <div class="monster-wrap">
+      <div class="monster-face monster-horns" id="monsterFace">
+        <div class="monster-eye left"><div class="monster-pupil" id="pupilL"></div></div>
+        <div class="monster-eye right"><div class="monster-pupil" id="pupilR"></div></div>
+        <div class="monster-mouth" id="monsterMouth">?</div>
+      </div>
+      <div class="mm-controls">
+        <input class="edu-input" type="number" id="mm1" value="7" min="0" max="99" />
+        <select class="mm-op-select" id="mmOp">
+          <option value="+">＋</option>
+          <option value="-">－</option>
+          <option value="*">×</option>
+          <option value="/">÷</option>
+        </select>
+        <input class="edu-input" type="number" id="mm2" value="5" min="1" max="99" />
+        <button class="edu-btn" style="background:#5b8dd9;color:#fff" onclick="feedMonster()">Feed! 🍖</button>
+      </div>
+      <p class="mm-result-text" id="mmResultText">Enter numbers and feed the monster!</p>
+    </div>
+  </div>
+
+
+  <!-- ── GAME 3: ANIMAL HABITAT ── -->
+  <div class="card edu-card">
+    <div class="game-badge">Game 3 · Science / Biology</div>
+    <h3>🌍 Animal Habitat Builder</h3>
+    <p class="game-desc">Pick a habitat to see which animals live there. The scene changes completely using CSS classes. <em style="color:#64748b">Teaches: background-color, class switching, CSS properties.</em></p>
+
+    <div class="habitat-select-wrap">
+      <button class="habitat-btn forest"  onclick="setHabitat('forest')">🌲 Forest</button>
+      <button class="habitat-btn ocean"   onclick="setHabitat('ocean')">🌊 Ocean</button>
+      <button class="habitat-btn desert"  onclick="setHabitat('desert')">🏜️ Desert</button>
+      <button class="habitat-btn arctic"  onclick="setHabitat('arctic')">❄️ Arctic</button>
+    </div>
+
+    <div class="habitat-display" id="habitatDisplay">
+      <p class="habitat-placeholder">👆 Choose a habitat above to explore!</p>
+    </div>
+  </div>
+
+
+  <!-- ── GAME 4: HISTORY TIMELINE ── -->
+  <div class="card edu-card">
+    <div class="game-badge">Game 4 · History</div>
+    <h3>⏳ The Romans — A Timeline</h3>
+    <p class="game-desc">Hover (or tap) each point on the timeline to reveal a fun historical fact! <em style="color:#64748b">Teaches: :hover pseudo-class, &lt;ul&gt;/&lt;li&gt;, tooltip positioning.</em></p>
+
+    <div class="timeline-scroll">
+      <div class="timeline-track">
+        <div class="timeline-line"></div>
+        <div class="timeline-events">
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>753 BC</strong>
+              According to legend, twin brothers Romulus &amp; Remus founded the city of Rome beside the River Tiber.
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">753 BC</span>
+            <span class="tl-label">Rome Founded</span>
+          </div>
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>509 BC</strong>
+              Romans kicked out their last king and created a Republic — ruled by two elected consuls instead of one ruler.
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">509 BC</span>
+            <span class="tl-label">Roman Republic</span>
+          </div>
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>44 BC</strong>
+              Julius Caesar, Rome's most famous general, was stabbed 23 times in the Senate by senators who feared he wanted to be king.
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">44 BC</span>
+            <span class="tl-label">Caesar Assassinated</span>
+          </div>
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>43 AD</strong>
+              Roman Emperor Claudius invaded Britain. Roman soldiers brought roads, underfloor heating, and concrete to Britain!
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">43 AD</span>
+            <span class="tl-label">Romans Invade Britain</span>
+          </div>
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>117 AD</strong>
+              Under Emperor Trajan, the Roman Empire reached its greatest ever size — stretching from Scotland to the Persian Gulf.
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">117 AD</span>
+            <span class="tl-label">Empire at Peak</span>
+          </div>
+
+          <div class="tl-event" tabindex="0">
+            <div class="tl-popup">
+              <strong>410 AD</strong>
+              The Visigoths sacked Rome for the first time in 800 years. Roman soldiers left Britain, never to return.
+            </div>
+            <div class="tl-dot"></div>
+            <span class="tl-date">410 AD</span>
+            <span class="tl-label">Rome Falls</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p class="timeline-legend">Hover or tap any point · The :hover CSS pseudo-class makes this work</p>
+  </div>
+
+
+  <!-- ── GAME 5: STATES OF MATTER ── -->
+  <div class="card edu-card">
+    <div class="game-badge">Game 5 · Science / Physics</div>
+    <h3>⚗️ States of Matter Simulator</h3>
+    <p class="game-desc">Press a button to change the state of matter. Watch how the particles behave differently! <em style="color:#64748b">Teaches: canvas animation loops, kinetic energy, scientific modelling.</em></p>
+
+    <div class="matter-btns">
+      <button class="matter-btn solid-btn"  id="btn-solid"  onclick="setState('solid')">❄️ Solid</button>
+      <button class="matter-btn liquid-btn" id="btn-liquid" onclick="setState('liquid')">💧 Liquid</button>
+      <button class="matter-btn gas-btn"    id="btn-gas"    onclick="setState('gas')">💨 Gas</button>
+    </div>
+
+    <canvas id="matterCanvas"></canvas>
+
+    <div class="matter-info-box" id="matterInfo">
+      Press a button above to start the simulation!
+    </div>
+  </div>
+
+</div><!-- /.page -->
+
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   ANIMATION DEMO SCRIPTS
+══════════════════════════════════════════════════════════════ */
+
+/* ── Particle canvas ── */
+(function () {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = { x:-999, y:-999 };
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    W = canvas.width  = rect.width  * devicePixelRatio;
+    H = canvas.height = rect.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  const rand = (a,b) => Math.random()*(b-a)+a;
+  const COLORS = ['#f6d365','#7da8e8','#5b8dd9','#f6b26b','#ffe9a3'];
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = rand(0, W/devicePixelRatio); this.y = rand(0, H/devicePixelRatio);
+      this.r = rand(1.5,3.5); this.vx = rand(-0.4,0.4); this.vy = rand(-0.4,0.4);
+      this.color = COLORS[Math.floor(rand(0,COLORS.length))]; this.alpha = rand(0.4,0.9);
+    }
+    update() {
+      const dx=this.x-mouse.x, dy=this.y-mouse.y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<80){ const f=(80-d)/80*1.5; this.vx+=(dx/d)*f; this.vy+=(dy/d)*f; }
+      this.vx*=0.97; this.vy*=0.97; this.x+=this.vx; this.y+=this.vy;
+      const cW=W/devicePixelRatio, cH=H/devicePixelRatio;
+      if(this.x<0) this.x=cW; if(this.x>cW) this.x=0;
+      if(this.y<0) this.y=cH; if(this.y>cH) this.y=0;
+    }
+    draw() {
+      ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.fillStyle=this.color; ctx.globalAlpha=this.alpha; ctx.fill(); ctx.globalAlpha=1;
+    }
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({length:120}, ()=>new Particle());
+  }
+  function loop() {
+    const cW=W/devicePixelRatio, cH=H/devicePixelRatio;
+    ctx.clearRect(0,0,cW,cH);
+    for(let i=0;i<particles.length;i++) {
+      for(let j=i+1;j<particles.length;j++) {
+        const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<90){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle='#7da8e8'; ctx.globalAlpha=(1-d/90)*0.25; ctx.lineWidth=0.8; ctx.stroke(); ctx.globalAlpha=1; }
+      }
+    }
+    particles.forEach(p=>{ p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  canvas.addEventListener('mousemove', e=>{ const r=canvas.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
+  canvas.addEventListener('mouseleave', ()=>{ mouse.x=-999; mouse.y=-999; });
+  window.addEventListener('resize', init);
+  init(); loop();
+})();
+
+/* ── Typewriter ── */
+(function () {
+  const el = document.getElementById('typeTarget');
+  const phrases = ['Building with GenAI...','Architecting the cloud.','Shipping ideas to prod.','Hello, World!','CSS + JS = magic ✨'];
+  let pi=0, ci=0, deleting=false;
+  function tick() {
+    const phrase=phrases[pi];
+    if(!deleting){ el.textContent=phrase.slice(0,++ci); if(ci===phrase.length){deleting=true;setTimeout(tick,1600);return;} }
+    else { el.textContent=phrase.slice(0,--ci); if(ci===0){deleting=false;pi=(pi+1)%phrases.length;} }
+    setTimeout(tick, deleting?45:75);
+  }
+  tick();
+})();
+
+
+/* ══════════════════════════════════════════════════════════════
+   GAME 1 — SPELLING BEE
+══════════════════════════════════════════════════════════════ */
+(function () {
+  const words = [
+    { emoji:'🐱', answer:'cat',    hint:'A furry pet that says meow' },
+    { emoji:'🐶', answer:'dog',    hint:'A furry pet that says woof' },
+    { emoji:'☀️', answer:'sun',    hint:'It shines in the sky every day' },
+    { emoji:'🌳', answer:'tree',   hint:'It has roots, a trunk, and leaves' },
+    { emoji:'🐟', answer:'fish',   hint:'It lives in water and has fins' },
+    { emoji:'🐦', answer:'bird',   hint:'It has wings and can fly' },
+    { emoji:'🎂', answer:'cake',   hint:'You eat this on your birthday' },
+    { emoji:'⭐', answer:'star',   hint:'It twinkles in the night sky' },
+    { emoji:'🌙', answer:'moon',   hint:'It glows at night up in space' },
+    { emoji:'📚', answer:'book',   hint:'You read stories inside me' },
+  ];
+
+  let index = 0, score = 0;
+
+  function shuffle(arr) {
+    for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+    return arr;
+  }
+  shuffle(words);
+
+  function render() {
+    const w = words[index];
+    document.getElementById('spellEmoji').textContent = w.emoji;
+    document.getElementById('spellHint').textContent  = w.hint;
+    document.getElementById('spellInput').value = '';
+    document.getElementById('spellInput').focus();
+    document.getElementById('spellResult').textContent = '';
+    document.getElementById('spellResult').className   = 'spell-result';
+    document.getElementById('spellWordNum').textContent = `Word ${index+1} of ${words.length}`;
+  }
+
+  window.checkSpelling = function () {
+    const input = document.getElementById('spellInput').value.trim().toLowerCase();
+    const correct = words[index].answer;
+    const resultEl = document.getElementById('spellResult');
+
+    if (input === correct) {
+      score++;
+      document.getElementById('spellScore').textContent = score;
+      resultEl.textContent = `✅ Correct! "${correct}" — well done!`;
+      resultEl.className = 'spell-result correct';
+      index = (index + 1) % words.length;
+      if (index === 0) shuffle(words);
+      setTimeout(render, 1200);
+    } else {
+      resultEl.textContent = `❌ Not quite — try again! Hint: ${words[index].hint}`;
+      resultEl.className = 'spell-result wrong';
+      // re-trigger animation
+      void resultEl.offsetWidth;
+      resultEl.style.animation = 'none';
+      requestAnimationFrame(()=>{ resultEl.style.animation=''; });
+    }
+  };
+
+  document.getElementById('spellInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.checkSpelling();
+  });
+
+  render();
+})();
+
+
+/* ══════════════════════════════════════════════════════════════
+   GAME 2 — MATH MONSTER
+══════════════════════════════════════════════════════════════ */
+window.feedMonster = function () {
+  const n1 = parseFloat(document.getElementById('mm1').value);
+  const n2 = parseFloat(document.getElementById('mm2').value);
+  const op = document.getElementById('mmOp').value;
+
+  if (isNaN(n1) || isNaN(n2)) return;
+
+  let result, label;
+  if (op === '+') { result = n1 + n2; label = `${n1} + ${n2}`; }
+  else if (op === '-') { result = n1 - n2; label = `${n1} − ${n2}`; }
+  else if (op === '*') { result = n1 * n2; label = `${n1} × ${n2}`; }
+  else {
+    if (n2 === 0) { document.getElementById('mmResultText').textContent = "Oops! Can't divide by zero 🙈"; return; }
+    result = +(n1 / n2).toFixed(2);
+    label = `${n1} ÷ ${n2}`;
+  }
+
+  const mouth = document.getElementById('monsterMouth');
+  const face  = document.getElementById('monsterFace');
+  mouth.textContent = result;
+  mouth.style.height = '38px';
+  face.classList.remove('nom');
+  void face.offsetWidth;
+  face.classList.add('nom');
+
+  document.getElementById('mmResultText').textContent =
+    `${label} = ${result}  ·  in code: let total = ${n1} ${op} ${n2};`;
+
+  setTimeout(()=>{ mouth.style.height = '28px'; }, 800);
+};
+
+
+/* ══════════════════════════════════════════════════════════════
+   GAME 3 — ANIMAL HABITAT
+══════════════════════════════════════════════════════════════ */
+const HABITATS = {
+  forest: {
+    label: '🌲 Forest — Temperate Woodland',
+    animals: [
+      { emoji:'🦊', name:'Fox' },
+      { emoji:'🦌', name:'Deer' },
+      { emoji:'🦔', name:'Hedgehog' },
+      { emoji:'🦉', name:'Owl' },
+      { emoji:'🐺', name:'Wolf' },
+    ]
+  },
+  ocean: {
+    label: '🌊 Ocean — Open Sea',
+    animals: [
+      { emoji:'🐬', name:'Dolphin' },
+      { emoji:'🐳', name:'Whale' },
+      { emoji:'🐙', name:'Octopus' },
+      { emoji:'🦈', name:'Shark' },
+      { emoji:'🐠', name:'Tropical Fish' },
+    ]
+  },
+  desert: {
+    label: '🏜️ Desert — Arid Scrubland',
+    animals: [
+      { emoji:'🐪', name:'Camel' },
+      { emoji:'🦂', name:'Scorpion' },
+      { emoji:'🦎', name:'Lizard' },
+      { emoji:'🐍', name:'Snake' },
+      { emoji:'🦅', name:'Eagle' },
+    ]
+  },
+  arctic: {
+    label: '❄️ Arctic — Polar Tundra',
+    animals: [
+      { emoji:'🐻‍❄️', name:'Polar Bear' },
+      { emoji:'🐧', name:'Penguin' },
+      { emoji:'🦭', name:'Seal' },
+      { emoji:'🦆', name:'Arctic Duck' },
+      { emoji:'🐟', name:'Arctic Cod' },
+    ]
+  }
+};
+
+window.setHabitat = function (type) {
+  const display = document.getElementById('habitatDisplay');
+  const data = HABITATS[type];
+
+  // Remove all habitat classes + active from buttons
+  display.className = 'habitat-display ' + type;
+  document.querySelectorAll('.habitat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.habitat-btn.' + type).classList.add('active');
+
+  // Build scene
+  const scene = `
+    <div class="habitat-label">${data.label}</div>
+    <div class="habitat-scene">
+      ${data.animals.map((a,i)=>`
+        <div class="habitat-animal" style="animation-delay:${i*0.07}s">
+          <span>${a.emoji}</span>
+          <span>${a.name}</span>
+        </div>`).join('')}
+    </div>`;
+  display.innerHTML = scene;
+};
+
+
+/* ══════════════════════════════════════════════════════════════
+   GAME 5 — STATES OF MATTER
+══════════════════════════════════════════════════════════════ */
+(function () {
+  const canvas = document.getElementById('matterCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W = 0, H = 0, raf = null;
+  let state = null;
+  let particles = [];
+
+  const INFO = {
+    solid:  { text: '❄️ Solid — particles are tightly packed and can only vibrate in place. They cannot move past each other, which is why solids keep their shape.', color: '#60a5fa' },
+    liquid: { text: '💧 Liquid — particles have enough energy to flow and slide past each other. They stay together but take the shape of their container.', color: '#38bdf8' },
+    gas:    { text: '💨 Gas — particles have lots of kinetic energy and fly around freely at high speed. They spread out to fill any space they are given!', color: '#fb923c' }
+  };
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    W = canvas.width  = rect.width  * devicePixelRatio;
+    H = canvas.height = rect.height * devicePixelRatio;
+  }
+
+  function makeSolidGrid() {
+    particles = [];
+    const cols = 8, rows = 5;
+    const spacing = Math.min(W / devicePixelRatio / (cols + 1), H / devicePixelRatio / (rows + 1));
+    const startX = (W / devicePixelRatio - spacing * (cols - 1)) / 2;
+    const startY = (H / devicePixelRatio - spacing * (rows - 1)) / 2;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        particles.push({
+          x: startX + c * spacing,
+          y: startY + r * spacing,
+          homeX: startX + c * spacing,
+          homeY: startY + r * spacing,
+          vx: 0, vy: 0,
+          r: 5,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+  }
+
+  function makeLiquidParticles() {
+    particles = [];
+    for (let i = 0; i < 40; i++) {
+      const cW = W / devicePixelRatio, cH = H / devicePixelRatio;
+      particles.push({
+        x: Math.random() * cW,
+        y: cH * 0.4 + Math.random() * cH * 0.5,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 0.6,
+        r: 5,
+      });
+    }
+  }
+
+  function makeGasParticles() {
+    particles = [];
+    for (let i = 0; i < 55; i++) {
+      const cW = W / devicePixelRatio, cH = H / devicePixelRatio;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.5 + Math.random() * 2.5;
+      particles.push({
+        x: Math.random() * cW,
+        y: Math.random() * cH,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 4,
+      });
+    }
+  }
+
+  function drawSolid(t) {
+    const cW = W / devicePixelRatio, cH = H / devicePixelRatio;
+    ctx.clearRect(0, 0, cW, cH);
+    ctx.fillStyle = '#60a5fa';
+    for (const p of particles) {
+      const amp = 2.5;
+      p.x = p.homeX + Math.sin(t * 0.002 + p.phase) * amp;
+      p.y = p.homeY + Math.cos(t * 0.0025 + p.phase) * amp;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.globalAlpha = 0.85;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function drawLiquid() {
+    const cW = W / devicePixelRatio, cH = H / devicePixelRatio;
+    ctx.clearRect(0, 0, cW, cH);
+
+    // Draw a faint water surface line
+    ctx.beginPath();
+    ctx.moveTo(0, cH * 0.38);
+    ctx.lineTo(cW, cH * 0.38);
+    ctx.strokeStyle = 'rgba(56,189,248,0.15)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.fillStyle = '#38bdf8';
+    const GRAVITY = 0.04;
+    for (const p of particles) {
+      p.vy += GRAVITY;
+      p.vx *= 0.995;
+      p.vy *= 0.995;
+      p.x  += p.vx;
+      p.y  += p.vy;
+      // Floor + ceiling for the liquid region
+      if (p.y > cH - p.r) { p.y = cH - p.r; p.vy *= -0.4; p.vx += (Math.random()-0.5)*0.4; }
+      if (p.y < cH * 0.38) { p.y = cH * 0.38; p.vy *= -0.3; }
+      // Walls
+      if (p.x < p.r)  { p.x = p.r;  p.vx *= -0.7; }
+      if (p.x > cW - p.r) { p.x = cW - p.r; p.vx *= -0.7; }
+
+      const alpha = 0.55 + (p.y / cH) * 0.35;
+      ctx.globalAlpha = Math.min(alpha, 0.9);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function drawGas() {
+    const cW = W / devicePixelRatio, cH = H / devicePixelRatio;
+    ctx.clearRect(0, 0, cW, cH);
+    ctx.fillStyle = '#fb923c';
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < p.r)      { p.x = p.r;       p.vx *= -1; }
+      if (p.x > cW - p.r) { p.x = cW - p.r;  p.vx *= -1; }
+      if (p.y < p.r)      { p.y = p.r;        p.vy *= -1; }
+      if (p.y > cH - p.r) { p.y = cH - p.r;  p.vy *= -1; }
+
+      ctx.globalAlpha = 0.7;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  let startTime = null;
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const t = ts - startTime;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    if (state === 'solid')  drawSolid(t);
+    if (state === 'liquid') drawLiquid();
+    if (state === 'gas')    drawGas();
+    raf = requestAnimationFrame(loop);
+  }
+
+  window.setState = function (s) {
+    state = s;
+    startTime = null;
+    document.querySelectorAll('.matter-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + s).classList.add('active');
+    document.getElementById('matterInfo').textContent = INFO[s].text;
+    if (s === 'solid')  makeSolidGrid();
+    if (s === 'liquid') makeLiquidParticles();
+    if (s === 'gas')    makeGasParticles();
+    if (!raf) { resize(); loop(0); }
+  };
+
+  resize();
+  window.addEventListener('resize', () => {
+    resize();
+    if (state === 'solid')  makeSolidGrid();
+    if (state === 'liquid') makeLiquidParticles();
+    if (state === 'gas')    makeGasParticles();
+  });
+})();
+</script>
+</body>
+</html>
