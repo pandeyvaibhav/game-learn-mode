@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Game Learn Mode</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Theme init — apply saved theme before first paint to avoid flash
+    (function () {
+      var themes = { dark: 1, fire: 1, sunrise: 1, cobalt: 1, graphite: 1, light: 1 };
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved && themes[saved] ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme =
+          (theme === 'sunrise' || theme === 'light') ? 'light' : 'dark';
+      } catch (_) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -14,11 +29,165 @@
         🎮 Game Learn
       </a>
       <nav class="breadcrumb" id="breadcrumb" aria-label="You are here"></nav>
+      <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-toggle" type="button"
+                aria-haspopup="true" aria-expanded="false"
+                aria-controls="themeMenu" aria-label="Open theme picker">
+          <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+        </button>
+        <div class="theme-menu" id="themeMenu" hidden aria-label="Theme picker">
+          <button class="theme-menu__option" type="button" data-theme-option="dark">
+            <span class="theme-menu__swatch theme-menu__swatch--dark" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Midnight</span>
+              <span class="theme-menu__hint">Deep navy and electric glow</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+          <button class="theme-menu__option" type="button" data-theme-option="fire">
+            <span class="theme-menu__swatch theme-menu__swatch--fire" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Fire Orange</span>
+              <span class="theme-menu__hint">Ember glass and warm contrast</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+          <button class="theme-menu__option" type="button" data-theme-option="sunrise">
+            <span class="theme-menu__swatch theme-menu__swatch--sunrise" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Sunrise</span>
+              <span class="theme-menu__hint">Warm orange and friendly lift</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+          <button class="theme-menu__option" type="button" data-theme-option="cobalt">
+            <span class="theme-menu__swatch theme-menu__swatch--cobalt" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Cobalt</span>
+              <span class="theme-menu__hint">Black, cobalt, motion-forward</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+          <button class="theme-menu__option" type="button" data-theme-option="graphite">
+            <span class="theme-menu__swatch theme-menu__swatch--graphite" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Graphite</span>
+              <span class="theme-menu__hint">Monochrome precision and crisp chrome</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+          <button class="theme-menu__option" type="button" data-theme-option="light">
+            <span class="theme-menu__swatch theme-menu__swatch--light" aria-hidden="true"></span>
+            <span class="theme-menu__copy">
+              <span class="theme-menu__label">Daylight</span>
+              <span class="theme-menu__hint">Bright editorial surfaces</span>
+            </span>
+            <span class="theme-menu__state" aria-hidden="true">Current</span>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main id="root" class="page" role="main" aria-live="polite" aria-atomic="false"></main>
 
+  <script>
+    // Theme switcher logic
+    (function () {
+      var root = document.documentElement;
+      var switcher = document.getElementById('themeSwitcher');
+      if (!switcher) return;
+      var toggle = switcher.querySelector('.theme-toggle');
+      var menu = switcher.querySelector('.theme-menu');
+      var icon = switcher.querySelector('.theme-toggle__icon');
+      var options = switcher.querySelectorAll('[data-theme-option]');
+
+      var META = {
+        dark:     { icon: '☾', mode: 'dark',  label: 'Midnight' },
+        fire:     { icon: 'F', mode: 'dark',  label: 'Fire Orange' },
+        sunrise:  { icon: 'S', mode: 'light', label: 'Sunrise' },
+        cobalt:   { icon: 'C', mode: 'dark',  label: 'Cobalt' },
+        graphite: { icon: 'G', mode: 'dark',  label: 'Graphite' },
+        light:    { icon: '☀', mode: 'light', label: 'Daylight' }
+      };
+
+      function currentTheme() {
+        return root.getAttribute('data-theme') || 'dark';
+      }
+
+      function syncActive() {
+        var t = currentTheme();
+        var meta = META[t] || META.dark;
+        if (icon) icon.textContent = meta.icon;
+        if (toggle) toggle.setAttribute('aria-label', 'Theme: ' + meta.label + '. Open theme picker');
+        options.forEach(function (o) {
+          var active = o.dataset.themeOption === t;
+          o.classList.toggle('is-active', active);
+          o.setAttribute('aria-pressed', String(active));
+        });
+      }
+
+      function applyTheme(theme) {
+        var meta = META[theme] || META.dark;
+        root.setAttribute('data-theme', theme);
+        root.style.colorScheme = meta.mode;
+        try { localStorage.setItem('theme', theme); } catch (_) {}
+        syncActive();
+      }
+
+      function playFlash(theme, rect) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          applyTheme(theme);
+          return;
+        }
+        var overlay = document.createElement('div');
+        overlay.className = 'theme-flash-overlay';
+        overlay.style.left = (rect.left + rect.width / 2) + 'px';
+        overlay.style.top = (rect.top + rect.height / 2) + 'px';
+        var fills = {
+          dark:     'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0) 80%)',
+          fire:     'radial-gradient(circle, rgba(255,187,112,1) 0%, rgba(255,110,45,0.92) 30%, rgba(255,110,45,0) 80%)',
+          sunrise:  'radial-gradient(circle, rgba(255,245,236,1) 0%, rgba(255,176,122,0.94) 28%, rgba(255,92,53,0) 80%)',
+          cobalt:   'radial-gradient(circle, rgba(131,182,255,1) 0%, rgba(61,112,255,0.92) 30%, rgba(61,112,255,0) 80%)',
+          graphite: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 28%, rgba(255,255,255,0) 80%)',
+          light:    'radial-gradient(circle, rgba(240,248,255,1) 0%, rgba(173,216,230,0.9) 30%, rgba(94,215,255,0) 80%)'
+        };
+        overlay.style.background = fills[theme] || fills.dark;
+        document.body.appendChild(overlay);
+        setTimeout(function () { applyTheme(theme); }, 260);
+        setTimeout(function () { overlay.remove(); }, 700);
+      }
+
+      function closeMenu() {
+        if (menu) menu.hidden = true;
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      toggle.addEventListener('click', function () {
+        var open = menu.hidden;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      menu.addEventListener('click', function (e) {
+        var opt = e.target.closest('[data-theme-option]');
+        if (!opt) return;
+        var next = opt.dataset.themeOption;
+        closeMenu();
+        if (!META[next] || next === currentTheme()) return;
+        playFlash(next, toggle.getBoundingClientRect());
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!switcher.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      syncActive();
+    })();
+  </script>
   <script src="app.js"></script>
 </body>
 </html>

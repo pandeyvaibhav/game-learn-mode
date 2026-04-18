@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mountains — Year 3 Geography | Game Learn</title>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-    header{text-align:center;max-width:640px;width:100%}
-    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mountains — Year 3 Geography | Game Learn</title>
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px;--tap:44px}
+      body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.25rem 1rem 2.5rem;gap:1.25rem}
+      button{font:inherit}
+      header{text-align:center;max-width:720px;width:100%}
+      .tag{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.45rem}
+      h1{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;color:var(--primary);line-height:1.1}
+      .subtitle{color:var(--text-muted);font-size:1rem;margin-top:.6rem;line-height:1.5}
+      .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;width:100%;max-width:720px}
+      .card-title{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+      .helper{font-size:.96rem;color:var(--text-muted);margin-bottom:.9rem;line-height:1.5}
 
-    /* Mountain profile */
-    .profile{position:relative;width:100%;max-width:420px;height:280px;margin:0 auto;background:var(--surface2);border-radius:var(--radius-sm);overflow:hidden}
-    .profile svg{position:absolute;bottom:0;width:100%}
-    .zone{position:absolute;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:transparent;transition:color .2s}
-    .zone.revealed{color:var(--primary);text-shadow:0 1px 3px #000}
-    .zone:hover{background:rgba(251,191,36,.08)}
+      /* Mountain profile */
+      .profile{position:relative;width:100%;max-width:520px;aspect-ratio:3/2;min-height:260px;margin:0 auto;background:linear-gradient(180deg,#1f3350 0%,#273344 58%,#1c2430 100%);border-radius:12px;overflow:hidden}
+      .profile svg{position:absolute;inset:auto 0 0 0;width:100%;height:70%}
+      .zone{position:absolute;appearance:none;border:none;background:transparent;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 .5rem;font-size:.92rem;font-weight:700;color:transparent;transition:background .2s,text-shadow .2s;outline-offset:2px;text-align:center}
+      .zone:hover,.zone:focus-visible{background:rgba(251,191,36,.08)}
+      .zone:focus-visible{outline:3px solid rgba(56,189,248,.75)}
+      .zone.revealed{color:var(--primary);text-shadow:0 1px 3px #000;background:rgba(251,191,36,.08)}
+      .zone:disabled{opacity:1;cursor:default}
 
-    .label-pool{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.75rem}
-    .label-chip{background:var(--accent);color:#0f172a;font-weight:700;border:none;border-radius:10px;padding:.4rem .9rem;font-size:.82rem;cursor:pointer;transition:opacity .15s}
-    .label-chip.used{opacity:.3;pointer-events:none}
-    .label-chip.sel{outline:3px solid var(--primary)}
+      .label-pool{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-top:1rem}
+      .label-chip{background:var(--accent);color:#0f172a;font-weight:700;border:none;border-radius:10px;padding:.65rem 1rem;font-size:.95rem;cursor:pointer;transition:opacity .15s,transform .15s;min-height:var(--tap)}
+      .label-chip.used{opacity:.45;pointer-events:none}
+      .label-chip.sel{outline:3px solid var(--primary);transform:translateY(-1px)}
+      .label-chip:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
 
-    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.75rem}.score-bar span{color:var(--primary);font-weight:700}
-    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
+      .score-bar{text-align:center;font-size:1rem;color:var(--text-muted);margin-top:1rem}.score-bar span{color:var(--primary);font-weight:700}
+      .fb{text-align:center;font-size:.95rem;line-height:1.5;min-height:1.5em;margin-top:.65rem}
 
-    /* Quiz */
-    .quiz-area{display:flex;flex-direction:column;gap:1rem}
-    .q-text{font-size:.95rem;font-weight:600}
-    .opts{display:flex;flex-direction:column;gap:.4rem}
-    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
-    .opt-btn:hover{border-color:var(--accent)}
-    .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
-    .opt-btn.wrong{background:var(--error);color:#0f172a}
-    .opt-btn.disabled{pointer-events:none;opacity:.5}
+      /* Quiz */
+      .quiz-area{display:flex;flex-direction:column;gap:1rem}
+      .quiz-progress{text-align:center;font-size:.9rem;color:var(--text-muted)}
+      .q-text{font-size:1rem;font-weight:700;line-height:1.5}
+      .opts{display:flex;flex-direction:column;gap:.4rem}
+      .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;font-size:.98rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s,border-color .12s;min-height:48px}
+      .opt-btn:hover{border-color:var(--accent)}
+      .opt-btn.correct{background:var(--success);color:#0f172a;font-weight:700}
+      .opt-btn.wrong{background:var(--error);color:#0f172a}
+      .opt-btn.disabled{pointer-events:none;opacity:.5}
+      .next-btn{display:none;align-self:flex-start;background:var(--primary);color:#0f172a;border:none;border-radius:999px;padding:.7rem 1.25rem;font-size:.95rem;font-weight:700;cursor:pointer;min-height:var(--tap)}
+      .next-btn.show{display:inline-flex;align-items:center;justify-content:center}
 
-    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-  </style>
-</head>
+      @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+      @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+      @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+      @media (max-width:640px){
+        body{padding:.95rem .75rem 2rem}
+        .card{padding:1rem}
+        .profile{min-height:220px}
+        .label-chip{flex:1 1 100%}
+        .opt-btn,.next-btn{width:100%}
+        .next-btn{align-self:stretch}
+      }
+    </style>
+  </head>
 <body>
   <header>
     <p class="tag">Year 3 · Geography</p>
@@ -55,17 +71,17 @@
   <!-- Mountain Profile Label -->
   <div class="card">
     <p class="card-title">Label the Mountain</p>
-    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:.75rem;">Click a label, then click the correct zone on the mountain.</p>
+    <p class="helper">Tap a label, then tap the matching part of the mountain.</p>
     <div class="profile" id="profile">
       <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <polygon points="210,10 50,180 370,180" fill="#475569"/>
         <polygon points="210,10 170,50 250,50" fill="#e2e8f0"/>
       </svg>
       <!-- Zones (top to bottom) -->
-      <div class="zone" id="z-summit" style="top:0;height:22%;left:30%;width:40%;" data-label="Summit (snow & ice)">Summit (snow & ice)</div>
-      <div class="zone" id="z-treeline" style="top:22%;height:20%;left:18%;width:64%;" data-label="Above treeline (bare rock)">Above treeline (bare rock)</div>
-      <div class="zone" id="z-forest" style="top:42%;height:24%;left:10%;width:80%;" data-label="Forest zone (trees)">Forest zone (trees)</div>
-      <div class="zone" id="z-valley" style="top:66%;height:34%;left:5%;width:90%;" data-label="Valley (farms & villages)">Valley (farms & villages)</div>
+      <button class="zone" id="z-summit" type="button" style="top:0;height:22%;left:30%;width:40%;" data-label="Summit (snow & ice)" aria-label="Summit zone">Summit (snow & ice)</button>
+      <button class="zone" id="z-treeline" type="button" style="top:22%;height:20%;left:18%;width:64%;" data-label="Above treeline (bare rock)" aria-label="Above treeline zone">Above treeline (bare rock)</button>
+      <button class="zone" id="z-forest" type="button" style="top:42%;height:24%;left:10%;width:80%;" data-label="Forest zone (trees)" aria-label="Forest zone">Forest zone (trees)</button>
+      <button class="zone" id="z-valley" type="button" style="top:66%;height:34%;left:5%;width:90%;" data-label="Valley (farms & villages)" aria-label="Valley zone">Valley (farms & villages)</button>
     </div>
     <div class="label-pool" id="labelPool"></div>
     <div class="score-bar">Correct: <span id="lScore">0</span> / 4</div>
@@ -76,8 +92,10 @@
   <div class="card">
     <p class="card-title">Mountain Quiz</p>
     <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
+    <p class="quiz-progress" id="qProgress"></p>
     <div class="quiz-area" id="quiz"></div>
     <p class="fb" id="fb" aria-live="polite"></p>
+    <button class="next-btn" id="nextBtn" type="button">Next question</button>
   </div>
 
   <script>
@@ -93,28 +111,40 @@
     shuffle(LABELS).forEach(function(l) {
       const chip = document.createElement('button');
       chip.className = 'label-chip';
+      chip.type = 'button';
       chip.textContent = l;
+      chip.setAttribute('aria-pressed','false');
       chip.addEventListener('click', function() {
-        poolEl.querySelectorAll('.label-chip').forEach(function(c) { c.classList.remove('sel'); });
+        poolEl.querySelectorAll('.label-chip').forEach(function(c) {
+          c.classList.remove('sel');
+          c.setAttribute('aria-pressed', 'false');
+        });
         chip.classList.add('sel');
+        chip.setAttribute('aria-pressed', 'true');
         selLabel = { text: l, el: chip };
+        lFb.textContent = 'Now tap the matching part of the mountain.';
+        lFb.style.color = 'var(--text-muted)';
       });
       poolEl.appendChild(chip);
     });
 
     document.querySelectorAll('.zone').forEach(function(zone) {
       zone.addEventListener('click', function() {
-        if (!selLabel) { lFb.textContent = 'Pick a label first!'; lFb.style.color = 'var(--accent)'; return; }
+        if (!selLabel) { lFb.textContent = 'Pick a label first.'; lFb.style.color = 'var(--accent)'; return; }
         if (zone.classList.contains('revealed')) return;
         if (selLabel.text === zone.dataset.label) {
           zone.classList.add('revealed','bounce');
+          zone.disabled = true;
           selLabel.el.classList.add('used');
+          selLabel.el.disabled = true;
+          selLabel.el.setAttribute('aria-pressed', 'false');
           lSc++; lScEl.textContent = lSc;
-          lFb.textContent = '\u2713 ' + selLabel.text + ' — correct!';
+          lFb.textContent = lSc === LABELS.length ? '\u2713 You labelled the whole mountain!' : '\u2713 ' + selLabel.text + ' is in the right place.';
           lFb.style.color = 'var(--success)';
+          selLabel.el.classList.remove('sel');
           selLabel = null;
         } else {
-          lFb.textContent = '\u2717 That zone is not the ' + selLabel.text.toLowerCase() + '. Try again!';
+          lFb.textContent = '\u2717 That is not the ' + selLabel.text.toLowerCase() + '. Try again.';
           lFb.style.color = 'var(--error)';
         }
       });
@@ -135,19 +165,25 @@
     const quizEl=document.getElementById('quiz');
     const fbEl=document.getElementById('fb');
     const scEl=document.getElementById('score');
+    const progressEl=document.getElementById('qProgress');
+    const nextBtn=document.getElementById('nextBtn');
     document.getElementById('maxS').textContent=qs.length;
 
     function renderQ(){
-      if(qi>=qs.length){quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.cssText='color:var(--primary);text-align:center;';p.textContent='Peak performance! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      nextBtn.classList.remove('show');
+      if(qi>=qs.length){progressEl.textContent='All done';quizEl.innerHTML='';const p=document.createElement('p');p.className='q-text';p.style.cssText='color:var(--primary);text-align:center;';p.textContent='Peak performance! '+sc+' / '+qs.length+'!';quizEl.appendChild(p);fbEl.textContent='';return;}
+      progressEl.textContent='Question ' + (qi + 1) + ' of ' + qs.length;
       const q=qs[qi];const opts=shuffle([q.a,...q.d]);quizEl.innerHTML='';fbEl.textContent='';
       const qt=document.createElement('p');qt.className='q-text';qt.textContent=(qi+1)+'. '+q.q;quizEl.appendChild(qt);
       const od=document.createElement('div');od.className='opts';
       opts.forEach(function(o){const btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
         btn.addEventListener('click',function(){od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
         if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
-        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
-        qi++;setTimeout(renderQ,1100);});od.appendChild(btn);});quizEl.appendChild(od);
+        else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 The answer is ' + q.a + '.';fbEl.style.color='var(--error)';}
+        nextBtn.textContent = qi === qs.length - 1 ? 'See score' : 'Next question';
+        nextBtn.classList.add('show');});od.appendChild(btn);});quizEl.appendChild(od);
     }
+    nextBtn.addEventListener('click', function(){qi++;renderQ();});
     renderQ();
   </script>
 </body>

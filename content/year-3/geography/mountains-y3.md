@@ -8,79 +8,81 @@ age_range: "7-8"
 animation: ../../animations/year-3/geography/mountains-y3.html
 ---
 
-# Mountains — Year 3 Geography
+# Mountains
 
-## Big Question
-How are mountains formed, why are they so different from each other, and what is it like to live on a mountain?
+## Today We Will
+- find out how some mountains are made
+- spot the parts of a mountain from valley to summit
+- explain why mountain tops are colder than valleys
 
-## What We're Learning
-In this lesson you will find out how **mountains** are formed, discover the world's most famous **mountain ranges**, and explore how the climate changes as you go higher. You will also learn about the people and animals that call mountains home.
-
-## Key Geography Words
+## Mountain Words To Know
 | Word | What it means |
 |---|---|
-| mountain | a large landform that rises high above the surrounding land — usually over 600 m |
-| mountain range | a line of connected mountains (e.g. the Himalayas, the Alps) |
+| mountain | a very high area of land |
+| mountain range | a chain of mountains joined together |
 | summit | the very top of a mountain |
-| peak | a pointed top of a mountain |
-| fold mountain | a mountain formed when tectonic plates push together and crumple the land upwards |
-| volcanic mountain | a mountain formed by layers of lava and ash from eruptions |
-| altitude | the height above sea level |
-| climate | the usual weather pattern in a place over a long time |
-| vegetation | the plants that grow in a particular area |
-| erosion | when wind, water, or ice wears rock away over time |
+| peak | a pointed mountain top |
+| fold mountain | a mountain made when rocks are pushed up and folded |
+| volcanic mountain | a mountain built by lava and ash from eruptions |
+| altitude | height above sea level |
+| climate | the usual weather in a place |
+| vegetation | the plants that grow in a place |
+| erosion | when wind, water, or ice wear rock away |
 
-## The Geography Explained
+## How Mountains Are Made
+Most mountains take a very long time to form.
 
-### How Are Mountains Formed?
+### Fold Mountains
+When two tectonic plates push towards each other, the land between them crumples and rises up. It is a bit like pushing a rug from both ends. The **Himalayas** and the **Alps** are fold mountains.
 
-**Fold mountains** — When two tectonic plates push towards each other, the rock between them is squeezed and folded upwards, like pushing a tablecloth from both sides. Most of the world's biggest ranges are fold mountains, including the **Himalayas** and the **Alps**.
+### Volcanic Mountains
+Some mountains grow when lava and ash build up after lots of eruptions. **Mount Fuji** in Japan is a famous volcanic mountain.
 
-**Volcanic mountains** — Built up from layers of lava and ash over many eruptions. Mount Fuji in Japan is a famous example.
+### Block Mountains
+Sometimes giant blocks of rock are pushed up along cracks in the Earth's crust. These are called **block mountains**.
 
-**Block mountains** — Formed when huge blocks of rock are pushed up along cracks (faults) in the Earth's crust. The Vosges mountains in France are block mountains.
+## Climbing Up A Mountain
+Imagine walking from the bottom to the top:
 
-### Famous Mountains and Ranges
-| Mountain / Range | Location | Fun fact |
-|---|---|---|
-| Mount Everest | Himalayas, Nepal/China | Tallest mountain on Earth — 8,849 m |
-| Ben Nevis | Scotland, UK | Tallest mountain in the UK — 1,345 m |
-| Snowdon (Yr Wyddfa) | Wales, UK | Tallest mountain in Wales — 1,085 m |
-| The Alps | Europe | Stretch across 8 countries! |
-| The Andes | South America | Longest mountain range in the world — about 7,000 km |
+1. **Valley**: this is the warmest part. People may farm here or build villages.
+2. **Forest zone**: trees and shrubs can still grow.
+3. **Above the treeline**: it is too cold for most trees.
+4. **Summit**: the air is cold, thin, and often snowy.
 
-### Mountain Climate
+As you climb higher, the temperature drops by about **1 °C for every 150 m**. That is why some mountain tops stay snowy even in summer.
 
-As you go higher up a mountain, it gets **colder**, **windier**, and **wetter**:
+## Famous Mountains
+- **Mount Everest** is the tallest mountain on Earth at **8,849 m**.
+- **Ben Nevis** is the tallest mountain in the UK.
+- **Yr Wyddfa (Snowdon)** is the tallest mountain in Wales.
+- **The Andes** in South America are the longest mountain range in the world.
+- **The Alps** stretch across **8 countries** in Europe.
 
-```
-  🏔️ Summit — Snow and ice, very cold, no trees
-  ───────────────────────────
-  🌲 Treeline — Where trees stop growing
-  ───────────────────────────
-  🌳 Forests — Trees and shrubs
-  ───────────────────────────
-  🏘️ Valley — Warmest, farms and villages
-```
+## Mountain Life
+- **Animals** such as mountain goats and snow leopards are built for cold, steep places.
+- **People** in mountain regions may farm on terraces and keep animals like yaks or llamas.
+- **Visitors** come for hiking, skiing, and climbing, so mountain places need careful protection.
 
-Temperature drops about **1 °C for every 150 m** you climb. That is why mountain tops are covered in snow even in summer.
+## Quick Check
+Can you answer these before you press play?
 
-### Life on Mountains
-- **Animals:** Mountain goats, snow leopards, and golden eagles are adapted to the cold, steep terrain.
-- **People:** Many communities in the Himalayas and Andes farm on terraced (stepped) hillsides and keep yaks or llamas.
-- **Tourism:** Skiing, hiking, and climbing bring visitors to mountain areas — but tourism can also damage the environment.
+1. What is the name for the very top of a mountain?
+2. What happens to temperature as you climb higher?
+3. Which mountain range is longer: the Andes or the Alps?
 
-## Quick Quiz
-1. What is the tallest mountain in the world? → *Mount Everest (8,849 m)*
-2. How are fold mountains formed? → *Tectonic plates push together and crumple the land upwards*
-3. What is the summit? → *The very top of a mountain*
-4. Why does it get colder higher up? → *Temperature drops about 1 °C every 150 m of altitude*
-5. What is the longest mountain range in the world? → *The Andes*
+<details>
+<summary>Show the answers</summary>
 
-## Geography in the Real World
-In 1953, Edmund Hillary and Tenzing Norgay became the first people to reach the summit of Everest. Today, climate change is causing mountain glaciers to shrink, affecting water supplies for millions of people. In the UK, you can climb Ben Nevis, Snowdon, or Scafell Pike — the highest peaks in Scotland, Wales, and England.
+1. The very top is called the **summit**.
+2. It gets **colder** as you climb higher.
+3. The **Andes** are longer.
 
-## Learning Checklist
-- [ ] I can explain how fold and volcanic mountains form
-- [ ] I can name major mountain ranges around the world
-- [ ] I can describe how climate changes with altitude
+</details>
+
+## Real World Link
+In 1953, **Tenzing Norgay** and **Edmund Hillary** reached the summit of Everest. Today, geographers also study mountains because melting glaciers can change water supplies for millions of people.
+
+## I Can
+- [ ] name the main parts of a mountain
+- [ ] explain how a fold mountain forms
+- [ ] describe how mountain climate changes with altitude

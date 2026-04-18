@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/VP/GH/VP_Website/Vaibhavpandey_PWS/**)"
+    ]
+  }
+}

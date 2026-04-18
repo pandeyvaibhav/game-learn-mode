@@ -71,21 +71,48 @@ function getTopic(year, subject, slug) {
   return s ? s.topics.find(t => t.slug === slug) : null;
 }
 
+function getRouteCrumbs(route = STATE.route) {
+  const { view, year, subject, slug } = route;
+  const crumbs = [{ label: '🏠 Home', href: '#/' }];
+
+  if (year) {
+    crumbs.push({ label: `🗓️ Year ${year}`, href: `#/year/${year}` });
+  }
+  if (subject) {
+    const subjectLabel = SUBJECT_LABEL[subject] || subject;
+    crumbs.push({ label: `${SUBJECT_EMOJI[subject] || '📚'} ${subjectLabel}`, href: `#/year/${year}/${subject}` });
+  }
+  if (slug) {
+    const topic = getTopic(year, subject, slug);
+    crumbs.push({
+      label: `📘 ${topic ? topic.title : slug}`,
+      href: view === 'play' ? `#/year/${year}/${subject}/${slug}` : null,
+    });
+  }
+  if (view === 'play') {
+    crumbs.push({ label: '🎮 Play', href: null });
+  }
+
+  return crumbs.map((crumb, index) => ({
+    ...crumb,
+    current: index === crumbs.length - 1,
+  }));
+}
+
+function buildRouteNode(item, baseClass) {
+  const className = `${baseClass} ${baseClass}--${item.current ? 'current' : 'link'}`;
+  const node = item.href && !item.current
+    ? el('a', { href: item.href, class: className })
+    : el('span', { class: className, 'aria-current': 'page' });
+  node.textContent = item.label;
+  return node;
+}
+
 // ── Breadcrumb ───────────────────────────────────────────────────────
 function updateBreadcrumb() {
   const nav = document.getElementById('breadcrumb');
   nav.innerHTML = '';
-  const { view, year, subject, slug } = STATE.route;
-
-  const crumbs = [{ label: 'Home', href: '#/' }];
-  if (year)    crumbs.push({ label: `Year ${year}`, href: `#/year/${year}` });
-  if (subject) crumbs.push({ label: SUBJECT_LABEL[subject] || subject, href: `#/year/${year}/${subject}` });
-  if (slug) {
-    const t = getTopic(year, subject, slug);
-    crumbs.push({ label: t ? t.title : slug, href: `#/year/${year}/${subject}/${slug}` });
-  }
-  if (view === 'play') crumbs.push({ label: '🎮 Playing', href: null });
-
+  const crumbs = getRouteCrumbs();
   crumbs.forEach((c, i) => {
     if (i > 0) {
       const sep = document.createElement('span');
@@ -93,15 +120,7 @@ function updateBreadcrumb() {
       sep.textContent = '›';
       nav.appendChild(sep);
     }
-    if (c.href && i < crumbs.length - 1) {
-      const a = el('a', { href: c.href });
-      a.textContent = c.label;
-      nav.appendChild(a);
-    } else {
-      const span = el('span', { 'aria-current': 'page' });
-      span.textContent = c.label;
-      nav.appendChild(span);
-    }
+    nav.appendChild(buildRouteNode(c, 'breadcrumb__pill'));
   });
 }
 
@@ -123,7 +142,7 @@ async function render() {
 
   root.innerHTML = '';
   updateBreadcrumb();
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo({ top: 0, behavior: 'auto' });
 
   const { view, year, subject, slug } = STATE.route;
   let node;
@@ -213,7 +232,7 @@ function renderTopics(year, subject) {
   wrap.appendChild(tag);
 
   wrap.appendChild(text('h1', 'page-title', `Year ${year} ${s.label}`));
-  wrap.appendChild(text('p', 'page-sub', `${s.topics.length} topics · click one to start learning`));
+  wrap.appendChild(text('p', 'page-sub', `${s.topics.length} topics · pick one to start learning`));
 
   const list = el('div', { class: 'topic-list' });
   s.topics.forEach((t, i) => {
@@ -264,7 +283,7 @@ async function renderLesson(year, subject, slug) {
   card.innerHTML = '';
 
   if (!md) {
-    card.appendChild(text('p', '', '⚠️ Lesson content not found. Run the orchestrator to generate it.'));
+    card.appendChild(text('p', '', '⚠️ This lesson is not ready yet.'));
   } else {
     const content = el('div', { class: 'lesson-content' });
     renderMarkdown(stripFrontmatter(md), content);
@@ -305,8 +324,18 @@ function renderPlay(year, subject, slug) {
   back.textContent = 'Back to lesson';
   const title = el('span', { class: 'anim-view__title' });
   title.textContent = topic ? topic.title : slug;
+
+  const trail = el('nav', {
+    class: 'anim-view__nav',
+    'aria-label': 'Game navigation',
+  });
+  getRouteCrumbs().forEach(crumb => {
+    trail.appendChild(buildRouteNode(crumb, 'anim-view__crumb'));
+  });
+
   bar.appendChild(back);
   bar.appendChild(title);
+  bar.appendChild(trail);
 
   const iframe = el('iframe', {
     src: animPath,
@@ -415,7 +444,10 @@ function renderMarkdown(md, container) {
         i++;
       }
       table.appendChild(tbody);
-      container.appendChild(table);
+      const tableWrap = document.createElement('div');
+      tableWrap.className = 'lesson-table-wrap';
+      tableWrap.appendChild(table);
+      container.appendChild(tableWrap);
       continue;
     }
 
