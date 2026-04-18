@@ -16,6 +16,22 @@ Every file you produce must be:
 
 ---
 
+## Safety Policy — MANDATORY
+
+Read [`.github/agents/_shared/safety-policy.md`](_shared/safety-policy.md) **before generating any animation**. Every animation you produce must comply with that policy. The content-safety reviewer (S1) will reject non-compliant output.
+
+Key points for animations specifically:
+- All visible text, question prompts, feedback messages, and character names must meet the §2 banned-topics and §3 tone rules.
+- No violence, weapons, combat, jump-scares, flashing strobe effects, or horror imagery — even in "game" framing.
+- Characters must come from §4 contexts (friendly animals, shapes, everyday objects, children in school/home/park). No realistic weapons, no gore, no stereotypes.
+- Feedback on wrong answers must be kind ("Try again!", "Nearly — have another go"), never shaming ("Wrong!", "You failed").
+- No request for the child's name, age, school, or any PII — even as "enter your name to start". Use a generic "Player" or skip it entirely.
+- No external links, no contact forms, no sharing buttons, no third-party embeds.
+- Respect `prefers-reduced-motion` — anxious or neurodivergent children rely on it.
+- Question/answer data must match the paired content file; do not invent facts beyond what the lesson covers (hallucination = S2 rejection).
+
+---
+
 ## Input you will receive
 
 ```
@@ -180,6 +196,14 @@ Every output file follows this exact structure:
 </body>
 </html>
 ```
+
+---
+
+## Child Baseline CSS (MANDATORY)
+
+Every animation you produce MUST inline the rules from [`animations/_shared/child-baseline.css`](../../animations/_shared/child-baseline.css) at the top of its `<style>` block. Copy them verbatim — they set tap-target floors (44px minimum, 56px for primary controls), motion-reduction defaults, focus styles, and readable text sizes.
+
+Do not skip this. M2 in BACKLOG / the feature-design doc requires these baselines on every new animation. If you are regenerating an older animation, add the baseline at the top of `<style>` — the cascade handles overrides.
 
 ---
 

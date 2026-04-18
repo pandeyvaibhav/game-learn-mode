@@ -78,9 +78,39 @@ output_file: {content_path}
 
 Wait for the agent to confirm the file is written before proceeding.
 
-### 2c — Dispatch Animation Agent
+### 2c — Review gate: Content Safety (S1)
 
-After the content file is written, dispatch `.github/agents/animation-generator.agent.md` with:
+Dispatch `.github/agents/content-safety-reviewer.agent.md` with:
+
+```
+target_file: {content_path}
+subject: {subject}
+year: {year}
+```
+
+Parse the first line of the response:
+- `S1 VERDICT: PASS` → proceed to 2d.
+- `S1 VERDICT: FAIL` → re-dispatch the subject agent (2b) with the S1 findings appended to the prompt as "Revision notes — address these safety findings:". Retry up to **2 times**. On third failure, mark the todo **blocked-safety** and move on.
+- `S1 VERDICT: BLOCKED` → mark the todo **blocked-topic** (policy §11), skip 2d/2e/2f, record in the summary report.
+
+### 2d — Review gate: Factual Accuracy (S2)
+
+Once S1 passes, dispatch `.github/agents/factual-accuracy-reviewer.agent.md` with:
+
+```
+target_file: {content_path}
+subject: {subject}
+year: {year}
+```
+
+Parse the first line:
+- `S2 VERDICT: PASS` → proceed to 2e.
+- `S2 VERDICT: FAIL` → re-dispatch the subject agent with the S2 findings appended as "Revision notes — address these factual findings:". Then **re-run S1 and S2 in order** (a factual rewrite can reintroduce safety risks). Retry up to **2 times**. On third failure, mark the todo **blocked-accuracy** and move on.
+- `S2 VERDICT: BLOCKED` → mark the todo **blocked-topic**, skip 2e/2f.
+
+### 2e — Dispatch Animation Agent
+
+After both S1 and S2 pass, dispatch `.github/agents/animation-generator.agent.md` with:
 
 ```
 year: {year}
@@ -93,9 +123,26 @@ output_file: {animation_path}
 
 Wait for confirmation.
 
-### 2d — Mark todo done
+### 2f — Review gate: Content Safety for animation (S1 again)
 
-Both files confirmed → mark the todo item as done.
+Dispatch `.github/agents/content-safety-reviewer.agent.md` with:
+
+```
+target_file: {animation_path}
+subject: {subject}
+year: {year}
+```
+
+Parse the verdict:
+- `PASS` → mark the todo done.
+- `FAIL` → re-dispatch the animation agent with S1 findings. Retry up to **2 times**. On third failure, mark **blocked-safety-animation** and move on.
+- `BLOCKED` → mark **blocked-topic-animation**.
+
+S2 is not run on animations — factual claims in the animation are drawn from the already-S2-cleared content file.
+
+### 2g — Mark todo done
+
+Content file cleared by S1 + S2, animation cleared by S1 → mark the todo item as done.
 
 ---
 
@@ -131,6 +178,9 @@ Scope: {filter applied or "full curriculum"}
 - Content files written: {N}
 - Animation files written: {N}
 - Skipped (already existed): {N}
+- Safety review (S1) — passes / fails / blocked: {P}/{F}/{B}
+- Factual review (S2) — passes / fails / blocked: {P}/{F}/{B}
+- Topics blocked by reviewers (list by reason): {blocked-safety, blocked-accuracy, blocked-topic}
 - Errors: {list or "none"}
 
 ## Phase 2 — App Build
@@ -178,3 +228,6 @@ If the user provides arguments, filter the working list before the loop:
 3. **No external dependencies** — every generated file must be self-contained vanilla HTML/JS/CSS or plain markdown.
 4. **No npm, no CDNs, no package.json** — zero build tooling.
 5. **Idempotent by default** — skip existing files unless `--force`.
+6. **No content reaches the child without passing S1, and no lesson without passing S2.** A generator confirmation alone is not sufficient — both reviewer verdicts must be recorded.
+7. **Reviewers never edit files.** If a file needs changes, the orchestrator must re-dispatch the original generator with the reviewer's findings.
+8. **Retry cap is 2 per reviewer.** After that, mark the topic blocked and continue — never loop forever, never fall back to publishing a failed file.

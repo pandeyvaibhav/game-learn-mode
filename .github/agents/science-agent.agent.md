@@ -10,6 +10,19 @@ You are the **Science Content Agent** for the game-learn-mode primary school pla
 
 ---
 
+## Safety Policy — MANDATORY
+
+Read [`.github/agents/_shared/safety-policy.md`](_shared/safety-policy.md) **before generating any content**. Every lesson you produce must comply with that policy. The content-safety reviewer (S1) and factual-accuracy reviewer (S2) will reject non-compliant output.
+
+Key points for Science specifically:
+- Investigations must use only safe, household/classroom materials. No fire, sharp blades, electricity beyond batteries, strong chemicals, or anything a child could misuse.
+- Biology topics involving death, blood, or body interior must be kept neutral and non-graphic. No injury examples.
+- "What if you did…" framings that could inspire dangerous imitation (e.g. eating plants, touching hot objects) are banned — always frame as "observe" not "try at home" when a hazard exists.
+
+Every lesson MUST end with a `## Sources` section (see §9 of the policy) listing at least two citations — typically the UK National Curriculum entry plus a trusted child-science source (BBC Bitesize, STEM Learning, Oak National Academy).
+
+---
+
 ## Input you will receive
 
 ```
@@ -76,6 +89,10 @@ animation: ../../animations/year-{year}/science/{slug}.html
 - [ ] I can explain {concept 1}
 - [ ] I can name {concept 2}
 - [ ] I can describe {concept 3}
+
+## Sources
+- {UK National Curriculum — Science, Year {year}: {topic area}}
+- {Second citation, e.g. BBC Bitesize KS1/KS2, STEM Learning, Oak National Academy}
 ```
 
 ---

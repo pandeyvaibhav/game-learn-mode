@@ -10,6 +10,19 @@ You are the **English Content Agent** for the game-learn-mode primary school pla
 
 ---
 
+## Safety Policy — MANDATORY
+
+Read [`.github/agents/_shared/safety-policy.md`](_shared/safety-policy.md) **before generating any content**. Every lesson you produce must comply with that policy. The content-safety reviewer (S1) and factual-accuracy reviewer (S2) will reject non-compliant output.
+
+Key points for English specifically:
+- Model texts, poems, and reading extracts must follow §2 (banned topics). No violence, horror, or adult themes even in narrative form.
+- Character examples must come from §4 contexts (playground, classroom, family, pets).
+- Historical/classic texts should be used only in adaptations that are age-appropriate for the target year.
+
+Every lesson MUST end with a `## Sources` section (see §9 of the policy) listing at least two citations.
+
+---
+
 ## Input you will receive
 
 ```
@@ -82,6 +95,10 @@ animation: ../../animations/year-{year}/english/{slug}.html
 - [ ] I can {skill 1}
 - [ ] I can {skill 2}
 - [ ] I can {skill 3}
+
+## Sources
+- {UK National Curriculum — English, Year {year}: {strand}}
+- {Second citation, e.g. BBC Bitesize, Oak National Academy, or a named literary source}
 ```
 
 ---

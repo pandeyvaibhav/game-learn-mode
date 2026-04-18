@@ -27,14 +27,15 @@ Target user is a **primary-school child using this self-serve on a phone or tabl
 
 Safety gates land first so new content is generated under review; mobile fixes can run in parallel.
 
-1. **S3** — Banned-terms + topic allowlist in subject-agent prompts (fastest to land)
-2. **S1** — Content-safety review agent (age-appropriate / tone / imagery)
-3. **S2** — Factual-accuracy review agent (hallucination / source-citation)
-4. **M1** — Wrap lesson tables for mobile overflow *(parallel)*
-5. **M2** — Enforce 44px touch targets + 16px text baseline *(parallel)*
-6. **C2** — Fill Year 1/2/4/5/6 lesson content *(once safety gates live)*
+1. ~~**S3** — Banned-terms + topic allowlist in subject-agent prompts~~ ✅ done 2026-04-18
+2. ~~**S1** — Content-safety review agent~~ ✅ done 2026-04-18
+3. ~~**S2** — Factual-accuracy review agent~~ ✅ done 2026-04-18
+4. ~~**M1** — Wrap lesson tables for mobile overflow~~ ✅ done 2026-04-18
+5. ~~**M2** — Enforce 44px touch targets + 16px text baseline~~ ✅ done 2026-04-18 (new animations only; M6 retrofits existing 20)
+6. **C2** — Fill Year 1/2/4/5/6 lesson content *(now unblocked — runs under S1/S2 gates)*
 7. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
 8. **P3** — Progress tracking (localStorage first)
+9. **M6** — Retrofit existing animations to child-baseline.css
 
 ---
 
@@ -44,9 +45,9 @@ Child-facing product with LLM-generated content — these controls are non-negot
 
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| S3 | **Banned-terms + topic allowlist** enforced at generation time in subject-agent prompts: no violence, adult themes, external brands; year-appropriate vocabulary list | P0 | todo | Cheapest gate to add — pure prompt-level. Lands in `.github/agents/<subject>.agent.md`. |
-| S1 | **Content-safety review agent** — post-generation pass on every lesson + animation for age-appropriate language, tone, imagery, examples. Blocks publish on fail | P0 | todo | New agent in `.github/agents/content-safety.agent.md`. |
-| S2 | **Factual-accuracy review agent** — independent LLM pass against UK National Curriculum / trusted sources; flags unsupported claims (hallucinations) per lesson | P0 | todo | Pair with source-citations in generated markdown. |
+| S3 | **Banned-terms + topic allowlist** enforced at generation time in subject-agent prompts: no violence, adult themes, external brands; year-appropriate vocabulary list | P0 | done | Shared policy at [.github/agents/_shared/safety-policy.md](.github/agents/_shared/safety-policy.md); wired into all 6 subject agents + animation-generator. |
+| S1 | **Content-safety review agent** — post-generation pass on every lesson + animation for age-appropriate language, tone, imagery, examples. Blocks publish on fail | P0 | done | Reviewer lives at [.github/agents/content-safety-reviewer.agent.md](.github/agents/content-safety-reviewer.agent.md); orchestrator blocks advance on FAIL. |
+| S2 | **Factual-accuracy review agent** — independent LLM pass against UK National Curriculum / trusted sources; flags unsupported claims (hallucinations) per lesson | P0 | done | Reviewer at [.github/agents/factual-accuracy-reviewer.agent.md](.github/agents/factual-accuracy-reviewer.agent.md); enforces `## Sources` section (policy §9). |
 | S4 | External-link policy — lessons/animations cannot link off-site; if ever needed, pass through an allowlist | P1 | todo | Enforced in content validator (X2). |
 | S5 | No-PII rule — no personal data in content or UI; localStorage keys namespaced + documented | P1 | todo | Matters once P3 (progress tracking) lands. |
 | S6 | Human review checkpoint before a year's content is marked "live" in curriculum.json | P1 | todo | First release per year; may relax later with agent confidence scores. |
@@ -58,11 +59,12 @@ Child-facing product with LLM-generated content — these controls are non-negot
 
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| M1 | Wrap all lesson tables in a horizontal-scroll container so phones don't overflow | P0 | todo | Source: [doc/codex_review.md](doc/codex_review.md). Pattern already in `.lesson-table-wrap` — apply to all renderers. |
-| M2 | Enforce child-first touch-target baseline: 44px+ taps, 16px+ body text across shell and animations | P0 | todo | Tiny buttons in [statistics-bar-charts.html](animations/year-3/maths/statistics-bar-charts.html) (28×28), small labels in [app/styles.css](app/styles.css). |
+| M1 | Wrap all lesson tables in a horizontal-scroll container so phones don't overflow | P0 | done | `.lesson-table-wrap` applied in [app/app.js](app/app.js) renderer + responsive min-widths in [app/styles.css](app/styles.css). |
+| M2 | Enforce child-first touch-target baseline: 44px+ taps, 16px+ body text across shell and animations | P0 | done | Shared baseline [animations/_shared/child-baseline.css](animations/_shared/child-baseline.css); app shell breadcrumb + anim bar raised to `--tap-size` (44px); animation-generator inlines the baseline. Existing 20 animations still need an audit pass — tracked as M6. |
 | M3 | Replace clickable `<div>`s with real `<button>` controls in animations (keyboard + switch access) | P1 | todo | Examples: mountain zones, word tiles, phrase sorters. |
 | M4 | Stop truncating topic titles/concepts with ellipsis on small screens | P1 | todo | `.topic-item` styles in [app/styles.css](app/styles.css). |
 | M5 | Fix home grid to stack cleanly to 2 columns on small phones (not forced 3) | P2 | todo | Single width breakpoint currently hard-codes 3 cols. |
+| M6 | Retrofit existing 20 animations to the [child-baseline.css](animations/_shared/child-baseline.css): tap sizes, focus rings, reduced-motion, aria-live | P1 | todo | Follow-up from M2. New animations already pick it up via the generator. Regenerate per-file or patch with a codemod. |
 
 ## Learning content
 
