@@ -3,6 +3,97 @@ year: 3
 subject: english
 topic: Narrative Writing
 slug: narrative-writing-y3
+key_concepts: [story openings, climax, resolution]
+age_range: "7-8"
+animation: ../../animations/year-3/english/narrative-writing-y3.html
+---
+
+# Narrative Writing — Year 3 English
+
+## What We're Learning
+You are going to learn how great stories are built. You will explore the four parts of a narrative — **opening**, **build-up**, **climax** and **resolution** — and practise a powerful trick called **show don't tell**.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Narrative | A story, written or spoken. |
+| Opening | The beginning — introduces character and setting. |
+| Build-up | Tension grows and something starts to happen. |
+| Climax | The most exciting or dramatic moment. |
+| Resolution | The ending — the problem is solved. |
+| Show don't tell | Describe feelings through actions, not just naming them. |
+
+## Let's Learn Together
+
+### The Four Parts of a Story
+
+Every story follows a shape — like a mountain:
+
+```
+                  ★ CLIMAX
+                 / \
+    BUILD-UP   /   \   RESOLUTION
+              /     \
+  OPENING ___/       \___  THE END
+```
+
+1. **Opening** — Set the scene. Who? Where? When?
+2. **Build-up** — Something makes the reader curious or worried.
+3. **Climax** — The biggest, most exciting moment!
+4. **Resolution** — The problem is solved and the story wraps up.
+
+### Show Don't Tell
+
+**Telling:** "Aisha was nervous."
+
+**Showing:** "Aisha's hands trembled as she gripped her bag. She took a deep breath and stared at the classroom door."
+
+| Telling | Showing |
+|---|---|
+| He was excited. | His eyes grew wide and he punched the air. |
+| It was cold. | Frost clung to the window and her breath made clouds. |
+| She was scared. | Her heart thumped so loudly she was sure everyone heard. |
+
+### Powerful Story Openers
+
+- **Action:** The door slammed and footsteps echoed down the corridor.
+- **Dialogue:** "Don't open that box!" whispered Gran.
+- **Question:** Have you ever found something you wished you hadn't?
+- **Setting:** Mist rolled across the lake as the sun began to set.
+
+## Spot It!
+
+Read this opening and find the four parts:
+
+> The old lighthouse stood alone on the cliff. One stormy night, Kai noticed a strange light flickering inside. He crept closer, heart pounding, and pushed open the creaking door. Inside, a golden compass spun on its own. Kai grabbed it — and the storm stopped.
+
+<details>
+<summary>Check your answers</summary>
+
+- **Opening:** The old lighthouse stood alone on the cliff.
+- **Build-up:** Kai noticed a strange light and crept closer.
+- **Climax:** A golden compass spun on its own.
+- **Resolution:** He grabbed it and the storm stopped.
+
+</details>
+
+## Your Turn — Write It!
+
+Write a short narrative (8–12 sentences) using this plan:
+- **Character:** A child who finds a mysterious key
+- **Setting:** A dusty attic
+- Use at least one "show don't tell" sentence
+- Include all four story parts
+
+## Learning Checklist
+- [ ] I can plan a story with opening, build-up, climax and resolution
+- [ ] I can use "show don't tell" to bring writing alive
+- [ ] I can choose an exciting story opener
+---
+year: 3
+subject: english
+topic: Narrative Writing
+slug: narrative-writing-y3
 key_concepts: [Story openings, build-up, climax, resolution, show don't tell]
 age_range: "7-8"
 animation: ../../animations/year-3/english/narrative-writing-y3.html

@@ -3,6 +3,96 @@ year: 3
 subject: maths
 topic: Fractions
 slug: fractions-y3
+key_concepts: [unit fractions, non-unit fractions, adding fractions]
+age_range: "7-8"
+animation: ../../animations/year-3/maths/fractions-y3.html
+---
+
+# Fractions — Year 3 Maths
+
+## What We're Learning
+You are going to explore fractions — what they are and how they work. You will learn about unit fractions (like ½ and ¼) and non-unit fractions (like ¾), and how to add fractions with the same denominator.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Fraction | A part of a whole, written with a top and bottom number. |
+| Numerator | The top number — how many parts you have. |
+| Denominator | The bottom number — how many equal parts the whole is split into. |
+| Unit fraction | A fraction with 1 on top, like ⅓ or ¼. |
+| Non-unit fraction | A fraction with more than 1 on top, like ⅔ or ¾. |
+| Equivalent | Fractions that look different but show the same amount, like ½ and 2/4. |
+
+## Let's Explore
+
+A fraction describes **equal parts** of a whole. Imagine a pizza cut into 4 slices. Each slice is ¼.
+
+### Example 1 — Naming fractions of a shape
+
+A rectangle split into 5 equal parts with 3 shaded:
+
+```
+|█████|█████|█████|     |     |
+```
+
+3 out of 5 parts are shaded → **3/5** (a non-unit fraction).
+
+### Example 2 — Fraction of a quantity
+
+What is ¼ of 20? Divide by 4: 20 ÷ 4 = **5**
+
+What is ¾ of 20? That is 3 × 5 = **15**
+
+### Example 3 — Adding fractions
+
+2/6 + 3/6 = ? Same denominator, so add numerators:
+
+```
+  2     3     5
+ --- + --- = ---
+  6     6     6
+```
+
+### Example 4 — Fractions on a number line
+
+```
+0---------¼---------½---------¾---------1
+```
+
+Each jump is one quarter. ½ is the same as 2/4.
+
+## Try It Yourself
+
+1. What fraction is shaded? `|█████|     |█████|     |`
+2. What is ⅓ of 12?
+3. What is ¾ of 8?
+4. Work out 1/5 + 3/5.
+5. Order from smallest to largest: ¾, ¼, ½
+
+<details>
+<summary>Check your answers</summary>
+
+1. 2/4 or ½
+2. 4
+3. 6
+4. 4/5
+5. ¼, ½, ¾
+
+</details>
+
+## Did You Know? 🧮
+Ancient Egyptians almost always used unit fractions. Instead of ¾ they would write ½ + ¼. They had a special symbol called the Eye of Horus for different unit fractions!
+
+## Learning Checklist
+- [ ] I can name the numerator and denominator
+- [ ] I can tell unit fractions from non-unit fractions
+- [ ] I can find a fraction of a quantity
+- [ ] I can add fractions with the same denominator
+---
+year: 3
+subject: maths
+topic: Fractions
+slug: fractions-y3
 key_concepts: [unit fractions, non-unit fractions, adding fractions same denominator, subtracting fractions same denominator]
 age_range: "7-8"
 animation: ../../animations/year-3/maths/fractions-y3.html

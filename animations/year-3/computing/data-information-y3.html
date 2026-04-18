@@ -1,6 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data &amp; Information — Quiz Game</title>
+<style>
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px;font-family:system-ui,-apple-system,sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-size:var(--child-font-base);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;}
+  h1{font-size:1.5rem;margin-bottom:.5rem;text-align:center;}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;}
+  .score-bar{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-weight:600;}.score-bar span{padding:.4rem .8rem;background:var(--surface);border-radius:var(--radius);}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:560px;text-align:center;margin-bottom:1rem;}
+  .q-text{font-size:1.1rem;margin-bottom:1.2rem;line-height:1.5;}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+  .options button{min-height:var(--tap-primary);font-size:1rem;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);cursor:pointer;transition:.15s;font-family:inherit;padding:.5rem;}
+  .options button:hover,.options button:focus-visible{border-color:var(--primary);outline:none;}
+  .options button.correct{border-color:var(--success);background:#166534;}.options button.wrong{border-color:var(--error);background:#7f1d1d;}
+  .options button:disabled{cursor:default;opacity:.85;}.feedback{min-height:2rem;margin-top:1rem;font-weight:600;}
+  .next-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;cursor:pointer;font-family:inherit;display:none;}.next-btn:hover{filter:brightness(1.15);}
+  .result{text-align:center;}.result h2{font-size:1.8rem;margin-bottom:.5rem;}.result .star{font-size:3rem;}
+  .restart-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;cursor:pointer;font-weight:600;font-family:inherit;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<h1>Data &amp; Information</h1>
+<p class="subtitle">Year 3 Computing — Quiz Game</p>
+<div class="score-bar"><span id="scoreEl">Score: 0</span><span id="qNum">1 / 10</span></div>
+<div class="qa" id="questionArea">
+  <p class="q-text" id="qText"></p>
+  <div class="options" id="opts"></div>
+  <p class="feedback" id="feedback"></p>
+  <button class="next-btn" id="nextBtn">Next →</button>
+</div>
+<div class="result" id="result" style="display:none"></div>
+<script>
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  const qs=[
+    {text:'What is data?',answer:'Raw facts and numbers',options:['Raw facts and numbers','A finished report','A type of computer','A picture']},
+    {text:'What is information?',answer:'Data that has been organised and given meaning',options:['Data that has been organised and given meaning','Random numbers','A type of software','An empty table']},
+    {text:'Which is an example of data?',answer:'25, 30, 18, 22',options:['25, 30, 18, 22','The average temperature is 24°C','A weather report','A pie chart']},
+    {text:'A bar chart turns data into…',answer:'Information you can understand',options:['Information you can understand','More data','A program','A sequence']},
+    {text:'What tool can you use to organise data in a table?',answer:'Spreadsheet',options:['Spreadsheet','Paint program','Web browser','Calculator']},
+    {text:'What is a database?',answer:'An organised collection of data',options:['An organised collection of data','A single number','A type of chart','A computer game']},
+    {text:'You survey your class about favourite pets. The numbers you collect are…',answer:'Data',options:['Data','Information','A report','A graph']},
+    {text:'When you make a chart from the pet survey numbers, it becomes…',answer:'Information',options:['Information','More data','A sequence','A variable']},
+    {text:'Which would help you spot patterns in data?',answer:'A graph or chart',options:['A graph or chart','Writing it in a story','Deleting it','Hiding it']},
+    {text:'Why is it important to collect data accurately?',answer:'Wrong data leads to wrong conclusions',options:['Wrong data leads to wrong conclusions','It doesn\'t matter','Computers fix all mistakes','Data is always correct']},
+  ];
+  shuffle(qs);
+  let idx=0,score=0;
+  const qText=document.getElementById('qText'),opts=document.getElementById('opts'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),scoreEl=document.getElementById('scoreEl'),qNum=document.getElementById('qNum'),questionArea=document.getElementById('questionArea'),resultDiv=document.getElementById('result');
+  function show(){if(idx>=qs.length){end();return;}const q=qs[idx];qText.textContent=q.text;opts.innerHTML='';feedback.textContent='';nextBtn.style.display='none';qNum.textContent=`${idx+1} / ${qs.length}`;let done=false;
+    shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.textContent=o;b.addEventListener('click',()=>{if(done)return;done=true;opts.querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.textContent===q.answer)btn.classList.add('correct');});if(o===q.answer){score++;scoreEl.textContent='Score: '+score;feedback.textContent='✓ Correct!';feedback.style.color='var(--success)';}else{b.classList.add('wrong');feedback.textContent='✗ Answer: '+q.answer;feedback.style.color='var(--error)';}nextBtn.style.display='inline-block';});opts.appendChild(b);});}
+  nextBtn.addEventListener('click',()=>{idx++;show();});
+  function end(){questionArea.style.display='none';const pct=Math.round(score/qs.length*100);let s=pct>=90?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐';resultDiv.style.display='block';resultDiv.innerHTML=`<div class="star">${s}</div><h2>${score} / ${qs.length}</h2><p>${pct>=90?'Data wizard!':pct>=60?'Well organised!':'Keep collecting!'}</p><button class="restart-btn" onclick="location.reload()">Play Again</button>`;}
+  show();
+})();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data and Information — Year 3 Computing | Game Learn</title>

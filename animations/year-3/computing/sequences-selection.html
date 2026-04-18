@@ -1,6 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sequences &amp; Selection — Quiz Game</title>
+<style>
+  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px;font-family:system-ui,-apple-system,sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-size:var(--child-font-base);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;}
+  h1{font-size:1.5rem;margin-bottom:.5rem;text-align:center;}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;}
+  .score-bar{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-weight:600;}.score-bar span{padding:.4rem .8rem;background:var(--surface);border-radius:var(--radius);}
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:560px;text-align:center;margin-bottom:1rem;}
+  .q-text{font-size:1.1rem;margin-bottom:1.2rem;line-height:1.5;}
+  .code-block{background:var(--surface2);padding:1rem;border-radius:8px;margin-bottom:1rem;text-align:left;font-family:monospace;line-height:1.6;font-size:.95rem;}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+  .options button{min-height:var(--tap-primary);font-size:1rem;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);cursor:pointer;transition:.15s;font-family:inherit;padding:.5rem;}
+  .options button:hover,.options button:focus-visible{border-color:var(--primary);outline:none;}
+  .options button.correct{border-color:var(--success);background:#166534;}.options button.wrong{border-color:var(--error);background:#7f1d1d;}
+  .options button:disabled{cursor:default;opacity:.85;}.feedback{min-height:2rem;margin-top:1rem;font-weight:600;}
+  .next-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;cursor:pointer;font-family:inherit;display:none;}.next-btn:hover{filter:brightness(1.15);}
+  .result{text-align:center;}.result h2{font-size:1.8rem;margin-bottom:.5rem;}.result .star{font-size:3rem;}
+  .restart-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;cursor:pointer;font-weight:600;font-family:inherit;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<h1>Sequences &amp; Selection</h1>
+<p class="subtitle">Year 3 Computing — Quiz Game</p>
+<div class="score-bar"><span id="scoreEl">Score: 0</span><span id="qNum">1 / 10</span></div>
+<div class="qa" id="questionArea">
+  <div class="code-block" id="codeBlock"></div>
+  <p class="q-text" id="qText"></p>
+  <div class="options" id="opts"></div>
+  <p class="feedback" id="feedback"></p>
+  <button class="next-btn" id="nextBtn">Next →</button>
+</div>
+<div class="result" id="result" style="display:none"></div>
+<script>
+(function(){
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  const qs=[
+    {code:'',text:'What is a sequence in computing?',answer:'A set of instructions in order',options:['A set of instructions in order','A single instruction','A random list','A picture']},
+    {code:'',text:'What does selection mean in programming?',answer:'Making a choice based on a condition',options:['Making a choice based on a condition','Running steps in order','Repeating something','Deleting code']},
+    {code:'IF it is raining THEN take an umbrella',text:'What type of programming concept is this?',answer:'Selection',options:['Selection','Sequence','Repetition','Input']},
+    {code:'Step 1: Get bread\nStep 2: Put in toaster\nStep 3: Wait\nStep 4: Butter toast',text:'What type of programming concept is this?',answer:'Sequence',options:['Sequence','Selection','Loop','Variable']},
+    {code:'',text:'What is a bug in a program?',answer:'A mistake or error',options:['A mistake or error','A small insect','A feature','A type of loop']},
+    {code:'IF score > 10 THEN say "Well done!"',text:'When will the computer say "Well done!"?',answer:'When score is more than 10',options:['When score is more than 10','Always','When score is exactly 10','Never']},
+    {code:'',text:'What does "debug" mean?',answer:'Finding and fixing errors',options:['Finding and fixing errors','Adding more bugs','Deleting the whole program','Making it run faster']},
+    {code:'',text:'In Scratch, which block type is used for selection?',answer:'If…then',options:['If…then','Move 10 steps','Repeat 5','Say hello']},
+    {code:'1. Open book\n2. Read page\n3. Turn page\n4. Close book',text:'If step 3 and step 4 were swapped, what would happen?',answer:'You would close the book before turning the page',options:['You would close the book before turning the page','Nothing different','The book would disappear','It would work perfectly']},
+    {code:'',text:'Why is the order of instructions important?',answer:'Wrong order gives wrong results',options:['Wrong order gives wrong results','Computers don\'t care about order','It only matters for maths','Order is not important']},
+  ];
+  shuffle(qs);
+  let idx=0,score=0;
+  const codeBlock=document.getElementById('codeBlock'),qText=document.getElementById('qText'),opts=document.getElementById('opts'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),scoreEl=document.getElementById('scoreEl'),qNum=document.getElementById('qNum'),questionArea=document.getElementById('questionArea'),resultDiv=document.getElementById('result');
+  function show(){if(idx>=qs.length){end();return;}const q=qs[idx];codeBlock.textContent=q.code;codeBlock.style.display=q.code?'block':'none';qText.textContent=q.text;opts.innerHTML='';feedback.textContent='';nextBtn.style.display='none';qNum.textContent=`${idx+1} / ${qs.length}`;let done=false;
+    shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.textContent=o;b.addEventListener('click',()=>{if(done)return;done=true;opts.querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.textContent===q.answer)btn.classList.add('correct');});if(o===q.answer){score++;scoreEl.textContent='Score: '+score;feedback.textContent='✓ Correct!';feedback.style.color='var(--success)';}else{b.classList.add('wrong');feedback.textContent='✗ Answer: '+q.answer;feedback.style.color='var(--error)';}nextBtn.style.display='inline-block';});opts.appendChild(b);});}
+  nextBtn.addEventListener('click',()=>{idx++;show();});
+  function end(){questionArea.style.display='none';const pct=Math.round(score/qs.length*100);let s=pct>=90?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐';resultDiv.style.display='block';resultDiv.innerHTML=`<div class="star">${s}</div><h2>${score} / ${qs.length}</h2><p>${pct>=90?'Code master!':pct>=60?'Good debugging!':'Keep coding!'}</p><button class="restart-btn" onclick="location.reload()">Play Again</button>`;}
+  show();
+})();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sequences and Selection — Year 3 Computing | Game Learn</title>

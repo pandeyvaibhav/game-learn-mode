@@ -3,6 +3,104 @@ year: 3
 subject: science
 topic: Forces and Magnets
 slug: forces-magnets
+key_concepts: [push, pull, friction, magnetic materials]
+age_range: "7-8"
+animation: ../../animations/year-3/science/forces-magnets.html
+---
+
+# Forces and Magnets — Year 3 Science
+
+## What We're Learning
+You are going to find out what **forces** are and how they make things move, stop or change direction. You will investigate **friction** and discover which materials are **magnetic**.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Force | A push or pull that can make something move, stop or change shape. |
+| Friction | A force between two surfaces that slows things down. |
+| Magnet | An object that can attract (pull) certain metals. |
+| Magnetic | A material that is attracted to a magnet (iron, steel, nickel, cobalt). |
+| Attract | Pull towards. |
+| Repel | Push away. |
+
+## Let's Explore
+
+### Pushes and Pulls
+
+Everything that moves has been pushed or pulled:
+
+| Action | Push or Pull? |
+|---|---|
+| Kicking a football | Push |
+| Opening a drawer | Pull |
+| Pedalling a bike | Push |
+| Pulling a sledge | Pull |
+
+### Friction
+
+Friction happens when two surfaces rub together. It **slows things down**.
+
+```
+    🏎️ ───────▸  (smooth road = less friction = fast)
+    🏎️ ─────▸    (rough road = more friction = slower)
+    🏎️ ──▸       (gravel = most friction = slowest)
+```
+
+- Smooth surfaces have **less** friction.
+- Rough surfaces have **more** friction.
+
+### Magnets
+
+Magnets have a **north pole** and a **south pole**.
+
+- **Opposite poles attract:** N ←→ S (pull together)
+- **Same poles repel:** N ↔ N or S ↔ S (push apart)
+
+### Magnetic or Not?
+
+| Material | Magnetic? |
+|---|---|
+| Iron nail | ✅ Yes |
+| Steel paperclip | ✅ Yes |
+| Wooden pencil | ❌ No |
+| Plastic ruler | ❌ No |
+| Aluminium foil | ❌ No |
+| Nickel coin | ✅ Yes |
+
+**Key fact:** Not all metals are magnetic. Aluminium, copper and gold are metals but they are **not** magnetic.
+
+## Try It Yourself
+
+1. Name two forces.
+2. What does friction do to a moving object?
+3. Would a magnet pick up a copper coin?
+4. What happens when two north poles are brought together?
+5. Why do football boots have studs?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Push and pull (also accept friction, gravity, magnetic force)
+2. Friction slows it down.
+3. No — copper is not magnetic.
+4. They repel (push apart).
+5. Studs increase friction so players do not slip on grass.
+
+</details>
+
+## Did You Know? 🔬
+The Earth itself is a giant magnet! That is why a compass needle always points north — it is attracted to Earth's magnetic north pole.
+
+## Learning Checklist
+- [ ] I can describe forces as pushes and pulls
+- [ ] I can explain what friction does
+- [ ] I can identify magnetic and non-magnetic materials
+- [ ] I can predict whether magnets attract or repel
+---
+year: 3
+subject: science
+topic: Forces and Magnets
+slug: forces-magnets
 key_concepts: [push, pull, friction, magnetic attraction, magnetic repulsion]
 age_range: "7-8"
 animation: ../../animations/year-3/science/forces-magnets.html

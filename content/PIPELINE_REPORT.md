@@ -21,8 +21,8 @@ Scope: year=3 --force --content-only
 ## How to run the app
 ```
 cd c:\VP\GH\game-learn-mode
-python -m http.server 8080
-open http://localhost:8080/app/
+python -m http.server 3000
+open http://localhost:3000/app/
 ```
 
 ## Year 3 File Tree (19 topics)

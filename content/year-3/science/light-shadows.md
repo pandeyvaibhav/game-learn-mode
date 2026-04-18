@@ -3,6 +3,96 @@ year: 3
 subject: science
 topic: Light and Shadows
 slug: light-shadows
+key_concepts: [light sources, reflection, shadow formation]
+age_range: "7-8"
+animation: ../../animations/year-3/science/light-shadows.html
+---
+
+# Light and Shadows — Year 3 Science
+
+## What We're Learning
+You are going to explore how light works. You will learn about **light sources**, how **shadows** are made, and why **reflections** happen. You will also find out why the Sun can be dangerous and how to protect your eyes.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Light source | Something that makes its own light (the Sun, a torch, a candle). |
+| Shadow | A dark shape made when an object blocks light. |
+| Opaque | A material that blocks all light — makes a strong shadow. |
+| Translucent | A material that lets some light through — makes a faint shadow. |
+| Transparent | A material that lets all light through — makes no shadow. |
+| Reflect | When light bounces off a surface. |
+
+## Let's Explore
+
+### Light Sources vs Reflectors
+
+Light sources **make** their own light. Reflectors just **bounce** light from somewhere else.
+
+| Light source ✅ | NOT a light source ❌ |
+|---|---|
+| Sun | Moon (reflects sunlight) |
+| Light bulb | Mirror (reflects light) |
+| Candle flame | Cat's eyes (reflect car lights) |
+
+### How Shadows Form
+
+A shadow appears when an **opaque** object blocks light:
+
+```
+  ☀️ Light ───▸ 🧍 Object ───▸ ██ Shadow
+```
+
+- Move the object **closer** to the light → shadow gets **bigger**
+- Move the object **further** from the light → shadow gets **smaller**
+
+### Testing Materials
+
+| Material | Type | Shadow? |
+|---|---|---|
+| Cardboard | Opaque | Yes — dark shadow |
+| Tissue paper | Translucent | Yes — faint shadow |
+| Clear glass | Transparent | No shadow |
+
+### Reflections
+
+Light bounces off shiny, smooth surfaces — that is how mirrors work. The shinier the surface, the better the reflection.
+
+### Stay Safe! ⚠️
+**Never look directly at the Sun.** It is so bright it can damage your eyes permanently.
+
+## Try It Yourself
+
+1. Is the Moon a light source? Why or why not?
+2. What type of material makes no shadow?
+3. What happens to a shadow when you move the object closer to the light?
+4. Name two things in your classroom that are opaque.
+5. Why can you see yourself in a mirror?
+
+<details>
+<summary>Check your answers</summary>
+
+1. No — the Moon reflects light from the Sun.
+2. Transparent materials.
+3. The shadow gets bigger.
+4. Any two opaque objects — e.g. a book and a chair.
+5. Because light reflects (bounces) off the mirror's shiny surface back to your eyes.
+
+</details>
+
+## Did You Know? 🔬
+In space there is no air to scatter light, so the sky looks black even when the Sun is shining. On Earth, the sky looks blue because tiny gas molecules scatter blue light in all directions!
+
+## Learning Checklist
+- [ ] I can tell the difference between a light source and a reflector
+- [ ] I can explain how shadows form
+- [ ] I can describe opaque, translucent and transparent materials
+- [ ] I know that looking directly at the Sun is dangerous
+---
+year: 3
+subject: science
+topic: Light and Shadows
+slug: light-shadows
 key_concepts: [light sources, reflections, shadow formation, sundials]
 age_range: "7-8"
 animation: ../../animations/year-3/science/light-shadows.html

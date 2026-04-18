@@ -3,6 +3,94 @@ year: 3
 subject: history
 topic: Stone Age to Iron Age
 slug: stone-age-iron-age
+key_concepts: [chronology, Stone Age, Bronze Age, Iron Age]
+age_range: "7-8"
+animation: ../../animations/year-3/history/stone-age-iron-age.html
+---
+
+# Stone Age to Iron Age — Year 3 History
+
+## What We're Learning
+You are going to travel back thousands of years to find out how early people in Britain lived. You will explore three periods — the **Stone Age**, the **Bronze Age** and the **Iron Age** — and see how tools, homes and ways of life changed over time.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Prehistory | The time before people could write things down. |
+| Hunter-gatherer | A person who hunts animals and collects wild plants for food. |
+| Neolithic | The "New Stone Age" when people began farming. |
+| Bronze | A metal made by mixing copper and tin. |
+| Iron | A strong metal used to make tools and weapons in the Iron Age. |
+| Settlement | A place where a group of people lived together. |
+| Hillfort | A settlement on a hill, protected by ditches and walls (Iron Age). |
+
+## Let's Explore
+
+### Timeline
+
+```
+2.5 million years ago                                          43 AD
+ |                                                               |
+ |  STONE AGE          BRONZE AGE      IRON AGE                 |
+ |  (to ~2500 BC)      (~2500–800 BC)  (~800 BC–43 AD)          |
+ |════════════════════|═══════════════|═══════════════|▸ Romans  |
+```
+
+### Stone Age (up to about 2500 BC)
+
+- **Early Stone Age** — people were **hunter-gatherers**. They moved from place to place following animals.
+- They used tools made from **flint** (a hard stone).
+- **Skara Brae** in Orkney is a famous Stone Age village — it had stone beds and shelves!
+- **Neolithic** people began **farming** — growing crops and keeping animals. They built permanent homes.
+- They built **Stonehenge** — enormous stones arranged in a circle, possibly for ceremonies.
+
+### Bronze Age (about 2500–800 BC)
+
+- People discovered how to mix copper and tin to make **bronze** — harder than stone.
+- Bronze was used for axes, daggers and jewellery.
+- **Trade** grew — people swapped goods across long distances.
+- Round barrows (burial mounds) were built for important people.
+
+### Iron Age (about 800 BC–43 AD)
+
+- People learned to make tools from **iron** — even stronger than bronze.
+- They lived in **hillforts** — protected villages on hilltops.
+- Farming improved: iron ploughs, better crops.
+- **Celtic** art and culture flourished — beautiful shields and mirrors.
+- Ended when the **Romans invaded** Britain in 43 AD.
+
+## Try It Yourself
+
+1. Put these in order, earliest first: Bronze Age, Iron Age, Stone Age.
+2. What did hunter-gatherers eat?
+3. Why was bronze better than stone for tools?
+4. What is a hillfort?
+5. What event ended the Iron Age in Britain?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Stone Age, Bronze Age, Iron Age
+2. Wild animals they hunted and plants they gathered
+3. Bronze is harder and can be shaped by melting — you can make sharper, more useful tools.
+4. A settlement built on a hill and protected by ditches and walls.
+5. The Roman invasion in 43 AD.
+
+</details>
+
+## Did You Know? 📜
+Stonehenge is about 5,000 years old. Some of its stones weigh as much as 4 elephants and were dragged from over 200 miles away in Wales!
+
+## Learning Checklist
+- [ ] I can name the three main periods of British prehistory in order
+- [ ] I can describe how people lived in the Stone Age
+- [ ] I can explain why bronze and then iron were important discoveries
+- [ ] I can describe features of Iron Age life like hillforts
+---
+year: 3
+subject: history
+topic: Stone Age to Iron Age
+slug: stone-age-iron-age
 key_concepts: [prehistoric Britain, Stonehenge, tools, farming, Celts]
 age_range: "7-8"
 animation: ../../animations/year-3/history/stone-age-iron-age.html

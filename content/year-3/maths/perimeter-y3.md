@@ -3,6 +3,108 @@ year: 3
 subject: maths
 topic: Perimeter
 slug: perimeter-y3
+key_concepts: [measuring perimeter, 2D shapes]
+age_range: "7-8"
+animation: ../../animations/year-3/maths/perimeter-y3.html
+---
+
+# Perimeter — Year 3 Maths
+
+## What We're Learning
+You are going to learn what perimeter means and how to measure it. Perimeter is the total distance around the outside of a 2D shape. You will find perimeters of rectangles, squares and triangles.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Perimeter | The total distance around the outside edge of a shape. |
+| 2D shape | A flat shape like a rectangle, triangle or square. |
+| Rectangle | A shape with 4 sides and 4 right angles. Opposite sides are equal. |
+| Square | A rectangle where all 4 sides are the same. |
+| Centimetres (cm) | A unit for short lengths — your finger is about 1 cm wide. |
+| Metres (m) | A unit for longer lengths — a door is about 2 m tall. |
+
+## Let's Explore
+
+Imagine an ant walking all the way around a book and back to where it started. That distance is the **perimeter**.
+
+### Example 1 — Rectangle
+
+```
+      6 cm
+  +-----------+
+  |           |
+3 cm         3 cm
+  |           |
+  +-----------+
+      6 cm
+```
+
+6 + 3 + 6 + 3 = **18 cm**
+
+### Example 2 — Square
+
+Each side is 5 cm:
+
+```
+     5 cm
+  +-------+
+  |       |
+5 cm     5 cm
+  |       |
+  +-------+
+     5 cm
+```
+
+5 + 5 + 5 + 5 = **20 cm** (or 4 × 5 = 20 cm)
+
+### Example 3 — Triangle
+
+```
+       /\
+  4 cm/  \ 5 cm
+     /    \
+    /______\
+      3 cm
+```
+
+4 + 5 + 3 = **12 cm**
+
+### Example 4 — Real life
+
+The school garden is 10 m long and 4 m wide. Perimeter = 10 + 4 + 10 + 4 = **28 m**
+
+## Try It Yourself
+
+1. Rectangle with sides 7 cm and 2 cm — what is the perimeter?
+2. A square has perimeter 24 cm. How long is each side?
+3. Triangle with sides 6 cm, 6 cm and 4 cm.
+4. A rectangle has perimeter 20 cm. One side is 3 cm. What is the other?
+5. Playground: 30 m long, 15 m wide. Perimeter?
+
+<details>
+<summary>Check your answers</summary>
+
+1. 7 + 2 + 7 + 2 = 18 cm
+2. 24 ÷ 4 = 6 cm
+3. 6 + 6 + 4 = 16 cm
+4. 20 − 3 − 3 = 14, 14 ÷ 2 = 7 cm
+5. 30 + 15 + 30 + 15 = 90 m
+
+</details>
+
+## Did You Know? 🧮
+The word "perimeter" comes from Greek: *peri* means "around" and *metron* means "measure". So perimeter literally means "measure around"!
+
+## Learning Checklist
+- [ ] I can explain what perimeter means
+- [ ] I can find the perimeter of a rectangle
+- [ ] I can find the perimeter of triangles and other 2D shapes
+- [ ] I can solve perimeter problems in real-life contexts
+---
+year: 3
+subject: maths
+topic: Perimeter
+slug: perimeter-y3
 key_concepts: [measuring perimeter, 2D shapes, rectilinear shapes]
 age_range: "7-8"
 animation: ../../animations/year-3/maths/perimeter-y3.html

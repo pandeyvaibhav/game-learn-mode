@@ -3,6 +3,107 @@ year: 3
 subject: geography
 topic: Mountains
 slug: mountains-y3
+key_concepts: [mountain formation, features, climate]
+age_range: "7-8"
+animation: ../../animations/year-3/geography/mountains-y3.html
+---
+
+# Mountains — Year 3 Geography
+
+## What We're Learning
+You are going to discover how mountains are formed, where the world's great mountain ranges are, and what life is like at the top of a mountain. You will learn key features like **summit**, **slope** and **valley**.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Mountain | A very high area of land, usually over 600 metres. |
+| Summit | The very top of a mountain — also called the peak. |
+| Range | A line or group of mountains (e.g. the Alps, Himalayas). |
+| Slope | The side of a mountain. |
+| Valley | Low land between mountains, often with a river. |
+| Fold mountain | A mountain formed when tectonic plates push into each other and the land crumples upwards. |
+
+## Let's Explore
+
+### How Mountains Form
+
+Most big mountains are **fold mountains**. When two tectonic plates push together, the land between them crumples and folds upwards:
+
+```
+  Plate A ──▸  ╱╲╱╲╱╲  ◂── Plate B
+             mountains!
+```
+
+This takes **millions** of years.
+
+### Features of a Mountain
+
+```
+         ★ Summit (peak)
+        /|\
+       / | \    Snow line — above here, snow stays all year
+      /  |  \
+     / Slope \
+    /    |    \
+   /____ | ____\
+       Valley
+```
+
+- **Summit** — the highest point
+- **Snow line** — above this, snow never melts
+- **Slope** — the sides going up or down
+- **Foot** — the bottom of the mountain
+- **Valley** — low ground between mountains
+
+### Famous Mountain Ranges
+
+| Range | Where | Highest peak |
+|---|---|---|
+| Himalayas | Asia | Mount Everest (8,849 m) — highest in the world! |
+| Alps | Europe | Mont Blanc (4,808 m) |
+| Andes | South America | Aconcagua (6,961 m) |
+| Snowdonia | Wales, UK | Snowdon (1,085 m) |
+
+### Life on a Mountain
+
+As you go higher:
+- Temperature **drops** — it gets colder
+- Air gets **thinner** — harder to breathe
+- Fewer trees grow — above the **tree line**, only grass and rock
+- Animals adapt — mountain hares have thick white fur
+
+## Try It Yourself
+
+1. What is the summit of a mountain?
+2. How are fold mountains formed?
+3. Name a mountain range in the UK.
+4. Why does it snow at the top of tall mountains even in summer?
+5. Which is the highest mountain in the world?
+
+<details>
+<summary>Check your answers</summary>
+
+1. The very top or peak.
+2. When tectonic plates push together, the land crumples and folds upwards.
+3. Snowdonia (also accept the Pennines, Scottish Highlands, Lake District fells, etc.)
+4. The temperature is much colder at the top, so snow does not melt.
+5. Mount Everest (8,849 m) in the Himalayas.
+
+</details>
+
+## Did You Know? 🌍
+Mount Everest grows about 4 mm taller every year because the tectonic plates underneath are still pushing together!
+
+## Learning Checklist
+- [ ] I can name the features of a mountain (summit, slope, valley)
+- [ ] I can explain how fold mountains form
+- [ ] I can name mountain ranges in the UK and around the world
+- [ ] I can describe how climate changes with altitude
+---
+year: 3
+subject: geography
+topic: Mountains
+slug: mountains-y3
 key_concepts: [Highest mountains, mountain ranges, mountain climates]
 age_range: "7-8"
 animation: ../../animations/year-3/geography/mountains-y3.html

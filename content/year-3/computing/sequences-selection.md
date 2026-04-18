@@ -3,6 +3,123 @@ year: 3
 subject: computing
 topic: Sequences and Selection
 slug: sequences-selection
+key_concepts: [algorithms, sequences, selection, debugging]
+age_range: "7-8"
+animation: ../../animations/year-3/computing/sequences-selection.html
+---
+
+# Sequences and Selection — Year 3 Computing
+
+## What We're Learning
+You are going to learn how computers follow instructions. You will discover that a **sequence** is a set of steps in order, and **selection** lets a program choose what to do next. You will also practise **debugging** — finding and fixing mistakes.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Algorithm | A set of step-by-step instructions to solve a problem. |
+| Sequence | Instructions that run one after another, in order. |
+| Selection | A decision point — the program checks a condition and chooses what to do. |
+| Condition | A question that has a yes/no (true/false) answer. |
+| Debug | Finding and fixing errors (bugs) in a program. |
+| Input | Information that goes into a program (e.g. a button press). |
+| Output | Information that comes out (e.g. text on screen, a sound). |
+
+## Let's Explore
+
+### Sequences
+
+A sequence runs steps **in order**, like a recipe:
+
+```
+1. Get a bowl
+2. Pour in cereal
+3. Add milk
+4. Eat!
+```
+
+If you swap steps 2 and 3, you get milk then cereal on top — wrong order!
+
+### Selection (If… Then… Else)
+
+Sometimes a program needs to **make a decision**:
+
+```
+IF it is raining THEN
+    take an umbrella
+ELSE
+    wear sunglasses
+```
+
+The program checks a **condition** (is it raining?) and chooses a path.
+
+### More Examples
+
+```
+IF score >= 10 THEN
+    display "Well done!"
+ELSE
+    display "Try again!"
+```
+
+```
+IF password = "abc123" THEN
+    open the door
+ELSE
+    show "Access denied"
+```
+
+### Debugging
+
+Bugs are mistakes in code. A debugger:
+1. **Reads** the code carefully
+2. **Predicts** what should happen
+3. **Tests** the code
+4. **Finds** where it goes wrong
+5. **Fixes** the bug
+
+**Example bug:**
+
+```
+1. Pick up pen
+2. Write name
+3. Open book      ← Bug! Should be before writing
+4. Close book
+```
+
+Fix: Move step 3 to before step 2.
+
+## Try It Yourself
+
+1. Put these in the correct sequence: "Brush teeth → Wake up → Get dressed → Eat breakfast"
+2. Write a selection statement: IF (something) THEN (do this) ELSE (do that) — choose your own scenario.
+3. Find the bug: "1. Put on shoes. 2. Put on socks. 3. Tie laces."
+4. What is the condition in: "IF temperature > 30 THEN turn on fan"?
+5. Is "Open the door" a sequence, selection, or a single instruction?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Wake up → Get dressed → Eat breakfast → Brush teeth
+2. Any valid if-then-else — e.g. "IF homework is done THEN play outside ELSE finish homework"
+3. Socks should come before shoes. Correct: 1. Put on socks. 2. Put on shoes. 3. Tie laces.
+4. temperature > 30
+5. A single instruction (one step).
+
+</details>
+
+## Did You Know? 💻
+The first computer "bug" was a real moth! In 1947 a moth got stuck inside a computer at Harvard University. The engineers taped it into their log book and wrote "first actual case of bug being found."
+
+## Learning Checklist
+- [ ] I can explain what a sequence is
+- [ ] I can write a selection statement (IF… THEN… ELSE)
+- [ ] I can identify and fix a bug in a sequence
+- [ ] I can describe what input and output mean
+---
+year: 3
+subject: computing
+topic: Sequences and Selection
+slug: sequences-selection
 key_concepts: [If/then logic, branching programs, Scratch basics]
 age_range: "7-8"
 animation: ../../animations/year-3/computing/sequences-selection.html

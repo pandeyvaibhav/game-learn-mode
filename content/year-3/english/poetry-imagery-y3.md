@@ -3,6 +3,93 @@ year: 3
 subject: english
 topic: Poetry — Imagery
 slug: poetry-imagery-y3
+key_concepts: [similes, personification, imagery]
+age_range: "7-8"
+animation: ../../animations/year-3/english/poetry-imagery-y3.html
+---
+
+# Poetry — Imagery — Year 3 English
+
+## What We're Learning
+You are going to discover how poets paint pictures with words. You will learn about **similes** and **personification** — two brilliant tricks that make poetry exciting and vivid.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Imagery | Words that create pictures in the reader's mind. |
+| Simile | Comparing two things using "like" or "as". |
+| Personification | Giving human actions or feelings to non-human things. |
+| Verse | A group of lines in a poem (like a paragraph in a story). |
+| Rhythm | The beat or pattern of sounds in a poem. |
+
+## Let's Explore
+
+### Similes — "like" and "as"
+
+A simile compares two things to make a description more powerful:
+
+- The stars were **like diamonds** scattered across velvet.
+- Her smile was **as bright as** the morning sun.
+- The wind howled **like a wolf**.
+
+The reader pictures diamonds, sunshine and a wolf — much more exciting than "the stars were shiny"!
+
+### Personification — Bringing things to life
+
+Personification gives human qualities to things that are not human:
+
+- The **wind whispered** through the trees.
+- The **sun smiled** down on the playground.
+- The **rain danced** on the rooftop.
+
+Wind cannot really whisper, but saying it does helps us imagine the soft sound.
+
+### Putting it together
+
+Read this verse:
+
+> The sea **roared like a hungry lion**,
+> Waves **grabbed** at the sandy shore,
+> Pebbles **chattered** in the foam,
+> Then silence crept back once more.
+
+| Line | Technique |
+|---|---|
+| roared like a hungry lion | Simile |
+| Waves grabbed | Personification |
+| Pebbles chattered | Personification |
+| silence crept | Personification |
+
+## Try It Yourself
+
+1. Finish this simile: The moon glowed like __________.
+2. Write a sentence using personification about the wind.
+3. Is this a simile or personification? "The clock watched us from the wall."
+4. Write two lines of a poem about a thunderstorm using one simile and one personification.
+
+<details>
+<summary>Check your answers</summary>
+
+1. Any creative comparison — e.g. "like a silver coin" or "like a lantern".
+2. E.g. "The wind whistled a tune through the alley."
+3. Personification — a clock cannot really watch.
+4. E.g. "Thunder rumbled like a drum / Lightning clawed across the sky."
+
+</details>
+
+## Did You Know? 📝
+The word "personification" comes from the Latin *persona* (person) and *facere* (to make). You are literally "making a person" out of something that is not one!
+
+## Learning Checklist
+- [ ] I can identify similes in a poem
+- [ ] I can identify personification in a poem
+- [ ] I can write my own similes and personification
+- [ ] I can explain how imagery helps the reader
+---
+year: 3
+subject: english
+topic: Poetry — Imagery
+slug: poetry-imagery-y3
 key_concepts: [Similes, personification, imagery, performing poems]
 age_range: "7-8"
 animation: ../../animations/year-3/english/poetry-imagery-y3.html

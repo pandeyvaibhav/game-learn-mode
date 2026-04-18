@@ -3,6 +3,103 @@ year: 3
 subject: maths
 topic: Multiplication and Division
 slug: multiplication-division-y3
+key_concepts: [times tables 3 4 8, formal methods]
+age_range: "7-8"
+animation: ../../animations/year-3/maths/multiplication-division-y3.html
+---
+
+# Multiplication and Division — Year 3 Maths
+
+## What We're Learning
+You are going to practise your 3, 4 and 8 times tables and use them to solve multiplication and division problems. You will learn how these two operations are linked and start using a written method to multiply.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Multiply | Find the total when you have equal groups. |
+| Divide | Share or split a number into equal groups. |
+| Times table | A list of multiplication facts for a number. |
+| Array | Objects in rows and columns to show multiplication. |
+| Inverse | The opposite operation — division undoes multiplication. |
+| Product | The answer when you multiply two numbers. |
+
+## Let's Explore
+
+Multiplication means adding equal groups. If you have **4 bags** with **3** apples each, you multiply to find the total.
+
+### Example 1 — Using an array for 4 × 3
+
+```
+🍎 🍎 🍎
+🍎 🍎 🍎
+🍎 🍎 🍎
+🍎 🍎 🍎
+```
+
+4 rows of 3 = 4 × 3 = **12**
+
+### Example 2 — Fact families
+
+If 4 × 8 = 32, we also know:
+- 8 × 4 = 32
+- 32 ÷ 4 = 8
+- 32 ÷ 8 = 4
+
+### Example 3 — Multiplying a two-digit number
+
+Work out **23 × 3** using partitioning:
+
+1. Split 23 into 20 and 3
+2. 20 × 3 = 60 and 3 × 3 = 9
+3. 60 + 9 = **69**
+
+```
+  23
+×  3
+----
+  69
+```
+
+### Example 4 — Dividing with times tables
+
+24 ÷ 8 = ? Think: "What × 8 = 24?"
+
+8 × 1 = 8, 8 × 2 = 16, 8 × 3 = **24** ✓
+
+So 24 ÷ 8 = **3**.
+
+## Try It Yourself
+
+1. Draw an array for 3 × 5 and write the answer.
+2. What is 8 × 4?
+3. If 3 × 7 = 21, what is 21 ÷ 3?
+4. Use partitioning to work out 14 × 4.
+5. 32 pencils shared equally among 8 pots — how many per pot?
+
+<details>
+<summary>Check your answers</summary>
+
+1. 3 rows of 5 = 15
+2. 32
+3. 7
+4. 10 × 4 = 40, 4 × 4 = 16, 40 + 16 = 56
+5. 32 ÷ 8 = 4
+
+</details>
+
+## Did You Know? 🧮
+The word "multiply" comes from the Latin *multiplicare*, meaning "to fold many times". Each fold doubles the layers — just like multiplying by 2!
+
+## Learning Checklist
+- [ ] I can recall the 3, 4 and 8 times tables
+- [ ] I can use an array to show multiplication
+- [ ] I can use the inverse to check answers
+- [ ] I can multiply a two-digit number by a one-digit number
+---
+year: 3
+subject: maths
+topic: Multiplication and Division
+slug: multiplication-division-y3
 key_concepts: [times tables 3, times tables 4, times tables 8, formal written methods]
 age_range: "7-8"
 animation: ../../animations/year-3/maths/multiplication-division-y3.html

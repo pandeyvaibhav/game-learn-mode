@@ -3,6 +3,115 @@ year: 3
 subject: computing
 topic: Data and Information
 slug: data-information-y3
+key_concepts: [collecting data, databases, searching]
+age_range: "7-8"
+animation: ../../animations/year-3/computing/data-information-y3.html
+---
+
+# Data and Information — Year 3 Computing
+
+## What We're Learning
+You are going to learn the difference between **data** and **information**. You will collect data, organise it, and turn it into useful information by sorting and searching — just like a real database!
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Data | Raw facts and figures that have not been organised yet. |
+| Information | Data that has been organised so it is useful and makes sense. |
+| Database | A collection of data stored in an organised way. |
+| Record | One entry in a database (e.g. one person, one animal). |
+| Field | A category of data (e.g. name, age, colour). |
+| Sort | Putting data in order (alphabetical, smallest to largest, etc.). |
+| Filter | Showing only the data that matches a rule. |
+
+## Let's Explore
+
+### Data vs Information
+
+Imagine a pile of numbers: `12, 8, 15, 5, 10`.
+
+That is **data** — it does not mean much by itself.
+
+Now organise it:
+
+| Child | Books read |
+|---|---|
+| Asha | 15 |
+| Ben | 12 |
+| Cara | 10 |
+| Dev | 8 |
+| Ella | 5 |
+
+Now it is **information** — you can see who read the most!
+
+### Databases
+
+A database stores lots of records. Each record has the same fields:
+
+| Name | Type | Colour | Legs |
+|---|---|---|---|
+| Cat | Mammal | Various | 4 |
+| Robin | Bird | Red/brown | 2 |
+| Frog | Amphibian | Green | 4 |
+| Snake | Reptile | Various | 0 |
+| Spider | Arachnid | Various | 8 |
+
+### Sorting
+
+You can sort by any field:
+- **Sort by Legs (smallest first):** Snake (0), Robin (2), Cat (4), Frog (4), Spider (8)
+- **Sort by Name (A–Z):** Cat, Frog, Robin, Snake, Spider
+
+### Filtering
+
+Filter: "Show only animals with 4 legs"
+→ Result: Cat and Frog
+
+Filter: "Show animals that are NOT mammals"
+→ Result: Robin, Frog, Snake, Spider
+
+## Try It Yourself
+
+Using this database:
+
+| Fruit | Colour | Seeds? | Grows on |
+|---|---|---|---|
+| Apple | Red/green | Yes | Tree |
+| Banana | Yellow | No | Plant |
+| Strawberry | Red | Yes | Ground |
+| Orange | Orange | Yes | Tree |
+| Grape | Purple | Sometimes | Vine |
+
+1. What is the difference between data and information?
+2. How many records are in this database?
+3. Sort the fruits alphabetically.
+4. Filter: which fruits grow on a tree?
+5. Filter: which fruits have seeds AND are red?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Data is raw facts; information is data that has been organised to be useful.
+2. 5 records.
+3. Apple, Banana, Grape, Orange, Strawberry
+4. Apple and Orange.
+5. Apple and Strawberry.
+
+</details>
+
+## Did You Know? 💻
+The world's largest databases hold billions of records. Search engines like Google have indexed hundreds of billions of web pages — all organised so you can find what you need in less than a second!
+
+## Learning Checklist
+- [ ] I can explain the difference between data and information
+- [ ] I can describe what a database, record and field are
+- [ ] I can sort data by different fields
+- [ ] I can filter data using simple rules
+---
+year: 3
+subject: computing
+topic: Data and Information
+slug: data-information-y3
 key_concepts: [Collecting data, databases, searching]
 age_range: "7-8"
 animation: ../../animations/year-3/computing/data-information-y3.html

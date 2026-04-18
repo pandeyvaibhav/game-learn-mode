@@ -3,6 +3,98 @@ year: 3
 subject: science
 topic: Rocks and Fossils
 slug: rocks-fossils
+key_concepts: [igneous, sedimentary, metamorphic, fossils]
+age_range: "7-8"
+animation: ../../animations/year-3/science/rocks-fossils.html
+---
+
+# Rocks and Fossils — Year 3 Science
+
+## What We're Learning
+You are going to discover the three types of rock — **igneous**, **sedimentary** and **metamorphic** — and find out how fossils form inside them. You will learn to compare rocks by looking at their properties.
+
+## Key Words
+| Word | What it means |
+|---|---|
+| Igneous | Rock made when hot melted rock (magma) cools and hardens. |
+| Sedimentary | Rock made from layers of tiny pieces squashed together over millions of years. |
+| Metamorphic | Rock that has been changed by extreme heat or pressure underground. |
+| Fossil | The preserved remains or trace of a living thing from long ago. |
+| Magma | Hot liquid rock under the Earth's surface. |
+| Permeable | Lets water soak through (like a sponge). |
+
+## Let's Explore
+
+### The Rock Cycle
+
+Rocks are always changing — just very, very slowly!
+
+```
+  Magma ──cools──▸ IGNEOUS
+    ▲                  │
+    │              weathers
+  melts                │
+    │                  ▼
+ METAMORPHIC ◂──── SEDIMENTARY
+         heat & pressure
+```
+
+### The Three Types
+
+| Type | How it forms | Examples | Properties |
+|---|---|---|---|
+| Igneous | Magma cools | Granite, basalt | Hard, crystals, not permeable |
+| Sedimentary | Layers pressed together | Sandstone, limestone, chalk | Can be soft, may have fossils, often permeable |
+| Metamorphic | Heat and pressure change existing rock | Marble, slate | Hard, sometimes layered |
+
+### How Fossils Form
+
+1. A creature dies and sinks into mud.
+2. Soft parts rot away; hard parts (bones, shell) remain.
+3. Layers of sediment build up on top.
+4. Over millions of years, minerals replace the bone and create a fossil.
+5. The rock wears away and the fossil is discovered!
+
+### Investigating Rocks
+
+You can test rocks by:
+- **Looking** — colour, crystals, layers
+- **Feeling** — rough or smooth, heavy or light
+- **Scratch test** — harder rocks scratch softer ones
+- **Water test** — does water soak in? (permeable)
+
+## Try It Yourself
+
+1. Name the three types of rock.
+2. Which rock type is most likely to contain fossils?
+3. What is magma?
+4. Is granite igneous, sedimentary or metamorphic?
+5. Why do fossils not form in igneous rock?
+
+<details>
+<summary>Check your answers</summary>
+
+1. Igneous, sedimentary, metamorphic
+2. Sedimentary
+3. Hot liquid rock beneath the Earth's surface
+4. Igneous
+5. Igneous rock forms from extremely hot magma — any living remains would be destroyed.
+
+</details>
+
+## Did You Know? 🔬
+The oldest known fossils are tiny bacteria found in rocks in Australia. They are about 3.5 billion years old — that is older than any animal or plant!
+
+## Learning Checklist
+- [ ] I can name and describe the three types of rock
+- [ ] I can explain how fossils form
+- [ ] I can compare rocks using their properties
+- [ ] I can describe the rock cycle simply
+---
+year: 3
+subject: science
+topic: Rocks and Fossils
+slug: rocks-fossils
 key_concepts: [types of rock, igneous, sedimentary, metamorphic, fossil formation]
 age_range: "7-8"
 animation: ../../animations/year-3/science/rocks-fossils.html
