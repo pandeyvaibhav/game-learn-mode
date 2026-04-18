@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Geometry — Properties of Shape — Year 5 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.diff-row{display:flex;gap:.4rem;justify-content:center;margin-bottom:1rem}
+.diff-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.35rem .8rem;font-size:.8rem;cursor:pointer;color:var(--text)}
+.diff-btn.active{border-color:var(--primary);color:var(--primary);font-weight:700}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:90px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 5 · Maths</p>
+<h1>Geometry — Properties of Shape</h1>
+<p class="subtitle">Angles, triangles, and quadrilaterals!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Shape Properties Quiz</p>
+<div class="diff-row">
+<button class="diff-btn active" data-d="1">Easy</button>
+<button class="diff-btn" data-d="2">Medium</button>
+<button class="diff-btn" data-d="3">Hard</button>
+</div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var E=[
+{q:'A right angle is exactly…',ans:'90°',opts:['90°','45°','180°']},
+{q:'An equilateral triangle has…',ans:'3 equal sides',opts:['3 equal sides','2 equal sides','No equal sides']},
+{q:'How many sides does a quadrilateral have?',ans:'4',opts:['4','3','5']},
+{q:'An acute angle is…',ans:'Less than 90°',opts:['Less than 90°','Exactly 90°','More than 90°']}
+];
+var M=[
+{q:'An isosceles triangle has…',ans:'2 equal sides and 2 equal angles',opts:['2 equal sides and 2 equal angles','3 equal sides','No equal sides']},
+{q:'A rhombus has…',ans:'4 equal sides, opposite angles equal',opts:['4 equal sides, opposite angles equal','4 right angles','No equal sides']},
+{q:'An obtuse angle is between…',ans:'90° and 180°',opts:['90° and 180°','0° and 90°','180° and 360°']},
+{q:'A regular polygon has…',ans:'All sides and angles equal',opts:['All sides and angles equal','Only equal sides','Only equal angles']}
+];
+var H=[
+{q:'A reflex angle is…',ans:'Greater than 180°',opts:['Greater than 180°','Less than 90°','Exactly 180°']},
+{q:'A trapezium has…',ans:'Exactly 1 pair of parallel sides',opts:['Exactly 1 pair of parallel sides','2 pairs of parallel sides','No parallel sides']},
+{q:'The angles in a triangle always add up to…',ans:'180°',opts:['180°','360°','90°']},
+{q:'The angles in a quadrilateral add up to…',ans:'360°',opts:['360°','180°','540°']}
+];
+var BANKS={1:E,2:M,3:H};var diff=1,sc=0;
+document.querySelectorAll('.diff-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');diff=parseInt(b.dataset.d);newQ();});});
+var pool,idx;function reset(){pool=shuffle(BANKS[diff]);idx=0;}reset();
+function newQ(){
+  reset();var q=pool[idx%pool.length];idx++;
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+}
+document.getElementById('next').addEventListener('click',newQ);newQ();
+</script>
+</body>
+</html>

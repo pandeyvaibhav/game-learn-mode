@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Measurement — Weight — Year 1 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.scale{display:flex;flex-direction:column;align-items:center;margin-bottom:1rem}
+.pans{display:flex;gap:2rem;align-items:flex-end;transition:all .4s ease}
+.pan{width:100px;min-height:70px;background:var(--surface2);border:2px solid var(--border);border-radius:0 0 12px 12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;transition:transform .4s}
+.fulcrum{width:20px;height:20px;background:var(--text-muted);clip-path:polygon(50% 0,100% 100%,0 100%);margin-top:.3rem}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.num-btn{min-width:100px;padding:.5rem .8rem;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:.88rem;cursor:pointer;text-align:center}
+.num-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · Maths</p>
+<h1>Measurement — Weight</h1>
+<p class="subtitle">Which is heavier? Use the balance scales!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Balance Scales</p>
+<div class="scale">
+<div class="pans" id="pans">
+<div class="pan" id="panL"></div>
+<div class="pan" id="panR"></div>
+</div>
+<div class="fulcrum"></div>
+</div>
+<p class="q-text" id="wQ"></p>
+<div class="num-row" id="wOpts"></div>
+<p class="fb" id="wFb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="wSc">0</span></div>
+<button class="new-btn" id="newW">New Question</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var OBJECTS=[
+{icon:'🍎',name:'Apple',w:3},{icon:'📚',name:'Book',w:8},{icon:'🪶',name:'Feather',w:1},
+{icon:'🧸',name:'Teddy',w:5},{icon:'🥕',name:'Carrot',w:2},{icon:'🎾',name:'Ball',w:4},
+{icon:'🧱',name:'Brick',w:9},{icon:'🍌',name:'Banana',w:3},{icon:'✏️',name:'Pencil',w:1}
+];
+var panL=document.getElementById('panL'),panR=document.getElementById('panR'),pans=document.getElementById('pans');
+var wQ=document.getElementById('wQ'),wOpts=document.getElementById('wOpts'),wFb=document.getElementById('wFb');
+var wSc=0;
+
+function newWeight(){
+  var pair=shuffle(OBJECTS).slice(0,2);
+  while(pair[0].w===pair[1].w) pair=shuffle(OBJECTS).slice(0,2);
+  panL.textContent=pair[0].icon;panR.textContent=pair[1].icon;
+  // Tilt scales
+  if(pair[0].w>pair[1].w){panL.style.transform='translateY(10px)';panR.style.transform='translateY(-10px)';}
+  else{panL.style.transform='translateY(-10px)';panR.style.transform='translateY(10px)';}
+  wQ.textContent='Which is heavier: the '+pair[0].name+' or the '+pair[1].name+'?';
+  wFb.textContent='';wOpts.innerHTML='';
+  var ans=pair[0].w>pair[1].w?pair[0].name:pair[1].name;
+  shuffle(pair.map(function(p){return p.name;})).forEach(function(n){
+    var btn=document.createElement('button');btn.className='num-btn';btn.textContent=n;
+    btn.addEventListener('click',function(){
+      wOpts.querySelectorAll('.num-btn').forEach(function(b){b.disabled=true;});
+      if(n===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');wSc++;document.getElementById('wSc').textContent=wSc;wFb.textContent='✓ The '+ans+' is heavier!';wFb.style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');wFb.textContent='✗ The '+ans+' is heavier.';wFb.style.color='var(--error)';}
+    });wOpts.appendChild(btn);
+  });
+}
+document.getElementById('newW').addEventListener('click',newWeight);newWeight();
+</script>
+</body>
+</html>

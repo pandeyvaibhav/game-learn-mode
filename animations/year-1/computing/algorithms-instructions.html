@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Algorithms and Instructions — Year 1 Computing | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.steps{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.step-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.6rem .8rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:border-color .2s}
+.step-btn:hover{border-color:var(--accent)}
+.step-btn.selected{border-color:var(--primary);background:#2a3344}
+.placed-area{display:flex;flex-direction:column;gap:.35rem;min-height:60px;margin-bottom:.5rem}
+.placed-step{background:var(--surface2);border:1px solid var(--success);border-radius:10px;padding:.5rem .8rem;font-size:.85rem;color:var(--success)}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · Computing</p>
+<h1>Algorithms and Instructions</h1>
+<p class="subtitle">Put the steps in the right order!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Order the Algorithm</p>
+<p style="font-size:.85rem;color:var(--text-muted);text-align:center;margin-bottom:.5rem" id="task"></p>
+<div class="placed-area" id="placed"></div>
+<div class="steps" id="steps"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">New Challenge</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var ALGS=[
+{task:'Make a jam sandwich',steps:['Get two slices of bread','Spread butter on one slice','Spread jam on the butter','Put the other slice on top','Cut in half']},
+{task:'Brush your teeth',steps:['Pick up your toothbrush','Put toothpaste on the brush','Brush your teeth for 2 minutes','Rinse your mouth','Put the toothbrush away']},
+{task:'Get dressed for school',steps:['Take off your pyjamas','Put on your underwear','Put on your shirt','Put on your trousers','Put on your shoes']},
+{task:'Plant a seed',steps:['Fill a pot with soil','Make a small hole','Put the seed in the hole','Cover with soil','Water the seed']}
+];
+var sc=0;
+
+function newAlg(){
+  var a=ALGS[Math.floor(Math.random()*ALGS.length)];
+  document.getElementById('task').textContent='Task: '+a.task;
+  document.getElementById('fb').textContent='';
+  var placed=document.getElementById('placed');placed.innerHTML='';
+  var stepsEl=document.getElementById('steps');stepsEl.innerHTML='';
+  var order=[];
+  var shuffled=shuffle(a.steps.slice());
+  shuffled.forEach(function(s){
+    var btn=document.createElement('button');btn.className='step-btn';btn.textContent=s;
+    btn.addEventListener('click',function(){
+      if(btn.disabled) return;
+      btn.disabled=true;btn.style.opacity='.4';
+      order.push(s);
+      var p=document.createElement('div');p.className='placed-step';p.textContent=(order.length)+'. '+s;
+      placed.appendChild(p);
+      if(order.length===a.steps.length){
+        var correct=true;
+        for(var i=0;i<a.steps.length;i++){if(order[i]!==a.steps[i]){correct=false;break;}}
+        var fb=document.getElementById('fb');
+        if(correct){fb.textContent='✓ Perfect algorithm!';fb.style.color='var(--success)';sc++;document.getElementById('sc').textContent=sc;}
+        else{fb.textContent='✗ Not quite — try again!';fb.style.color='var(--error)';}
+      }
+    });stepsEl.appendChild(btn);
+  });
+}
+document.getElementById('next').addEventListener('click',newAlg);newAlg();
+</script>
+</body>
+</html>

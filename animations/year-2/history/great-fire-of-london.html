@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Great Fire of London — Year 2 History | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.timeline{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.tl-item{display:flex;align-items:center;gap:.6rem;background:var(--surface2);padding:.5rem .7rem;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s}
+.tl-item:hover{background:var(--border)}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.tl-text{font-size:.85rem}
+.tl-detail{display:none;font-size:.8rem;color:var(--text-muted);margin-top:.2rem}
+.tl-item.open .tl-detail{display:block}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 2 · History</p>
+<h1>Great Fire of London</h1>
+<p class="subtitle">Explore the fire and test your knowledge!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Timeline — Click to reveal</p>
+<div class="timeline" id="tl"></div>
+</div>
+
+<div class="card">
+<p class="card-title">Fire Quiz</p>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next Question</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var TL=[
+{t:'2 Sep 1666',d:'Fire starts in a bakery on Pudding Lane.'},
+{t:'3 Sep 1666',d:'Strong wind spreads the fire across London.'},
+{t:'4 Sep 1666',d:'Samuel Pepys writes about the fire in his diary.'},
+{t:'5 Sep 1666',d:'The fire is finally put out after 4 days.'},
+{t:'After 1666',d:'London is rebuilt with brick and stone, and streets are made wider.'}
+];
+var tl=document.getElementById('tl');
+TL.forEach(function(item){
+  var div=document.createElement('div');div.className='tl-item';
+  div.innerHTML='<div class="tl-dot"></div><div><div class="tl-text">'+item.t+'</div><div class="tl-detail">'+item.d+'</div></div>';
+  div.addEventListener('click',function(){div.classList.toggle('open');});
+  tl.appendChild(div);
+});
+var QS=[
+{q:'In which year did the Great Fire happen?',ans:'1666',opts:['1666','1066','1966']},
+{q:'Where did the fire start?',ans:'Pudding Lane bakery',opts:['Pudding Lane bakery','Buckingham Palace','Tower of London']},
+{q:'Who kept a famous diary about the fire?',ans:'Samuel Pepys',opts:['Samuel Pepys','William Shakespeare','Queen Victoria']},
+{q:'What were the old houses made from?',ans:'Timber (wood)',opts:['Timber (wood)','Brick','Steel']},
+{q:'Why did the fire spread so fast?',ans:'Wooden houses close together and wind',opts:['Wooden houses close together and wind','It rained a lot','Houses were made of brick']},
+{q:'How long did the fire burn?',ans:'About 4 days',opts:['About 4 days','1 hour','2 weeks']},
+{q:'After the fire, houses were rebuilt with…',ans:'Brick and stone',opts:['Brick and stone','Wood','Paper']},
+{q:'What was built near Pudding Lane to remember the fire?',ans:'The Monument',opts:['The Monument','A bakery','A park']}
+];
+var pool=shuffle(QS);var idx=0;var sc=0;
+function show(){
+  if(idx>=pool.length) pool=shuffle(QS),idx=0;
+  var q=pool[idx];
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+  idx++;
+}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

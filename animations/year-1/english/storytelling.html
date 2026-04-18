@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Storytelling — Year 1 English | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--accent2:#a78bfa;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.story-parts{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.part{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.6rem .8rem;min-width:80px;text-align:center;cursor:pointer;transition:border-color .2s}
+.part:hover{border-color:var(--accent)}
+.part-label{font-size:.7rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:.2rem}
+.part-text{font-size:.82rem}
+.part.placed{border-color:var(--success);cursor:default}
+.drop-zone{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.slot{min-width:80px;min-height:70px;background:var(--surface2);border:2px dashed var(--border);border-radius:var(--radius-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.5rem;font-size:.7rem;text-transform:uppercase;color:var(--text-muted)}
+.slot.filled{border-style:solid;border-color:var(--success)}
+.slot .part-text{font-size:.78rem;color:var(--text);margin-top:.2rem}
+.q-text{font-size:.92rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:80px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · English</p>
+<h1>Storytelling</h1>
+<p class="subtitle">Every story has a beginning, middle, and end!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Story Quiz</p>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next Question</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var QS=[
+{q:'In which part of a story do we meet the characters?',ans:'Beginning',opts:['Beginning','Middle','End']},
+{q:'Where does the problem happen?',ans:'Middle',opts:['Beginning','Middle','End']},
+{q:'Where is the problem solved?',ans:'End',opts:['Beginning','Middle','End']},
+{q:'A person or animal in a story is called a…',ans:'Character',opts:['Character','Setting','Problem']},
+{q:'Where and when the story happens is called the…',ans:'Setting',opts:['Setting','Character','Ending']},
+{q:'"Once upon a time, a cat lived on a farm." — Is this the beginning, middle, or end?',ans:'Beginning',opts:['Beginning','Middle','End']},
+{q:'"The cat chased a mouse but it ran away!" — Is this the beginning, middle, or end?',ans:'Middle',opts:['Beginning','Middle','End']},
+{q:'"The cat found the mouse and they became friends." — Is this the beginning, middle, or end?',ans:'End',opts:['Beginning','Middle','End']},
+{q:'A castle in the olden days is an example of a…',ans:'Setting',opts:['Setting','Character','Title']},
+{q:'A brave knight is an example of a…',ans:'Character',opts:['Character','Setting','Problem']}
+];
+var pool=shuffle(QS);var idx=0;var sc=0;
+
+function show(){
+  if(idx>=pool.length) pool=shuffle(QS),idx=0;
+  var q=pool[idx];
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ It\'s the '+q.ans+'!';document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+  idx++;
+}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

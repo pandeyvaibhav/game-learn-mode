@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Evolution &amp; Inheritance — Year 6 Science | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.diff-row{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem}
+.diff-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.35rem .9rem;font-size:.8rem;cursor:pointer;color:var(--text)}
+.diff-btn.active{border-color:var(--primary);color:var(--primary)}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 6 · Science</p>
+<h1>Evolution &amp; Inheritance</h1>
+<p class="subtitle">Natural selection, fossils, and adaptation!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Evolution Quiz</p>
+<div class="diff-row"><button class="diff-btn active" data-d="1">Easy</button><button class="diff-btn" data-d="2">Medium</button><button class="diff-btn" data-d="3">Hard</button></div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var BANKS={
+1:[
+{q:'Evolution means…',ans:'Gradual change over generations',opts:['Gradual change over generations','Instant transformation','Growing taller']},
+{q:'Fossils are…',ans:'Preserved remains of ancient organisms',opts:['Preserved remains of ancient organisms','Living animals','Types of rock only']},
+{q:'Children inherit traits from…',ans:'Both parents',opts:['Both parents','Only mother','Only father']},
+{q:'A scar is…',ans:'Acquired, not inherited',opts:['Acquired, not inherited','Inherited','Passed to children']},
+{q:'Adaptation helps an organism…',ans:'Survive in its habitat',opts:['Survive in its habitat','Change colour instantly','Fly']}
+],
+2:[
+{q:'Natural selection means…',ans:'Best-suited organisms survive and reproduce',opts:['Best-suited organisms survive and reproduce','Animals choose partners','Humans pick favourites']},
+{q:'Variation within a species means…',ans:'Individuals have differences',opts:['Individuals have differences','All look identical','Only colour changes']},
+{q:'Darwin studied finches on the…',ans:'Galápagos Islands',opts:['Galápagos Islands','Moon','North Pole']},
+{q:'Extinct means a species has…',ans:'Died out completely',opts:['Died out completely','Moved away','Gone to sleep']},
+{q:'Over many generations, helpful traits…',ans:'Become more common',opts:['Become more common','Disappear','Stay the same']}
+],
+3:[
+{q:'Antibiotic resistance in bacteria is an example of…',ans:'Natural selection',opts:['Natural selection','Inheritance only','Fossilisation']},
+{q:'Which is NOT evidence for evolution?',ans:'A weather forecast',opts:['A weather forecast','Fossils','DNA comparisons']},
+{q:'Peppered moths changed colour during the Industrial Revolution because…',ans:'Darker moths were better camouflaged on soot-covered trees',opts:['Darker moths were better camouflaged on soot-covered trees','They painted themselves','They ate dark food']},
+{q:'Offspring are not identical to parents because…',ans:'They inherit a mix of traits from both parents',opts:['They inherit a mix of traits from both parents','They only inherit from one','Genes never change']},
+{q:'Evolution happens over…',ans:'Many generations',opts:['Many generations','One day','One lifetime']}
+]};
+var diff=1,sc=0,pool,idx;
+function load(){pool=shuffle(BANKS[diff]);idx=0;}load();
+document.querySelectorAll('.diff-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');diff=+b.dataset.d;load();show();});});
+function show(){if(idx>=pool.length){pool=shuffle(BANKS[diff]);idx=0;}var q=pool[idx];document.getElementById('qTxt').textContent=q.q;document.getElementById('fb').textContent='';var opts=document.getElementById('opts');opts.innerHTML='';shuffle(q.opts).forEach(function(o){var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;btn.addEventListener('click',function(){opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});btn.style.opacity='1';if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}});opts.appendChild(btn);});idx++;}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

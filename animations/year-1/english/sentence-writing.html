@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sentence Writing — Year 1 English | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.sentence-display{font-size:1.2rem;text-align:center;font-weight:600;padding:.6rem;background:var(--surface2);border-radius:var(--radius-sm);margin-bottom:.75rem;line-height:1.7}
+.q-text{font-size:.92rem;text-align:center;margin-bottom:.5rem;color:var(--text-muted)}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:120px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · English</p>
+<h1>Sentence Writing</h1>
+<p class="subtitle">Fix the sentence — capital letter, full stop, spaces!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Fix the Sentence</p>
+<div class="sentence-display" id="sent"></div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next Sentence</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var QS=[
+{shown:'the cat sat',q:'What is wrong?',ans:'No capital letter or full stop',opts:['Nothing wrong','No capital letter or full stop','Too many spaces']},
+{shown:'Thedogran.',q:'What is wrong?',ans:'No finger spaces',opts:['No finger spaces','No full stop','No capital letter']},
+{shown:'I like cake',q:'What is missing at the end?',ans:'A full stop',opts:['A full stop','A capital letter','A comma']},
+{shown:'my name is Sam.',q:'What is wrong?',ans:'No capital letter at the start',opts:['No capital letter at the start','No full stop','Nothing wrong']},
+{shown:'I can run and I can jump.',q:'Is this sentence correct?',ans:'Yes — it uses "and" to join ideas',opts:['Yes — it uses "and" to join ideas','No — it needs two full stops','No — it has no spaces']},
+{shown:'she likes to play',q:'Fix this sentence.',ans:'She likes to play.',opts:['She likes to play.','she likes to play.','She Likes To Play']},
+{shown:'We went to the park.',q:'Is this sentence correct?',ans:'Yes',opts:['Yes','No — needs a capital letter','No — needs a full stop']},
+{shown:'i have a red ball',q:'Fix this sentence.',ans:'I have a red ball.',opts:['I have a red ball.','i have a red ball.','I Have A Red Ball']}
+];
+var pool=shuffle(QS);var idx=0;var sc=0;
+
+function show(){
+  if(idx>=pool.length) pool=shuffle(QS),idx=0;
+  var q=pool[idx];
+  document.getElementById('sent').textContent=q.shown;
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts.concat(q.ans).filter(function(v,i,a){return a.indexOf(v)===i;})).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+  idx++;
+}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

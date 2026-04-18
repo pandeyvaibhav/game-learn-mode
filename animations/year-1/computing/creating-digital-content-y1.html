@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Creating Digital Content — Year 1 Computing | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.canvas-wrap{position:relative;margin-bottom:.5rem}
+canvas{background:#fff;border-radius:var(--radius-sm);display:block;width:100%;cursor:crosshair}
+.palette{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem}
+.color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.color-btn.active{border-color:var(--primary)}
+.tool-row{display:flex;gap:.4rem;flex-wrap:wrap}
+.tool-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:.8rem;cursor:pointer;color:var(--text)}
+.tool-btn:hover{border-color:var(--accent)}
+
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);min-width:80px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · Computing</p>
+<h1>Creating Digital Content</h1>
+<p class="subtitle">Draw a picture and take the quiz!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Mini Drawing Pad</p>
+<div class="palette" id="palette"></div>
+<div class="canvas-wrap"><canvas id="cv" width="580" height="300"></canvas></div>
+<div class="tool-row">
+<button class="tool-btn" id="clearBtn">Clear</button>
+<button class="tool-btn" id="thinBtn">Thin</button>
+<button class="tool-btn" id="thickBtn">Thick</button>
+</div>
+</div>
+
+<div class="card">
+<p class="card-title">Quiz</p>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next Question</button>
+</div>
+
+<script>
+/* Drawing pad */
+var cv=document.getElementById('cv');var ctx=cv.getContext('2d');
+var drawing=false;var color='#000000';var lw=4;
+var COLORS=['#000000','#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#9b59b6','#ecf0f1'];
+var palEl=document.getElementById('palette');
+COLORS.forEach(function(c){
+  var b=document.createElement('button');b.className='color-btn';b.style.background=c;
+  if(c===color) b.classList.add('active');
+  b.addEventListener('click',function(){
+    palEl.querySelectorAll('.color-btn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');color=c;
+  });palEl.appendChild(b);
+});
+function getPos(e){var r=cv.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*(cv.width/r.width),y:(t.clientY-r.top)*(cv.height/r.height)};}
+cv.addEventListener('mousedown',function(e){drawing=true;var p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
+cv.addEventListener('mousemove',function(e){if(!drawing)return;var p=getPos(e);ctx.lineWidth=lw;ctx.strokeStyle=color;ctx.lineCap='round';ctx.lineTo(p.x,p.y);ctx.stroke();});
+cv.addEventListener('mouseup',function(){drawing=false;});
+cv.addEventListener('mouseleave',function(){drawing=false;});
+cv.addEventListener('touchstart',function(e){e.preventDefault();drawing=true;var p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);},{passive:false});
+cv.addEventListener('touchmove',function(e){e.preventDefault();if(!drawing)return;var p=getPos(e);ctx.lineWidth=lw;ctx.strokeStyle=color;ctx.lineCap='round';ctx.lineTo(p.x,p.y);ctx.stroke();},{passive:false});
+cv.addEventListener('touchend',function(){drawing=false;});
+document.getElementById('clearBtn').addEventListener('click',function(){ctx.clearRect(0,0,cv.width,cv.height);});
+document.getElementById('thinBtn').addEventListener('click',function(){lw=2;});
+document.getElementById('thickBtn').addEventListener('click',function(){lw=8;});
+
+/* Quiz */
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var QS=[
+{q:'What is digital content?',ans:'Things made on a computer',opts:['Things made on a computer','Paper drawings','Lego models']},
+{q:'Which key makes a space between words?',ans:'Space bar',opts:['Space bar','Enter','Shift']},
+{q:'Why should you save your work?',ans:'So you can find it again',opts:['So you can find it again','To make it colourful','To print it']},
+{q:'What does the Backspace key do?',ans:'Deletes a mistake',opts:['Deletes a mistake','Makes a capital letter','Starts a new line']},
+{q:'What does the Shift key do?',ans:'Makes a capital letter',opts:['Makes a capital letter','Saves your work','Adds a space']},
+{q:'What tool fills a shape with colour?',ans:'Fill tool',opts:['Fill tool','Pencil','Eraser']}
+];
+var pool=shuffle(QS);var idx=0;var sc=0;
+function show(){
+  if(idx>=pool.length) pool=shuffle(QS),idx=0;
+  var q=pool[idx];
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+  idx++;
+}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

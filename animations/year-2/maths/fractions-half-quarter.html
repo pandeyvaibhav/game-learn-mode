@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fractions — Half and Quarter — Year 2 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.q-text{font-size:1.1rem;font-weight:700;text-align:center;margin-bottom:.5rem;color:var(--accent)}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.95rem;cursor:pointer;color:var(--text);min-width:60px;text-align:center;font-weight:700}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 2 · Maths</p>
+<h1>Fractions — Half & Quarter</h1>
+<p class="subtitle">Find halves and quarters of numbers!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Fraction Quiz</p>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next Question</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var HALF_NUMS=[4,6,8,10,12,14,16,18,20];
+var QTR_NUMS=[4,8,12,16,20,24];
+var sc=0;
+
+function newQ(){
+  var type=Math.random()<0.5?'half':'quarter';
+  var num,ans,q;
+  if(type==='half'){
+    num=HALF_NUMS[Math.floor(Math.random()*HALF_NUMS.length)];
+    ans=num/2;q='What is half of '+num+'?';
+  } else {
+    num=QTR_NUMS[Math.floor(Math.random()*QTR_NUMS.length)];
+    ans=num/4;q='What is a quarter of '+num+'?';
+  }
+  document.getElementById('qTxt').textContent=q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  var choices=new Set([ans]);
+  while(choices.size<4){
+    var d=ans+shuffle([-2,-1,1,2,3,-3])[0];
+    if(d>0) choices.add(d);
+  }
+  shuffle(Array.from(choices)).forEach(function(c){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=c;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(c===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+ans+'!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ Answer: '+ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+}
+document.getElementById('next').addEventListener('click',newQ);newQ();
+</script>
+</body>
+</html>

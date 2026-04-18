@@ -182,9 +182,7 @@ function renderHome() {
 }
 
 function countAvailable(yearObj) {
-  // Count topics that have content files — we infer this from year 3 being generated
-  // In production the app-generator would embed this in curriculum.json
-  return yearObj.year === 3 ? yearObj.subjects.reduce((s, sub) => s + sub.topics.length, 0) : 0;
+  return yearObj.subjects.reduce((s, sub) => s + sub.topics.length, 0);
 }
 
 // ── View: Subjects ───────────────────────────────────────────────────
@@ -199,7 +197,6 @@ function renderSubjects(year) {
 
   const grid = el('div', { class: 'grid-subjects' });
   y.subjects.forEach((s, i) => {
-    const isAvailable = year === '3' || year === 3;
     const card = el('a', {
       href: `#/year/${year}/${s.name}`,
       class: `subject-card fade-in-up`,
@@ -209,9 +206,7 @@ function renderSubjects(year) {
     card.appendChild(text('div', 'subject-card__emoji', s.emoji));
     card.appendChild(text('div', 'subject-card__name', s.label));
     card.appendChild(text('div', 'subject-card__count', `${s.topics.length} topics`));
-    if (isAvailable) {
-      card.appendChild(text('div', 'subject-card__avail', '✓ Content ready'));
-    }
+    card.appendChild(text('div', 'subject-card__avail', '✓ Content ready'));
     grid.appendChild(card);
   });
 
@@ -236,11 +231,10 @@ function renderTopics(year, subject) {
 
   const list = el('div', { class: 'topic-list' });
   s.topics.forEach((t, i) => {
-    const isAvailable = year === '3' || year === 3;
-    const item = el(isAvailable ? 'a' : 'div', {
-      class: `topic-item fade-in-up ${isAvailable ? 'available' : 'unavailable'}`,
+    const item = el('a', {
+      class: `topic-item fade-in-up available`,
       style: `--subject-color: var(--${subject}); animation-delay: ${i * 40}ms`,
-      ...(isAvailable ? { href: `#/year/${year}/${subject}/${t.slug}` } : {}),
+      href: `#/year/${year}/${subject}/${t.slug}`,
     });
 
     const dot = el('div', { class: 'topic-item__dot' });
@@ -250,7 +244,7 @@ function renderTopics(year, subject) {
 
     item.appendChild(dot);
     item.appendChild(body);
-    if (isAvailable) item.appendChild(text('span', 'topic-item__arrow', '›'));
+    item.appendChild(text('span', 'topic-item__arrow', '›'));
     list.appendChild(item);
   });
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Roman Britain — Year 4 History | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.diff-row{display:flex;gap:.4rem;justify-content:center;margin-bottom:1rem}
+.diff-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.35rem .8rem;font-size:.8rem;cursor:pointer;color:var(--text)}
+.diff-btn.active{border-color:var(--primary);color:var(--primary);font-weight:700}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 4 · History</p>
+<h1>Roman Britain</h1>
+<p class="subtitle">Invasion, roads, and Hadrian's Wall!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Roman Britain Quiz</p>
+<div class="diff-row">
+<button class="diff-btn active" data-d="1">Easy</button>
+<button class="diff-btn" data-d="2">Medium</button>
+<button class="diff-btn" data-d="3">Hard</button>
+</div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var E=[
+{q:'When did the Romans invade Britain?',ans:'43 AD',opts:['43 AD','1066 AD','776 BC']},
+{q:'What is Hadrian\'s Wall?',ans:'A wall across northern England',opts:['A wall across northern England','A Roman road','A type of food']},
+{q:'Roman roads were built…',ans:'Straight',opts:['Straight','In circles','Underground']},
+{q:'When did the Romans leave Britain?',ans:'410 AD',opts:['410 AD','55 BC','1066 AD']}
+];
+var M=[
+{q:'Why did the Romans invade Britain?',ans:'For resources like tin, gold, and grain',opts:['For resources like tin, gold, and grain','To find the Olympics','To escape the weather']},
+{q:'How long was Hadrian\'s Wall?',ans:'73 miles',opts:['73 miles','10 miles','500 miles']},
+{q:'What was Londinium?',ans:'The Roman name for London',opts:['The Roman name for London','A type of weapon','A Roman emperor']},
+{q:'A Roman legion had about…',ans:'5,000 soldiers',opts:['5,000 soldiers','50 soldiers','1 million soldiers']}
+];
+var H=[
+{q:'Which emperor ordered the invasion of Britain in 43 AD?',ans:'Claudius',opts:['Claudius','Hadrian','Caesar']},
+{q:'Place names ending in "-chester" come from the Latin…',ans:'Castra (camp)',opts:['Castra (camp)','Aqua (water)','Rex (king)']},
+{q:'Roman roads were made of layers of…',ans:'Large stones, gravel, and paving',opts:['Large stones, gravel, and paving','Sand and mud','Wood and leaves']},
+{q:'Aquae Sulis is the Roman name for…',ans:'Bath',opts:['Bath','York','Chester']}
+];
+var BANKS={1:E,2:M,3:H};var diff=1,sc=0;
+document.querySelectorAll('.diff-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');diff=parseInt(b.dataset.d);newQ();});});
+var pool,idx;function reset(){pool=shuffle(BANKS[diff]);idx=0;}reset();
+function newQ(){
+  reset();var q=pool[idx%pool.length];idx++;
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+}
+document.getElementById('next').addEventListener('click',newQ);newQ();
+</script>
+</body>
+</html>

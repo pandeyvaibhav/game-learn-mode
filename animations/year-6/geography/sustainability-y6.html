@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sustainability — Year 6 Geography | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.diff-row{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem}
+.diff-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.35rem .9rem;font-size:.8rem;cursor:pointer;color:var(--text)}
+.diff-btn.active{border-color:var(--primary);color:var(--primary)}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 6 · Geography</p>
+<h1>Sustainability</h1>
+<p class="subtitle">Renewable energy, recycling, and climate change!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Sustainability Quiz</p>
+<div class="diff-row"><button class="diff-btn active" data-d="1">Easy</button><button class="diff-btn" data-d="2">Medium</button><button class="diff-btn" data-d="3">Hard</button></div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var BANKS={
+1:[
+{q:'Renewable energy comes from sources that…',ans:'Won\'t run out',opts:['Won\'t run out','Run out quickly','Are underground']},
+{q:'The three Rs are…',ans:'Reduce, Reuse, Recycle',opts:['Reduce, Reuse, Recycle','Run, Rest, Repeat','Read, Write, Remember']},
+{q:'Solar energy comes from…',ans:'The Sun',opts:['The Sun','Coal','Water']},
+{q:'Coal is a _____ energy source.',ans:'Non-renewable',opts:['Non-renewable','Renewable','Solar']},
+{q:'Recycling means…',ans:'Making waste into new products',opts:['Making waste into new products','Throwing things away','Burning rubbish']}
+],
+2:[
+{q:'Climate change is caused mainly by…',ans:'Burning fossil fuels',opts:['Burning fossil fuels','Planting trees','Recycling']},
+{q:'Greenhouse gases…',ans:'Trap heat in the atmosphere',opts:['Trap heat in the atmosphere','Cool the Earth','Come from trees']},
+{q:'Carbon footprint measures…',ans:'Greenhouse gases produced',opts:['Greenhouse gases produced','Shoe size','Distance walked']},
+{q:'Trees help because they…',ans:'Absorb CO₂',opts:['Absorb CO₂','Produce coal','Block wind']},
+{q:'Rising sea levels are caused by…',ans:'Melting ice caps',opts:['Melting ice caps','More rain','Bigger oceans']}
+],
+3:[
+{q:'Sustainability covers environmental, economic, and…',ans:'Social aspects',opts:['Social aspects','Musical aspects','Sporting aspects']},
+{q:'Geothermal energy uses…',ans:'Heat from inside the Earth',opts:['Heat from inside the Earth','Sunlight','Wind']},
+{q:'Which is NOT a way to reduce carbon footprint?',ans:'Drive more',opts:['Drive more','Cycle to school','Turn off lights']},
+{q:'Non-renewable energy will eventually…',ans:'Run out',opts:['Run out','Grow back','Get cheaper forever']},
+{q:'The Paris Agreement aims to…',ans:'Limit global temperature rise',opts:['Limit global temperature rise','Build more factories','Increase oil use']}
+]};
+var diff=1,sc=0,pool,idx;
+function load(){pool=shuffle(BANKS[diff]);idx=0;}load();
+document.querySelectorAll('.diff-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');diff=+b.dataset.d;load();show();});});
+function show(){if(idx>=pool.length){pool=shuffle(BANKS[diff]);idx=0;}var q=pool[idx];document.getElementById('qTxt').textContent=q.q;document.getElementById('fb').textContent='';var opts=document.getElementById('opts');opts.innerHTML='';shuffle(q.opts).forEach(function(o){var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;btn.addEventListener('click',function(){opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});btn.style.opacity='1';if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}});opts.appendChild(btn);});idx++;}
+document.getElementById('next').addEventListener('click',show);show();
+</script>
+</body>
+</html>

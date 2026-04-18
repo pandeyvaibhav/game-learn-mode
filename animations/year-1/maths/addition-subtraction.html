@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Addition and Subtraction — Year 1 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.apples{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center;font-size:1.6rem;margin:.5rem 0;min-height:2.2rem}
+.sum-display{text-align:center;font-size:1.5rem;font-weight:800;color:var(--accent);margin:.5rem 0;min-height:2rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin:.5rem 0}
+.num-btn{width:44px;height:44px;border-radius:12px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:700;cursor:pointer;transition:border-color .15s}
+.num-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+.new-btn:hover{border-color:var(--accent)}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · Maths</p>
+<h1>Addition and Subtraction</h1>
+<p class="subtitle">Add and take away numbers up to 20!</p>
+</header>
+
+<!-- Apple Counter -->
+<div class="card">
+<p class="card-title">Apple Adding Machine</p>
+<div class="apples" id="apples"></div>
+<div class="sum-display" id="sumDisp">? + ? = ?</div>
+<div class="num-row" id="ansRow"></div>
+<p class="fb" id="addFb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="addSc">0</span></div>
+<button class="new-btn" id="newAdd">New Question</button>
+</div>
+
+<!-- Number Bonds to 10 -->
+<div class="card">
+<p class="card-title">Number Bonds to 10</p>
+<p style="font-size:.88rem;color:var(--text-muted);margin-bottom:.5rem;text-align:center">What goes with this number to make 10?</p>
+<div class="sum-display" id="bondQ">?</div>
+<div class="num-row" id="bondRow"></div>
+<p class="fb" id="bondFb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="bondSc">0</span></div>
+<button class="new-btn" id="newBond">New Question</button>
+</div>
+
+<script>
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+/* ── Apple Adder ── */
+var addSc=0,aA,aB;
+var applesEl=document.getElementById('apples'),sumEl=document.getElementById('sumDisp'),ansRow=document.getElementById('ansRow'),addFb=document.getElementById('addFb'),addScEl=document.getElementById('addSc');
+function newAdd(){
+  aA=rnd(1,9);aB=rnd(1,9);
+  applesEl.innerHTML='';
+  for(var i=0;i<aA;i++) applesEl.innerHTML+='🍎';
+  applesEl.innerHTML+=' <span style="font-size:1.3rem;color:var(--primary)">+</span> ';
+  for(var i=0;i<aB;i++) applesEl.innerHTML+='🍏';
+  sumEl.textContent=aA+' + '+aB+' = ?';
+  addFb.textContent='';
+  ansRow.innerHTML='';
+  var opts=[aA+aB];
+  while(opts.length<4){var n=rnd(2,18);if(opts.indexOf(n)===-1)opts.push(n);}
+  opts.sort(function(){return Math.random()-.5;});
+  opts.forEach(function(n){
+    var b=document.createElement('button');b.className='num-btn';b.textContent=n;
+    b.addEventListener('click',function(){
+      ansRow.querySelectorAll('.num-btn').forEach(function(x){x.disabled=true;});
+      if(n===aA+aB){b.style.borderColor='var(--success)';b.classList.add('bounce');addSc++;addScEl.textContent=addSc;addFb.textContent='✓ '+aA+' + '+aB+' = '+n;addFb.style.color='var(--success)';}
+      else{b.style.borderColor='var(--error)';b.classList.add('shake');addFb.textContent='✗ Answer: '+(aA+aB);addFb.style.color='var(--error)';}
+    });ansRow.appendChild(b);
+  });
+}
+document.getElementById('newAdd').addEventListener('click',newAdd);
+newAdd();
+
+/* ── Number Bonds ── */
+var bondSc2=0,bondN;
+var bondQ=document.getElementById('bondQ'),bondRow=document.getElementById('bondRow'),bondFb=document.getElementById('bondFb'),bondScEl=document.getElementById('bondSc');
+function newBond(){
+  bondN=rnd(0,10);
+  bondQ.textContent=bondN+' + ? = 10';
+  bondFb.textContent='';
+  bondRow.innerHTML='';
+  var ans=10-bondN;
+  var opts=[ans];
+  while(opts.length<4){var n=rnd(0,10);if(opts.indexOf(n)===-1)opts.push(n);}
+  opts.sort(function(){return Math.random()-.5;});
+  opts.forEach(function(n){
+    var b=document.createElement('button');b.className='num-btn';b.textContent=n;
+    b.addEventListener('click',function(){
+      bondRow.querySelectorAll('.num-btn').forEach(function(x){x.disabled=true;});
+      if(n===ans){b.style.borderColor='var(--success)';b.classList.add('bounce');bondSc2++;bondScEl.textContent=bondSc2;bondFb.textContent='✓ '+bondN+' + '+n+' = 10';bondFb.style.color='var(--success)';}
+      else{b.style.borderColor='var(--error)';b.classList.add('shake');bondFb.textContent='✗ Answer: '+ans;bondFb.style.color='var(--error)';}
+    });bondRow.appendChild(b);
+  });
+}
+document.getElementById('newBond').addEventListener('click',newBond);
+newBond();
+</script>
+</body>
+</html>

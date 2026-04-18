@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Statistics — Line Graphs — Year 5 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.graph-area{text-align:center;margin-bottom:1rem}
+.graph-area canvas{background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:80px;text-align:center;font-weight:700}
+.opt-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 5 · Maths</p>
+<h1>Statistics — Line Graphs</h1>
+<p class="subtitle">Read the graph and answer!</p>
+</header>
+
+<div class="card">
+<p class="card-title">Line Graph Challenge</p>
+<div class="graph-area"><canvas id="cv" width="340" height="220"></canvas></div>
+<p class="q-text" id="qTxt"></p>
+<div class="num-row" id="opts"></div>
+<p class="fb" id="fb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="sc">0</span></div>
+<button class="new-btn" id="next">Next</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var SETS=[
+{title:'Temperature (°C)',labels:['Mon','Tue','Wed','Thu','Fri'],vals:[10,14,12,18,16],qs:[
+  {q:'What was the temperature on Wednesday?',ans:'12°C',opts:['12°C','14°C','18°C']},
+  {q:'Which day was hottest?',ans:'Thursday',opts:['Thursday','Friday','Tuesday']},
+  {q:'What is the trend Mon→Thu?',ans:'Generally increasing',opts:['Generally increasing','Decreasing','Staying the same']}
+]},
+{title:'Plant Height (cm)',labels:['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5'],vals:[2,5,9,14,20],qs:[
+  {q:'How tall was the plant in Week 3?',ans:'9 cm',opts:['9 cm','5 cm','14 cm']},
+  {q:'How much did it grow between Wk 2 and Wk 3?',ans:'4 cm',opts:['4 cm','3 cm','5 cm']},
+  {q:'What is the overall trend?',ans:'Increasing',opts:['Increasing','Decreasing','Flat']}
+]},
+{title:'Rainfall (mm)',labels:['Jan','Feb','Mar','Apr','May'],vals:[50,40,35,20,10],qs:[
+  {q:'Which month had the most rain?',ans:'January',opts:['January','February','May']},
+  {q:'How much rain fell in March?',ans:'35 mm',opts:['35 mm','40 mm','20 mm']},
+  {q:'What is the trend?',ans:'Decreasing',opts:['Decreasing','Increasing','Staying the same']}
+]}
+];
+var sc=0,curSet,curQi;
+function drawGraph(s){
+  ctx.clearRect(0,0,340,220);ctx.fillStyle='#273344';ctx.fillRect(0,0,340,220);
+  var ox=50,oy=190,w=260,h=160;
+  var maxV=Math.max.apply(null,s.vals);var ceil=Math.ceil(maxV/10)*10;
+  // axes
+  ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox,oy-h);ctx.moveTo(ox,oy);ctx.lineTo(ox+w,oy);ctx.stroke();
+  // title
+  ctx.fillStyle='#fbbf24';ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillText(s.title,ox+w/2,18);
+  // y labels
+  ctx.fillStyle='#94a3b8';ctx.font='10px sans-serif';ctx.textAlign='right';
+  for(var i=0;i<=4;i++){var v=Math.round(ceil/4*i);var y=oy-h/4*i;ctx.fillText(v,ox-5,y+3);ctx.strokeStyle='rgba(148,163,184,.2)';ctx.beginPath();ctx.moveTo(ox,y);ctx.lineTo(ox+w,y);ctx.stroke();}
+  // x labels + points
+  var gap=w/(s.labels.length-1);ctx.textAlign='center';
+  var pts=[];
+  for(var j=0;j<s.labels.length;j++){
+    var x=ox+gap*j;var y=oy-(s.vals[j]/ceil)*h;
+    pts.push({x:x,y:y});
+    ctx.fillStyle='#94a3b8';ctx.fillText(s.labels[j],x,oy+14);
+  }
+  // line
+  ctx.strokeStyle='#38bdf8';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+  for(var k=1;k<pts.length;k++) ctx.lineTo(pts[k].x,pts[k].y);ctx.stroke();
+  // dots
+  for(var m=0;m<pts.length;m++){ctx.fillStyle='#fbbf24';ctx.beginPath();ctx.arc(pts[m].x,pts[m].y,4,0,Math.PI*2);ctx.fill();}
+}
+function newQ(){
+  curSet=SETS[Math.floor(Math.random()*SETS.length)];
+  drawGraph(curSet);
+  curQi=Math.floor(Math.random()*curSet.qs.length);
+  var q=curSet.qs[curQi];
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('fb').textContent='';
+  var opts=document.getElementById('opts');opts.innerHTML='';
+  shuffle(q.opts).forEach(function(o){
+    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
+      btn.style.opacity='1';
+      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans;document.getElementById('fb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+}
+document.getElementById('next').addEventListener('click',newQ);newQ();
+</script>
+</body>
+</html>

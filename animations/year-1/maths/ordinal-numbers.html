@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ordinal Numbers — Year 1 Maths | Game Learn</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
+header{text-align:center;max-width:640px;width:100%}
+.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
+.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.race-line{display:flex;gap:.5rem;justify-content:center;font-size:2rem;margin-bottom:1rem;flex-wrap:wrap}
+.racer{display:flex;flex-direction:column;align-items:center;gap:.15rem}
+.racer-pos{font-size:.7rem;font-weight:700;color:var(--text-muted)}
+.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
+.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.num-btn{min-width:56px;padding:.5rem .6rem;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:.88rem;cursor:pointer;text-align:center}
+.num-btn:hover{border-color:var(--accent)}
+.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
+.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+<p class="tag">Year 1 · Maths</p>
+<h1>Ordinal Numbers</h1>
+<p class="subtitle">Who finished 1st, 2nd, 3rd?</p>
+</header>
+
+<div class="card">
+<p class="card-title">Animal Race</p>
+<div class="race-line" id="race"></div>
+<p class="q-text" id="rQ"></p>
+<div class="num-row" id="rOpts"></div>
+<p class="fb" id="rFb" aria-live="polite"></p>
+<div class="score-bar">Score: <span id="rSc">0</span></div>
+<button class="new-btn" id="newR">New Race</button>
+</div>
+
+<script>
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+var ANIMALS=['🐇','🐢','🐸','🐱','🐶','🐭','🦊','🐻','🐵','🐷'];
+var NAMES=['Rabbit','Turtle','Frog','Cat','Dog','Mouse','Fox','Bear','Monkey','Pig'];
+var ORDS=['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th'];
+var rSc=0;
+
+function newRace(){
+  var count=shuffle([5,6,7])[0];
+  var indices=shuffle(ANIMALS.map(function(_,i){return i;})).slice(0,count);
+  var raceEl=document.getElementById('race');raceEl.innerHTML='';
+  indices.forEach(function(idx,pos){
+    var d=document.createElement('div');d.className='racer';
+    d.innerHTML='<span>'+ANIMALS[idx]+'</span><span class="racer-pos">'+ORDS[pos]+'</span>';
+    raceEl.appendChild(d);
+  });
+  // Ask about a random position
+  var askPos=Math.floor(Math.random()*count);
+  var askAnimal=NAMES[indices[askPos]];
+  var askOrd=ORDS[askPos];
+  // Two question types
+  var type=Math.random()<0.5?'pos':'who';
+  var q,ans,distractors;
+  if(type==='pos'){
+    q='What position is the '+askAnimal+'?';
+    ans=askOrd;
+    distractors=shuffle(ORDS.filter(function(o){return o!==ans;})).slice(0,3);
+  } else {
+    q='Who is in '+askOrd+' place?';
+    ans=askAnimal;
+    distractors=shuffle(indices.map(function(i){return NAMES[i];}).filter(function(n){return n!==ans;})).slice(0,3);
+  }
+  document.getElementById('rQ').textContent=q;
+  document.getElementById('rFb').textContent='';
+  var opts=document.getElementById('rOpts');opts.innerHTML='';
+  shuffle([ans].concat(distractors)).forEach(function(o){
+    var btn=document.createElement('button');btn.className='num-btn';btn.textContent=o;
+    btn.addEventListener('click',function(){
+      opts.querySelectorAll('.num-btn').forEach(function(b){b.disabled=true;});
+      if(o===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');rSc++;document.getElementById('rSc').textContent=rSc;document.getElementById('rFb').textContent='✓ Correct!';document.getElementById('rFb').style.color='var(--success)';}
+      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('rFb').textContent='✗ Answer: '+ans;document.getElementById('rFb').style.color='var(--error)';}
+    });opts.appendChild(btn);
+  });
+}
+document.getElementById('newR').addEventListener('click',newRace);newRace();
+</script>
+</body>
+</html>
