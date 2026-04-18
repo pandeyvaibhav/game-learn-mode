@@ -11,10 +11,10 @@ animation: ../../animations/year-3/science/light-shadows.html
 # Light and Shadows — Year 3 Science
 
 ## Big Question
-Why do shadows change shape and size during the day?
+Why do shadows change shape and size throughout the day?
 
 ## What We're Learning
-In this lesson you will explore where **light** comes from, how **shadows** form, and why reflections happen. You will also discover how people used shadows to tell the time before clocks were invented!
+In this lesson you will explore where **light** comes from, how **shadows** are created, and why reflections happen. You will also find out how people used shadows to tell the time before clocks existed!
 
 ## Key Science Words
 | Word | What it means |

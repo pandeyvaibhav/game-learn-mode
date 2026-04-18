@@ -11,7 +11,7 @@ animation: ../../animations/year-3/maths/perimeter-y3.html
 # Perimeter — Year 3 Maths
 
 ## What We're Learning
-In this lesson you will find out what **perimeter** means and how to measure it. You will add up the lengths around the outside of shapes — including tricky rectilinear shapes (shapes made only of right angles). By the end you will be able to calculate the perimeter of any 2D shape when you know its side lengths.
+In this lesson you will find out what **perimeter** means and how to calculate it. You will add the lengths of sides of 2D shapes — including **rectilinear shapes** made from straight lines and right angles.
 
 ## Key Words
 | Word | What it means |
@@ -40,19 +40,18 @@ Perimeter = 5 + 3 + 5 + 3 = **16 cm**
 
 ### Example 1 — Rectangle
 
-A rectangle has a length of 8 cm and a width of 4 cm.
+A rectangle has a length of 9 cm and a width of 5 cm.
 
 ```
-      8 cm
+      9 cm
   ┌──────────┐
-  │          │ 4 cm
+  │          │ 5 cm
   └──────────┘
 ```
 
-Perimeter = 8 + 4 + 8 + 4 = **24 cm**
+Perimeter = 9 + 5 + 9 + 5 = **28 cm**
 
-**Shortcut:** A rectangle has two pairs of equal sides, so you can also calculate:
-(8 + 4) × 2 = 12 × 2 = **24 cm** ✓
+**Shortcut:** (9 + 5) × 2 = 14 × 2 = **28 cm** ✓
 
 ### Example 2 — Rectilinear shape (L-shape)
 
@@ -75,20 +74,20 @@ Perimeter = 2 + 2 + 3 + 4 + 5 + 2 = **18 cm**
 
 ## Try It Yourself
 
-1. Find the perimeter of a square with sides of 6 cm.
-2. A rectangle is 10 cm long and 3 cm wide. What is the perimeter?
-3. A triangle has sides 5 cm, 7 cm and 8 cm. What is the perimeter?
-4. An equilateral triangle has all sides of 9 cm. What is the perimeter?
-5. A rectilinear shape has these side lengths: 2 cm, 4 cm, 3 cm, 2 cm, 5 cm, 6 cm. What is the perimeter?
+1. Find the perimeter of a square with sides of 7 cm.
+2. A rectangle is 12 cm long and 5 cm wide. What is the perimeter?
+3. A triangle has sides 6 cm, 8 cm and 10 cm. What is the perimeter?
+4. An equilateral triangle has all sides of 8 cm. What is the perimeter?
+5. A rectilinear shape has these side lengths: 3 cm, 5 cm, 2 cm, 3 cm, 5 cm, 8 cm. What is the perimeter?
 
 <details>
 <summary>Check your answers</summary>
 
-1. 6 + 6 + 6 + 6 = **24 cm**
-2. 10 + 3 + 10 + 3 = **26 cm**
-3. 5 + 7 + 8 = **20 cm**
-4. 9 + 9 + 9 = **27 cm**
-5. 2 + 4 + 3 + 2 + 5 + 6 = **22 cm**
+1. 7 + 7 + 7 + 7 = **28 cm**
+2. 12 + 5 + 12 + 5 = **34 cm**
+3. 6 + 8 + 10 = **24 cm**
+4. 8 + 8 + 8 = **24 cm**
+5. 3 + 5 + 2 + 3 + 5 + 8 = **26 cm**
 
 </details>
 

@@ -1,14 +1,15 @@
 # Pipeline Run Report
-Date: 2025-07-26
+Date: 2025-07-27
 Scope: year=3 --force --content-only
 
 ## Phase 1 — Content & Animations
 - Topics processed: 19
-- Content files written: 19
-- Animation files written: 19 (child-baseline.css injected)
+- Content files written: 19 (all regenerated with fresh examples, questions, fun facts)
+- Animation files written: 19 (quiz QUESTIONS arrays regenerated with new questions)
 - Skipped (already existed): 0 (--force flag: all overwritten)
 - Safety review (S1) — passes / fails / blocked: 19/0/0 (content) + 19/0/0 (animations)
 - Factual review (S2) — passes / fails / blocked: 19/0/0
+- Playability review (S10) — passes / fails / blocked: 19/0/0
 - Topics blocked by reviewers: none
 - Errors: none
 
@@ -66,12 +67,28 @@ All 19 content files reviewed against safety-policy.md §§1-11. No banned topic
 All 19 content files verified against UK National Curriculum and standard KS2 references. Key concepts, facts, dates, and scientific terminology confirmed accurate. **All PASS.**
 
 ### S1 — Content Safety (animation files)
-All 19 animation files reviewed. No banned imagery (§6), no external URLs (§7), no PII collection (§8), no localStorage/sessionStorage, prefers-reduced-motion respected, child-baseline.css inlined. **All PASS.**
+All 19 animation files reviewed. No banned imagery (§6), no external URLs (§7), no PII collection (§8), no localStorage/sessionStorage, prefers-reduced-motion respected, child-baseline.css inlined. One fix applied: light-shadows.html `announce('Wrong.')` changed to `announce('Not quite.')` for P7 kindness compliance. **All PASS.**
 
-## Content Changes Applied
-- 6 content files fully rewritten to match agent templates (computing ×2, english ×4, geography ×2)
-- 13 content files had Sources section appended
-- 19 animation files had child-baseline.css rules injected (tap targets, font sizes, focus styles, motion safety, readability)
+### S10 — Playability (animation files)
+All 19 animation files reviewed against Year 3 bars: rules ≤3, items ≤8, reading ≤25 words, tap ≥44px.
+- P1 rules count: all ≤3 ✅
+- P2 on-screen items: all ≤8 (max 4 option buttons per question) ✅
+- P3 reading load: all ≤25 words ✅
+- P4 obvious first action: clear primary control on load ✅
+- P5 tap size: min-height 44px on .opt-btn (56px on primary buttons) ✅
+- P6 instructions: ≤2 lines ✅
+- P7 kindness: ✓/✗ symbols, "Correct!", "Answer:", encouraging completion messages ✅
+- P8 clarity: text + colour feedback on all paths ✅
+- P9 failure state: no blocking game-over; child can always continue ✅
+- P10 time-to-interaction: immediate, no splash screens ✅
+- P11 motion: prefers-reduced-motion guards on all animations ✅
+- P12 reward loop: bounce animation + score tick on correct answers ✅
+**All PASS.**
+
+## Content Changes Applied (this run)
+- 19 content .md files: intro paragraphs, examples, practice questions, and fun facts regenerated with fresh wording
+- 18 animation .html files: QUESTIONS arrays replaced with new quiz items (multiplication-division-y3.html generates questions dynamically from times tables)
+- 1 animation fix: light-shadows.html wrong-answer announcement softened from "Wrong" to "Not quite"
 
 To regenerate a specific year/subject:
 ```

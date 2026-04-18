@@ -14,7 +14,7 @@ animation: ../../animations/year-3/geography/volcanoes-earthquakes.html
 Volcanoes and earthquakes are found in many countries, but most are clustered along the edges of tectonic plates. The **Ring of Fire** is a horseshoe-shaped zone around the Pacific Ocean — from New Zealand, through Japan, across to the west coast of the Americas. About 75% of the world's volcanoes sit on the Ring of Fire.
 
 ## What We're Learning
-You are going to look deep inside the Earth to understand **tectonic plates**, discover how **volcanoes** form and erupt, and learn why **earthquakes** happen. You will also find out about some famous eruptions.
+You are going to look deep inside the Earth to understand **tectonic plates**, discover how **volcanoes** form and erupt, and learn what causes **earthquakes**. You will also explore some of the most famous eruptions in history.
 
 ## Key Geography Words
 | Word | What it means |

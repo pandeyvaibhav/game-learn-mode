@@ -11,7 +11,7 @@ animation: ../../animations/year-3/computing/data-information-y3.html
 # Data and Information — Year 3 Computing
 
 ## What We're Learning
-You are going to learn the difference between **data** and **information**. You will find out how to collect data, organise it in a simple database, and search for what you need. This is how computers help us answer questions quickly.
+You are going to learn the difference between **data** and **information**. You will discover how to collect data, organise it in a simple database, and search for answers. This is how computers help us make sense of the world quickly.
 
 ## Key Computing Words
 | Word | What it means |

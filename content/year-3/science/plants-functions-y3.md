@@ -11,10 +11,10 @@ animation: ../../animations/year-3/science/plants-functions-y3.html
 # Plants Functions — Year 3 Science
 
 ## Big Question
-What do plants need to grow, and how do they make new plants?
+How do plants make their own food, and how do they produce new plants?
 
 ## What We're Learning
-In this lesson you will find out how plants make their own food through **photosynthesis**, follow the journey of a plant's **lifecycle**, and discover the amazing ways plants spread their seeds.
+In this lesson you will find out how plants use **photosynthesis** to make food from sunlight, follow the stages of a plant's **lifecycle**, and discover the different ways plants spread their seeds far and wide.
 
 ## Key Science Words
 | Word | What it means |

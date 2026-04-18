@@ -11,17 +11,17 @@ animation: ../../animations/year-3/maths/multiplication-division-y3.html
 # Multiplication and Division — Year 3 Maths
 
 ## What We're Learning
-In this lesson you will master the **3, 4 and 8 times tables** and learn how multiplication and division are connected. You will also start using written methods to multiply and divide bigger numbers.
+In this lesson you will build confidence with the **3, 4 and 8 times tables** and see how multiplication and division work together as opposites. You will practise using arrays, equal groups, and written methods.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| multiply | a quick way of adding equal groups (3 × 4 means "3 groups of 4") |
-| divide | sharing equally or grouping into equal sets |
-| times table | the family of multiplication facts for a number |
-| array | objects arranged in rows and columns to show a multiplication |
+| multiply | finding the total of equal groups (4 × 3 means "4 groups of 3") |
+| divide | splitting a total into equal groups or shares |
+| times table | a list of multiples for a number (e.g. 4, 8, 12, 16…) |
+| array | objects set out in rows and columns to show a multiplication |
 | inverse | the opposite operation — division undoes multiplication |
-| commutative | the order doesn't matter: 3 × 4 = 4 × 3 |
+| commutative | the order does not matter: 3 × 4 = 4 × 3 |
 
 ## Let's Explore
 
@@ -41,57 +41,57 @@ This array shows 3 × 4 = 12. It also shows 4 × 3 = 12 (turn it sideways!).
 
 ### Example 1 — Using the 3 times table
 
-What is 7 × 3?
+What is 9 × 3?
 
-Count in 3s: **3, 6, 9, 12, 15, 18, 21**
+Count in 3s: **3, 6, 9, 12, 15, 18, 21, 24, 27**
 
-The 7th multiple of 3 is **21**, so 7 × 3 = **21**.
+The 9th multiple of 3 is **27**, so 9 × 3 = **27**.
 
-Check: 21 ÷ 3 = **7** ✓
+Check: 27 ÷ 3 = **9** ✓
 
 ### Example 2 — Using the 8 times table
 
-What is 6 × 8?
+What is 7 × 8?
 
-A useful trick: **double, double, double!** 6 × 8 = 6 × 2 × 2 × 2
+A useful trick: **double, double, double!** 7 × 8 = 7 × 2 × 2 × 2
 
-- 6 × 2 = 12
-- 12 × 2 = 24
-- 24 × 2 = **48**
+- 7 × 2 = 14
+- 14 × 2 = 28
+- 28 × 2 = **56**
 
-So 6 × 8 = **48** ✓
+So 7 × 8 = **56** ✓
 
 ### Example 3 — Division with grouping
 
-There are 32 sweets shared equally between 4 friends. How many does each friend get?
+There are 36 grapes shared equally between 4 plates. How many on each plate?
 
-32 ÷ 4 = ?
+36 ÷ 4 = ?
 
-Think: what number × 4 = 32? From the 4 times table: **8** × 4 = 32.
+Think: what number × 4 = 36? From the 4 times table: **9** × 4 = 36.
 
-Each friend gets **8 sweets**.
+Each plate gets **9 grapes**.
 
 ## Try It Yourself
 
-1. What is 5 × 3?
-2. What is 9 × 4?
-3. What is 48 ÷ 8?
-4. Draw an array for 4 × 6 and write the answer.
-5. There are 27 apples shared equally into bags of 3. How many bags?
+1. What is 6 × 3?
+2. What is 8 × 4?
+3. What is 64 ÷ 8?
+4. Draw an array for 3 × 7 and write the answer.
+5. There are 32 strawberries shared equally among 4 bowls. How many in each bowl?
 
 <details>
 <summary>Check your answers</summary>
 
-1. 5 × 3 = **15**
-2. 9 × 4 = **36**
-3. 48 ÷ 8 = **6**
-4. 4 rows of 6 stars = **24**
-5. 27 ÷ 3 = **9 bags**
+1. 6 × 3 = **18**
+2. 8 × 4 = **32**
+3. 64 ÷ 8 = **8**
+4. 3 rows of 7 stars = **21**
+5. 32 ÷ 4 = **8 strawberries per bowl**
 
 </details>
 
 ## Did You Know? 🧮
-The 8 times table is really the 2 times table **doubled** and then **doubled again**. So if you know your 2s, you already nearly know your 8s! Also, every answer in the 4 times table is even — check and see!
+Every answer in the 4 times table is even, and every answer in the 8 times table is also even. If you double any answer from the 4 times table you get the matching 8 times table answer — try it with 4 × 5 = 20 and 8 × 5 = 40!
 
 ## Learning Checklist
 - [ ] I can recall the 3, 4 and 8 times tables

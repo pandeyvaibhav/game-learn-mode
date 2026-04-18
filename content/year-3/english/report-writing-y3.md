@@ -11,7 +11,7 @@ animation: ../../animations/year-3/english/report-writing-y3.html
 # Report Writing — Year 3 English
 
 ## What We're Learning
-You are going to learn how to write a **non-chronological report** — a piece of writing that gives facts and information about a topic. You will practise using **sub-headings**, **formal language**, and the **present tense** to organise your ideas clearly.
+You are going to learn how to write a **non-chronological report** — a piece of writing that gives facts and information about a topic. You will practise using **sub-headings**, **formal language**, and the **present tense** to organise your writing clearly.
 
 ## Key Words
 | Word | What it means |

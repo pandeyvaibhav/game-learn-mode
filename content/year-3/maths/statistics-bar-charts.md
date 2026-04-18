@@ -11,7 +11,7 @@ animation: ../../animations/year-3/maths/statistics-bar-charts.html
 # Statistics — Bar Charts — Year 3 Maths
 
 ## What We're Learning
-In this lesson you will learn how to **read** and **draw** bar charts and pictograms. These are brilliant ways to show information (data) so you can compare things quickly. By the end you will be able to answer questions using a bar chart and create your own!
+In this lesson you will learn how to **read** and **draw** bar charts and pictograms. These are clever ways to show data so you can compare things at a glance.
 
 ## Key Words
 | Word | What it means |
@@ -27,39 +27,40 @@ In this lesson you will learn how to **read** and **draw** bar charts and pictog
 
 A bar chart makes data easy to compare. The bars can go up (vertical) or sideways (horizontal).
 
-Here is data about favourite fruits in a class:
+Here is data about favourite colours in a class:
 
-| Fruit | Votes |
+| Colour | Votes |
 |---|---|
-| Apple | 8 |
-| Banana | 5 |
-| Orange | 6 |
-| Grapes | 3 |
+| Blue | 9 |
+| Red | 6 |
+| Green | 4 |
+| Yellow | 7 |
 
 As a bar chart:
 
 ```
 Votes
- 8 | ████
- 7 |
- 6 | ████          ████
- 5 | ████  ████  ████
- 4 | ████  ████  ████
- 3 | ████  ████  ████  ████
- 2 | ████  ████  ████  ████
- 1 | ████  ████  ████  ████
-   +------+------+------+-----
-    Apple  Banana Orange Grapes
+ 9 | ████
+ 8 |
+ 7 | ████                    ████
+ 6 | ████  ████            ████
+ 5 | ████  ████            ████
+ 4 | ████  ████  ████      ████
+ 3 | ████  ████  ████      ████
+ 2 | ████  ████  ████      ████
+ 1 | ████  ████  ████      ████
+   +------+------+------+------
+    Blue    Red   Green  Yellow
 ```
 
-You can see straight away that **Apple** got the most votes because its bar is the tallest.
+You can see straight away that **Blue** got the most votes because its bar is the tallest.
 
 ### Example 1 — Reading a bar chart
 
 Look at the chart above.
 
-**Q:** How many more people chose Apple than Grapes?
-**A:** Apple = 8, Grapes = 3, so 8 − 3 = **5 more**.
+**Q:** How many more people chose Blue than Green?
+**A:** Blue = 9, Green = 4, so 9 − 4 = **5 more**.
 
 ### Example 2 — Drawing a pictogram
 

@@ -11,95 +11,92 @@ animation: ../../animations/year-3/maths/place-value-1000.html
 # Place Value to 1000 — Year 3 Maths
 
 ## What We're Learning
-In this lesson you will explore numbers all the way up to 1000! You will learn how every number is made from **hundreds**, **tens**, and **ones**, and how to compare and round numbers like a maths superstar.
+In this lesson you will explore how numbers up to 1000 are built. You will discover how **hundreds**, **tens** and **ones** give each digit its value, and you will practise comparing and rounding 3-digit numbers.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| place value | the value a digit has because of its position in a number |
-| hundreds | groups of 100 (the third column from the right) |
-| tens | groups of 10 (the second column from the right) |
-| ones | single units (the first column from the right) |
-| compare | deciding which number is bigger or smaller |
-| round | replacing a number with the nearest 10 or 100 |
-| partition | splitting a number into hundreds, tens and ones |
+| place value | the value of a digit based on its position in a number |
+| hundreds | the column worth groups of 100 |
+| tens | the column worth groups of 10 |
+| ones | the column worth single units |
+| compare | deciding which number is greater or smaller using < > = |
+| round | finding the nearest 10 or 100 to estimate a number |
+| partition | breaking a number into hundreds, tens and ones |
 
 ## Let's Explore
 
-Every digit in a number has a value depending on its **position**. Look at the number **374**:
+Every digit in a number has a different value depending on its **position**. Look at **256**:
 
 ```
 Hundreds | Tens | Ones
-    3    |   7  |   4
-  300    +  70  +   4  = 374
+    2    |   5  |   6
+  200    +  50  +   6  = 256
 ```
 
-The **3** is worth 300 because it sits in the hundreds column.
-The **7** is worth 70 because it sits in the tens column.
-The **4** is worth 4 because it sits in the ones column.
+The **2** is worth 200 because it sits in the hundreds column.
+The **5** is worth 50 because it sits in the tens column.
+The **6** is worth 6 because it sits in the ones column.
 
-We call this **partitioning**: 374 = 300 + 70 + 4.
+This is called **partitioning**: 256 = 200 + 50 + 6.
 
-### Example 1 — What is the value of each digit in 528?
+### Example 1 — Partition the number 743
 
 ```
 Hundreds | Tens | Ones
-    5    |   2  |   8
+    7    |   4  |   3
 ```
 
-- The **5** is worth **500**
-- The **2** is worth **20**
-- The **8** is worth **8**
-- 528 = 500 + 20 + 8 ✓
+- The **7** is worth **700**
+- The **4** is worth **40**
+- The **3** is worth **3**
+- 743 = 700 + 40 + 3 ✓
 
-### Example 2 — Comparing numbers
+### Example 2 — Comparing 395 and 412
 
-Which is greater: **463** or **481**?
-
-1. Look at the hundreds first: both have **4** hundreds — they're equal so far.
-2. Look at the tens: **6** tens vs **8** tens. 8 tens is more.
-3. So **481 > 463**.
-
-On a number line:
-```
-460---463-----470-----480-481---490
-      ↑                    ↑
-    smaller              bigger
-```
-
-### Example 3 — Rounding 367 to the nearest 10 and nearest 100
-
-**Nearest 10:** 367 is between 360 and 370. The ones digit is 7 (5 or more → round up). **367 ≈ 370**
-
-**Nearest 100:** 367 is between 300 and 400. The tens digit is 6 (5 or more → round up). **367 ≈ 400**
+1. Compare the hundreds first: **3** hundreds vs **4** hundreds. 4 hundreds is more.
+2. No need to check tens or ones — the hundreds already tell us.
+3. So **412 > 395**.
 
 ```
-300------350------367------400
-                   ↑
-          closer to 400 → rounds to 400
+390---395---400------412------420
+      ↑               ↑
+    smaller          bigger
+```
+
+### Example 3 — Rounding 456 to the nearest 10 and nearest 100
+
+**Nearest 10:** 456 is between 450 and 460. The ones digit is 6 (5 or more means round up). **456 ≈ 460**
+
+**Nearest 100:** 456 is between 400 and 500. The tens digit is 5 (5 or more means round up). **456 ≈ 500**
+
+```
+400------450---456------500
+                ↑
+      closer to 500 → rounds to 500
 ```
 
 ## Try It Yourself
 
-1. Partition 645 into hundreds, tens and ones.
-2. What is the value of the digit 9 in the number 892?
-3. Put these numbers in order from smallest to largest: 507, 570, 517.
-4. Round 243 to the nearest 10.
-5. Round 749 to the nearest 100.
+1. Partition 839 into hundreds, tens and ones.
+2. What is the value of the digit 6 in the number 264?
+3. Put these in order from smallest to largest: 603, 630, 306.
+4. Round 178 to the nearest 10.
+5. Round 851 to the nearest 100.
 
 <details>
 <summary>Check your answers</summary>
 
-1. 645 = **600 + 40 + 5**
-2. The 9 is in the tens column, so it is worth **90**
-3. **507, 517, 570**
-4. 243 rounds to **240** (ones digit is 3 → round down)
-5. 749 rounds to **700** (tens digit is 4 → round down)
+1. 839 = **800 + 30 + 9**
+2. The 6 is in the tens column, so it is worth **60**
+3. **306, 603, 630**
+4. 178 rounds to **180** (ones digit is 8, so round up)
+5. 851 rounds to **900** (tens digit is 5, so round up)
 
 </details>
 
 ## Did You Know? 🧮
-The number 1000 is also called "one thousand" and it takes about **17 minutes** to count from 1 to 1000 out loud — that's about as long as watching an episode of your favourite cartoon! Ancient Romans wrote 1000 as the letter **M**.
+It takes about 17 minutes to count aloud from 1 to 1000 — roughly the length of a cartoon episode! The ancient Romans used the letter **M** for 1000. The longest number word in English under 1000 is "seven hundred and seventy-seven".
 
 ## Learning Checklist
 - [ ] I can partition a 3-digit number into hundreds, tens and ones

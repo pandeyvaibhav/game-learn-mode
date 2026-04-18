@@ -11,7 +11,7 @@ animation: ../../animations/year-3/maths/fractions-y3.html
 # Fractions — Year 3 Maths
 
 ## What We're Learning
-In this lesson you will discover what fractions really mean. You will learn about **unit fractions** and **non-unit fractions**, and how to add and subtract fractions that have the same denominator. Fractions are everywhere — from slicing pizza to sharing sweets!
+In this lesson you will discover how fractions work. You will learn about **unit fractions** and **non-unit fractions**, and practise adding and subtracting fractions that share the same denominator. You will see fractions everywhere — from slicing cakes to sharing fruit!
 
 ## Key Words
 | Word | What it means |
@@ -41,57 +41,57 @@ A fraction describes **part of a whole**. When you cut a cake into 4 equal slice
 
 ### Example 1 — Naming a fraction
 
-A chocolate bar is split into 5 equal pieces. You eat 3 pieces.
+A melon is cut into 6 equal slices. You eat 2 slices.
 
-- Denominator = **5** (total pieces)
-- Numerator = **3** (pieces eaten)
-- Fraction eaten = **³⁄₅**
+- Denominator = **6** (total slices)
+- Numerator = **2** (slices eaten)
+- Fraction eaten = **²⁄₆**
 
 This is a **non-unit fraction** because the numerator is more than 1.
 
 ### Example 2 — Adding fractions with the same denominator
 
-²⁄₆ + ³⁄₆ = ?
+³⁄₈ + ⁴⁄₈ = ?
 
-The denominators are the same (sixths), so just add the numerators:
+The denominators are the same (eighths), so just add the numerators:
 
-2 + 3 = **5** → answer is **⁵⁄₆**
+3 + 4 = **7** → answer is **⁷⁄₈**
 
 ```
-[■][■][□][□][□][□]  →  ²⁄₆
-      +
-[□][□][■][■][■][□]  →  ³⁄₆
-      =
-[■][■][■][■][■][□]  →  ⁵⁄₆
+[■][■][■][□][□][□][□][□]  →  ³⁄₈
+          +
+[□][□][□][■][■][■][■][□]  →  ⁴⁄₈
+          =
+[■][■][■][■][■][■][■][□]  →  ⁷⁄₈
 ```
 
 ### Example 3 — Subtracting fractions with the same denominator
 
-⁵⁄₈ − ²⁄₈ = ?
+⁶⁄₉ − ²⁄₉ = ?
 
-Same denominator, so subtract numerators: 5 − 2 = **3** → answer is **³⁄₈**
+Same denominator, so subtract numerators: 6 − 2 = **4** → answer is **⁴⁄₉**
 
 ## Try It Yourself
 
-1. What fraction is shaded if 2 out of 7 equal parts are coloured?
-2. Is ¹⁄₄ a unit fraction or a non-unit fraction?
-3. ³⁄₁₀ + ⁴⁄₁₀ = ?
-4. ⁷⁄₉ − ³⁄₉ = ?
-5. A pizza has 8 equal slices. You eat 3 slices. What fraction is left?
+1. What fraction is shaded if 3 out of 10 equal parts are coloured?
+2. Is ⁴⁄₅ a unit fraction or a non-unit fraction?
+3. ²⁄₇ + ³⁄₇ = ?
+4. ⁸⁄₁₀ − ⁵⁄₁₀ = ?
+5. A cake has 6 equal slices. You eat 2 slices. What fraction is left?
 
 <details>
 <summary>Check your answers</summary>
 
-1. **²⁄₇**
-2. **Unit fraction** (the numerator is 1)
-3. ³⁄₁₀ + ⁴⁄₁₀ = **⁷⁄₁₀**
-4. ⁷⁄₉ − ³⁄₉ = **⁴⁄₉**
-5. You ate ³⁄₈, so **⁵⁄₈** is left
+1. **³⁄₁₀**
+2. **Non-unit fraction** (the numerator is more than 1)
+3. ²⁄₇ + ³⁄₇ = **⁵⁄₇**
+4. ⁸⁄₁₀ − ⁵⁄₁₀ = **³⁄₁₀**
+5. You ate ²⁄₆, so **⁴⁄₆** is left
 
 </details>
 
 ## Did You Know? 🧮
-The word "fraction" comes from the Latin word **fractio**, meaning "to break." Ancient Egyptians used fractions over 4,000 years ago — but they only used unit fractions like ¹⁄₂, ¹⁄₃, and ¹⁄₄. They would write ³⁄₄ as ¹⁄₂ + ¹⁄₄ instead!
+The word "fraction" comes from the Latin word **fractio**, meaning "to break". Over 4 000 years ago, Ancient Egyptians used only unit fractions like ¹⁄₂, ¹⁄₃, and ¹⁄₅. To write ³⁄₅ they had to say ¹⁄₂ + ¹⁄₁₀ — what a lot of work!
 
 ## Learning Checklist
 - [ ] I can name the numerator and denominator of a fraction

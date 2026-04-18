@@ -11,10 +11,10 @@ animation: ../../animations/year-3/history/ancient-egypt.html
 # Ancient Egypt — Year 3 History
 
 ## Big Question
-Why was Ancient Egypt one of the greatest civilisations in history, and how do we know so much about it?
+What made Ancient Egypt one of the greatest civilisations in history, and how have we uncovered its secrets?
 
 ## What We're Learning
-In this lesson you will explore the amazing world of **Ancient Egypt** — from powerful pharaohs and towering pyramids to mysterious mummies and clever hieroglyphics. You will discover why the **River Nile** was so important and how archaeologists have uncovered Egypt's secrets.
+In this lesson you will explore the fascinating world of **Ancient Egypt** — from powerful pharaohs and enormous pyramids to mysterious mummies and clever hieroglyphics. You will discover why the **River Nile** was the lifeblood of Egyptian civilisation.
 
 ## Key History Words
 | Word | What it means |

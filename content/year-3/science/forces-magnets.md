@@ -11,10 +11,10 @@ animation: ../../animations/year-3/science/forces-magnets.html
 # Forces and Magnets — Year 3 Science
 
 ## Big Question
-What makes things move, stop, or change direction — and why do magnets stick to some things but not others?
+What makes things move, stop, or change direction — and why do magnets attract some materials but not others?
 
 ## What We're Learning
-In this lesson you will learn about **forces** — pushes and pulls that make things move. You will discover **friction** and explore the invisible force of **magnetism**, including why magnets attract some materials and repel each other.
+In this lesson you will learn about **forces** — the pushes and pulls that make things move. You will explore **friction** and investigate the invisible force of **magnetism**, including how magnetic poles attract and repel.
 
 ## Key Science Words
 | Word | What it means |

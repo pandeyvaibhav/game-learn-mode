@@ -11,7 +11,7 @@ animation: ../../animations/year-3/english/conjunctions-clauses.html
 # Conjunctions and Clauses — Year 3 English
 
 ## What We're Learning
-You are going to learn how to use **subordinating conjunctions** — special joining words like **because**, **although**, and **when** — to build longer, more interesting sentences. You will also discover the difference between a **main clause** and a **subordinate clause**.
+You are going to learn how to use **subordinating conjunctions** — special joining words like **because**, **although**, and **when** — to build longer, more varied sentences. You will also discover the difference between a **main clause** and a **subordinate clause**.
 
 ## Key Words
 | Word | What it means |

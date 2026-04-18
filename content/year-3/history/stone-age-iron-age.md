@@ -11,10 +11,10 @@ animation: ../../animations/year-3/history/stone-age-iron-age.html
 # Stone Age to Iron Age — Year 3 History
 
 ## Big Question
-How did life in Britain change from the Stone Age to the Iron Age — and how do we know?
+How did life in Britain change from the Stone Age to the Iron Age — and what evidence tells us?
 
 ## What We're Learning
-In this lesson you will travel back thousands of years to explore how the earliest people in Britain lived. You will discover how stone tools were replaced by bronze and iron, how farming changed everything, and why Stonehenge is still one of the world's greatest mysteries.
+In this lesson you will travel back thousands of years to discover how the earliest people in Britain lived. You will explore how stone tools gave way to bronze and iron, how farming transformed society, and why Stonehenge remains one of the world’s greatest mysteries.
 
 ## Key History Words
 | Word | What it means |

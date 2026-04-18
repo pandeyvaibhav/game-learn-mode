@@ -11,10 +11,10 @@ animation: ../../animations/year-3/science/rocks-fossils.html
 # Rocks and Fossils — Year 3 Science
 
 ## Big Question
-How are different types of rock formed, and how do fossils end up trapped inside them?
+What are the three main types of rock, and how do fossils become trapped inside them?
 
 ## What We're Learning
-In this lesson you will discover the three types of rock — **igneous**, **sedimentary**, and **metamorphic** — and find out how fossils form over millions of years. Rocks tell the story of our planet!
+In this lesson you will explore **igneous**, **sedimentary**, and **metamorphic** rocks. You will find out how fossils form over millions of years and discover what rocks can tell us about the history of our planet.
 
 ## Key Science Words
 | Word | What it means |

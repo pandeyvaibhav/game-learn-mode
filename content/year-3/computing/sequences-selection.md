@@ -11,7 +11,7 @@ animation: ../../animations/year-3/computing/sequences-selection.html
 # Sequences and Selection — Year 3 Computing
 
 ## What We're Learning
-You are going to learn how computers follow instructions in order — this is called a **sequence**. You will also learn how computers make decisions using **selection**, which means choosing what to do next based on a yes-or-no question. You will see how these ideas work in Scratch.
+You are going to learn how computers follow instructions in order — this is called a **sequence**. You will also learn how computers make decisions using **selection**: choosing what to do next based on a yes-or-no question. You will explore these ideas using Scratch.
 
 ## Key Computing Words
 | Word | What it means |

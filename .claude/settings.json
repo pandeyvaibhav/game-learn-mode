@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C c:/VP/GH/game-learn-mode diff animations/year-3/maths/fractions-y3.html)"
+    ]
+  }
+}

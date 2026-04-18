@@ -11,7 +11,7 @@ animation: ../../animations/year-3/english/narrative-writing-y3.html
 # Narrative Writing — Year 3 English
 
 ## What We're Learning
-You are going to discover how great stories are built. You will learn about the four parts of a story — **opening**, **build-up**, **climax**, and **resolution** — and practise a powerful writing trick called **show don't tell**.
+You are going to learn how great stories are built. You will explore the four parts of a narrative — **opening**, **build-up**, **climax**, and **resolution** — and practise a powerful technique called **show don't tell** that makes your writing come alive.
 
 ## Key Words
 | Word | What it means |
@@ -46,15 +46,15 @@ Every story follows a shape — like a mountain:
 
 **Telling:** "Aisha was nervous."
 
-**Showing:** "Aisha's fingers twisted the hem of her jumper. She swallowed hard and stared at the classroom door."
+**Showing:** "Aisha's hands trembled as she gripped the straps of her bag. She took a deep breath and stared at the classroom door."
 
 When you **show**, the reader can picture what is happening.
 
 | Telling | Showing |
 |---|---|
-| He was happy. | A grin spread across his face and he bounced on his toes. |
-| The food was disgusting. | She prodded the grey lump with her fork and wrinkled her nose. |
-| It was cold outside. | Frost coated the windows and her breath hung in white clouds. |
+| He was excited. | His eyes grew wide and he punched the air with both fists. |
+| The weather was terrible. | Rain drummed on the rooftop and puddles swallowed the pavement. |
+| She was scared. | Her heart thumped so loudly she was sure everyone could hear it. |
 
 ## Spot It!
 

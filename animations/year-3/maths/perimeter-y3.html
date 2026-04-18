@@ -136,13 +136,13 @@
     function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 
     const QUESTIONS = [
-      { q: "Square with sides 7 cm. Perimeter?", a: "28 cm", d: ["21 cm","14 cm","35 cm"] },
-      { q: "Rectangle: 9 cm by 4 cm. Perimeter?", a: "26 cm", d: ["36 cm","22 cm","13 cm"] },
-      { q: "Triangle: 5 cm, 6 cm, 7 cm. Perimeter?", a: "18 cm", d: ["15 cm","20 cm","17 cm"] },
-      { q: "Rectangle: 12 cm by 5 cm. Perimeter?", a: "34 cm", d: ["60 cm","30 cm","24 cm"] },
-      { q: "Equilateral triangle: 8 cm sides. Perimeter?", a: "24 cm", d: ["16 cm","32 cm","18 cm"] },
-      { q: "Square with sides 10 cm. Perimeter?", a: "40 cm", d: ["100 cm","30 cm","20 cm"] },
-      { q: "Rectangle: 6 cm by 3 cm. Perimeter?", a: "18 cm", d: ["9 cm","24 cm","12 cm"] }
+      { q: "Square with sides 8 cm. Perimeter?", a: "32 cm", d: ["24 cm","16 cm","64 cm"] },
+      { q: "Rectangle: 10 cm by 3 cm. Perimeter?", a: "26 cm", d: ["30 cm","20 cm","13 cm"] },
+      { q: "Triangle: 6 cm, 8 cm, 10 cm. Perimeter?", a: "24 cm", d: ["18 cm","20 cm","22 cm"] },
+      { q: "Rectangle: 7 cm by 5 cm. Perimeter?", a: "24 cm", d: ["35 cm","12 cm","20 cm"] },
+      { q: "Equilateral triangle: 9 cm sides. Perimeter?", a: "27 cm", d: ["18 cm","36 cm","24 cm"] },
+      { q: "Square with sides 12 cm. Perimeter?", a: "48 cm", d: ["144 cm","36 cm","24 cm"] },
+      { q: "Rectangle: 11 cm by 4 cm. Perimeter?", a: "30 cm", d: ["44 cm","22 cm","15 cm"] }
     ];
 
     let sc = 0, qi = 0;

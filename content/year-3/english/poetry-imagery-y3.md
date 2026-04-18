@@ -11,7 +11,7 @@ animation: ../../animations/year-3/english/poetry-imagery-y3.html
 # Poetry — Imagery — Year 3 English
 
 ## What We're Learning
-You are going to explore the magic of **imagery** in poetry. You will learn how poets use **similes** and **personification** to paint pictures with words — and you will have a go at performing a poem out loud.
+You are going to explore the magic of **imagery** in poetry. You will learn how poets use **similes** and **personification** to create vivid pictures with words — and you will practise performing a poem aloud with expression.
 
 ## Key Words
 | Word | What it means |
@@ -29,9 +29,9 @@ You are going to explore the magic of **imagery** in poetry. You will learn how 
 
 A **simile** compares two things using **like** or **as**:
 
-- The snow was **as white as** cotton wool.
-- The cat moved **like** a shadow.
-- Her smile shone **like** the sun.
+- The snow was **as soft as** a feather pillow.
+- The cat crept **like** a shadow.
+- Her eyes sparkled **like** stars.
 
 Similes help the reader imagine exactly what something looks, sounds, or feels like.
 

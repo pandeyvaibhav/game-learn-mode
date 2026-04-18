@@ -444,34 +444,34 @@
   // ── Quiz ───────────────────────────────────────────────
   const QUESTIONS = [
     {
-      q: 'What does an object need to create a shadow?',
-      opts: ['A light source behind it', 'Water', 'A mirror', 'Wind'],
+      q: 'A shadow forms because an object:',
+      opts: ['Blocks light from reaching the surface behind it', 'Absorbs water', 'Reflects sound', 'Creates wind'],
       ans: 0,
-      explain: 'Correct! A shadow forms when an object blocks light from a light source.'
+      explain: 'Correct! Shadows appear when an object stops light from passing through.'
     },
     {
-      q: 'If you move an object closer to a light source, its shadow becomes…',
-      opts: ['Smaller', 'The same size', 'Larger', 'Disappears'],
+      q: 'Moving an object further from a light source makes the shadow:',
+      opts: ['Larger', 'The same size', 'Smaller', 'Disappear'],
       ans: 2,
-      explain: 'Yes! Closer to the light = more light blocked at an angle = bigger, longer shadow.'
+      explain: 'Further from the light means less light is blocked at a wide angle, so the shadow shrinks.'
     },
     {
-      q: 'Which of these is a light SOURCE?',
-      opts: ['A mirror', 'The Moon', 'The Sun', 'A shadow'],
+      q: 'Which of these produces its own light?',
+      opts: ['A mirror', 'The Moon', 'A torch', 'A shadow'],
       ans: 2,
-      explain: 'The Sun produces its own light. The Moon only reflects sunlight — it is not a source!'
+      explain: 'A torch creates light from a battery. Mirrors and the Moon only reflect light from other sources.'
     },
     {
-      q: 'Shadows always appear on which side of the object?',
-      opts: ['The same side as the light', 'The opposite side from the light', 'Underneath the object', 'Above the object'],
+      q: 'Shadows form on the side of an object that is:',
+      opts: ['Facing the light', 'Facing away from the light', 'Underneath the object', 'Above the object'],
       ans: 1,
-      explain: 'Shadows form on the opposite side — the light cannot pass through the object to reach that side.'
+      explain: 'The shadow appears on the far side because light cannot pass through the opaque object.'
     },
     {
-      q: 'Which material would NOT create a shadow?',
-      opts: ['Wood', 'Metal', 'Clear glass', 'Cardboard'],
-      ans: 2,
-      explain: 'Clear glass lets light through (it is transparent), so it creates no shadow — or only a faint one!'
+      q: 'A transparent material like clear glass:',
+      opts: ['Creates a very dark shadow', 'Creates no shadow or a very faint one', 'Blocks all light', 'Makes light louder'],
+      ans: 1,
+      explain: 'Clear glass lets most light through, so it casts little or no shadow.'
     }
   ];
 
@@ -522,7 +522,7 @@
       allBtns[q.ans].classList.add('correct');
       fb.textContent = '❌ Not quite. ' + q.explain;
       fb.className = 'quiz-feedback bad';
-      announce('Wrong. ' + q.explain);
+      announce('Not quite. ' + q.explain);
     }
     document.getElementById('nextQBtn').classList.add('show');
   }

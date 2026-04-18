@@ -14,7 +14,7 @@ animation: ../../animations/year-3/geography/mountains-y3.html
 Mountains are found on every continent. The **Himalayas** stretch across Asia, the **Andes** run down the western side of South America, and the **Alps** cross eight countries in Europe. In the UK, the highest mountains are **Ben Nevis** in Scotland (1 345 m), **Yr Wyddfa (Snowdon)** in Wales (1 085 m), and **Scafell Pike** in England (978 m).
 
 ## What We're Learning
-You are going to find out how mountains are formed, explore their different parts from valley to summit, and discover why the climate changes as you climb higher.
+You are going to discover how mountains are formed, explore their different zones from valley to summit, and learn why the climate changes as you climb higher.
 
 ## Key Geography Words
 | Word | What it means |
