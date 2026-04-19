@@ -1,69 +1,91 @@
 ---
 year: 2
 subject: science
-topic: Living Things and Habitats
+topic: Living Things and Their Habitats
 slug: living-things-habitats
-key_concepts: [alive, dead, never alive, habitats, food chains]
+key_concepts:
+  - habitats
+  - food chains
+  - living, dead, never alive
 age_range: "6-7"
-animation: ../../animations/year-2/science/living-things-habitats.html
+animation: /animations/year-2/science/living-things-habitats.html
 ---
 
-# Living Things and Habitats — Year 2 Science
-
-## Big Question
-What is the difference between things that are alive, dead, and never alive — and where do living things live?
+# Living Things and Their Habitats 🎯
 
 ## What We're Learning
-In this lesson you will learn to sort things into **alive**, **dead**, and **never alive**. You will explore different **habitats** and simple **food chains**.
+We are learning about where different living things live and how they get their food. We will find out about habitats, food chains, and the difference between things that are living, dead, and never alive.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| alive | living — it grows, breathes, eats, and can have babies |
-| dead | was once alive but is not any more |
-| never alive | was never a living thing (e.g. a rock) |
-| habitat | the natural home of an animal or plant |
-| food chain | shows what eats what |
-| micro-habitat | a very small habitat like under a log |
+## Key Words
 
-## The Science Explained
+| Word | Meaning |
+|------|---------|
+| habitat | the natural home of a living thing |
+| food chain | shows what eats what in a habitat |
+| living | something that grows, moves, feeds and reproduces |
+| dead | was once alive but is not alive any more |
 
-### Alive, Dead, or Never Alive?
-| Alive | Dead | Never Alive |
-|---|---|---|
-| a cat | a fallen leaf | a stone |
-| a daisy | a piece of wood | a plastic bottle |
-| a worm | a dried flower | a metal spoon |
+## Let's Explore! 🔍
 
-Living things do all seven **life processes**: move, reproduce, sense, grow, respire, excrete, need nutrition (MRS GREN).
+### Living, Dead and Never Alive
+We can sort things into three groups:
+
+| Living | Dead | Never Alive |
+|--------|------|-------------|
+| a robin | a fallen leaf | a rock |
+| a daisy | a log | water |
+| a worm | a dried flower | a plastic toy |
+
+**Living things:** move, grow, feed, reproduce (have babies), respond to their surroundings.
+
+**Dead things:** were once alive but are not any more (like a fallen leaf or a piece of wood).
+
+**Never alive things:** were never alive at all (like a stone or a metal spoon).
 
 ### Habitats
-A habitat gives a living thing **food**, **water**, and **shelter**.
+A habitat is the place where a plant or animal lives. It gives them food, water and shelter.
 
-| Habitat | Examples of animals |
-|---|---|
-| woodland | squirrel, fox, owl |
-| pond | frog, newt, dragonfly |
-| seashore | crab, starfish, seagull |
-| garden | bee, ladybird, robin |
+- **Woodland:** trees, bluebells, foxes, squirrels, owls
+- **Pond:** water lilies, frogs, dragonflies, fish
+- **Seashore:** crabs, seaweed, rock pools, seagulls
+- **Garden:** worms, snails, hedgehogs, birds
+
+Each living thing is **suited** to its habitat. A fish has gills to breathe underwater. A polar bear has thick fur to stay warm.
 
 ### Food Chains
-A food chain shows what eats what:
-**grass → rabbit → fox**
-- Grass is the **producer** (makes its own food).
-- Rabbit is the **prey** (eaten by the fox).
-- Fox is the **predator** (hunts the rabbit).
+A food chain shows what eats what. It always starts with a **plant** (the producer).
 
-## Quick Quiz
-1. Is a stone alive, dead, or never alive? → *Never alive*
-2. What is a habitat? → *The natural home of a living thing*
-3. In the food chain grass → rabbit → fox, what is the predator? → *Fox*
-4. Name one thing a habitat provides. → *Food, water, or shelter*
+```
+grass → rabbit → fox
+  ↑        ↑       ↑
+producer  prey   predator
+```
 
-## Science in the Real World
-Scientists study habitats to protect endangered animals. Understanding food chains helps us look after the environment — if one link breaks, the whole chain is affected.
+The arrow means "is eaten by". Grass is eaten by the rabbit. The rabbit is eaten by the fox.
+
+## Try It Yourself! ✏️
+
+**Question 1:** Is a wooden table living, dead or never alive?
+<details><summary>Answer</summary>Dead — the wood came from a tree that was once alive.</details>
+
+**Question 2:** Name two things a habitat provides for living things.
+<details><summary>Answer</summary>Any two from: food, water, shelter</details>
+
+**Question 3:** What always comes first in a food chain?
+<details><summary>Answer</summary>A plant (the producer)</details>
+
+**Question 4:** Put this food chain in the right order: owl, mouse, grain
+<details><summary>Answer</summary>grain → mouse → owl</details>
+
+**Question 5:** Why would a fish not survive in a woodland habitat?
+<details><summary>Answer</summary>A fish needs water to breathe through its gills. A woodland does not have enough water for a fish to live in.</details>
+
+## Did You Know? 🌟
+A single oak tree can be a habitat for **hundreds** of different species! Insects live in the bark, birds nest in the branches, squirrels eat the acorns, and fungi grow on the roots.
 
 ## Learning Checklist
-- [ ] I can sort things into alive, dead, and never alive
-- [ ] I can describe a habitat and why it suits its animals
+
+- [ ] I can sort things into living, dead and never alive
+- [ ] I can describe different habitats and what lives there
 - [ ] I can read and build a simple food chain
+- [ ] I know that living things are suited to their habitat

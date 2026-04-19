@@ -3,65 +3,89 @@ year: 2
 subject: science
 topic: Plants and Growth
 slug: plants-growth
-key_concepts: [seeds, bulbs, conditions for growth, observations]
+key_concepts:
+  - seeds
+  - germination
+  - bulbs
+  - what plants need
 age_range: "6-7"
-animation: ../../animations/year-2/science/plants-growth.html
+animation: /animations/year-2/science/plants-growth.html
 ---
 
-# Plants and Growth — Year 2 Science
-
-## Big Question
-What do plants need to grow, and how do they change over time?
+# Plants and Growth 🎯
 
 ## What We're Learning
-In this lesson you will learn how plants grow from **seeds** and **bulbs**, what conditions they need, and how to observe and record their growth.
+We are learning about how plants grow from seeds and bulbs. We will find out what plants need to stay healthy and what happens at each stage of growth.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| seed | a tiny package that can grow into a new plant |
-| bulb | a rounded part underground that grows into a plant (e.g. daffodil) |
-| germinate | when a seed starts to sprout |
-| root | the part that grows down into the soil to take in water |
-| shoot | the part that grows up towards the light |
-| nutrients | goodness in the soil that helps plants grow |
+## Key Words
 
-## The Science Explained
+| Word | Meaning |
+|------|---------|
+| seed | a tiny part of a plant that can grow into a new plant |
+| germination | when a seed starts to grow |
+| bulb | a round underground part that some plants grow from (like a daffodil) |
+| nutrients | goodness in the soil that helps a plant grow |
 
-### What Plants Need
-Plants need **four** things to grow well:
-1. **Water** — taken in through the roots
-2. **Light** — from the sun, for making food
-3. **Warmth** — a suitable temperature
-4. **Soil (nutrients)** — goodness from the ground
+## Let's Explore! 🔍
 
 ### Seeds and Bulbs
-- A **seed** is tiny. Plant it in soil, add water and warmth, and it **germinates** (sprouts).
-- A **bulb** is bigger and round. It already has food stored inside to start growing.
+Many plants grow from **seeds**. Seeds come in all shapes and sizes — from tiny poppy seeds to big conkers!
+
+Some plants grow from **bulbs**. A bulb looks like an onion and stores food inside it. Daffodils, tulips and snowdrops all grow from bulbs.
 
 ### How a Seed Grows
-1. Seed is planted in soil.
-2. It takes in water and starts to **germinate**.
-3. A **root** grows downward.
-4. A **shoot** grows upward towards the light.
-5. Leaves open and the plant keeps growing.
+When a seed starts to grow, it is called **germination**.
 
-### Fair Test
-To find out if light matters, grow two identical seeds:
-- One in a **sunny** spot, one in a **dark** cupboard.
-- Give both the same water. Only change **one** thing (light).
-- Observe and measure over time.
+```
+1. Seed in soil      2. Root grows       3. Shoot appears     4. Leaves open
+   ─────────            ─────────           ─────────           ───🌱───
+   [seed]               [seed]                  |               /  |  \
+                           |                    |
+                         root               root
+```
 
-## Quick Quiz
-1. Name four things plants need to grow. → *Water, light, warmth, soil/nutrients*
-2. What does "germinate" mean? → *When a seed starts to sprout*
-3. Which part of the plant grows down into the soil? → *Root*
-4. What is a bulb? → *A rounded underground part that grows into a plant*
+Steps:
+1. Plant the seed in soil and water it
+2. A **root** grows down into the soil
+3. A **shoot** pushes up through the soil
+4. **Leaves** open and the plant starts to grow taller
 
-## Science in the Real World
-Farmers use their knowledge of plant growth to choose the best time and conditions for planting crops. Gardeners know which plants like sun and which prefer shade.
+### What Plants Need
+Plants need five things to grow and stay healthy:
+
+| What they need | Why |
+|---------------|-----|
+| Water | to drink and stay firm |
+| Light | to make food in their leaves |
+| Air | to breathe |
+| Nutrients (from soil) | like vitamins for the plant |
+| The right temperature | not too hot, not too cold |
+
+If a plant doesn't get enough water, its leaves droop. If it doesn't get enough light, it grows tall and thin trying to reach the light.
+
+## Try It Yourself! ✏️
+
+**Question 1:** What is germination?
+<details><summary>Answer</summary>When a seed starts to grow</details>
+
+**Question 2:** Name a plant that grows from a bulb.
+<details><summary>Answer</summary>Daffodil, tulip, or snowdrop (any one is correct)</details>
+
+**Question 3:** What grows out of a seed first — the root or the shoot?
+<details><summary>Answer</summary>The root</details>
+
+**Question 4:** Name three things a plant needs to grow.
+<details><summary>Answer</summary>Any three from: water, light, air, nutrients (soil), the right temperature</details>
+
+**Question 5:** What would happen to a plant kept in a dark cupboard?
+<details><summary>Answer</summary>It would grow tall and thin trying to find light, and its leaves would turn yellow because it cannot make food without light.</details>
+
+## Did You Know? 🌟
+The tallest tree in the world is a coast redwood in California called **Hyperion**. It is over 115 metres tall — that's taller than the Statue of Liberty! It grew from a tiny seed.
 
 ## Learning Checklist
+
 - [ ] I know that plants grow from seeds and bulbs
-- [ ] I can name the four things plants need to grow
-- [ ] I can observe and describe how a plant changes as it grows
+- [ ] I can describe the stages of germination
+- [ ] I can name what plants need to grow healthily
+- [ ] I can observe and describe how plants change as they grow

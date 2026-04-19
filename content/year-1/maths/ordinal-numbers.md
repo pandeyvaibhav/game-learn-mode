@@ -3,7 +3,7 @@ year: 1
 subject: maths
 topic: Ordinal Numbers
 slug: ordinal-numbers
-key_concepts: [1st to 10th, position language]
+key_concepts: [1st to 10th, position language, first, last]
 age_range: "5-6"
 animation: ../../animations/year-1/maths/ordinal-numbers.html
 ---
@@ -11,79 +11,62 @@ animation: ../../animations/year-1/maths/ordinal-numbers.html
 # Ordinal Numbers — Year 1 Maths
 
 ## What We're Learning
-You are going to learn about ordinal numbers. These are special words that tell us the position or order of something — like 1st, 2nd, 3rd.
+In this lesson you will learn about **ordinal numbers**. These tell us the **position** of something — like 1st, 2nd, 3rd.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Ordinal number | A number that shows position (1st, 2nd, 3rd …) |
-| Position | Where something is in a line or order |
-| First | The one at the start — 1st |
-| Last | The one at the end |
-| Before | The one in front |
-| After | The one behind |
+| ordinal number | a number that shows position (1st, 2nd, 3rd) |
+| first (1st) | the one at the front |
+| second (2nd) | the one after first |
+| third (3rd) | the one after second |
+| last | the one at the end |
+| position | where something is in a line |
 
 ## Let's Explore
 
-### Ordinal numbers from 1st to 10th
-
-| Number | Ordinal | Said as |
+### The Ordinal Numbers
+| Position | Written | Short |
 |---|---|---|
-| 1 | 1st | First |
-| 2 | 2nd | Second |
-| 3 | 3rd | Third |
-| 4 | 4th | Fourth |
-| 5 | 5th | Fifth |
-| 6 | 6th | Sixth |
-| 7 | 7th | Seventh |
-| 8 | 8th | Eighth |
-| 9 | 9th | Ninth |
-| 10 | 10th | Tenth |
+| First | 1st | 1st |
+| Second | 2nd | 2nd |
+| Third | 3rd | 3rd |
+| Fourth | 4th | 4th |
+| Fifth | 5th | 5th |
+| Sixth | 6th | 6th |
+| Seventh | 7th | 7th |
+| Eighth | 8th | 8th |
+| Ninth | 9th | 9th |
+| Tenth | 10th | 10th |
 
-### Example — A race!
+### A Race
+🐇 🐢 🐸 🐱 🐶
+1st  2nd 3rd 4th 5th
 
-```
-🏁 🐇 🐢 🐸 🐶 🐱
-    1st 2nd 3rd 4th 5th
-```
-
-- The rabbit came **1st** (first).
-- The turtle came **2nd** (second).
-- The cat came **5th** (fifth) — it was **last**.
-
-### Example — Position in a queue
-Five children stand in a line:
-```
-Amir → Beth → Cho → Dan → Eve
- 1st    2nd   3rd   4th   5th
-```
-
-Who is 3rd? **Cho**.
-Who is after Dan? **Eve**.
+The rabbit is **1st** (first). The dog is **5th** (fifth) and **last**.
 
 ## Try It Yourself
 
-1. Write the ordinal number for 4.
-2. Who comes 2nd in this race? 🐸 🐶 🐱 🐇
-3. There are 6 people in a queue. What position is the last person?
-4. What ordinal number comes after 7th?
-5. If you are 3rd in a line, how many people are in front of you?
+**1. In a race: 🚗🚙🚕 — what position is the blue car (🚙)?**
+<details><summary>Answer</summary>2nd (second)</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. What ordinal number means "at the front"?**
+<details><summary>Answer</summary>1st (first)</details>
 
-1. 4th (fourth)
-2. 🐶 (dog)
-3. 6th
-4. 8th
-5. 2 people
+**3. If there are 5 children in a line, what position is the last child?**
+<details><summary>Answer</summary>5th (fifth)</details>
 
-</details>
+**4. What comes after 3rd?**
+<details><summary>Answer</summary>4th (fourth)</details>
 
-## Did You Know? 🧮
-In a race, we often say "first place" for the winner. The word "first" comes from an Old English word meaning "foremost" — the one at the very front!
+**5. Write the ordinal number for 7.**
+<details><summary>Answer</summary>7th (seventh)</details>
+
+## Did You Know?
+At the Olympics, the 1st place winner gets a gold medal, 2nd gets silver, and 3rd gets bronze. Ordinal numbers help us celebrate positions!
 
 ## Learning Checklist
 - [ ] I can say ordinal numbers from 1st to 10th
-- [ ] I can use ordinal numbers to describe position
-- [ ] I can answer questions about order using before, after and between
+- [ ] I can find the position of an object in a line
+- [ ] I know what "first" and "last" mean
+- [ ] I can use ordinal numbers in real life

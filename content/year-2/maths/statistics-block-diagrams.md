@@ -1,63 +1,97 @@
 ---
 year: 2
 subject: maths
-topic: Statistics — Block Diagrams
+topic: "Statistics \u2014 Block Diagrams"
 slug: statistics-block-diagrams
-key_concepts: [tally charts, block diagrams, pictograms, interpreting data]
+key_concepts:
+  - tally charts
+  - block diagrams
+  - comparing data
 age_range: "6-7"
-animation: ../../animations/year-2/maths/statistics-block-diagrams.html
+animation: /animations/year-2/maths/statistics-block-diagrams.html
 ---
 
-# Statistics — Block Diagrams — Year 2 Maths
-
-## Big Question
-How can we show and read information using charts and diagrams?
+# Statistics — Block Diagrams 🎯
 
 ## What We're Learning
-In this lesson you will learn how to collect data using **tally charts**, display it using **block diagrams** and **pictograms**, and answer questions by reading the data.
+We are learning how to collect information and show it in charts. Tally charts help us count things, and block diagrams help us see the information clearly as a picture. This makes it easier to compare amounts.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| data | information we collect (numbers, facts) |
-| tally chart | a chart using lines to count (𝍸 = 5) |
-| block diagram | a chart where blocks show how many |
-| pictogram | a chart using pictures to show amounts |
-| most | the biggest number |
-| least | the smallest number |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| tally | a mark we use to count (every 5th mark crosses the other four) |
+| tally chart | a table that uses tally marks to count |
+| block diagram | a chart that uses blocks to show amounts |
+| data | information we collect |
+
+## Let's Explore! 🔍
 
 ### Tally Charts
-Use lines to count. Every 5th line goes across:
-| | | | | = 4
-𝍸 = 5, 𝍸 | | = 7
+Tally marks help us count. We draw one line for each thing we count. Every fifth line goes across the other four to make a group of 5.
+
+```
+  I     = 1
+  II    = 2
+  III   = 3
+  IIII  = 4
+  𝍸    = 5  (four lines with one across)
+```
+
+Example — Favourite fruit in our class:
+
+| Fruit | Tally | Total |
+|-------|-------|-------|
+| Apple | 𝍸 II | 7 |
+| Banana | 𝍸 | 5 |
+| Orange | III | 3 |
+| Grapes | 𝍸 I | 6 |
 
 ### Block Diagrams
-Each block = 1 item. Taller columns mean more.
+A block diagram uses coloured blocks to show data. Each block stands for one thing.
 
-**Favourite Fruit:**
 ```
-🍎🍎🍎🍎🍎  Apple  = 5
-🍌🍌🍌      Banana = 3
-🍇🍇🍇🍇    Grape  = 4
+ 8 |
+ 7 | ■
+ 6 | ■       ■
+ 5 | ■   ■   ■
+ 4 | ■   ■   ■
+ 3 | ■   ■   ■   ■
+ 2 | ■   ■   ■   ■
+ 1 | ■   ■   ■   ■
+   ┼───┬───┬───┬───
+    App Ban Ora Gra
 ```
 
-### Reading the Data
-- Which fruit is **most** popular? → Apple (5)
-- Which fruit is **least** popular? → Banana (3)
-- How many more apples than bananas? → 5 − 3 = 2
+### Reading Block Diagrams
+We can answer questions by looking at the chart:
+- Which fruit is the most popular? **Apple** (tallest bar)
+- Which is the least popular? **Orange** (shortest bar)
+- How many more children chose apple than orange? 7 − 3 = **4 more**
 
-## Quick Quiz
-1. What does a tally of 𝍸 II mean? → *7*
-2. In the fruit chart, which is most popular? → *Apple*
-3. How many grapes? → *4*
-4. How many fruits altogether? → *5 + 3 + 4 = 12*
+## Try It Yourself! ✏️
 
-## Maths in the Real World
-Teachers use block diagrams to show class survey results. Weather stations record data to make charts. Even sports teams use data to see who scored the most goals.
+**Question 1:** In the fruit chart, how many children chose banana?
+<details><summary>Answer</summary>5</details>
+
+**Question 2:** How many children took part in the fruit survey altogether?
+<details><summary>Answer</summary>21 (7 + 5 + 3 + 6 = 21)</details>
+
+**Question 3:** How many more children chose grapes than orange?
+<details><summary>Answer</summary>3 more (6 − 3 = 3)</details>
+
+**Question 4:** What does one block in a block diagram stand for?
+<details><summary>Answer</summary>One thing (one item or one person)</details>
+
+**Question 5:** If 4 more children chose banana, how tall would the banana bar be?
+<details><summary>Answer</summary>9 blocks (5 + 4 = 9)</details>
+
+## Did You Know? 🌟
+People have been using tally marks for thousands of years! Archaeologists found a wolf bone over 30,000 years old with tally marks scratched into it. Early humans were counting long before they invented writing!
 
 ## Learning Checklist
-- [ ] I can collect data using a tally chart
-- [ ] I can read a block diagram and answer questions
-- [ ] I can find the most and least popular items
+
+- [ ] I can make tally marks and read tally charts
+- [ ] I can draw and read block diagrams
+- [ ] I can compare amounts using a chart
+- [ ] I can answer questions about data

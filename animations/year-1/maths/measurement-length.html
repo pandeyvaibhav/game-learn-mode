@@ -5,93 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Measurement — Length — Quiz</title>
 <style>
-  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
-  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
-  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
-  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
-  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
-  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
-  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
-  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
-  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
-  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-  .opt-btn.correct{border-color:var(--success);background:#166534}
-  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
-  .opt-btn:disabled{cursor:default;opacity:.85}
-  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
-  .feedback.correct-fb{color:var(--success)}
-  .feedback.wrong-fb{color:var(--error)}
-  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
-  .next-btn:hover{opacity:.9}
-  .result{display:none;text-align:center}
-  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
-  .result .stars{font-size:2.5rem;margin:.75rem 0}
-  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
-  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
-  .play-again:hover{opacity:.9}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <h1>Measurement — Length</h1>
 <p class="subtitle">Year 1 Maths — Quiz Game</p>
 <div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
-<div class="qa" id="questionArea">
-  <div class="q-text" id="qText"></div>
-  <div class="opts" id="opts"></div>
-  <div class="feedback" id="feedback"></div>
-  <button class="next-btn" id="nextBtn">Next →</button>
-</div>
-<div class="result" id="result">
-  <h2>Quiz Complete!</h2>
-  <div class="stars" id="stars"></div>
-  <div class="score-msg" id="scoreMsg"></div>
-  <button class="play-again" id="playAgain">Play Again</button>
-</div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-(function(){
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-  const qs=[
-    {text:"Which word means 'not as long'?",answer:"Shorter",options:["Longer","Shorter","Taller","Wider"]},
-    {text:"A pencil is 5 cubes long. A pen is 8 cubes. Which is longer?",answer:"The pen",options:["The pencil","The pen","They are equal","Cannot tell"]},
-    {text:"What do we call measuring with cubes instead of a ruler?",answer:"Non-standard units",options:["Standard units","Non-standard units","Guessing","Counting"]},
-    {text:"Sam is 9 cubes tall. Mia is 7 cubes tall. Who is taller?",answer:"Sam",options:["Sam","Mia","They are equal","Cannot tell"]},
-    {text:"Why must we line things up from the same point to compare?",answer:"To make it fair",options:["To make it fair","To make it faster","Because the teacher said","It looks nicer"]},
-    {text:"A book is 6 cubes long. A ruler is 10 cubes. How much longer is the ruler?",answer:"4 cubes",options:["2 cubes","4 cubes","6 cubes","16 cubes"]},
-    {text:"Which word means 'higher from bottom to top'?",answer:"Taller",options:["Longer","Shorter","Taller","Smaller"]},
-    {text:"Put in order, shortest to longest: 7, 3, 5 cubes",answer:"3, 5, 7",options:["7, 5, 3","3, 5, 7","5, 3, 7","3, 7, 5"]},
-    {text:"What could you use to measure a table if you have no ruler?",answer:"Paper clips",options:["Nothing","Paper clips","Your eyes only","A watch"]},
-    {text:"Two ribbons: A is 4 cubes, B is 4 cubes. What can we say?",answer:"They are the same length",options:["A is longer","B is longer","They are the same length","We cannot tell"]}
-  ];
-  let idx=0,sc=0;
-  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
-  function show(){
-    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
-    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
-    optsEl.innerHTML='';
-    shuffle([...q.options]).forEach(o=>{
-      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
-      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
-    });
-  }
-  function pick(btn,chosen,answer){
-    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
-    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
-    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
-    nextBtn.style.display='block';
-  }
-  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
-  function end(){
-    qaEl.style.display='none';resultEl.style.display='block';
-    const pct=sc/qs.length;
-    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
-    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
-  }
-  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
-  shuffle(qs);show();
-})();
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"Which is longer — a bus or a cat?",answer:"A bus",options:["A cat","A bus","They are the same","A dog"]},
+{text:"Which is shorter — a pencil or a tree?",answer:"A pencil",options:["A tree","A pencil","They are the same","A house"]},
+{text:"Which is taller — a giraffe or a mouse?",answer:"A giraffe",options:["A mouse","A giraffe","They are the same","A cat"]},
+{text:"If a book is 5 cubes long and a toy is 3 cubes long, which is longer?",answer:"The book",options:["The book","The toy","They are the same","Neither"]},
+{text:"We can measure how long something is using a...",answer:"Ruler",options:["Ruler","Scales","Clock","Thermometer"]},
+{text:"Which word means not as tall?",answer:"Shorter",options:["Taller","Shorter","Wider","Heavier"]},
+{text:"A snake is longer than a worm. True or false?",answer:"True",options:["True","False","Sometimes","Never"]},
+{text:"How many cubes long is something that starts at 0 and ends at 4?",answer:"4 cubes",options:["3 cubes","4 cubes","5 cubes","2 cubes"]},
+{text:"Which would you use to measure the length of your desk?",answer:"A ruler",options:["A ruler","A jug","Scales","A clock"]},
+{text:"Which is the tallest — a flower, a house or a person?",answer:"A house",options:["A flower","A person","A house","A dog"]}
+];
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

@@ -1,73 +1,65 @@
 ---
 year: 5
 subject: maths
-topic: Geometry — Properties of Shape
+topic: Geometry — Properties of Shapes
 slug: geometry-properties
-key_concepts: [angles, triangles, quadrilaterals, regular/irregular polygons]
+key_concepts:
+  - angles
+  - triangles
+  - quadrilaterals
+  - regular polygons
 age_range: "9-10"
-animation: ../../animations/year-5/maths/geometry-properties.html
+animation: /animations/year-5/maths/geometry-properties.html
 ---
 
-# Geometry — Properties of Shape — Year 5 Maths
-
-## Big Question
-How do we identify and compare 2D shapes using their properties?
+# Geometry — Properties of Shapes 🎯
 
 ## What We're Learning
-In this lesson you will learn to identify **angles** in shapes, classify **triangles** and **quadrilaterals**, and distinguish between **regular** and **irregular** polygons.
+We're exploring the properties of 2-D shapes, including their angles and sides. You'll learn to identify different types of triangles and quadrilaterals, know what makes a polygon regular, and measure angles using a protractor.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| angle | the amount of turn between two lines meeting at a point |
-| acute angle | less than 90° |
-| right angle | exactly 90° |
-| obtuse angle | between 90° and 180° |
-| polygon | a 2D shape with straight sides |
-| regular polygon | all sides and angles are equal |
-| irregular polygon | sides and/or angles are not all equal |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| angle | The amount of turn between two lines that meet at a point, measured in degrees |
+| polygon | A 2-D shape with straight sides |
+| regular polygon | A polygon where all sides and all angles are equal |
+| quadrilateral | A shape with exactly four straight sides |
 
-### Types of Angles
-| Type | Size | Example |
-|---|---|---|
-| Acute | < 90° | A sharp corner |
-| Right | = 90° | A square's corner |
-| Obtuse | 90°–180° | A wide corner |
-| Reflex | > 180° | More than a straight line |
+## Let's Explore! 🔍
+
+### Angles
+Angles are measured in degrees (°). A right angle is exactly 90°. An acute angle is less than 90°. An obtuse angle is between 90° and 180°. A reflex angle is greater than 180°. The angles inside a triangle always add up to 180°. You can use a protractor to measure and draw angles accurately.
 
 ### Triangles
-| Type | Sides | Angles |
-|---|---|---|
-| Equilateral | 3 equal sides | 3 equal angles (60°) |
-| Isosceles | 2 equal sides | 2 equal angles |
-| Scalene | All different | All different |
-| Right-angled | — | Has one 90° angle |
+Triangles are classified by their sides and angles. An equilateral triangle has three equal sides and three 60° angles. An isosceles triangle has two equal sides and two equal angles. A scalene triangle has no equal sides or angles. A right-angled triangle contains one 90° angle. Knowing these types helps you describe and compare shapes precisely.
 
-### Quadrilaterals (4 sides)
-| Shape | Properties |
-|---|---|
-| Square | 4 equal sides, 4 right angles |
-| Rectangle | 2 pairs of equal sides, 4 right angles |
-| Parallelogram | Opposite sides parallel and equal |
-| Rhombus | 4 equal sides, opposite angles equal |
-| Trapezium | 1 pair of parallel sides |
+### Quadrilaterals and Regular Polygons
+Quadrilaterals include squares, rectangles, parallelograms, rhombuses, trapeziums and kites — each with different properties of sides, angles and symmetry. A regular polygon has all sides equal and all angles equal. A regular pentagon has five equal sides and five equal angles of 108°. A regular hexagon has six equal sides and interior angles of 120°.
 
-### Regular vs Irregular
-- **Regular**: all sides equal AND all angles equal (e.g. equilateral triangle, regular hexagon).
-- **Irregular**: sides or angles are not all equal (e.g. scalene triangle).
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What is an obtuse angle? → *An angle between 90° and 180°*
-2. How many equal sides does an isosceles triangle have? → *2*
-3. What shape has 4 equal sides but not all right angles? → *Rhombus*
-4. What makes a polygon regular? → *All sides and angles are equal*
+**Question 1:** What do the three angles in any triangle add up to?
+<details><summary>Answer</summary>180°</details>
 
-## Maths in the Real World
-Architects use angle and shape properties to design buildings. Road signs use regular shapes (triangle = warning, octagon = stop). Tiling patterns rely on regular polygons.
+**Question 2:** Name a quadrilateral with two pairs of parallel sides and all angles equal.
+<details><summary>Answer</summary>A rectangle (or a square, which is a special rectangle)</details>
+
+**Question 3:** Is an angle of 135° acute, obtuse or reflex?
+<details><summary>Answer</summary>Obtuse (it is between 90° and 180°)</details>
+
+**Question 4:** How many lines of symmetry does a regular hexagon have?
+<details><summary>Answer</summary>6</details>
+
+**Question 5:** A triangle has sides of 5 cm, 5 cm and 8 cm. What type of triangle is it?
+<details><summary>Answer</summary>Isosceles (two sides are equal)</details>
+
+## Did You Know? 🌟
+Honeybees build their honeycombs using regular hexagons because this shape tiles perfectly with no gaps and uses the least wax to hold the most honey!
 
 ## Learning Checklist
-- [ ] I can identify acute, right, obtuse, and reflex angles
-- [ ] I can classify triangles and quadrilaterals
-- [ ] I know the difference between regular and irregular polygons
+
+- [ ] I can identify acute, obtuse, right and reflex angles
+- [ ] I can classify triangles by their sides and angles
+- [ ] I can describe properties of different quadrilaterals
+- [ ] I can recognise regular polygons and explain what makes them regular

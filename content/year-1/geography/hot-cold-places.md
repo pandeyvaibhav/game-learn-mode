@@ -3,7 +3,7 @@ year: 1
 subject: geography
 topic: Hot and Cold Places
 slug: hot-cold-places
-key_concepts: [North Pole, South Pole, equator]
+key_concepts: [North Pole, South Pole, equator, Africa, Arctic animals]
 age_range: "5-6"
 animation: ../../animations/year-1/geography/hot-cold-places.html
 ---
@@ -11,83 +11,60 @@ animation: ../../animations/year-1/geography/hot-cold-places.html
 # Hot and Cold Places — Year 1 Geography
 
 ## What We're Learning
-You are going to learn about hot and cold places around the world. You will find out where the equator, the North Pole and the South Pole are, and why some places are hotter than others.
+In this lesson you will learn about **hot and cold places** on Earth. You will find out where the **Equator** is and why the **North and South Poles** are so cold.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Equator | An imaginary line around the middle of the Earth |
-| North Pole | The very top of the Earth — very cold |
-| South Pole | The very bottom of the Earth — very cold |
-| Climate | The usual weather in a place over a long time |
-| Continent | A very large area of land (there are seven) |
-| Temperature | How hot or cold something is |
+| Equator | an imaginary line around the middle of the Earth |
+| North Pole | the very top of the Earth — extremely cold |
+| South Pole | the very bottom of the Earth — extremely cold |
+| continent | a very large area of land (there are 7) |
+| climate | the usual weather a place has |
+| Arctic | the frozen area around the North Pole |
 
 ## Let's Explore
 
-### The Earth
+### Hot Places 🌞
+Places near the **Equator** are hot all year:
+- 🌍 Parts of Africa
+- 🌴 Tropical rainforests
+- 🏜️ Deserts (e.g. the Sahara)
 
-```
-        ❄️ North Pole
-        ------
-       /      \
-      /        \
-  ☀️ --- Equator --- ☀️
-      \        /
-       \      /
-        ------
-        ❄️ South Pole
-```
+Animals: 🦁 lions, 🐒 monkeys, 🦜 parrots
 
-### Hot places — near the equator
-Places near the equator get the most sunlight, so they are very **hot**.
+### Cold Places ❄️
+Places near the **Poles** are very cold:
+- 🧊 The Arctic (North Pole area)
+- 🏔️ Antarctica (South Pole)
 
-| Place | What it is like |
-|---|---|
-| Sahara Desert (Africa) | Very hot and dry, lots of sand |
-| Amazon Rainforest (South America) | Very hot and wet, lots of trees |
-| India | Hot, with heavy rain (monsoon) |
+Animals: 🐧 penguins, 🐻‍❄️ polar bears, 🦭 seals
 
-### Cold places — near the poles
-Places near the North Pole and South Pole get very little sunlight, so they are very **cold**.
-
-| Place | What it is like |
-|---|---|
-| Arctic (North Pole) | Covered in ice and snow, polar bears live here |
-| Antarctica (South Pole) | The coldest place on Earth, penguins live here |
-| Iceland | Very cold, has glaciers and volcanoes |
-
-### Example — Why are some places hot?
-Places near the equator are closer to where the sun shines most directly. The sunlight is stronger, so it is hotter.
-
-### What do people wear?
-- Hot places: thin clothes, shorts, sun hats
-- Cold places: thick coats, gloves, woolly hats
+### Why the Difference?
+The Equator gets the most **sunlight**, so it is the hottest. The Poles get the least sunlight, so they are the coldest.
 
 ## Try It Yourself
 
-1. Where is the equator?
-2. Name a very cold place.
-3. Are places near the equator hot or cold?
-4. What animals live near the South Pole?
-5. Why is the North Pole so cold?
+**1. What is the Equator?**
+<details><summary>Answer</summary>An imaginary line around the middle of the Earth</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Are places near the Equator hot or cold?**
+<details><summary>Answer</summary>Hot</details>
 
-1. An imaginary line around the middle of the Earth
-2. Arctic, Antarctica, Iceland (any one)
-3. Hot
-4. Penguins
-5. It is very far from the equator and gets very little direct sunlight
+**3. Which animal lives near the South Pole?**
+<details><summary>Answer</summary>Penguins</details>
 
-</details>
+**4. Name a hot continent.**
+<details><summary>Answer</summary>Africa</details>
 
-## Did You Know? 🌍
-Antarctica is the coldest place on Earth. The temperature once dropped to −89°C! That is so cold that if you threw boiling water in the air, it would freeze before it hit the ground!
+**5. Why are the Poles cold?**
+<details><summary>Answer</summary>They get the least sunlight</details>
+
+## Did You Know?
+Antarctica is the coldest place on Earth. The lowest temperature ever recorded there was –89.2°C. That is so cold your breath would freeze instantly!
 
 ## Learning Checklist
-- [ ] I know where the equator is
-- [ ] I know where the North Pole and South Pole are
+- [ ] I know where the Equator is
 - [ ] I can name hot places and cold places
-- [ ] I understand why some places are hotter than others
+- [ ] I know why some places are hotter than others
+- [ ] I can name animals that live in hot and cold places

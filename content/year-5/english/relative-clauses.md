@@ -3,66 +3,62 @@ year: 5
 subject: english
 topic: Relative Clauses
 slug: relative-clauses
-key_concepts: [relative clause, who, which, that, whose, embedded clause]
+key_concepts:
+  - relative pronouns (who, which, that, whose, where)
+  - embedded clauses
+  - commas
 age_range: "9-10"
-animation: ../../animations/year-5/english/relative-clauses.html
+animation: /animations/year-5/english/relative-clauses.html
 ---
 
-# Relative Clauses — Year 5 English
-
-## Big Question
-How can we use relative clauses to add extra detail to our sentences?
+# Relative Clauses 🎯
 
 ## What We're Learning
-In this lesson you will learn what a **relative clause** is, how to use the relative pronouns **who, which, that, whose** and **where**, and how to **embed** a relative clause inside a sentence using commas.
+We're learning about relative clauses — extra bits of information added to a sentence using words like who, which, that, whose and where. You'll discover how to embed these clauses into your writing and how to punctuate them correctly with commas.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| relative clause | a clause that gives extra information about a noun |
-| relative pronoun | the word that starts a relative clause (who, which, that, whose, where) |
-| embedded clause | a clause placed in the middle of a sentence, set off by commas |
-| noun | a word for a person, place or thing |
-| comma | a punctuation mark (,) used to separate the clause from the main sentence |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| relative clause | A clause that gives extra information about a noun, introduced by a relative pronoun |
+| relative pronoun | A word that begins a relative clause: who, which, that, whose, where |
+| embedded clause | A clause placed in the middle of a sentence, surrounded by commas |
+| main clause | The part of the sentence that makes sense on its own |
+
+## Let's Explore! 🔍
 
 ### What Is a Relative Clause?
-A relative clause gives **extra information** about a noun. It begins with a **relative pronoun**.
+A relative clause adds extra detail about a noun without starting a whole new sentence. Instead of writing "The dog belongs to Mrs Ali. The dog has brown ears," you can combine them: "The dog, **which has brown ears**, belongs to Mrs Ali." The relative clause is "which has brown ears."
 
-> The dog **that had muddy paws** ran inside.
+### Choosing the Right Relative Pronoun
+Use **who** for people: "The girl **who won the race** smiled." Use **which** for things or animals: "The book, **which was very old**, fell apart." Use **that** for people or things in defining clauses: "The cake **that I baked** was delicious." Use **whose** for possession: "The boy **whose bag was lost** told the teacher." Use **where** for places: "The park **where we play** is near school."
 
-The relative clause is *that had muddy paws*. It tells us more about *the dog*.
+### Punctuating Embedded Clauses
+When a relative clause is embedded in the middle of a sentence and adds non-essential extra information, use a pair of commas around it: "Mr Jones, **who teaches Year 5**, organised the trip." If the relative clause comes at the end, only one comma is needed before it if it's non-essential. If the clause is essential to the meaning (defines exactly which one), no commas are used: "The children **who finished early** read quietly."
 
-### Which Pronoun to Use
-| Pronoun | Used for | Example |
-|---|---|---|
-| who | people | The girl **who sang** won the prize. |
-| which | things / animals | The cake, **which was chocolate**, tasted amazing. |
-| that | people or things | The book **that I read** was brilliant. |
-| whose | possession | The boy **whose bag was lost** looked worried. |
-| where | places | The park **where we played** has a lake. |
+## Try It Yourself! ✏️
 
-### Embedded Clauses
-When the relative clause sits **in the middle** of a sentence, use **two commas**:
+**Question 1:** Add a relative clause to this sentence: "The castle is in Wales."
+<details><summary>Answer</summary>Example: "The castle, **which was built in the 13th century**, is in Wales."</details>
 
-> Mrs Ahmed, **who teaches Year 5**, organised the trip.
+**Question 2:** Which relative pronoun would you use for a person?
+<details><summary>Answer</summary>**Who** (or **whose** for possession, or **that** in defining clauses).</details>
 
-### Top Tips
-- Read the sentence **without** the relative clause — it should still make sense.
-- Use commas around embedded clauses.
-- Choose the correct pronoun for the noun.
+**Question 3:** Punctuate this sentence correctly: "My teacher who loves science planned an experiment."
+<details><summary>Answer</summary>"My teacher, who loves science, planned an experiment." (commas around the embedded clause)</details>
 
-## Quick Quiz
-1. What does a relative clause do? → *Gives extra information about a noun*
-2. Which pronoun is used for people? → *Who*
-3. Which pronoun shows possession? → *Whose*
-4. How do you punctuate an embedded clause? → *Use commas around it*
+**Question 4:** Combine these two sentences using a relative clause: "The river flows through the city. The river is very deep."
+<details><summary>Answer</summary>"The river, which is very deep, flows through the city."</details>
 
-## English in the Real World
-Relative clauses make writing more detailed and interesting. Journalists, authors, and even everyday emails use them constantly to add essential information.
+**Question 5:** What is the main clause in this sentence? "The painting, which hung in the gallery, was worth millions."
+<details><summary>Answer</summary>"The painting was worth millions." (The main clause makes sense on its own.)</details>
+
+## Did You Know? 🌟
+The word "who" is one of the oldest words in the English language — it has been used for over 1,000 years and comes from the Old English word "hwā"!
 
 ## Learning Checklist
+
 - [ ] I can identify a relative clause in a sentence
-- [ ] I can choose the correct relative pronoun
-- [ ] I can embed a relative clause using commas
+- [ ] I can use who, which, that, whose and where correctly
+- [ ] I can embed a relative clause in the middle of a sentence with commas
+- [ ] I can combine sentences using relative clauses to improve my writing

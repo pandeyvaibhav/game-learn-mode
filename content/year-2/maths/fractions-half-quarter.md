@@ -1,63 +1,95 @@
 ---
 year: 2
 subject: maths
-topic: Fractions — Half and Quarter
+topic: "Fractions \u2014 Halves and Quarters"
 slug: fractions-half-quarter
-key_concepts: [half, quarter, equal parts, fractions of shapes and amounts]
+key_concepts:
+  - halves
+  - quarters
+  - equal parts
 age_range: "6-7"
-animation: ../../animations/year-2/maths/fractions-half-quarter.html
+animation: /animations/year-2/maths/fractions-half-quarter.html
 ---
 
-# Fractions — Half and Quarter — Year 2 Maths
-
-## Big Question
-What are halves and quarters, and how do we find them?
+# Fractions — Halves and Quarters 🎯
 
 ## What We're Learning
-In this lesson you will learn what **half** (½) and **quarter** (¼) mean. You will find fractions of shapes and amounts.
+We are learning about halves and quarters. A fraction is a part of a whole. When we split something into equal parts, each part is a fraction. We will learn what ½ and ¼ mean.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
+## Key Words
+
+| Word | Meaning |
+|------|---------|
 | fraction | a part of a whole |
 | half (½) | one of two equal parts |
 | quarter (¼) | one of four equal parts |
 | equal parts | parts that are all the same size |
-| whole | the full amount (all of it) |
 
-## The Maths Explained
+## Let's Explore! 🔍
 
 ### What Is a Half?
-A **half** means splitting something into **2 equal parts** and taking **one** of them.
-- Half of a pizza = 1 out of 2 equal slices.
-- Half of 10 = 5 (because 10 ÷ 2 = 5).
+A half means splitting something into **2 equal parts** and taking **1** of them. We write a half as **½**.
+
+```
+  Whole       Two halves
+ ┌──────┐    ┌───┬───┐
+ │      │    │ ½ │ ½ │
+ └──────┘    └───┴───┘
+```
+
+If you cut a sandwich straight down the middle, each piece is a half.
+
+Half of 8 = 4 (because 4 + 4 = 8)
+Half of 10 = 5 (because 5 + 5 = 10)
 
 ### What Is a Quarter?
-A **quarter** means splitting something into **4 equal parts** and taking **one** of them.
-- A quarter of a pizza = 1 out of 4 equal slices.
-- A quarter of 12 = 3 (because 12 ÷ 4 = 3).
+A quarter means splitting something into **4 equal parts** and taking **1** of them. We write a quarter as **¼**.
 
-### Finding Fractions of Amounts
-| Amount | Half (÷ 2) | Quarter (÷ 4) |
-|---|---|---|
-| 8 | 4 | 2 |
-| 12 | 6 | 3 |
-| 20 | 10 | 5 |
-| 16 | 8 | 4 |
+```
+  Whole         Four quarters
+ ┌──────┐    ┌───┬───┐
+ │      │    │ ¼ │ ¼ │
+ │      │    ├───┼───┤
+ └──────┘    │ ¼ │ ¼ │
+             └───┴───┘
+```
 
-### Key Fact
-Two quarters = one half. ¼ + ¼ = ½
+A quarter of a pizza means the pizza is cut into 4 equal slices and you have 1 slice.
 
-## Quick Quiz
-1. What is half of 10? → *5*
-2. What is a quarter of 8? → *2*
-3. How many equal parts does a quarter have? → *4*
-4. What is half of 20? → *10*
+A quarter of 8 = 2 (because 2 + 2 + 2 + 2 = 8)
+A quarter of 12 = 3 (because 3 + 3 + 3 + 3 = 12)
 
-## Maths in the Real World
-We use halves and quarters every day: half an hour (30 minutes), a quarter of an hour (15 minutes), cutting a cake into quarters to share between four friends.
+### Halves and Quarters of Shapes
+We can shade fractions of shapes:
+
+- To show ½, split a shape into 2 equal parts and shade 1.
+- To show ¼, split a shape into 4 equal parts and shade 1.
+
+Remember: the parts **must** be equal!
+
+## Try It Yourself! ✏️
+
+**Question 1:** What is half of 6?
+<details><summary>Answer</summary>3</details>
+
+**Question 2:** What is a quarter of 20?
+<details><summary>Answer</summary>5</details>
+
+**Question 3:** A cake is cut into 4 equal pieces. What fraction is each piece?
+<details><summary>Answer</summary>A quarter (¼)</details>
+
+**Question 4:** What is half of 14?
+<details><summary>Answer</summary>7</details>
+
+**Question 5:** True or false — if you cut a rectangle into 2 pieces, they are always halves?
+<details><summary>Answer</summary>False — they are only halves if the two pieces are equal in size.</details>
+
+## Did You Know? 🌟
+The word **quarter** comes from the Latin word *quartus*, which means "fourth". That's also why 25p is sometimes called a "quarter" — it is a quarter of a pound (£1.00)!
 
 ## Learning Checklist
-- [ ] I know that half means 2 equal parts
-- [ ] I know that quarter means 4 equal parts
-- [ ] I can find half and quarter of a number
+
+- [ ] I can find half of a number or shape
+- [ ] I can find a quarter of a number or shape
+- [ ] I know that fractions must be equal parts
+- [ ] I can recognise ½ and ¼ in pictures and numbers

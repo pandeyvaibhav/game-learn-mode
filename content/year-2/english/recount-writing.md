@@ -3,64 +3,92 @@ year: 2
 subject: english
 topic: Recount Writing
 slug: recount-writing
-key_concepts: [time connectives, past tense, first person, diary entries]
+key_concepts:
+  - time connectives
+  - past tense
+  - first person
 age_range: "6-7"
-animation: ../../animations/year-2/english/recount-writing.html
+animation: /animations/year-2/english/recount-writing.html
 ---
 
-# Recount Writing — Year 2 English
-
-## Big Question
-How do we write about something that has already happened?
+# Recount Writing 🎯
 
 ## What We're Learning
-In this lesson you will learn how to write a **recount** — a piece of writing that retells events in order. You will use **time connectives**, **past tense**, and **first person** to write diary entries and personal recounts.
+We are learning how to write a recount. A recount tells someone about something that has already happened, in the order it happened. We use it to write about our weekends, trips, and special events.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| recount | retelling something that already happened |
-| time connective | a word or phrase that shows the order (first, then, next, finally) |
-| past tense | a verb form showing it already happened (walked, played) |
-| first person | using "I" and "we" to tell your own story |
-| diary entry | a personal piece of writing about your day |
-| chronological | in the order things happened |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| recount | a piece of writing that retells something that happened |
+| time connective | a word or phrase that shows when things happened (first, then, next) |
+| past tense | the form of a verb that shows it already happened (walked, played) |
+| first person | writing using "I" and "we" |
+
+## Let's Explore! 🔍
 
 ### What Is a Recount?
-A recount tells the reader about something that **already happened**, in the order it happened. Diary entries, postcards, and "What I did at the weekend" writing are all recounts.
+A recount tells the reader about something that **already happened**. It tells events **in order** from start to finish.
+
+Examples of recounts:
+- A diary entry about your weekend
+- A letter about a school trip
+- A newspaper report about an event
 
 ### Time Connectives
-Use these words to show the order:
-**First** → **Then** → **Next** → **After that** → **Finally**
+Time connectives are words that show the order things happened in. They link one event to the next.
 
-### Past Tense
-Because it already happened, use past tense verbs:
-- walk → **walked**
-- play → **played**
-- eat → **ate**
-- go → **went**
+| Time Connective | Example |
+|----------------|---------|
+| First | First, we got on the bus. |
+| Then | Then, we arrived at the farm. |
+| Next | Next, we fed the lambs. |
+| After that | After that, we had our picnic. |
+| Finally | Finally, we went home. |
 
-### First Person
-Write as if you were there:
-- "**I** went to the park."
-- "**We** played on the swings."
+### Writing in the Past Tense
+Because a recount is about something that already happened, we use the **past tense**.
 
-### Example Diary Entry
-> *Dear Diary,*
-> *Today was brilliant! **First**, I went to school and we had art. **Then**, we played football at lunchtime. **After that**, I came home and ate a sandwich. **Finally**, I read my book before bed.*
+| Present tense | Past tense |
+|--------------|------------|
+| walk | walked |
+| play | played |
+| see | saw |
+| eat | ate |
+| go | went |
 
-## Quick Quiz
-1. What tense do we use in a recount? → *Past tense*
-2. Name two time connectives. → *First, then (or next, finally, after that)*
-3. What person do we use in a diary? → *First person (I, we)*
-4. What does "chronological" mean? → *In the order things happened*
+### Structure of a Recount
+```
+Title:        What happened?
+Introduction: Who? When? Where?
+Events:       What happened in order?
+              (Use time connectives)
+Ending:       How did you feel? What was the best part?
+```
 
-## English in the Real World
-Recounts are used in newspapers, diaries, travel blogs, and history books. When you tell a friend what you did yesterday, you are giving a spoken recount!
+## Try It Yourself! ✏️
+
+**Question 1:** What is a recount?
+<details><summary>Answer</summary>A piece of writing that retells something that has already happened, in order.</details>
+
+**Question 2:** Name three time connectives.
+<details><summary>Answer</summary>Any three from: first, then, next, after that, finally, later, afterwards</details>
+
+**Question 3:** Change this to past tense: "I walk to school."
+<details><summary>Answer</summary>I walked to school.</details>
+
+**Question 4:** Should a recount be written in first person (I/we) or third person (he/she)?
+<details><summary>Answer</summary>A personal recount is written in first person (I/we).</details>
+
+**Question 5:** Put these in the right order: "Finally, we went home. First, we packed our bags. Then, we drove to the beach."
+<details><summary>Answer</summary>First, we packed our bags. Then, we drove to the beach. Finally, we went home.</details>
+
+## Did You Know? 🌟
+The famous diary of **Samuel Pepys** is one of the most important recounts in British history! He wrote about the Great Fire of London in 1666, telling us exactly what happened day by day. Without his diary, we would know much less about that event.
 
 ## Learning Checklist
-- [ ] I can write events in chronological order
-- [ ] I can use time connectives (first, then, next, finally)
-- [ ] I can write in the past tense and first person
+
+- [ ] I know that a recount retells events that already happened
+- [ ] I can use time connectives to order events
+- [ ] I can write in the past tense
+- [ ] I can write in the first person using "I" and "we"

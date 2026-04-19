@@ -3,65 +3,63 @@ year: 4
 subject: computing
 topic: Creating Media — Animation
 slug: creating-media-animation
-key_concepts: [frames, onion skinning, stop motion, digital tools]
+key_concepts:
+  - frames
+  - stop-motion
+  - onion skinning
+  - keyframes
 age_range: "8-9"
-animation: ../../animations/year-4/computing/creating-media-animation.html
+animation: /animations/year-4/computing/creating-media-animation.html
 ---
 
-# Creating Media — Animation — Year 4 Computing
-
-## Big Question
-How do animations work, and how can we create our own?
+# Creating Media — Animation 🎯
 
 ## What We're Learning
-In this lesson you will learn how animation creates the illusion of movement using **frames**, what **onion skinning** and **stop motion** are, and how **digital tools** help us animate.
+We are learning how animations work and how to create our own. You'll discover that animations are made from lots of still pictures shown quickly, and explore techniques like stop-motion and onion skinning to make smooth, eye-catching animations.
 
-## Key Computing Words
-| Word | What it means |
-|---|---|
-| animation | a series of images shown quickly to create the illusion of movement |
-| frame | a single image in an animation |
-| frames per second (fps) | how many frames are shown each second |
-| onion skinning | seeing a faint version of the previous frame to guide the next |
-| stop motion | animating real objects by moving them a tiny bit between each photo |
-| flip book | a simple animation made by flipping pages quickly |
+## Key Words
 
-## The Computing Explained
+| Word | Meaning |
+|------|---------|
+| frame | A single still image in an animation |
+| stop-motion | An animation technique where objects are moved a tiny bit between each photo |
+| onion skinning | Seeing a faint version of the previous frame so you know where to draw next |
+| keyframe | An important frame that marks a big change in the animation |
 
-### How Does Animation Work?
-Our eyes hold an image for a tiny moment after it disappears. When images change fast enough (about 12+ fps), our brain blends them together and sees **movement**.
+## Let's Explore! 🔍
 
-### Types of Animation
-| Type | How it works |
-|---|---|
-| Flip book | Draw slightly different pictures on each page and flip |
-| Stop motion | Move a real object a small amount, take a photo, repeat |
-| Digital animation | Create frames on a computer using software |
+### How Animation Works
+An animation is really a sequence of **frames** — still pictures shown one after another very quickly. When at least 12 frames flash past every second, your brain blends them together and sees smooth movement. This trick is called **persistence of vision**.
 
-### Onion Skinning
-Onion skinning shows a **faint copy** of the previous frame underneath your current frame. This helps you see how much to change so the movement looks smooth.
+### Stop-Motion Animation
+In **stop-motion**, you take a photo, move an object slightly, take another photo, and repeat. When you play the photos in order, the object appears to move on its own. Films like *Wallace and Gromit* and *Shaun the Sheep* use this technique with clay models.
 
-### Planning an Animation
-1. **Storyboard** — sketch the key scenes.
-2. **Create frames** — draw or photograph each small change.
-3. **Review** — play back and adjust timing.
-4. **Export** — save as a video or GIF.
+### Onion Skinning and Keyframes
+**Onion skinning** shows a faded copy of the previous frame underneath your current one. This helps you position things accurately for the next frame. **Keyframes** are the most important frames — they show the start and end of a movement. The frames in between (called "in-betweens") fill in the gaps.
 
-### Tips for Smooth Animation
-- Make **small changes** between frames.
-- Use **more frames per second** for smoother motion.
-- Keep the camera / background **still** in stop motion.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What is a frame? → *A single image in an animation*
-2. What is onion skinning? → *Seeing a faint version of the previous frame to guide the next*
-3. How does stop motion work? → *Moving real objects a tiny bit between each photo*
-4. What does fps stand for? → *Frames per second*
+**Question 1:** What is a frame in an animation?
+<details><summary>Answer</summary>A single still image. Many frames shown quickly create the illusion of movement.</details>
 
-## Computing in the Real World
-Pixar, Aardman (Wallace & Gromit), and Disney use animation every day. Stop motion is used in films like Shaun the Sheep. GIFs and short animations are everywhere online.
+**Question 2:** How does stop-motion animation work?
+<details><summary>Answer</summary>You take a photo, move the object a tiny bit, take another photo, and repeat. Playing the photos quickly makes it look like the object is moving.</details>
+
+**Question 3:** Why is onion skinning helpful?
+<details><summary>Answer</summary>It shows a faint version of the previous frame so you can see where to place things in the next frame, making the movement smoother.</details>
+
+**Question 4:** About how many frames per second do you need for smooth animation?
+<details><summary>Answer</summary>At least 12 frames per second (professional animation often uses 24 or 25).</details>
+
+**Question 5:** Name a film or TV show that uses stop-motion animation.
+<details><summary>Answer</summary>Wallace and Gromit, Shaun the Sheep, Coraline, or any other valid example.</details>
+
+## Did You Know? 🌟
+The first ever animated film was made in 1908 by Émile Cohl in France. Called *Fantasmagorie*, it was only about 80 seconds long and used around 700 hand-drawn frames!
 
 ## Learning Checklist
+
 - [ ] I can explain how animation creates the illusion of movement
-- [ ] I know what onion skinning is and why it helps
-- [ ] I can describe the steps to create a simple animation
+- [ ] I can describe how stop-motion animation is made
+- [ ] I understand what onion skinning and keyframes are
+- [ ] I can plan and create a simple animation

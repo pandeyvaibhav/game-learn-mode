@@ -1,70 +1,84 @@
 ---
 year: 2
 subject: science
-topic: Uses of Materials
+topic: Uses of Everyday Materials
 slug: uses-materials-y2
-key_concepts: [suitability, changing shape, squashing, bending, twisting]
+key_concepts:
+  - properties of materials
+  - suitability
+  - changing shape
 age_range: "6-7"
-animation: ../../animations/year-2/science/uses-materials-y2.html
+animation: /animations/year-2/science/uses-materials-y2.html
 ---
 
-# Uses of Materials — Year 2 Science
-
-## Big Question
-Why are different materials used for different things, and can we change their shape?
+# Uses of Everyday Materials 🎯
 
 ## What We're Learning
-In this lesson you will learn why certain **materials** are chosen for certain jobs, and how some materials can be changed by **squashing**, **bending**, **twisting**, and **stretching**.
+We are learning about different materials and why we use them to make different things. We will explore the properties of materials and find out how some materials can be changed by squashing, bending, twisting and stretching.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| material | what something is made from (wood, metal, plastic, etc.) |
+## Key Words
+
+| Word | Meaning |
+|------|---------|
+| material | what something is made from (wood, plastic, metal, glass) |
+| property | what a material is like (hard, soft, bendy, waterproof) |
 | suitable | right for the job |
-| property | a feature of a material (hard, soft, waterproof, etc.) |
-| squash | press something to make it flatter |
-| bend | curve something without breaking it |
-| twist | turn something around |
-| stretch | pull something to make it longer |
+| waterproof | does not let water through |
 
-## The Science Explained
+## Let's Explore! 🔍
+
+### Properties of Materials
+Every material has **properties** — things that describe what it is like.
+
+| Property | Meaning | Example |
+|----------|---------|---------|
+| Hard | difficult to scratch or break | metal, stone |
+| Soft | easy to squash or bend | fabric, sponge |
+| Flexible | can bend without breaking | rubber, plastic |
+| Waterproof | water cannot pass through it | plastic, rubber |
+| Transparent | you can see through it | glass, clear plastic |
+| Opaque | you cannot see through it | wood, metal |
+| Absorbent | soaks up water | paper towel, sponge |
 
 ### Choosing the Right Material
-We pick materials because of their **properties**:
-| Object | Material | Why? |
-|---|---|---|
-| window | glass | transparent — you can see through it |
-| coat | waterproof fabric | keeps you dry in the rain |
-| saucepan | metal | strong and conducts heat |
-| teddy bear | fabric / soft material | soft and cuddly |
+We choose materials because of their properties. The material must be **suitable** for the job.
 
-A paper umbrella would be a bad choice — paper is not waterproof!
+- **Windows** are made from glass because it is transparent — we need to see through them.
+- **Raincoats** are made from waterproof material — to keep us dry.
+- **Saucepans** are made from metal because it is strong and can get very hot without melting.
+- **Teddy bears** are made from soft fabric because they need to be cuddly!
 
 ### Changing Shape
-Some materials can be changed:
-| Action | Example |
-|---|---|
-| **squash** | squash a sponge flat |
-| **bend** | bend a pipe cleaner |
-| **twist** | twist a wet cloth |
-| **stretch** | stretch an elastic band |
+Some materials can be changed by:
 
-Not all materials can be changed the same way. You can bend clay but you cannot bend a brick.
+- **Squashing** — pressing it flat (like squashing clay)
+- **Bending** — curving it (like bending a pipe cleaner)
+- **Twisting** — turning parts in different directions (like twisting a cloth)
+- **Stretching** — pulling it to make it longer (like stretching an elastic band)
 
-### Reversible vs Not Reversible
-- **Reversible**: stretch an elastic band → it goes back.
-- **Not reversible**: snap a stick → it stays broken.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. Why is glass used for windows? → *Because it is transparent*
-2. Name one way you can change the shape of a material. → *Squash, bend, twist, or stretch*
-3. Why would a paper coat be a bad idea? → *Paper is not waterproof*
-4. What does "suitable" mean? → *Right for the job*
+**Question 1:** Why are windows made from glass?
+<details><summary>Answer</summary>Because glass is transparent, so we can see through it.</details>
 
-## Science in the Real World
-Engineers and designers choose materials carefully. Car bodies are metal for strength, tyres are rubber so they grip the road, and seat belts stretch a little to protect you.
+**Question 2:** Name a material that is waterproof.
+<details><summary>Answer</summary>Plastic, rubber, or metal (any one is correct)</details>
+
+**Question 3:** What does "flexible" mean?
+<details><summary>Answer</summary>It means the material can bend without breaking.</details>
+
+**Question 4:** Name four ways you can change the shape of a material.
+<details><summary>Answer</summary>Squashing, bending, twisting and stretching</details>
+
+**Question 5:** Would paper be a good material for making an umbrella? Why or why not?
+<details><summary>Answer</summary>No, because paper is not waterproof. It would get soggy and tear in the rain.</details>
+
+## Did You Know? 🌟
+Rubber comes from the sap of rubber trees! The sap is called **latex** and it drips out when the bark is cut. People in Central and South America have been using rubber for over 3,000 years.
 
 ## Learning Checklist
-- [ ] I know why different materials are chosen for different jobs
-- [ ] I can describe ways to change the shape of materials
-- [ ] I understand that some changes are reversible and some are not
+
+- [ ] I can describe the properties of different materials
+- [ ] I can explain why certain materials are used for specific things
+- [ ] I know that some materials can be squashed, bent, twisted and stretched
+- [ ] I can compare materials and say which is most suitable for a job

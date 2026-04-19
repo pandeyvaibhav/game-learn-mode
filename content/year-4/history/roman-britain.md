@@ -3,71 +3,63 @@ year: 4
 subject: history
 topic: Roman Britain
 slug: roman-britain
-key_concepts: [invasion, Hadrian's Wall, roads, legacy]
+key_concepts:
+  - Roman invasion
+  - Hadrian's Wall
+  - roads
+  - Boudicca
 age_range: "8-9"
-animation: ../../animations/year-4/history/roman-britain.html
+animation: /animations/year-4/history/roman-britain.html
 ---
 
-# Roman Britain — Year 4 History
-
-## Big Question
-What did the Romans do for Britain, and what did they leave behind?
+# Roman Britain 🎯
 
 ## What We're Learning
-In this lesson you will learn about the Roman **invasion** of Britain, **Hadrian's Wall**, Roman **roads**, and the lasting **legacy** of the Romans.
+We are learning about what happened when the Romans invaded Britain almost 2,000 years ago. You'll discover how they changed the country with roads, towns and walls, and hear the story of Boudicca — the warrior queen who fought back.
 
-## Key History Words
-| Word | What it means |
-|---|---|
-| invasion | entering a country by force to take control |
-| empire | a group of countries ruled by one leader (emperor) |
-| Hadrian's Wall | a wall built across northern England to defend the Roman border |
-| legion | a unit of the Roman army (about 5,000 soldiers) |
-| legacy | something left behind that still affects us today |
-| Romanisation | the spread of Roman culture, language, and way of life |
+## Key Words
 
-## The History Explained
+| Word | Meaning |
+|------|---------|
+| invasion | When an army enters another country to take control |
+| Hadrian's Wall | A long wall built across northern England to mark the Roman frontier |
+| Boudicca | A queen of the Iceni tribe who led a revolt against the Romans |
+| legion | A large unit of the Roman army, usually about 5,000 soldiers |
 
-### Timeline
-| Date | Event |
-|---|---|
-| 55 BC | Julius Caesar's first expedition to Britain |
-| 43 AD | Emperor Claudius invaded and conquered much of Britain |
-| 122 AD | Hadrian's Wall began to be built |
-| 410 AD | Romans left Britain |
+## Let's Explore! 🔍
 
-### Why Did the Romans Invade?
-Britain had valuable resources — tin, gold, grain, and enslaved people. Conquering Britain also brought glory to the emperor.
+### The Roman Invasion
+In **AD 43**, Emperor Claudius sent about 40,000 soldiers across the English Channel to conquer Britain. The Romans wanted Britain's rich farmland, metals like tin and gold, and to expand their empire. They defeated many Celtic tribes and made Britain part of the Roman Empire for nearly 400 years.
 
-### Hadrian's Wall
-- Built on the orders of Emperor **Hadrian** in **122 AD**.
-- Stretched **73 miles** across northern England (coast to coast).
-- Purpose: to mark the edge of the empire and control movement.
+### Boudicca's Revolt
+Around **AD 60**, Queen Boudicca of the Iceni tribe led a fierce rebellion. Her army burned Roman towns including Colchester, London and St Albans. Although the Romans eventually defeated her, Boudicca is remembered as a brave leader who stood up against a powerful empire.
 
-### Roman Roads
-- Built **straight** for speed and efficiency.
-- Made of layers: large stones, gravel, and a paved surface.
-- Connected towns and forts — many modern roads still follow their routes.
+### What the Romans Left Behind
+The Romans built straight **roads** (many still followed by modern roads today), introduced **underfloor heating** (hypocausts), public baths, aqueducts and new foods like apples, carrots and rabbits. **Hadrian's Wall**, stretching 73 miles across northern England, marked the northern border of the empire and can still be visited today.
 
-### Roman Legacy in Britain
-| Legacy | Example |
-|---|---|
-| Language | Many English words come from Latin |
-| Roads | Straight roads still used today |
-| Towns | London (Londinium), Bath (Aquae Sulis), Chester (Deva) |
-| Buildings | Baths, villas, amphitheatres |
-| Calendar | The Julian calendar shaped our modern calendar |
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. When did the Romans invade Britain? → *43 AD*
-2. Why was Hadrian's Wall built? → *To mark the edge of the empire and control movement*
-3. What were Roman roads made of? → *Layers of stones, gravel, and a paved surface*
-4. Name one Roman legacy in Britain. → *Roads / towns / Latin words / calendar*
+**Question 1:** In what year did the Romans invade Britain?
+<details><summary>Answer</summary>AD 43.</details>
 
-## History in the Real World
-You can still visit Hadrian's Wall, Roman baths in Bath, and ruins of Roman villas across England. Many British place names ending in "-chester" or "-cester" come from the Latin word *castra* (camp).
+**Question 2:** Who was Boudicca?
+<details><summary>Answer</summary>She was the queen of the Iceni tribe who led a revolt against the Roman occupation of Britain.</details>
+
+**Question 3:** Why did the Romans build Hadrian's Wall?
+<details><summary>Answer</summary>To mark and defend the northern frontier of Roman Britain and keep out tribes from the north.</details>
+
+**Question 4:** Name two things the Romans introduced to Britain.
+<details><summary>Answer</summary>Any two of: straight roads, underfloor heating, public baths, aqueducts, new foods (apples, carrots, rabbits), towns, etc.</details>
+
+**Question 5:** How long did the Romans stay in Britain?
+<details><summary>Answer</summary>About 400 years (from AD 43 to around AD 410).</details>
+
+## Did You Know? 🌟
+Many English place names come from the Romans. Any town ending in "-chester", "-cester" or "-caster" (like Manchester, Leicester or Lancaster) comes from the Latin word *castra*, meaning a military camp.
 
 ## Learning Checklist
+
 - [ ] I know when and why the Romans invaded Britain
-- [ ] I can explain what Hadrian's Wall was for
-- [ ] I can describe Roman roads and their legacy
+- [ ] I can describe who Boudicca was and what she did
+- [ ] I can explain the purpose of Hadrian's Wall
+- [ ] I can name things the Romans brought to Britain

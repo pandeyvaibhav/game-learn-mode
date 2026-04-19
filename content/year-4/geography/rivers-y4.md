@@ -3,65 +3,64 @@ year: 4
 subject: geography
 topic: Rivers
 slug: rivers-y4
-key_concepts: [source, mouth, tributaries, erosion]
+key_concepts:
+  - source
+  - mouth
+  - tributaries
+  - erosion
+  - water cycle
 age_range: "8-9"
-animation: ../../animations/year-4/geography/rivers-y4.html
+animation: /animations/year-4/geography/rivers-y4.html
 ---
 
-# Rivers — Year 4 Geography
-
-## Big Question
-Where do rivers come from, and how do they shape the land?
+# Rivers 🎯
 
 ## What We're Learning
-In this lesson you will learn the parts of a river from **source** to **mouth**, what **tributaries** are, and how rivers change the landscape through **erosion**.
+We are learning about rivers — where they start, where they go, and why they are so important. You'll discover the different parts of a river, how rivers shape the land, and how they connect to the water cycle.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| source | where a river begins (usually in hills or mountains) |
-| mouth | where a river meets the sea |
-| tributary | a smaller river that joins a larger one |
-| erosion | the wearing away of rock and soil by water |
-| deposition | when a river drops the material it has been carrying |
-| meander | a bend in a river |
-| floodplain | flat land next to a river that floods when the river overflows |
+## Key Words
 
-## The Geography Explained
+| Word | Meaning |
+|------|---------|
+| source | The place where a river begins, often high up in hills or mountains |
+| mouth | The place where a river meets the sea or a lake |
+| tributary | A smaller river or stream that flows into a larger river |
+| erosion | The wearing away of rock and soil by water |
+
+## Let's Explore! 🔍
 
 ### The Journey of a River
-| Stage | What happens |
-|---|---|
-| **Upper course** (near the source) | Steep, fast-flowing, V-shaped valleys, waterfalls |
-| **Middle course** | Wider, slower, meanders form |
-| **Lower course** (near the mouth) | Very wide and slow, floodplains, river deposits sediment |
+A river begins at its **source** — this might be a spring, a melting glacier or a boggy hillside. As it flows downhill, it is joined by **tributaries** that add more water. The river grows wider and slower until it reaches the **mouth**, where it flows into the sea, a lake or another river.
 
-### Key Features
-- **Source** — often a spring or rainwater collecting in hills.
-- **Tributary** — a smaller stream joining the main river, making it bigger.
-- **Meander** — the river curves because it erodes the outer bank and deposits on the inner bank.
-- **Mouth / Estuary** — where the river meets the sea; may form a wide estuary or delta.
+### How Rivers Shape the Land
+Rivers are powerful! They **erode** (wear away) rock and soil, creating valleys and gorges. They also **transport** material downstream and **deposit** it in new places, forming features like meanders (bends), floodplains and deltas.
 
-### Erosion and Deposition
-Rivers **erode** (wear away) rock and soil, carrying sediment downstream. When the river slows, it **deposits** this material — building up flat floodplains and deltas.
+### Rivers and the Water Cycle
+Rivers are part of the **water cycle**. Rain falls on the land and flows into rivers. Rivers carry the water back to the sea, where the Sun evaporates it, clouds form, and rain falls again — an endless cycle.
 
-### UK Rivers
-| River | Fact |
-|---|---|
-| Severn | Longest river in the UK (354 km) |
-| Thames | Flows through London |
-| Trent | Third longest; important for industry |
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What is the source of a river? → *Where it begins, usually in hills or mountains*
-2. What is a tributary? → *A smaller river that joins a larger one*
-3. What is erosion? → *The wearing away of rock and soil by water*
-4. What is the longest river in the UK? → *The Severn*
+**Question 1:** What is the source of a river?
+<details><summary>Answer</summary>The place where the river begins, usually in hills or mountains.</details>
 
-## Geography in the Real World
-Rivers provide drinking water, transport, farming irrigation, and hydroelectric power. Flooding can be devastating, so engineers build flood defences.
+**Question 2:** What is a tributary?
+<details><summary>Answer</summary>A smaller river or stream that joins a larger river.</details>
+
+**Question 3:** What is erosion?
+<details><summary>Answer</summary>The wearing away of rock and soil by the force of water.</details>
+
+**Question 4:** Where is the mouth of a river?
+<details><summary>Answer</summary>The place where the river meets the sea or a lake.</details>
+
+**Question 5:** Name the longest river in the United Kingdom.
+<details><summary>Answer</summary>The River Severn (about 354 km long).</details>
+
+## Did You Know? 🌟
+The River Nile in Africa is around 6,650 km long — that's roughly the distance from London to New York and back again!
 
 ## Learning Checklist
-- [ ] I can label the parts of a river from source to mouth
-- [ ] I can explain erosion and deposition
-- [ ] I know key UK rivers
+
+- [ ] I can name the main parts of a river (source, tributary, mouth)
+- [ ] I can explain how rivers erode and shape the land
+- [ ] I understand how rivers fit into the water cycle
+- [ ] I can name a major UK river

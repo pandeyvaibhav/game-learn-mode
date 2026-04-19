@@ -3,7 +3,7 @@ year: 1
 subject: science
 topic: Plants
 slug: plants-year1
-key_concepts: [parts of a plant, what plants need]
+key_concepts: [parts of a plant, roots, stem, leaves, flowers, what plants need]
 age_range: "5-6"
 animation: ../../animations/year-1/science/plants-year1.html
 ---
@@ -11,84 +11,68 @@ animation: ../../animations/year-1/science/plants-year1.html
 # Plants — Year 1 Science
 
 ## What We're Learning
-You are going to learn about the parts of a plant and what plants need to grow. You will also learn to identify some common plants and trees.
+In this lesson you will learn to name the **parts of a plant** and understand what plants need to **grow**.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Root | The part under the ground that takes in water |
-| Stem | The part that holds the plant up and carries water to the leaves |
-| Leaf | The green part that catches sunlight to make food |
-| Flower | The colourful part that helps the plant make seeds |
-| Seed | A tiny thing that can grow into a new plant |
-| Deciduous | A tree that loses its leaves in autumn |
-| Evergreen | A tree that keeps its green leaves all year |
+| roots | the part underground that takes in water |
+| stem | the part that holds the plant up |
+| leaf | the green part that catches sunlight |
+| flower | the colourful part that makes seeds |
+| sunlight | light from the sun |
+| soil | the earth that plants grow in |
 
 ## Let's Explore
 
-### Parts of a plant
-
+### Parts of a Plant
 ```
-    🌸  ← Flower
-    |
-   🌿🌿 ← Leaves
-    |
-    |   ← Stem
-   ───
-  /   \ ← Roots
+   🌸  ← flower
+   |
+  🌿🌿 ← leaves
+   |
+   |   ← stem
+  ~~~
+  ///  ← roots (underground)
 ```
 
-### What do plants need?
-
-Plants need four things to grow:
-
-| What | Why |
+### What Do Plants Need?
+| Need | Why |
 |---|---|
-| Water 💧 | Roots drink it up from the soil |
-| Sunlight ☀️ | Leaves use it to make food |
-| Air 💨 | Leaves take in air to help make food |
-| Soil 🪴 | Gives minerals and holds the roots |
+| ☀️ Sunlight | for energy to grow |
+| 💧 Water | to stay alive and healthy |
+| 🪴 Soil | for nutrients (plant food) |
+| 🌡️ Warmth | to help them grow |
 
-### Common wild plants
-- Daisy
-- Dandelion
-- Buttercup
-- Clover
-
-### Deciduous vs Evergreen trees
-
-| Type | What happens | Examples |
-|---|---|---|
-| Deciduous 🍂 | Loses leaves in autumn | Oak, beech, birch |
-| Evergreen 🌲 | Keeps leaves all year | Pine, holly, fir |
-
-### Example — Why do roots grow underground?
-Because they need to reach water in the soil and hold the plant in place so it does not fall over.
+### Common Plants You Might See
+- 🌻 Sunflower
+- 🌹 Rose
+- 🌷 Tulip
+- 🌳 Oak tree
+- 🌱 Grass
 
 ## Try It Yourself
 
-1. Name the four parts of a plant.
-2. What do roots do?
-3. Name one thing a plant needs to grow.
-4. What is the difference between deciduous and evergreen trees?
-5. Is an oak tree deciduous or evergreen?
+**1. Which part of a plant is underground?**
+<details><summary>Answer</summary>The roots</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. What do leaves catch from the sky?**
+<details><summary>Answer</summary>Sunlight</details>
 
-1. Root, stem, leaf, flower
-2. Take in water from the soil and hold the plant in place
-3. Water, sunlight, air or soil (any one)
-4. Deciduous trees lose their leaves in autumn; evergreen trees keep theirs all year
-5. Deciduous
+**3. Name two things a plant needs to grow.**
+<details><summary>Answer</summary>Water and sunlight (also soil and warmth)</details>
 
-</details>
+**4. What does the stem do?**
+<details><summary>Answer</summary>Holds the plant up</details>
 
-## Did You Know? 🔬
-The tallest tree in the world is a redwood tree in California called Hyperion. It is over 115 metres tall — that is taller than Big Ben!
+**5. Which part of a plant makes seeds?**
+<details><summary>Answer</summary>The flower</details>
+
+## Did You Know?
+The tallest tree in the world is a coast redwood in California called Hyperion. It is over 115 metres tall — that is taller than the Statue of Liberty!
 
 ## Learning Checklist
-- [ ] I can label the parts of a plant
+- [ ] I can name the parts of a plant: roots, stem, leaves, flower
 - [ ] I know what plants need to grow
-- [ ] I can name some common wild plants
-- [ ] I know the difference between deciduous and evergreen trees
+- [ ] I can name some common plants
+- [ ] I understand what each part of a plant does

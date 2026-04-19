@@ -3,7 +3,7 @@ year: 1
 subject: geography
 topic: Our Local Area
 slug: local-area
-key_concepts: [maps, aerial photographs, compass directions]
+key_concepts: [school surroundings, maps, aerial photographs, compass directions]
 age_range: "5-6"
 animation: ../../animations/year-1/geography/local-area.html
 ---
@@ -11,86 +11,63 @@ animation: ../../animations/year-1/geography/local-area.html
 # Our Local Area — Year 1 Geography
 
 ## What We're Learning
-You are going to learn about the area around your school. You will use simple maps, aerial photographs and compass directions to describe where things are.
+In this lesson you will learn about **your local area** — the places near your school and home. You will use **maps** and learn the four **compass directions**.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Map | A drawing that shows where things are from above |
-| Aerial photograph | A photo taken from high up (like from an aeroplane) |
-| Compass | A tool that shows directions (North, South, East, West) |
-| Landmark | An important building or feature you can spot easily |
-| Route | The way you go from one place to another |
-| Local area | The places near where you live or go to school |
+| local area | the places close to where you live |
+| map | a drawing showing places from above |
+| aerial photograph | a photo taken from above (like a bird's eye view) |
+| compass | a tool showing North, South, East and West |
+| human feature | something built by people (houses, roads) |
+| physical feature | a natural thing (hills, rivers, trees) |
 
 ## Let's Explore
 
-### What is in our local area?
-Look around your school. You might see:
-- Houses and flats
-- Shops and a post office
-- A park or playground
-- Roads and paths
-- A church, mosque or temple
-- A library or community centre
+### What is in a Local Area?
+| Human Features (built by people) | Physical Features (natural) |
+|---|---|
+| 🏫 School | 🌳 Trees |
+| 🏠 Houses | ⛰️ Hills |
+| 🛣️ Roads | 🌊 Rivers |
+| 🏪 Shops | 🌿 Parks (grass) |
+| ⛪ Church | 🏖️ Lakes |
 
-### Using a simple map
-
+### Compass Directions
 ```
-      N
-      ↑
-  W ←   → E
-      ↓
-      S
-
-  [Park]     [Shop]
-     |          |
-  ---School-----
-     |
-  [Houses]
+        North (N)
+          ↑
+West (W) ← → East (E)
+          ↓
+        South (S)
 ```
 
-The park is **north** of the school.
-The houses are **south** of the school.
-
-### Compass directions
-
-| Direction | Short | Where on the map |
-|---|---|---|
-| North | N | Up |
-| South | S | Down |
-| East | E | Right |
-| West | W | Left |
-
-A way to remember: **N**ever **E**at **S**hredded **W**heat (going clockwise).
-
-### Aerial photographs
-An aerial photo shows how things look from above — like a bird's-eye view. Roads look like grey lines. Green spaces are parks.
+### Using a Map
+A map shows places from above, as if you are a bird looking down. Roads look like lines, buildings look like small shapes.
 
 ## Try It Yourself
 
-1. Name three things you might see in your local area.
-2. What does a map show?
-3. If you face north and turn right, which direction do you face?
-4. What is an aerial photograph?
-5. Describe the route from your classroom to the playground.
+**1. What is a map?**
+<details><summary>Answer</summary>A drawing that shows places from above</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Name one human feature you might see near your school.**
+<details><summary>Answer</summary>Houses (or roads, shops, church)</details>
 
-1. Any three from: houses, shops, park, roads, school, church etc.
-2. Where things are, shown from above
-3. East
-4. A photograph taken from high up, like from a plane
-5. (Your own answer!)
+**3. Name one physical feature.**
+<details><summary>Answer</summary>Trees (or hills, rivers)</details>
 
-</details>
+**4. What are the four compass directions?**
+<details><summary>Answer</summary>North, South, East and West</details>
 
-## Did You Know? 🌍
-The oldest known map is over 3,000 years old! It was scratched into a clay tablet in ancient Babylon (modern-day Iraq).
+**5. Is a bridge a human or physical feature?**
+<details><summary>Answer</summary>Human — people built it</details>
+
+## Did You Know?
+Maps have been made for thousands of years. The oldest known map was scratched into a clay tablet in ancient Babylon about 2,600 years ago!
 
 ## Learning Checklist
-- [ ] I can describe features in my local area
-- [ ] I can use a simple map
+- [ ] I can describe my local area
+- [ ] I know the difference between human and physical features
 - [ ] I know the four compass directions
-- [ ] I can describe a route using direction words
+- [ ] I can use a simple map

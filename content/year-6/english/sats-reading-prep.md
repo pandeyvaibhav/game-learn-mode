@@ -3,66 +3,67 @@ year: 6
 subject: english
 topic: SATs Reading Preparation
 slug: sats-reading-prep
-key_concepts: [inference, retrieval, summarising, authorial choice]
+key_concepts:
+  - inference
+  - retrieval
+  - vocabulary in context
+  - summarising
 age_range: "10-11"
-animation: ../../animations/year-6/english/sats-reading-prep.html
+animation: /animations/year-6/english/sats-reading-prep.html
 ---
 
-# SATs Reading Preparation — Year 6 English
-
-## Big Question
-What reading skills do we need for SATs and how do we answer different question types?
+# SATs Reading Preparation 🎯
 
 ## What We're Learning
-In this lesson you will practise the key reading skills tested in SATs: **retrieval**, **inference**, **summarising**, and understanding **authorial choice**.
+The KS2 reading test asks you to show you can understand texts deeply — not just find answers on the page. We'll practise the key skills: retrieving facts, making inferences, understanding vocabulary, and summarising.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| retrieval | finding information stated directly in the text |
-| inference | working out something not directly stated, using clues |
-| summarise | giving the main points briefly |
-| authorial choice | the words, phrases, or techniques an author uses deliberately |
-| evidence | a quote or reference from the text that supports your answer |
-| PEE | Point, Evidence, Explain — a structure for longer answers |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| inference | Working out something that isn't directly stated, using clues in the text |
+| retrieval | Finding and quoting information that is clearly stated in the text |
+| context | The words and sentences around a word that help you work out its meaning |
+| summarise | Giving the main points of a text in a short, clear way |
 
-### Question Types
-| Type | What it asks | How to answer |
-|---|---|---|
-| Retrieval | Find a fact in the text | Scan and quote directly |
-| Inference | What can you work out? | Use text clues + your reasoning |
-| Vocabulary | What does this word mean here? | Read around the word for context |
-| Summarise | What are the main ideas? | Pick key points, leave out detail |
-| Authorial choice | Why did the author use this word/phrase? | Explain the effect on the reader |
-| Comparison | How are two things similar/different? | Use evidence from both parts |
+## Let's Explore! 🔍
 
-### PEE Structure
-**Point** — state your answer.
-**Evidence** — quote the text.
-**Explain** — say what it shows or why it matters.
+### Retrieval Questions
+These ask you to find information directly stated in the text. Look for key words from the question, scan the text, and quote or paraphrase the answer.
 
-> *The author shows that the character is nervous.* (Point)
-> *"Her hands trembled as she reached for the door."* (Evidence)
-> *The word "trembled" suggests she is scared, not just cold.* (Explain)
+**Tip:** The question might use different words from the text — look for synonyms. If the question asks "What made the boy frightened?", the text might say "terrified" or "his heart raced."
 
-### Top Tips
-- Always **refer back to the text**.
-- For inference, look for **clues** in descriptions and dialogue.
-- For vocabulary, re-read the **whole sentence** around the word.
-- Check how many **marks** the question is worth — that's how many points to make.
+### Inference Questions
+You must "read between the lines." The text might say: *"Ella clutched the letter, her hands trembling."* The author doesn't say she's nervous — but we can infer it from her trembling hands.
 
-## Quick Quiz
-1. What is retrieval? → *Finding information stated directly in the text*
-2. What does PEE stand for? → *Point, Evidence, Explain*
-3. How do you work out inference? → *Use clues in the text plus your reasoning*
-4. Why should you check how many marks a question is worth? → *It tells you how many points to make*
+Look for clue words like **suggest**, **imply**, **how do we know**, and **what impression**. Always use **evidence** (a quote or reference) to support your inference.
 
-## English in the Real World
-Strong reading comprehension helps in every subject and career. Being able to find information, read between the lines, and explain your thinking are lifelong skills.
+### Vocabulary in Context
+When asked what a word means, don't just guess — look at the surrounding sentence. *"The derelict building was covered in ivy and missing its roof."* From the context (ivy-covered, missing roof), **derelict** means abandoned and in poor condition.
+
+## Try It Yourself! ✏️
+
+**Question 1:** Read: "The forest was silent, save for the occasional crack of a twig underfoot." What type of atmosphere is created?
+<details><summary>Answer</summary>A tense or eerie atmosphere. The silence and the crack of twigs suggest suspense and alertness.</details>
+
+**Question 2:** If a text says "Marcus slammed his book shut and stormed out of the room", what can you infer about Marcus?
+<details><summary>Answer</summary>Marcus is angry or frustrated. Slamming and storming suggest strong negative emotions.</details>
+
+**Question 3:** What does "luminous" mean in: "The luminous moon lit up the entire valley"?
+<details><summary>Answer</summary>Bright or glowing. The context tells us the moon is lighting up the valley, so luminous means giving off light.</details>
+
+**Question 4:** Why is it important to use evidence from the text in your answers?
+<details><summary>Answer</summary>Evidence proves your answer is based on the text, not just a guess. It shows the examiner exactly where you found your information or clues.</details>
+
+**Question 5:** Summarise in one sentence: "The Ancient Greeks held the first Olympic Games in 776 BC. Athletes competed in running, wrestling, and chariot races. Only men could take part, and winners received olive wreaths."
+<details><summary>Answer</summary>The Ancient Greeks held the first Olympics in 776 BC, where male athletes competed in various sports for olive wreath prizes.</details>
+
+## Did You Know? 🌟
+The KS2 reading test gives you one hour to answer questions on three different texts — fiction, non-fiction, and poetry. Top tip: read each text carefully before looking at the questions, so you already know where things are!
 
 ## Learning Checklist
-- [ ] I can answer retrieval and inference questions
-- [ ] I can structure longer answers using PEE
-- [ ] I can explain the effect of an author's word choices
+
+- [ ] I can retrieve information and quote from a text
+- [ ] I can make inferences and support them with evidence
+- [ ] I can work out word meanings from context
+- [ ] I can summarise the main ideas of a passage

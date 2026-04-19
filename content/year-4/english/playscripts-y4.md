@@ -3,70 +3,66 @@ year: 4
 subject: english
 topic: Playscripts
 slug: playscripts-y4
-key_concepts: [stage directions, dialogue, characters, scene]
+key_concepts:
+  - stage directions
+  - dialogue
+  - character names
+  - scenes
 age_range: "8-9"
-animation: ../../animations/year-4/english/playscripts-y4.html
+animation: /animations/year-4/english/playscripts-y4.html
 ---
 
-# Playscripts — Year 4 English
-
-## Big Question
-How are playscripts different from stories, and how do we write one?
+# Playscripts 🎯
 
 ## What We're Learning
-In this lesson you will learn the features of a **playscript**: **characters**, **dialogue**, **stage directions**, and how scenes are set out.
+We are learning how to read and write playscripts. You'll find out how plays are set out differently from stories, how to write dialogue for characters, and how stage directions tell actors what to do.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| playscript | a piece of writing designed to be performed on stage |
-| dialogue | the words characters say |
-| stage direction | instructions telling actors what to do (in brackets or italics) |
-| scene | a section of a play set in one place or time |
-| character | a person in the play |
-| narrator | someone who tells the audience what is happening |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| playscript | A written text that tells actors what to say and do |
+| dialogue | The words spoken by characters in a play |
+| stage direction | Instructions (usually in brackets and italics) telling actors how to move or speak |
+| scene | A section of a play set in one place or time |
 
-### Story vs Playscript
-| Story | Playscript |
-|---|---|
-| Written in paragraphs | Written as dialogue |
-| Uses speech marks | Character name followed by a colon |
-| Describes actions in sentences | Uses stage directions in brackets |
+## Let's Explore! 🔍
 
-### Layout of a Playscript
-```
-Scene 1: The Forest
+### How a Playscript Looks
+A playscript looks different from a story. Instead of paragraphs, you see:
+- **Character names** on the left, followed by a colon
+- **Dialogue** — the words the character speaks (no speech marks needed)
+- **Stage directions** in brackets, e.g. *(excitedly)* or *(exits stage left)*
 
-Narrator: It was a cold, dark night in the forest.
+### Writing Good Dialogue
+Each character should sound different. Think about their personality — are they bossy, nervous, funny? Use the words they say and stage directions to show this, rather than telling the audience.
 
-Fox: (looking around nervously) Did you hear that?
-Rabbit: (whispering) I think it came from behind that tree.
-Fox: (stepping forward bravely) Let me check.
-```
+### Organising Scenes
+Plays are divided into scenes. A new scene begins when the setting changes or time moves on. At the start of each scene, write where and when it takes place, e.g. *Scene 2: The castle kitchen, later that evening.*
 
-### Key Features
-1. **Character name** in bold or capitals, followed by a **colon**.
-2. **Stage directions** in brackets — describe actions, tone, and movement.
-3. **No speech marks** — the dialogue is already separated by character names.
-4. **Scene headings** tell us where and when.
+## Try It Yourself! ✏️
 
-### Writing Tips
-- Keep dialogue **short and natural** — people don't speak in long paragraphs.
-- Use stage directions to show **emotions** and **actions**.
-- Each new speaker gets a **new line**.
+**Question 1:** In a playscript, how do you show who is speaking?
+<details><summary>Answer</summary>Write the character's name at the start of the line, followed by a colon.</details>
 
-## Quick Quiz
-1. How do you show who is speaking in a playscript? → *Character name followed by a colon*
-2. What are stage directions? → *Instructions in brackets telling actors what to do*
-3. Do playscripts use speech marks? → *No*
-4. What does a scene heading tell us? → *Where and when the scene takes place*
+**Question 2:** What are stage directions for?
+<details><summary>Answer</summary>They tell the actors how to move, speak or behave on stage.</details>
 
-## English in the Real World
-Playscripts are used in theatre, TV, and film. Screenwriters, directors, and actors all work from scripts. Even video game dialogue starts as a script!
+**Question 3:** Do you use speech marks in a playscript?
+<details><summary>Answer</summary>No — the dialogue is written after the character's name without speech marks.</details>
+
+**Question 4:** Write a short stage direction showing a character is surprised.
+<details><summary>Answer</summary>Example: *(gasping, stepping back in shock)*</details>
+
+**Question 5:** Why might a playwright start a new scene?
+<details><summary>Answer</summary>Because the setting changes or time has moved forward.</details>
+
+## Did You Know? 🌟
+William Shakespeare wrote at least 37 plays over 400 years ago, and they are still performed in theatres all around the world today!
 
 ## Learning Checklist
+
 - [ ] I can identify the features of a playscript
-- [ ] I can write dialogue with character names and colons
-- [ ] I can add stage directions in brackets
+- [ ] I can write dialogue for characters using the correct layout
+- [ ] I can include stage directions in brackets
+- [ ] I can organise my play into scenes

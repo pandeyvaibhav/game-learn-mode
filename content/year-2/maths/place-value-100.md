@@ -3,62 +3,88 @@ year: 2
 subject: maths
 topic: Place Value to 100
 slug: place-value-100
-key_concepts: [tens, ones, number line, comparing numbers]
+key_concepts:
+  - tens and ones
+  - place value chart
+  - partitioning numbers
 age_range: "6-7"
-animation: ../../animations/year-2/maths/place-value-100.html
+animation: /animations/year-2/maths/place-value-100.html
 ---
 
-# Place Value to 100 — Year 2 Maths
-
-## Big Question
-What are tens and ones, and how do they help us understand numbers up to 100?
+# Place Value to 100 🎯
 
 ## What We're Learning
-In this lesson you will learn how every number up to 100 is made of **tens** and **ones**. You will use a **number line** and compare numbers using greater than and less than.
+We are learning about how numbers are made up of tens and ones. Every number up to 100 can be split into groups of ten and leftover ones. This helps us understand what each digit in a number means.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| place value | the value of a digit depending on its position |
-| tens | groups of ten (the left digit in a 2-digit number) |
-| ones (units) | single units (the right digit in a 2-digit number) |
-| greater than (>) | bigger |
-| less than (<) | smaller |
-| number line | a line with numbers in order |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| tens | groups of 10 |
+| ones | single units left over |
+| place value | what a digit is worth depending on its position |
+| partition | splitting a number into tens and ones |
+
+## Let's Explore! 🔍
 
 ### Tens and Ones
-Every 2-digit number is made of **tens** and **ones**:
+Every two-digit number is made of tens and ones. The first digit tells us how many tens. The second digit tells us how many ones.
 
-| Number | Tens | Ones |
-|---|---|---|
-| 34 | 3 tens (30) | 4 ones (4) |
-| 72 | 7 tens (70) | 2 ones (2) |
-| 50 | 5 tens (50) | 0 ones (0) |
+For example, the number **34** has **3 tens** and **4 ones**.
 
-### Comparing Numbers
-Use > (greater than) and < (less than):
-- 56 **>** 34 (56 is greater)
-- 18 **<** 42 (18 is less)
-
-**Tip**: The "hungry crocodile" always eats the bigger number! 🐊
-
-### Ordering on a Number Line
 ```
-0───10───20───30───40───50───60───70───80───90───100
+34 = 30 + 4
+
+  Tens | Ones
+  ──────┼──────
+    3   |   4
 ```
 
-## Quick Quiz
-1. How many tens are in 47? → *4 tens*
-2. How many ones are in 63? → *3 ones*
-3. Which is greater: 58 or 85? → *85*
-4. Put in order: 72, 27, 54 → *27, 54, 72*
+### Place Value Chart
+A place value chart helps us see what each digit is worth.
 
-## Maths in the Real World
-Place value helps us count money (£10 notes and £1 coins), read house numbers, and understand scores in games.
+| Tens | Ones | Number |
+|------|------|--------|
+| 5 | 7 | 57 |
+| 2 | 3 | 23 |
+| 8 | 0 | 80 |
+| 1 | 6 | 16 |
+
+Notice that **80** has 8 tens and **0** ones. The zero is important — it shows there are no ones.
+
+### Partitioning Numbers
+Partitioning means splitting a number into its tens and ones.
+
+- 46 = 40 + 6
+- 72 = 70 + 2
+- 91 = 90 + 1
+- 55 = 50 + 5
+
+This is really helpful when we add or subtract numbers!
+
+## Try It Yourself! ✏️
+
+**Question 1:** How many tens and ones are in the number 63?
+<details><summary>Answer</summary>6 tens and 3 ones</details>
+
+**Question 2:** Partition the number 85 into tens and ones.
+<details><summary>Answer</summary>85 = 80 + 5</details>
+
+**Question 3:** What number has 4 tens and 9 ones?
+<details><summary>Answer</summary>49</details>
+
+**Question 4:** Which digit is in the tens place in the number 71?
+<details><summary>Answer</summary>7</details>
+
+**Question 5:** What number has 10 tens and 0 ones?
+<details><summary>Answer</summary>100</details>
+
+## Did You Know? 🌟
+Our number system is called the **decimal system** because it is based on the number 10. The word "decimal" comes from the Latin word *decem*, which means ten!
 
 ## Learning Checklist
-- [ ] I can split a 2-digit number into tens and ones
-- [ ] I can compare two numbers using > and <
-- [ ] I can order numbers on a number line
+
+- [ ] I can say how many tens and ones are in a two-digit number
+- [ ] I can use a place value chart
+- [ ] I can partition numbers into tens and ones
+- [ ] I understand what each digit in a number is worth

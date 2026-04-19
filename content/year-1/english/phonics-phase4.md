@@ -3,7 +3,7 @@ year: 1
 subject: english
 topic: Phonics — Phase 4
 slug: phonics-phase4
-key_concepts: [adjacent consonants, tricky words]
+key_concepts: [adjacent consonants, CCVC words, CVCC words, tricky words]
 age_range: "5-6"
 animation: ../../animations/year-1/english/phonics-phase4.html
 ---
@@ -11,80 +11,55 @@ animation: ../../animations/year-1/english/phonics-phase4.html
 # Phonics — Phase 4 — Year 1 English
 
 ## What We're Learning
-You are going to learn Phase 4 phonics. In this phase you will read and spell words with **adjacent consonants** (consonant clusters). You will also practise reading **tricky words** that do not follow the usual rules.
+In this lesson you will learn to read words with **consonant clusters** — where two consonants sit next to each other. You will also meet some **tricky words** that cannot be sounded out easily.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Adjacent consonants | Two or more consonants next to each other (bl, cr, st) |
-| Consonant cluster | Another name for adjacent consonants |
-| Blend | Saying sounds smoothly together to read a word |
-| Tricky word | A word that cannot be sounded out easily |
-| CCVC | Consonant-consonant-vowel-consonant word (e.g. stop) |
-| CVCC | Consonant-vowel-consonant-consonant word (e.g. milk) |
+| consonant cluster | two or more consonants together (bl, st, nd) |
+| CCVC | consonant-consonant-vowel-consonant word (e.g. stop) |
+| CVCC | consonant-vowel-consonant-consonant word (e.g. milk) |
+| tricky word | a word you need to learn by sight |
+| blend | push sounds together to read a word |
 
 ## Let's Explore
 
-### Words with adjacent consonants at the start
+### CCVC Words (two consonants at the start)
+**st**op, **bl**ack, **fr**og, **cr**ab, **gr**een
 
-| Cluster | Example words |
-|---|---|
-| bl | black, blue, block |
-| cr | crab, crisp, cross |
-| st | stop, star, step |
-| tr | tree, trip, tray |
-| gr | green, grip, gran |
+Sound it out: **st** + **o** + **p** → stop ✋
 
-### Words with adjacent consonants at the end
+### CVCC Words (two consonants at the end)
+mi**lk**, he**lp**, ju**mp**, be**st**, te**nt**
 
-| Cluster | Example words |
-|---|---|
-| lk | milk, silk, bulk |
-| nd | hand, sand, wind |
-| mp | jump, lamp, damp |
-| nk | pink, think, drink |
-| ft | soft, left, lift |
+Sound it out: **t** + **e** + **n** + **t** → tent ⛺
 
-### Example — Reading a CCVC word
-The word **stop**:
-```
-s - t - o - p
-```
-Blend: "s" + "t" + "o" + "p" = **stop**
-
-### Tricky words to learn
-These words do not follow the usual sound rules. You need to learn them by sight:
-
-**said, have, like, come, some, were, there, little, one, do, when, what, out**
-
-### Example — Spotting a tricky word
-"I **said** hello."
-The word **said** looks like it should say "s-ay-d" but we say "sed". It is tricky!
+### Tricky Words to Learn
+These words do not follow the rules — learn them by heart:
+**said**, **have**, **like**, **some**, **come**, **were**, **there**, **little**, **one**, **do**
 
 ## Try It Yourself
 
-1. What are adjacent consonants?
-2. Find the consonant cluster in the word "drink".
-3. Read this word: c-l-a-p. What is the word?
-4. Which of these is a tricky word: cat, said, dog?
-5. Spell the word "stamp" by segmenting it.
+**1. How many consonants are at the start of "frog"?**
+<details><summary>Answer</summary>2 (f and r)</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Sound out: j-u-m-p. What word is it?**
+<details><summary>Answer</summary>jump</details>
 
-1. Two or more consonants next to each other in a word
-2. "dr" at the start and "nk" at the end
-3. clap
-4. said
-5. s-t-a-m-p
+**3. Is "said" a tricky word or a sounding-out word?**
+<details><summary>Answer</summary>A tricky word</details>
 
-</details>
+**4. What two consonants are at the end of "milk"?**
+<details><summary>Answer</summary>l and k</details>
 
-## Did You Know? 📚
-The word "the" is the most common word in the English language. You probably read it hundreds of times every day!
+**5. Which is a CCVC word — "stop" or "cat"?**
+<details><summary>Answer</summary>stop (it starts with two consonants: s and t)</details>
+
+## Did You Know?
+The word "the" is the most common word in the English language. It is also a tricky word because the "e" does not make its usual sound!
 
 ## Learning Checklist
-- [ ] I can read words with consonant clusters at the start
-- [ ] I can read words with consonant clusters at the end
-- [ ] I can blend CCVC and CVCC words
-- [ ] I can read Phase 4 tricky words
+- [ ] I can read CCVC words like "stop" and "frog"
+- [ ] I can read CVCC words like "milk" and "jump"
+- [ ] I can blend consonant clusters
+- [ ] I am learning my tricky words

@@ -1,97 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Place Value to 100 — Year 2 Maths | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Value to 100 — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.big-num{text-align:center;font-size:3rem;font-weight:800;color:var(--accent);margin:.3rem 0}
-.pv-row{display:flex;justify-content:center;gap:1rem;margin-bottom:1rem}
-.pv-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem 1rem;text-align:center}
-.pv-box .label{font-size:.7rem;text-transform:uppercase;color:var(--text-muted)}
-.pv-box .val{font-size:1.4rem;font-weight:800;color:var(--primary)}
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);min-width:60px;text-align:center}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 2 · Maths</p>
 <h1>Place Value to 100</h1>
-<p class="subtitle">Tens and ones — how many of each?</p>
-</header>
-
-<div class="card">
-<p class="card-title">Tens & Ones Quiz</p>
-<div class="big-num" id="bigNum"></div>
-<div class="pv-row">
-<div class="pv-box"><div class="label">Tens</div><div class="val" id="tensShow">?</div></div>
-<div class="pv-box"><div class="label">Ones</div><div class="val" id="onesShow">?</div></div>
-</div>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">New Number</button>
-</div>
-
+<p class="subtitle">Year 2 Maths — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var sc=0;
-
-function newQ(){
-  var n=Math.floor(Math.random()*89)+11; // 11-99
-  var tens=Math.floor(n/10);var ones=n%10;
-  document.getElementById('bigNum').textContent=n;
-  document.getElementById('tensShow').textContent='?';
-  document.getElementById('onesShow').textContent='?';
-  document.getElementById('fb').textContent='';
-  // Random question type
-  var type=shuffle(['tens','ones','compare'])[0];
-  var q,ans,choices;
-  if(type==='tens'){
-    q='How many tens in '+n+'?';ans=String(tens);
-    choices=shuffle([0,1,2,3,4,5,6,7,8,9].filter(function(x){return x!==tens;}).map(String)).slice(0,3).concat([ans]);
-  } else if(type==='ones'){
-    q='How many ones in '+n+'?';ans=String(ones);
-    choices=shuffle([0,1,2,3,4,5,6,7,8,9].filter(function(x){return x!==ones;}).map(String)).slice(0,3).concat([ans]);
-  } else {
-    var n2=n;while(n2===n) n2=Math.floor(Math.random()*89)+11;
-    q='Which is greater: '+n+' or '+n2+'?';
-    ans=String(Math.max(n,n2));choices=[String(n),String(n2)];
-  }
-  document.getElementById('qTxt').textContent=q;
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  shuffle(choices).forEach(function(c){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=c;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      document.getElementById('tensShow').textContent=tens;
-      document.getElementById('onesShow').textContent=ones;
-      if(c===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ Correct!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ Answer: '+ans;document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-}
-document.getElementById('next').addEventListener('click',newQ);newQ();
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"How many tens are in the number 47?",answer:"4",options:["4","7","47","3"]},
+{text:"What is 30 + 6?",answer:"36",options:["36","63","39","26"]},
+{text:"Which number has 5 tens and 2 ones?",answer:"52",options:["52","25","57","50"]},
+{text:"What is the ones digit in 83?",answer:"3",options:["3","8","83","0"]},
+{text:"Which number comes next: 58, 59, __?",answer:"60",options:["60","61","50","69"]},
+{text:"How many ones are in the number 71?",answer:"1",options:["1","7","71","0"]},
+{text:"What is 40 + 9?",answer:"49",options:["49","94","40","39"]},
+{text:"Which is the biggest: 67, 76, 56 or 65?",answer:"76",options:["76","67","65","56"]},
+{text:"What number is ten more than 34?",answer:"44",options:["44","35","24","54"]},
+{text:"Partition 95 into tens and ones.",answer:"90 + 5",options:["90 + 5","50 + 9","9 + 5","95 + 0"]}
+];
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

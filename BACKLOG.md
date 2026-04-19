@@ -35,8 +35,10 @@ Safety gates land first so new content is generated under review; mobile fixes c
 6. ~~**S10** — Game-playability reviewer agent~~ ✅ done 2026-04-18
 7. **C2** — Fill Year 1/2/4/5/6 lesson content *(now unblocked — runs under S1/S2/S10 gates)*
 8. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
-9. **P3** — Progress tracking (localStorage first)
-10. **M6** — Retrofit existing animations to child-baseline.css
+9. **P3 + L2** — Progress tracking + gamification as one reusable module ([design](doc/feature-design-progress-gamification.md))
+10. **L1** — Quiz mode (feeds progress events)
+11. **M6** — Retrofit existing animations to child-baseline.css
+12. **B1–B3** — Backend adapter, auth, multi-device sync *(phased evolution, not blockers for v1)*
 
 ---
 
@@ -80,7 +82,9 @@ Child-facing product with LLM-generated content — these controls are non-negot
 
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| P3 | Progress tracking per child (which topics viewed/completed) | P1 | todo | localStorage first; account-based later. Unlocks P4 and L2. |
+| P3 | Progress tracking per child (which topics viewed/completed) | P1 | todo | **Reusable module** at `app/progress/` per [feature-design-progress-gamification.md](doc/feature-design-progress-gamification.md). localStorage-first with pluggable adapter. Unlocks P4, L1, L2, L5. |
+| P6 | Portable `ProgressStore` module — drop-in for other Vaibhav-Pandey apps (vanilla JS, no build step, configurable `appId`) | P1 | todo | Same module as P3; this row tracks the portability checklist (§7 of design doc). |
+| P7 | Export / import progress as JSON file — rescue path when localStorage is wiped | P2 | todo | See design doc §9 R3. Simple file picker + download link. |
 | P1 | Theme picker ported from vaibhavpandey.co.uk (6 themes, localStorage) | P1 | done | Header toggle + 6 themes live in [app/index.html](app/index.html) + [app/styles.css](app/styles.css). |
 | P4 | Persistent lesson bookmarks / "continue where you left off" | P2 | todo | Depends on P3. |
 | P5 | Search across topics and lessons | P2 | todo | Client-side fuzzy search over `curriculum.json`. |
@@ -90,11 +94,23 @@ Child-facing product with LLM-generated content — these controls are non-negot
 
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| L1 | Quiz / check-your-understanding mode per topic | P1 | todo | Closes the core `Learn → Check` loop. |
+| L1 | Quiz / check-your-understanding mode per topic | P1 | todo | Closes the core `Learn → Check` loop. Feeds quiz results into P3 `recordQuizAttempt`. |
+| L2 | **Gamification layer** — XP, levels, badges, streaks, "continue where you left off" | P1 | todo | Built on top of P3 module. Rules are data (`rules.json`), not code. See [feature-design-progress-gamification.md](doc/feature-design-progress-gamification.md) §3.3. |
+| L6 | Reward UI — level-up toast, badge-earned toast, XP bar, badge gallery | P2 | todo | Visual layer for L2. Must respect `prefers-reduced-motion` and announce via `aria-live`. |
 | L4 | Offline support (service worker, cache curriculum + viewed lessons) | P2 | todo | Useful for tablets without reliable wifi. |
-| L2 | Badge / reward system for completed topics | P2 | todo | Motivation layer. Depends on P3. |
 | L3 | Parent / teacher dashboard view | P3 | parked | Out of scope for self-serve child product unless requested. |
 | L5 | **Adaptive learning** — difficulty branches per child based on performance (serve easier variant on 2 wrong, harder on 3 right in a row) | P2 | parked | Concept is P1, build depends on **P3** (progress tracking) landing first. Lightweight v1 = rule-based on per-topic streaks; real v2 = per-child difficulty model. No design doc yet — revisit once P3 ships. |
+
+## Backend & sync
+
+All items here are phased evolution of the **P3 ProgressStore adapter boundary** — the module contract never changes, only the adapter does. See [feature-design-progress-gamification.md](doc/feature-design-progress-gamification.md) §6.
+
+| # | Item | Priority | Status | Notes |
+|---|---|---|---|---|
+| B1 | Backend storage adapter — tiny JSON endpoint mirroring localStorage keys; opt-in; last-write-wins per key | P2 | todo | Drop-in replacement for `localStorageAdapter`. No auth yet — device-scoped token only. |
+| B2 | Auth — magic-link email or device code; child profiles distinct from adult login; no PII beyond email | P2 | todo | Unblocks multi-device (B3). Parental consent flow required. |
+| B3 | Multi-device sync with offline queue + replay — child uses phone + tablet without losing XP | P2 | todo | Depends on B1 + B2. Conflict policy stays last-write-wins per key; event history replayed on reconnect. |
+| B4 | Parent/teacher read-only view backed by the same store | P3 | parked | Overlaps with L3. Revisit once B2 lands. |
 
 ## Content pipeline
 

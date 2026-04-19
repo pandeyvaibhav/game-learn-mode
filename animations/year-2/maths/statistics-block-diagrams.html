@@ -1,113 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Statistics — Block Diagrams — Year 2 Maths | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics — Block Diagrams — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.chart{display:flex;align-items:flex-end;gap:.6rem;justify-content:center;height:160px;margin-bottom:.5rem;padding:0 .5rem}
-.bar-wrap{display:flex;flex-direction:column;align-items:center;gap:.2rem}
-.bar{width:40px;border-radius:6px 6px 0 0;transition:height .4s}
-.bar-label{font-size:.75rem;color:var(--text-muted)}
-.bar-val{font-size:.75rem;font-weight:700;color:var(--primary)}
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);min-width:60px;text-align:center;font-weight:700}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 2 · Maths</p>
 <h1>Statistics — Block Diagrams</h1>
-<p class="subtitle">Read the chart and answer the question!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Block Diagram Quiz</p>
-<div class="chart" id="chart"></div>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">New Chart</button>
-</div>
-
+<p class="subtitle">Year 2 Maths — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var COLORS=['#fbbf24','#38bdf8','#a78bfa','#34d399','#f87171'];
-var THEMES=[
-{title:'Favourite Fruit',items:['Apple','Banana','Grape','Orange']},
-{title:'Favourite Pet',items:['Dog','Cat','Fish','Rabbit']},
-{title:'Favourite Colour',items:['Red','Blue','Green','Yellow']},
-{title:'Favourite Sport',items:['Football','Swimming','Tennis','Running']}
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"In a tally chart, what does 𝍸 (a group of five tallies) stand for?",answer:"5",options:["5","4","10","6"]},
+{text:"A block diagram shows 3 blocks for cats and 5 for dogs. How many more dogs?",answer:"2",options:["2","3","5","8"]},
+{text:"What do we call a chart that uses pictures to show data?",answer:"Pictogram",options:["Pictogram","Block diagram","Pie chart","Line graph"]},
+{text:"If 4 children like red and 6 like blue, how many children were asked altogether?",answer:"10",options:["10","6","4","2"]},
+{text:"A tally shows |||| ||. How many is that?",answer:"7",options:["7","6","8","5"]},
+{text:"In a block diagram, which item is most popular if it has the tallest bar?",answer:"The one with the most blocks",options:["The one with the most blocks","The one with the fewest blocks","The first one","The last one"]},
+{text:"How do you find the total from a tally chart?",answer:"Add all the tallies together",options:["Add all the tallies together","Count the rows","Subtract the numbers","Multiply them"]},
+{text:"3 children chose apples, 5 chose bananas, 2 chose grapes. What was least popular?",answer:"Grapes",options:["Grapes","Apples","Bananas","They are all equal"]},
+{text:"A pictogram uses a ☀ to stand for 2 sunny days. 3 suns means how many days?",answer:"6",options:["6","3","2","5"]},
+{text:"What is the difference between 8 and 3 on a block diagram?",answer:"5",options:["5","3","8","11"]}
 ];
-var sc=0;
-
-function newQ(){
-  var theme=THEMES[Math.floor(Math.random()*THEMES.length)];
-  var data=theme.items.map(function(item,i){return{name:item,val:Math.floor(Math.random()*8)+1,color:COLORS[i]};});
-  var maxVal=Math.max.apply(null,data.map(function(d){return d.val;}));
-  var chart=document.getElementById('chart');chart.innerHTML='';
-  data.forEach(function(d){
-    var wrap=document.createElement('div');wrap.className='bar-wrap';
-    var bar=document.createElement('div');bar.className='bar';bar.style.height=(d.val/maxVal*120)+'px';bar.style.background=d.color;
-    var val=document.createElement('div');val.className='bar-val';val.textContent=d.val;
-    var lbl=document.createElement('div');lbl.className='bar-label';lbl.textContent=d.name;
-    wrap.appendChild(val);wrap.appendChild(bar);wrap.appendChild(lbl);chart.appendChild(wrap);
-  });
-  // Question
-  var qType=shuffle(['most','least','howmany','total'])[0];
-  var q,ans;
-  if(qType==='most'){
-    var mx=data.reduce(function(a,b){return a.val>b.val?a:b;});
-    q='Which is the most popular?';ans=mx.name;
-  } else if(qType==='least'){
-    var mn=data.reduce(function(a,b){return a.val<b.val?a:b;});
-    q='Which is the least popular?';ans=mn.name;
-  } else if(qType==='howmany'){
-    var pick=data[Math.floor(Math.random()*data.length)];
-    q='How many chose '+pick.name+'?';ans=String(pick.val);
-  } else {
-    var tot=data.reduce(function(s,d){return s+d.val;},0);
-    q='How many altogether?';ans=String(tot);
-  }
-  document.getElementById('qTxt').textContent=q;
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  var choices;
-  if(qType==='most'||qType==='least'){
-    choices=data.map(function(d){return d.name;});
-  } else {
-    choices=[ans];
-    while(choices.length<4){var d=parseInt(ans)+shuffle([-2,-1,1,2,3,-3])[0];if(d>0&&choices.indexOf(String(d))===-1) choices.push(String(d));}
-  }
-  shuffle(choices).forEach(function(c){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=c;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      if(c===ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+ans+'!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ Answer: '+ans;document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-}
-document.getElementById('next').addEventListener('click',newQ);newQ();
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

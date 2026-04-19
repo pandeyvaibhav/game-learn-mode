@@ -3,63 +3,63 @@ year: 5
 subject: science
 topic: Properties of Materials
 slug: properties-materials-y5
-key_concepts: [dissolving, separating mixtures, reversible changes, irreversible changes]
+key_concepts:
+  - dissolving
+  - separating mixtures
+  - reversible changes
+  - thermal conductors
 age_range: "9-10"
-animation: ../../animations/year-5/science/properties-materials-y5.html
+animation: /animations/year-5/science/properties-materials-y5.html
 ---
 
-# Properties of Materials — Year 5 Science
-
-## Big Question
-How can we separate mixtures and what is the difference between reversible and irreversible changes?
+# Properties of Materials 🎯
 
 ## What We're Learning
-In this lesson you will learn about **dissolving**, ways of **separating mixtures**, and the difference between **reversible** and **irreversible** changes.
+We're investigating the properties of everyday materials, finding out which dissolve, how to separate mixtures, which changes are reversible and which are not, and what makes a good thermal conductor or insulator. Science investigations will help you test and compare materials.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| dissolving | when a solid mixes completely into a liquid to form a solution |
-| solution | a mixture where a solid has dissolved in a liquid |
-| filtering | separating an undissolved solid from a liquid using a filter |
-| evaporation | heating a solution so the liquid turns to gas, leaving the solid behind |
-| reversible change | a change that can be undone (e.g. melting ice) |
-| irreversible change | a change that cannot be undone (e.g. burning wood) |
+## Key Words
 
-## The Science Explained
+| Word | Meaning |
+|------|---------|
+| dissolving | When a solid mixes completely into a liquid to form a solution |
+| solution | A mixture formed when a substance dissolves in a liquid |
+| reversible change | A change that can be undone, e.g. melting ice back to water |
+| thermal conductor | A material that lets heat pass through it easily, e.g. metal |
+
+## Let's Explore! 🔍
 
 ### Dissolving
-- When sugar is stirred into water it **dissolves** — you can no longer see it but it is still there.
-- Not all solids dissolve (e.g. sand does not dissolve in water).
-- Stirring, heating, and using smaller pieces speed up dissolving.
+When you stir sugar into water, the sugar seems to disappear — it dissolves. The sugar particles mix evenly throughout the water to form a solution. Not all substances dissolve: sand, for example, does not dissolve in water. We call substances that dissolve "soluble" and those that don't "insoluble." You can get the dissolved substance back by evaporating the water.
 
 ### Separating Mixtures
-| Method | Used for | Example |
-|---|---|---|
-| Sieving | Separating solids of different sizes | Sand and gravel |
-| Filtering | Separating an undissolved solid from a liquid | Sand and water |
-| Evaporation | Recovering a dissolved solid from a solution | Salt from salt water |
-| Magnets | Separating magnetic materials | Iron filings from sand |
+Different mixtures need different separation methods. Filtering works for insoluble solids mixed with liquids (e.g. sand and water). Evaporation recovers a dissolved solid from a solution (e.g. salt from salt water). Sieving separates solids of different sizes. Magnetism can separate magnetic materials (e.g. iron filings from sand). Choosing the right method depends on the properties of the materials.
 
-### Reversible vs Irreversible Changes
-| Reversible | Irreversible |
-|---|---|
-| Melting ice → freezing water | Burning wood → ash |
-| Dissolving sugar → evaporating water | Cooking an egg |
-| Bending a paperclip | Mixing vinegar and bicarbonate of soda |
+### Reversible and Irreversible Changes
+A reversible change can be undone. Melting chocolate is reversible — cool it and it sets again. Dissolving salt in water is reversible — evaporate the water and the salt returns. An irreversible change creates a new material that cannot be changed back. Burning wood, cooking an egg and mixing bicarbonate of soda with vinegar are all irreversible because new substances are formed.
 
-An irreversible change often produces a **new material** (gas, ash, or a different substance).
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What does dissolving mean? → *A solid mixes completely into a liquid to form a solution*
-2. How can you recover salt from salt water? → *Evaporation*
-3. Is melting ice reversible or irreversible? → *Reversible*
-4. Name an irreversible change. → *Burning wood / cooking an egg*
+**Question 1:** What does "dissolving" mean?
+<details><summary>Answer</summary>Dissolving is when a solid mixes completely into a liquid so you can no longer see it, forming a solution.</details>
 
-## Science in the Real World
-Water treatment plants use filtering and evaporation to clean drinking water. Chefs rely on dissolving and irreversible changes (cooking) every day.
+**Question 2:** How would you separate sand from water?
+<details><summary>Answer</summary>By filtering — pour the mixture through filter paper. The sand stays in the filter and the water passes through.</details>
+
+**Question 3:** Is melting butter reversible or irreversible? Why?
+<details><summary>Answer</summary>Reversible — you can cool the melted butter and it solidifies again. No new substance is formed.</details>
+
+**Question 4:** Give an example of a thermal conductor and explain why it is useful.
+<details><summary>Answer</summary>Metal (e.g. a saucepan). It conducts heat quickly from the hob to the food inside, making cooking efficient.</details>
+
+**Question 5:** Why is burning wood an irreversible change?
+<details><summary>Answer</summary>Because burning creates new substances (ash, smoke, carbon dioxide) that cannot be turned back into wood.</details>
+
+## Did You Know? 🌟
+The Dead Sea is so salty that you can float on its surface without trying! About 340 grams of salt are dissolved in every litre of its water — nearly ten times saltier than the ocean.
 
 ## Learning Checklist
-- [ ] I can explain dissolving and give examples
-- [ ] I can choose the right method to separate a mixture
-- [ ] I can tell the difference between reversible and irreversible changes
+
+- [ ] I can explain what dissolving means and give examples of soluble and insoluble substances
+- [ ] I can choose the correct method to separate different mixtures
+- [ ] I can describe the difference between reversible and irreversible changes
+- [ ] I can identify thermal conductors and insulators

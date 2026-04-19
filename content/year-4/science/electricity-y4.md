@@ -3,69 +3,64 @@ year: 4
 subject: science
 topic: Electricity
 slug: electricity-y4
-key_concepts: [circuits, batteries, switches, conductors, insulators]
+key_concepts:
+  - circuits
+  - conductors
+  - insulators
+  - switches
+  - batteries
 age_range: "8-9"
-animation: ../../animations/year-4/science/electricity-y4.html
+animation: /animations/year-4/science/electricity-y4.html
 ---
 
-# Electricity — Year 4 Science
-
-## Big Question
-How does electricity flow through a circuit, and what controls it?
+# Electricity 🎯
 
 ## What We're Learning
-In this lesson you will learn how to build a simple **circuit**, what each component does, and the difference between **conductors** and **insulators**.
+We are learning about electricity and how it flows around circuits. You'll discover what a complete circuit needs, why some materials let electricity pass through and others don't, and how switches control the flow.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| circuit | a complete loop that electricity flows around |
-| battery (cell) | provides the electrical energy |
-| wire | carries the electricity around the circuit |
-| bulb | lights up when electricity flows through it |
-| switch | opens or closes the circuit to turn things on/off |
-| conductor | a material that lets electricity flow through it (e.g. metal) |
-| insulator | a material that does not let electricity flow (e.g. rubber, plastic) |
+## Key Words
 
-## The Science Explained
+| Word | Meaning |
+|------|---------|
+| circuit | A complete loop that electricity flows around |
+| conductor | A material that allows electricity to pass through it |
+| insulator | A material that does not allow electricity to pass through it |
+| switch | A component that can break or complete a circuit |
 
-### What Is a Circuit?
-A circuit is a **complete loop** from one end of a battery, through wires and components, back to the other end. If the loop is broken, electricity cannot flow.
+## Let's Explore! 🔍
 
-### Key Components
-| Component | Job |
-|---|---|
-| Battery (cell) | Pushes electricity around the circuit |
-| Bulb | Converts electricity into light |
-| Buzzer | Converts electricity into sound |
-| Switch | Opens (off) or closes (on) the circuit |
-| Wire | Connects all the parts together |
-
-### Open vs Closed Circuit
-- **Closed circuit** — the loop is complete → bulb lights up.
-- **Open circuit** — a gap in the loop → bulb stays off.
+### Simple Circuits
+A simple circuit needs a **battery** (cell), **wires** and a **component** such as a bulb or buzzer. The electricity must be able to travel in a complete loop from one end of the battery, through the wires and component, and back to the other end. If the loop is broken, the circuit won't work.
 
 ### Conductors and Insulators
-| Conductors | Insulators |
-|---|---|
-| Metals (copper, iron, aluminium) | Rubber |
-| Water (with minerals) | Plastic |
-| Graphite | Wood |
+**Conductors** let electricity flow through them — most metals (such as copper, iron and aluminium) are good conductors. **Insulators** block the flow — plastic, rubber, wood and glass are common insulators. That's why wires are made of metal inside but covered in plastic outside.
 
-### Safety
-- **Never** experiment with mains electricity — only batteries.
-- Mains electricity is extremely dangerous.
+### Switches
+A switch works by opening or closing a gap in the circuit. When the switch is **closed** (on), the circuit is complete and electricity flows. When the switch is **open** (off), there is a gap and the electricity stops.
 
-## Quick Quiz
-1. What is a circuit? → *A complete loop that electricity flows around*
-2. What does a switch do? → *Opens or closes the circuit*
-3. Name a conductor. → *Copper / iron / aluminium / metal*
-4. Is rubber a conductor or insulator? → *Insulator*
+## Try It Yourself! ✏️
 
-## Science in the Real World
-Circuits are in every electrical device — phones, lights, TVs, and cars. Electricians design and fix circuits in buildings.
+**Question 1:** What three things do you need to make a simple circuit?
+<details><summary>Answer</summary>A battery (cell), wires and a component (e.g. a bulb).</details>
+
+**Question 2:** Why won't a bulb light if there is a gap in the circuit?
+<details><summary>Answer</summary>Electricity needs a complete loop to flow. A gap breaks the loop so no current reaches the bulb.</details>
+
+**Question 3:** Is a metal spoon a conductor or an insulator?
+<details><summary>Answer</summary>A conductor — metal allows electricity to pass through it.</details>
+
+**Question 4:** What does a switch do in a circuit?
+<details><summary>Answer</summary>It opens or closes the circuit to turn components on or off.</details>
+
+**Question 5:** Give two examples of insulating materials.
+<details><summary>Answer</summary>Plastic and rubber (also wood, glass or fabric).</details>
+
+## Did You Know? 🌟
+A bolt of lightning is a giant spark of electricity that can heat the air around it to about 30,000 °C — that's five times hotter than the surface of the Sun!
 
 ## Learning Checklist
-- [ ] I can identify the components of a circuit
-- [ ] I know the difference between open and closed circuits
-- [ ] I can sort materials into conductors and insulators
+
+- [ ] I can build a simple series circuit
+- [ ] I can explain why a circuit must be complete to work
+- [ ] I can identify common conductors and insulators
+- [ ] I can explain how a switch works

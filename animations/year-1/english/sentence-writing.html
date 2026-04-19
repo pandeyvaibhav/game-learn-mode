@@ -5,93 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sentence Writing — Quiz</title>
 <style>
-  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
-  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
-  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
-  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
-  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
-  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
-  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
-  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
-  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
-  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-  .opt-btn.correct{border-color:var(--success);background:#166534}
-  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
-  .opt-btn:disabled{cursor:default;opacity:.85}
-  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
-  .feedback.correct-fb{color:var(--success)}
-  .feedback.wrong-fb{color:var(--error)}
-  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
-  .next-btn:hover{opacity:.9}
-  .result{display:none;text-align:center}
-  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
-  .result .stars{font-size:2.5rem;margin:.75rem 0}
-  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
-  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
-  .play-again:hover{opacity:.9}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <h1>Sentence Writing</h1>
 <p class="subtitle">Year 1 English — Quiz Game</p>
 <div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
-<div class="qa" id="questionArea">
-  <div class="q-text" id="qText"></div>
-  <div class="opts" id="opts"></div>
-  <div class="feedback" id="feedback"></div>
-  <button class="next-btn" id="nextBtn">Next →</button>
-</div>
-<div class="result" id="result">
-  <h2>Quiz Complete!</h2>
-  <div class="stars" id="stars"></div>
-  <div class="score-msg" id="scoreMsg"></div>
-  <button class="play-again" id="playAgain">Play Again</button>
-</div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-(function(){
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-  const qs=[
-    {text:"What goes at the START of every sentence?",answer:"A capital letter",options:["A full stop","A capital letter","A finger space","A comma"]},
-    {text:"What goes at the END of a sentence?",answer:"A full stop",options:["A capital letter","A comma","A full stop","A space"]},
-    {text:"What do we put between words when writing?",answer:"Finger spaces",options:["Full stops","Capital letters","Finger spaces","Lines"]},
-    {text:"Which sentence is correct?",answer:"The dog is big.",options:["the dog is big","The dog is big.","the dog is big.","THE DOG IS BIG"]},
-    {text:"When do we use a capital letter for a name?",answer:"Always",options:["Never","Sometimes","Always","Only on Monday"]},
-    {text:"How many words in: 'I like cats.'?",answer:"3",options:["2","3","4","5"]},
-    {text:"What is wrong with: 'i like dogs'?",answer:"No capital letter or full stop",options:["Too many words","No capital letter or full stop","Too short","Nothing wrong"]},
-    {text:"Which is a question mark?",answer:"?",options:[".","!","?",","]},
-    {text:"The word 'I' should always have a…",answer:"Capital letter",options:["Full stop","Capital letter","Question mark","Small letter"]},
-    {text:"Which sentence uses finger spaces correctly?",answer:"I am happy.",options:["Iamhappy.","I am happy.","I  am  happy.","Iam happy."]}
-  ];
-  let idx=0,sc=0;
-  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
-  function show(){
-    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
-    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
-    optsEl.innerHTML='';
-    shuffle([...q.options]).forEach(o=>{
-      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
-      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
-    });
-  }
-  function pick(btn,chosen,answer){
-    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
-    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
-    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
-    nextBtn.style.display='block';
-  }
-  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
-  function end(){
-    qaEl.style.display='none';resultEl.style.display='block';
-    const pct=sc/qs.length;
-    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
-    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
-  }
-  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
-  shuffle(qs);show();
-})();
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"Every sentence must start with a...",answer:"Capital letter",options:["Capital letter","Full stop","Small letter","Number"]},
+{text:"What goes at the end of a sentence?",answer:"A full stop",options:["A capital letter","A comma","A full stop","A space"]},
+{text:"What do we put between each word?",answer:"A finger space",options:["A line","A finger space","A dot","Nothing"]},
+{text:"Which sentence is written correctly?",answer:"The cat sat.",options:["the cat sat.","The cat sat.","the Cat sat","The cat sat"]},
+{text:"Names of people should start with a...",answer:"Capital letter",options:["Small letter","Capital letter","Number","Full stop"]},
+{text:"Which mark asks a question?",answer:"?",options:[".","!","?",","]},
+{text:"How many finger spaces go between words?",answer:"One",options:["None","One","Two","Three"]},
+{text:"Which word should have a capital letter?",answer:"Sam",options:["dog","ran","Sam","big"]},
+{text:"What is wrong with: 'i like cake'?",answer:"'i' should be 'I'",options:["Nothing","'i' should be 'I'","No full stop needed","Too many words"]},
+{text:"The word 'I' is always written as a...",answer:"Capital letter",options:["Small letter","Capital letter","Number","Symbol"]}
+];
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

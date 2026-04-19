@@ -3,63 +3,64 @@ year: 5
 subject: history
 topic: Ancient Maya
 slug: ancient-maya
-key_concepts: [civilisation, number system, pyramids, writing system]
+key_concepts:
+  - Mesoamerica
+  - pyramids
+  - writing system
+  - calendar
+  - agriculture
 age_range: "9-10"
-animation: ../../animations/year-5/history/ancient-maya.html
+animation: /animations/year-5/history/ancient-maya.html
 ---
 
-# Ancient Maya — Year 5 History
-
-## Big Question
-Who were the Maya and what did they achieve?
+# Ancient Maya 🎯
 
 ## What We're Learning
-In this lesson you will learn about the **Maya civilisation**, their **number system**, **pyramids**, and **writing system**.
+We're travelling back in time to explore the Ancient Maya civilisation, which thrived in Mesoamerica (modern-day Mexico, Guatemala, Belize and Honduras). You'll discover their incredible pyramids, advanced writing system, sophisticated calendar and clever farming methods.
 
-## Key History Words
-| Word | What it means |
-|---|---|
-| civilisation | an advanced society with its own culture, laws, and achievements |
-| Maya | an ancient civilisation from Central America (modern-day Mexico, Guatemala, Belize, Honduras) |
-| pyramid | a large stone structure with steps, used for ceremonies |
-| hieroglyphs | pictures and symbols used as a writing system |
-| codex | a book made from bark paper, used by the Maya |
-| base-20 | a number system based on 20 (rather than our base-10) |
+## Key Words
 
-## The History Explained
+| Word | Meaning |
+|------|---------|
+| Mesoamerica | The region covering southern Mexico and Central America where ancient civilisations developed |
+| hieroglyphs | A writing system using symbols or pictures to represent words and sounds |
+| calendar | A system for organising days and months — the Maya had several different calendars |
+| terrace farming | A method of farming on hillsides by cutting flat steps (terraces) into the slope |
+
+## Let's Explore! 🔍
 
 ### Who Were the Maya?
-- The Maya lived in **Central America** from around 2000 BC.
-- Their civilisation was at its peak between **AD 250 and AD 900** (the Classic Period).
-- They built great **city-states** like Chichén Itzá and Tikal in dense rainforest.
+The Maya civilisation began around 2000 BCE and reached its peak between 250 and 900 CE. They lived in the rainforests and highlands of Mesoamerica and built magnificent cities such as Tikal, Chichén Itzá and Palenque. Unlike one single empire, the Maya were made up of many independent city-states, each with its own ruler. Remarkably, millions of Maya people still live in the region today.
 
-### Key Achievements
-| Achievement | Details |
-|---|---|
-| Writing | One of the few ancient peoples to develop a full writing system (hieroglyphs) |
-| Mathematics | Invented the concept of **zero**; used a **base-20** number system |
-| Calendar | Created highly accurate calendars tracking the Sun, Moon, and planets |
-| Architecture | Built stepped pyramids and temples without metal tools or wheels |
-| Astronomy | Accurately predicted eclipses and planetary movements |
+### Pyramids and Writing
+The Maya built enormous stone pyramids that served as temples, tombs and places of ceremony. The pyramid at Chichén Itzá, known as El Castillo, has 365 steps — one for each day of the year. The Maya also developed one of the first full writing systems in the Americas, using hieroglyphs carved into stone and painted in books called codices. Scholars have only recently been able to read many of these symbols.
 
-### Maya Number System
-- Used **dots** (1), **bars** (5), and a **shell** (0).
-- Example: ••• = 3, — = 5, —••  = 7.
+### Calendar and Agriculture
+The Maya used several calendars. Their solar calendar had 365 days, much like ours. They also had a sacred calendar of 260 days used for religious events. Their mathematical system was one of the first to use the concept of zero. To feed their large cities, the Maya used clever farming techniques including terrace farming on hillsides and raised fields in swampy areas. Maize (corn), beans and squash were their main crops.
 
-### What Happened to the Maya?
-- Many cities were abandoned around AD 900 — the reasons are debated (drought, warfare, over-farming).
-- Maya people and culture still exist today in Central America.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. Where did the Maya live? → *Central America (Mexico, Guatemala, Belize, Honduras)*
-2. What number did the Maya invent the concept of? → *Zero*
-3. What was their writing system called? → *Hieroglyphs*
-4. Name one famous Maya city. → *Chichén Itzá / Tikal*
+**Question 1:** Where did the Ancient Maya live?
+<details><summary>Answer</summary>In Mesoamerica — the area covering parts of modern-day Mexico, Guatemala, Belize and Honduras.</details>
 
-## History in the Real World
-Millions of Maya descendants live in Central America today. Archaeologists continue to discover Maya cities hidden beneath the rainforest using laser technology (LiDAR).
+**Question 2:** What were Maya hieroglyphs?
+<details><summary>Answer</summary>A writing system using symbols and pictures to represent words and sounds, carved into stone or written in codices.</details>
+
+**Question 3:** How many steps does the pyramid at Chichén Itzá have, and why is this significant?
+<details><summary>Answer</summary>365 steps — one for each day of the solar year, showing the Maya's advanced understanding of astronomy.</details>
+
+**Question 4:** What was special about the Maya number system?
+<details><summary>Answer</summary>It was one of the first number systems in the world to include the concept of zero.</details>
+
+**Question 5:** Name two farming techniques used by the Maya.
+<details><summary>Answer</summary>Terrace farming (cutting flat steps into hillsides) and raised fields in swampy areas.</details>
+
+## Did You Know? 🌟
+The Maya loved chocolate! They made a bitter, spicy drink from cacao beans and considered it so valuable that cacao beans were actually used as money.
 
 ## Learning Checklist
-- [ ] I know where and when the Maya civilisation existed
-- [ ] I can describe key Maya achievements
-- [ ] I can explain features of the Maya number system
+
+- [ ] I can describe where and when the Ancient Maya civilisation existed
+- [ ] I can explain the importance of their pyramids and writing system
+- [ ] I can describe their calendar and number systems
+- [ ] I can explain how they farmed in challenging environments

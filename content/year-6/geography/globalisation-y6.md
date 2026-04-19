@@ -3,69 +3,67 @@ year: 6
 subject: geography
 topic: Globalisation
 slug: globalisation-y6
-key_concepts: [cultural exchange, migration, multinational companies, interdependence]
+key_concepts:
+  - international trade
+  - cultural exchange
+  - migration
+  - technology connections
 age_range: "10-11"
-animation: ../../animations/year-6/geography/globalisation-y6.html
+animation: /animations/year-6/geography/globalisation-y6.html
 ---
 
-# Globalisation — Year 6 Geography
-
-## Big Question
-How are countries around the world connected and what does globalisation mean for us?
+# Globalisation 🎯
 
 ## What We're Learning
-In this lesson you will learn about **globalisation**, **cultural exchange**, **migration**, **multinational companies**, and **interdependence** between nations.
+Globalisation is the way countries around the world are becoming more connected through trade, technology, culture, and the movement of people. We'll explore how products, ideas, and people travel across borders and what this means for our lives.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| globalisation | the process of the world becoming more connected through trade, travel, and technology |
-| cultural exchange | sharing ideas, traditions, food, music, and language between cultures |
-| migration | people moving from one place to another to live or work |
-| multinational company | a business that operates in many countries (e.g. Apple, Toyota) |
-| interdependence | countries relying on each other for goods, services, and resources |
-| import/export | import = goods brought in; export = goods sent out |
+## Key Words
 
-## The Geography Explained
+| Word | Meaning |
+|------|---------|
+| globalisation | The increasing connections between countries around the world |
+| international trade | Buying and selling goods and services between countries |
+| migration | The movement of people from one place to another to live or work |
+| cultural exchange | The sharing of traditions, food, music, and ideas between different cultures |
 
-### What is Globalisation?
-The world is more connected than ever. We can communicate instantly, travel quickly, and buy products made on the other side of the planet.
+## Let's Explore! 🔍
 
-### How Countries are Connected
-| Connection | Example |
-|---|---|
-| Trade | UK imports bananas from the Caribbean |
-| Technology | Video calls with people worldwide |
-| Travel | Flights connect all continents |
-| Culture | Music, films, and food cross borders |
-| Migration | People move for work, safety, or family |
+### International Trade
+Look at the labels on your clothes and food — you'll see countries from all over the world. Bananas from Colombia, electronics from China, cotton from India. Countries specialise in products they can make well or grow easily, then trade with others.
 
-### Multinational Companies
-- Companies like Nike, McDonald's, and Samsung operate in many countries.
-- They create jobs but can also affect local businesses.
-- Products may be designed in one country and made in another.
+The UK imports goods like fruit, clothing, and electronics, and exports services like banking, education, and technology. **Fair trade** aims to ensure farmers and workers in developing countries receive a fair price for their goods.
 
-### Benefits and Challenges
-| Benefits | Challenges |
-|---|---|
-| Wider choice of products | Local shops may struggle |
-| Cultural exchange enriches life | Some cultures may be lost |
-| Economic growth | Pollution from transport |
-| Jobs in developing countries | Workers may be poorly paid |
+### Technology Connections
+Technology has supercharged globalisation. The internet lets us communicate instantly with anyone on the planet. Social media, video calls, and online shopping connect people and businesses across borders. News travels in seconds, and students can collaborate with schools in other countries.
 
-### Interdependence
-No country can produce everything it needs. The UK imports oil, food, and electronics while exporting financial services, music, and technology.
+### Migration and Cultural Exchange
+People have always moved between countries for work, education, safety, or family. This **migration** brings cultural exchange — we enjoy food from around the world (pizza from Italy, sushi from Japan, curry from South Asia), listen to music from different cultures, and celebrate diverse traditions.
 
-## Quick Quiz
-1. What is globalisation? → *The world becoming more connected through trade, travel, and technology*
-2. What is a multinational company? → *A business that operates in many countries*
-3. What does interdependence mean? → *Countries relying on each other*
-4. Name one benefit and one challenge of globalisation. → *E.g. wider product choice (benefit); local shops may struggle (challenge)*
+Globalisation brings benefits (wider choices, shared knowledge, economic growth) but also challenges (environmental costs of transporting goods, concerns about local businesses, and inequality).
 
-## Geography in the Real World
-The food you eat, clothes you wear, and phone you use all involve global connections. Understanding globalisation helps you be a responsible global citizen.
+## Try It Yourself! ✏️
+
+**Question 1:** What is globalisation?
+<details><summary>Answer</summary>Globalisation is the process by which countries become more connected through trade, technology, migration, and the sharing of ideas and culture.</details>
+
+**Question 2:** Look at three items in your home. Can you find out which countries they come from?
+<details><summary>Answer</summary>Answers will vary. For example: a phone (China), a banana (Costa Rica), a T-shirt (Bangladesh). Check the labels!</details>
+
+**Question 3:** How has technology increased globalisation?
+<details><summary>Answer</summary>The internet and digital communication allow instant contact between people worldwide. Online shopping, social media, and video calling mean we can trade, share ideas, and collaborate across borders easily and quickly.</details>
+
+**Question 4:** Give one benefit and one challenge of globalisation.
+<details><summary>Answer</summary>Benefit: we have access to a wider variety of food, products, and ideas from around the world. Challenge: transporting goods long distances increases carbon emissions and harms the environment.</details>
+
+**Question 5:** What is Fair Trade and why is it important?
+<details><summary>Answer</summary>Fair Trade is a system that ensures producers in developing countries are paid a fair price for their goods. It's important because it helps reduce poverty and exploitation in global supply chains.</details>
+
+## Did You Know? 🌟
+A single smartphone contains materials from over 30 different countries! The minerals in the battery might come from the Democratic Republic of Congo, the screen glass from Japan, and the software might be designed in the USA. It's a truly global product.
 
 ## Learning Checklist
-- [ ] I can explain what globalisation means
-- [ ] I can describe how countries are connected
-- [ ] I can discuss benefits and challenges of globalisation
+
+- [ ] I can explain what globalisation means and give examples
+- [ ] I understand how international trade connects countries
+- [ ] I can describe how technology has increased global connections
+- [ ] I can discuss both benefits and challenges of globalisation

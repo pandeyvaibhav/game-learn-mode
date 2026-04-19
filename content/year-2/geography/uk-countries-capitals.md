@@ -3,61 +3,92 @@ year: 2
 subject: geography
 topic: UK Countries and Capitals
 slug: uk-countries-capitals
-key_concepts: [England, Scotland, Wales, Northern Ireland, London, Edinburgh, Cardiff, Belfast]
+key_concepts:
+  - England
+  - Scotland
+  - Wales
+  - Northern Ireland
+  - capital cities
 age_range: "6-7"
-animation: ../../animations/year-2/geography/uk-countries-capitals.html
+animation: /animations/year-2/geography/uk-countries-capitals.html
 ---
 
-# UK Countries and Capitals — Year 2 Geography
-
-## Big Question
-Which countries make up the United Kingdom, and what are their capital cities?
+# UK Countries and Capitals 🎯
 
 ## What We're Learning
-In this lesson you will learn about the **four countries** that make up the United Kingdom, their **capital cities**, and some key features of each.
+We are learning about the four countries that make up the United Kingdom. We will find out their names, where they are, what their capital cities are, and what their flags look like.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| United Kingdom (UK) | a country made up of four nations |
-| capital city | the most important city in a country, where the government meets |
-| England | the largest country in the UK |
-| Scotland | the country north of England |
-| Wales | the country west of England |
-| Northern Ireland | part of the UK on the island of Ireland |
+## Key Words
 
-## The Geography Explained
+| Word | Meaning |
+|------|---------|
+| United Kingdom (UK) | the country made up of England, Scotland, Wales and Northern Ireland |
+| capital city | the most important city in a country, where the government is |
+| border | the line where one country ends and another begins |
+| Great Britain | the island that has England, Scotland and Wales on it |
 
-### The Four Countries of the UK
-| Country | Capital City | Key Fact |
-|---|---|---|
-| England | **London** | Largest country in the UK; Big Ben, Buckingham Palace |
-| Scotland | **Edinburgh** | Famous for lochs, mountains, and Edinburgh Castle |
-| Wales | **Cardiff** | Known for valleys, mountains (Snowdon), and the Welsh language |
-| Northern Ireland | **Belfast** | Part of the island of Ireland; known for the Giant's Causeway |
+## Let's Explore! 🔍
 
-### Surrounding Seas
-- **North Sea** — to the east
-- **Irish Sea** — between Great Britain and Ireland
-- **English Channel** — between England and France
-- **Atlantic Ocean** — to the west
+### The Four Countries
+The United Kingdom is made up of **four countries**:
 
-### Key Points
-- The UK is an **island nation** (Great Britain + Northern Ireland).
-- **London** is the capital of both England and the whole UK.
-- Each country has its own flag: England (St George's Cross), Scotland (St Andrew's Cross), Wales (Red Dragon), Northern Ireland (has several symbols).
-- The **Union Jack** combines elements from three of these flags.
+| Country | Capital City | Flag |
+|---------|-------------|------|
+| England | London | White flag with a red cross (St George's Cross) |
+| Scotland | Edinburgh | Blue flag with a white diagonal cross (St Andrew's Cross) |
+| Wales | Cardiff | White and green flag with a red dragon |
+| Northern Ireland | Belfast | Uses the Union Jack |
 
-## Quick Quiz
-1. How many countries make up the UK? → *4*
-2. What is the capital of Scotland? → *Edinburgh*
-3. What is the capital of Wales? → *Cardiff*
-4. Which sea is between England and France? → *English Channel*
+### Where Are They?
+```
+        Scotland
+       (Edinburgh)
+          ───
+    Northern  │
+    Ireland   │
+   (Belfast) England
+       Wales (London)
+     (Cardiff)
+```
 
-## Geography in the Real World
-Knowing about UK countries and capitals helps you understand maps, travel, news, and events like the Six Nations rugby tournament.
+- **England** is the biggest country and is in the south and east.
+- **Scotland** is in the north.
+- **Wales** is in the west, joined to England.
+- **Northern Ireland** is across the sea to the west, on the island of Ireland.
+
+### The Union Jack
+The UK flag is called the **Union Jack** (or Union Flag). It combines parts of the English, Scottish and Northern Irish flags.
+
+### Seas Around the UK
+The UK is surrounded by water:
+- The **North Sea** is to the east
+- The **English Channel** is to the south
+- The **Irish Sea** is between Great Britain and Ireland
+- The **Atlantic Ocean** is to the west
+
+## Try It Yourself! ✏️
+
+**Question 1:** How many countries make up the United Kingdom?
+<details><summary>Answer</summary>Four</details>
+
+**Question 2:** What is the capital city of Scotland?
+<details><summary>Answer</summary>Edinburgh</details>
+
+**Question 3:** Which country has a dragon on its flag?
+<details><summary>Answer</summary>Wales</details>
+
+**Question 4:** Which sea is between Great Britain and Ireland?
+<details><summary>Answer</summary>The Irish Sea</details>
+
+**Question 5:** What is the capital city of England?
+<details><summary>Answer</summary>London</details>
+
+## Did You Know? 🌟
+London is not just the capital of England — it is also the capital of the whole United Kingdom! With nearly **9 million people**, it is one of the biggest cities in Europe.
 
 ## Learning Checklist
-- [ ] I can name the four countries of the UK
-- [ ] I can match each country to its capital city
-- [ ] I can find the UK countries on a map
+
+- [ ] I can name the four countries of the United Kingdom
+- [ ] I can name each country's capital city
+- [ ] I can find the four countries on a map
+- [ ] I know the name of the UK flag (the Union Jack)

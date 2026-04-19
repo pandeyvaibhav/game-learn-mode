@@ -3,75 +3,71 @@ year: 4
 subject: maths
 topic: Roman Numerals
 slug: roman-numerals
-key_concepts: [I, V, X, L, C, reading Roman numerals, converting]
+key_concepts:
+  - I V X L C
+  - reading Roman numerals
+  - writing Roman numerals
 age_range: "8-9"
-animation: ../../animations/year-4/maths/roman-numerals.html
+animation: /animations/year-4/maths/roman-numerals.html
 ---
 
-# Roman Numerals — Year 4 Maths
-
-## Big Question
-How did the Romans write numbers, and can we still read them today?
+# Roman Numerals 🎯
 
 ## What We're Learning
-In this lesson you will learn the **Roman numeral** system, how to read and write numbers using Roman numerals, and where we still see them today.
+We are learning about Roman numerals — the number system used by the ancient Romans. You'll discover the symbols they used, how to read Roman numerals up to 100, and how to write numbers in this ancient system.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| Roman numerals | a number system invented by the Romans using letters |
-| numeral | a symbol used to represent a number |
-| I | 1 |
-| V | 5 |
-| X | 10 |
-| L | 50 |
-| C | 100 |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| numeral | A symbol used to represent a number |
+| Roman numeral | A letter used by the Romans to stand for a number value |
+| subtractive rule | Placing a smaller value before a larger one to mean "take away" |
+| additive rule | Placing values next to each other to add them together |
+
+## Let's Explore! 🔍
 
 ### The Key Symbols
+The Romans used letters as numbers:
+
 | Roman | Value |
-|---|---|
+|-------|-------|
 | I | 1 |
 | V | 5 |
 | X | 10 |
 | L | 50 |
 | C | 100 |
 
-### Rules
-1. **Add** when a smaller numeral comes **after** a bigger one: VI = 5 + 1 = **6**
-2. **Subtract** when a smaller numeral comes **before** a bigger one: IV = 5 − 1 = **4**
-3. Never use more than **three** of the same letter in a row (III = 3, but 4 = IV not IIII).
+### How to Read Roman Numerals
+- **Add** when a smaller or equal value comes after a larger one: VII = 5 + 1 + 1 = 7.
+- **Subtract** when a smaller value comes before a larger one: IV = 5 − 1 = 4, IX = 10 − 1 = 9, XL = 50 − 10 = 40.
 
-### Key Numbers
-| Number | Roman |
-|---|---|
-| 1 | I |
-| 4 | IV |
-| 5 | V |
-| 9 | IX |
-| 10 | X |
-| 14 | XIV |
-| 40 | XL |
-| 50 | L |
-| 90 | XC |
-| 100 | C |
+### Writing Roman Numerals
+Break the number into parts and convert each part. For example, 76 = 50 + 10 + 10 + 5 + 1 = LXXVI. Remember: never use more than three of the same symbol in a row (write IV, not IIII).
 
-### Examples
-- **27** = XXVII (10+10+5+1+1)
-- **39** = XXXIX (10+10+10+9)
-- **64** = LXIV (50+10+4)
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What is XIV in numbers? → *14*
-2. Write 29 in Roman numerals. → *XXIX*
-3. What is XL? → *40*
-4. What does C stand for? → *100*
+**Question 1:** What number is XIV?
+<details><summary>Answer</summary>14 (10 + 4)</details>
 
-## Maths in the Real World
-Roman numerals appear on clock faces, book chapters, film sequels (e.g. Rocky IV), and the Olympic Games. The Super Bowl uses Roman numerals too!
+**Question 2:** Write 29 in Roman numerals.
+<details><summary>Answer</summary>XXIX (10 + 10 + 9)</details>
+
+**Question 3:** What number is XLII?
+<details><summary>Answer</summary>42 (40 + 2)</details>
+
+**Question 4:** Write 99 in Roman numerals.
+<details><summary>Answer</summary>XCIX (90 + 9)</details>
+
+**Question 5:** You see a clock face with IIII instead of IV. Why might this be?
+<details><summary>Answer</summary>Many clock makers traditionally used IIII instead of IV on clock faces — it is a long-standing custom, even though IV is the standard Roman numeral for 4.</details>
+
+## Did You Know? 🌟
+You can still see Roman numerals on clock faces, buildings, film credits and even the Super Bowl! The year 2024 in Roman numerals is MMXXIV.
 
 ## Learning Checklist
+
+- [ ] I know the Roman numeral symbols I, V, X, L and C
 - [ ] I can read Roman numerals up to 100
-- [ ] I can convert numbers to Roman numerals
-- [ ] I understand the subtraction rule (IV, IX, XL, XC)
+- [ ] I can write numbers as Roman numerals
+- [ ] I understand the subtractive rule (e.g. IV = 4, XL = 40)

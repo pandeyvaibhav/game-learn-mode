@@ -3,68 +3,62 @@ year: 5
 subject: maths
 topic: Long Multiplication
 slug: long-multiplication
-key_concepts: [multiplying up to 4 digits by 2 digits, partitioning, formal method]
+key_concepts:
+  - formal written method
+  - multiplying by 2-digit numbers
+  - estimation
 age_range: "9-10"
-animation: ../../animations/year-5/maths/long-multiplication.html
+animation: /animations/year-5/maths/long-multiplication.html
 ---
 
-# Long Multiplication — Year 5 Maths
-
-## Big Question
-How do we multiply large numbers using the formal written method?
+# Long Multiplication 🎯
 
 ## What We're Learning
-In this lesson you will learn to multiply numbers **up to 4 digits by 2 digits** using the **long multiplication** method.
+We're mastering the formal written method for multiplying numbers with up to four digits by a two-digit number. You'll also learn how to use estimation to check your answers make sense. This is a key skill you'll use throughout secondary school and beyond.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| multiply | find the total of groups of a number |
-| product | the answer to a multiplication |
-| partition | splitting a number into parts (e.g. 36 = 30 + 6) |
-| carry | moving extra tens/hundreds to the next column |
-| placeholder zero | a zero added when multiplying by the tens digit |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| long multiplication | A written method for multiplying large numbers by breaking into steps |
+| partial product | The result of multiplying by one digit of the multiplier — you add these together at the end |
+| estimation | Rounding numbers to get an approximate answer for checking |
+| place value | The value of a digit depending on its position in a number |
 
-### The Method — Step by Step
-Example: **243 × 36**
+## Let's Explore! 🔍
 
-```
-      243
-    ×  36
-   -----
-    1458   ← 243 × 6
-  + 7290   ← 243 × 30 (placeholder 0)
-   -----
-    8748
-```
+### The Formal Written Method
+To multiply, say, 346 × 24, you work in two stages. First multiply 346 × 4 (the ones digit) to get the first partial product. Then multiply 346 × 20 (the tens digit) — remember to put a zero place holder on the ones column before you start. Finally, add both partial products together. Setting out your work in neat columns is essential to avoid errors.
 
-1. Multiply 243 by the **ones digit** (6) → 1,458.
-2. Write a **placeholder zero** on the next line.
-3. Multiply 243 by the **tens digit** (3) → 729, write 7,290.
-4. **Add** the two rows together → 8,748.
+### Multiplying Step by Step
+Let's work through 346 × 24. Step 1: 346 × 4 = 1,384. Step 2: 346 × 20 = 6,920. Step 3: 1,384 + 6,920 = 8,304. Always carry digits when a column total is 10 or more, writing the carry below the line. Taking your time with each step will keep your working accurate.
 
-### Estimation First
-Before calculating, **estimate** to check your answer is sensible:
-- 243 ≈ 250, 36 ≈ 40 → 250 × 40 = 10,000
-- Answer should be near 10,000 — and 8,748 is reasonable.
+### Using Estimation to Check
+Before calculating, round each number to estimate the answer. For 346 × 24, round to 350 × 25 = 8,750. Your exact answer of 8,304 is close, so it's likely correct. If your answer had been 83,040 you'd know straight away that something went wrong. Estimation is a quick and powerful checking tool.
 
-### Common Mistakes
-- Forgetting the placeholder zero.
-- Carrying errors — always add the carry to the next column.
-- Lining up columns incorrectly.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What is 123 × 4? → *492*
-2. Why do we write a placeholder zero? → *Because we're multiplying by the tens digit*
-3. What is 50 × 30? → *1,500*
-4. Estimate 198 × 21. → *About 4,000 (200 × 20)*
+**Question 1:** Calculate 123 × 13 using the formal method.
+<details><summary>Answer</summary>123 × 3 = 369; 123 × 10 = 1,230; 369 + 1,230 = 1,599</details>
 
-## Maths in the Real World
-Builders multiply lengths to calculate areas. Shops multiply price × quantity. Event planners multiply seats per row by number of rows.
+**Question 2:** Estimate 489 × 32 by rounding.
+<details><summary>Answer</summary>Approximately 500 × 30 = 15,000</details>
+
+**Question 3:** Calculate 256 × 47.
+<details><summary>Answer</summary>256 × 7 = 1,792; 256 × 40 = 10,240; 1,792 + 10,240 = 12,032</details>
+
+**Question 4:** A school orders 36 boxes of pencils. Each box contains 144 pencils. How many pencils is that in total?
+<details><summary>Answer</summary>144 × 36 = 5,184 pencils</details>
+
+**Question 5:** What is the purpose of putting a zero in the ones column when multiplying by the tens digit?
+<details><summary>Answer</summary>It acts as a place holder to show you are multiplying by tens, not ones, keeping the digits in the correct columns.</details>
+
+## Did You Know? 🌟
+The lattice method of multiplication was used in India over 1,000 years ago and later spread to Europe. The long multiplication method we use today was developed in Italy during the Middle Ages!
 
 ## Learning Checklist
-- [ ] I can multiply up to 4 digits by 2 digits using long multiplication
-- [ ] I remember the placeholder zero
-- [ ] I can estimate to check my answer
+
+- [ ] I can set out long multiplication in neat columns
+- [ ] I can multiply a number up to 4 digits by a 2-digit number
+- [ ] I can use estimation to check whether my answer is reasonable
+- [ ] I understand partial products and how to add them correctly

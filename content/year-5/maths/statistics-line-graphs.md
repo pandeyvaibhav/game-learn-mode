@@ -3,63 +3,63 @@ year: 5
 subject: maths
 topic: Statistics — Line Graphs
 slug: statistics-line-graphs
-key_concepts: [line graphs, reading scales, interpreting data, plotting points]
+key_concepts:
+  - line graphs
+  - reading scales
+  - interpreting data
+  - two-way tables
 age_range: "9-10"
-animation: ../../animations/year-5/maths/statistics-line-graphs.html
+animation: /animations/year-5/maths/statistics-line-graphs.html
 ---
 
-# Statistics — Line Graphs — Year 5 Maths
-
-## Big Question
-How do line graphs help us spot trends and compare data over time?
+# Statistics — Line Graphs 🎯
 
 ## What We're Learning
-In this lesson you will learn to **read** and **draw** line graphs, interpret **scales**, and use line graphs to spot **trends**.
+We're learning how to read, draw and interpret line graphs, and how to use two-way tables to organise information. Line graphs are brilliant for showing how something changes over time, like temperature during the day or the height of a plant as it grows.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| line graph | a graph that uses points connected by lines to show data over time |
-| axis | a reference line on a graph (x-axis = horizontal, y-axis = vertical) |
-| scale | the numbers along each axis showing the units |
-| data point | a single value plotted on the graph |
-| trend | the general direction the data is moving (up, down, steady) |
-| interval | the gap between values on the scale |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| line graph | A graph that uses points connected by lines to show how data changes over time |
+| axis | A reference line on a graph — the x-axis goes across and the y-axis goes up |
+| scale | The set of numbers along an axis that tells you what each interval represents |
+| two-way table | A table that shows data sorted by two categories at the same time |
 
-### When to Use a Line Graph
-Line graphs are best for data that **changes over time** — temperature during a day, height of a plant each week, or rainfall each month.
+## Let's Explore! 🔍
 
-### Reading a Line Graph
-1. Read the **title** to know what the graph shows.
-2. Check the **axes** — what is measured on each one?
-3. Check the **scale** — what does each square or line represent?
-4. Find the point, then read across to the y-axis for the value.
+### Reading and Drawing Line Graphs
+A line graph has a horizontal axis (often time) and a vertical axis (the value being measured). Each data point is plotted and then connected with straight lines. Always check the scale carefully — intervals might go up in 2s, 5s, 10s or other steps. When a point falls between labelled lines, you need to read the scale to estimate its value accurately.
 
-### Drawing a Line Graph
-1. Draw and label both axes.
-2. Choose a sensible **scale** that fits your data.
-3. Plot each **data point** carefully.
-4. Join the points with **straight lines**.
-5. Give the graph a **title**.
+### Interpreting Data
+Line graphs let you spot trends quickly. A line going upward means the value is increasing; a line going downward means it is decreasing. A flat section means no change. You can also compare two sets of data on the same graph using different coloured lines. Always look for the steepest sections — that's where the fastest change happens.
 
-### Interpreting Trends
-- Line going **up** → value is increasing.
-- Line going **down** → value is decreasing.
-- Line is **flat** → value is staying the same.
-- **Steep** line → rapid change; **gentle** line → slow change.
+### Two-Way Tables
+A two-way table organises data into rows and columns using two categories. For example, you could sort pupils by "favourite sport" (columns) and "boy or girl" (rows). You read across a row and down a column to find a specific value. Totals along the edges help you check your answers and spot patterns.
 
-## Quick Quiz
-1. What type of data is best shown on a line graph? → *Data that changes over time*
-2. What do we call the general direction data is moving? → *A trend*
-3. What two axes does a line graph have? → *x-axis (horizontal) and y-axis (vertical)*
-4. A steep line going up means the value is… → *Increasing rapidly*
+## Try It Yourself! ✏️
 
-## Maths in the Real World
-Weather forecasters use line graphs for temperature. Doctors track patient recovery with line graphs. Businesses graph sales over months to spot trends.
+**Question 1:** A line graph shows the temperature was 8 °C at 9 am and 14 °C at noon. By how many degrees did the temperature rise?
+<details><summary>Answer</summary>14 − 8 = 6 °C</details>
+
+**Question 2:** On a line graph the y-axis goes up in steps of 5. A point sits halfway between 15 and 20. What value does it represent?
+<details><summary>Answer</summary>17.5</details>
+
+**Question 3:** A two-way table shows 12 boys like football and 8 girls like football. How many children in total like football?
+<details><summary>Answer</summary>12 + 8 = 20</details>
+
+**Question 4:** What does a flat horizontal line on a line graph tell you?
+<details><summary>Answer</summary>The value is staying the same — there is no change during that period.</details>
+
+**Question 5:** A plant was 2 cm tall on Monday and 11 cm tall on Friday. How much did it grow?
+<details><summary>Answer</summary>11 − 2 = 9 cm</details>
+
+## Did You Know? 🌟
+The first known line graph was drawn by William Playfair in 1786 to show England's imports and exports. He invented line graphs, bar charts and pie charts — what a legend of data visualisation!
 
 ## Learning Checklist
-- [ ] I can read values from a line graph
-- [ ] I can draw a line graph with labelled axes and a title
-- [ ] I can identify trends from a line graph
+
+- [ ] I can read values from a line graph, including between labelled intervals
+- [ ] I can draw a line graph with a suitable title, labelled axes and scale
+- [ ] I can interpret trends and answer questions about line graph data
+- [ ] I can read and complete a two-way table

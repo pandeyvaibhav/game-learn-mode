@@ -3,64 +3,64 @@ year: 4
 subject: maths
 topic: Times Tables (All to 12×12)
 slug: times-tables-all
-key_concepts: [multiplication facts, division facts, rapid recall, patterns]
+key_concepts:
+  - multiplication facts
+  - division facts
+  - related facts
 age_range: "8-9"
-animation: ../../animations/year-4/maths/times-tables-all.html
+animation: /animations/year-4/maths/times-tables-all.html
 ---
 
-# Times Tables (All to 12×12) — Year 4 Maths
-
-## Big Question
-Can you recall all multiplication and division facts up to 12 × 12?
+# Times Tables (All to 12×12) 🎯
 
 ## What We're Learning
-In this lesson you will practise **all times tables** from 1 to 12 and learn tips to recall them quickly. You will also see how each multiplication fact has a matching **division** fact.
+By the end of Year 4 you need to know all your times tables up to 12 × 12 by heart. We'll also explore how multiplication and division facts are related, so learning one fact gives you several more for free!
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| multiply | add a number to itself a set number of times (×) |
-| product | the answer to a multiplication |
-| factor | a number you multiply (3 × 4: factors are 3 and 4) |
-| divide | share equally (÷) |
-| inverse | the opposite operation (multiply ↔ divide) |
-| commutative | order doesn't matter: 3 × 5 = 5 × 3 |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| multiplication | Repeated addition — finding the total of equal groups |
+| division | Splitting a number into equal groups or finding how many groups |
+| factor | A number that divides exactly into another number |
+| product | The answer when two numbers are multiplied together |
 
-### Key Facts
-By the end of Year 4, you should know **all facts up to 12 × 12 = 144** from memory.
+## Let's Explore! 🔍
 
-### Handy Tips
-| Table | Tip |
-|---|---|
-| ×2 | Double the number |
-| ×4 | Double then double again |
-| ×5 | End in 0 or 5 |
-| ×9 | Digits always add to 9 (e.g. 9×3=27, 2+7=9) |
-| ×10 | Put a 0 on the end |
-| ×11 | Up to 9: repeat the digit (11×4=44) |
+### Building on What You Know
+You already know the 2, 5, 10, 3, 4 and 8 times tables. In Year 4 we make sure we also know the 6, 7, 9, 11 and 12 times tables fluently. A good trick: if you know 3 × 7 = 21, you also know 7 × 3 = 21 because multiplication can be done in any order.
 
-### Linked Division Facts
-If 6 × 7 = 42, then:
-- 42 ÷ 7 = 6
-- 42 ÷ 6 = 7
+### Related Division Facts
+Every multiplication fact gives you two division facts. If 6 × 8 = 48, then 48 ÷ 8 = 6 and 48 ÷ 6 = 8. Thinking of fact families saves a lot of memorising!
 
-Knowing one multiplication fact gives you **two division facts** for free.
+### Helpful Strategies
+- **9 times table trick:** Multiply by 10 and subtract the number. E.g. 9 × 7 = 70 − 7 = 63.
+- **12 times table:** Multiply by 10 and add double the number. E.g. 12 × 4 = 40 + 8 = 48.
+- **Square numbers:** 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144 — these are numbers multiplied by themselves.
 
-### Commutativity
-3 × 8 = 8 × 3. This halves the number of facts you need to learn!
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. 7 × 8 = ? → *56*
-2. 12 × 6 = ? → *72*
-3. 81 ÷ 9 = ? → *9*
-4. What are the two division facts for 4 × 11 = 44? → *44 ÷ 11 = 4 and 44 ÷ 4 = 11*
+**Question 1:** What is 7 × 8?
+<details><summary>Answer</summary>56</details>
 
-## Maths in the Real World
-Times tables are the foundation for fractions, percentages, area, and algebra. Cooks multiply recipes, builders calculate materials, and shopkeepers work out prices — all using times tables.
+**Question 2:** If 9 × 6 = 54, what is 54 ÷ 9?
+<details><summary>Answer</summary>6</details>
+
+**Question 3:** What is 12 × 7?
+<details><summary>Answer</summary>84</details>
+
+**Question 4:** Which two numbers multiply to make 48? (Give two different pairs.)
+<details><summary>Answer</summary>6 × 8 and 4 × 12 (other pairs also accepted, e.g. 3 × 16)</details>
+
+**Question 5:** What is the square number of 11?
+<details><summary>Answer</summary>121 (because 11 × 11 = 121)</details>
+
+## Did You Know? 🌟
+In the Year 4 Multiplication Tables Check (MTC), children in England answer 25 times table questions in a timed online test — you have 6 seconds per question!
 
 ## Learning Checklist
-- [ ] I can recall multiplication facts up to 12 × 12
-- [ ] I can use inverse operations to find division facts
-- [ ] I know tips to help remember tricky times tables
+
+- [ ] I can recall all times tables up to 12 × 12
+- [ ] I can use a multiplication fact to find the related division facts
+- [ ] I can identify square numbers
+- [ ] I know strategies to help with trickier tables

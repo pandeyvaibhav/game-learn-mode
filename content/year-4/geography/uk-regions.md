@@ -3,62 +3,64 @@ year: 4
 subject: geography
 topic: UK Regions
 slug: uk-regions
-key_concepts: [counties, regions, human features, physical features]
+key_concepts:
+  - counties
+  - regions
+  - physical features
+  - human geography
 age_range: "8-9"
-animation: ../../animations/year-4/geography/uk-regions.html
+animation: /animations/year-4/geography/uk-regions.html
 ---
 
-# UK Regions — Year 4 Geography
-
-## Big Question
-What are the different regions of the UK, and what makes each one special?
+# UK Regions 🎯
 
 ## What We're Learning
-In this lesson you will learn about the **regions** and **counties** of the UK, and the **human** and **physical features** that make each area unique.
+We are learning about the different regions and counties of the United Kingdom. You'll discover how the UK is divided up, what physical features (mountains, rivers, coasts) each region has, and how people live and work across the country.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| region | a large area of a country with shared features |
-| county | a smaller division within a country (e.g. Kent, Yorkshire) |
-| human feature | something made by people (cities, roads, bridges) |
-| physical feature | a natural feature of the land (mountains, rivers, coasts) |
-| United Kingdom | England, Scotland, Wales, and Northern Ireland |
+## Key Words
 
-## The Geography Explained
+| Word | Meaning |
+|------|---------|
+| county | An area of a country used for local government, e.g. Kent, Yorkshire |
+| region | A larger area that groups several counties together |
+| physical feature | A natural part of the landscape, such as a hill, river or coastline |
+| human geography | The study of how people use and change the land (cities, farming, transport) |
+
+## Let's Explore! 🔍
 
 ### The Four Countries
-| Country | Capital | Key Physical Feature |
-|---|---|---|
-| England | London | The Pennines, Lake District |
-| Scotland | Edinburgh | The Highlands, Ben Nevis |
-| Wales | Cardiff | Snowdonia, coastline |
-| Northern Ireland | Belfast | Lough Neagh, Giant's Causeway |
+The UK is made up of **England**, **Scotland**, **Wales** and **Northern Ireland**. Each has its own capital city: London, Edinburgh, Cardiff and Belfast. England is the largest by population, while Scotland has the most mountainous landscape.
 
-### English Regions
-England is split into **nine regions**: North East, North West, Yorkshire & the Humber, East Midlands, West Midlands, East of England, London, South East, South West.
+### Regions and Counties
+England is often split into nine regions (e.g. South East, North West, East Midlands). Each region contains several **counties**, such as Cornwall in the South West or Lancashire in the North West. Scotland, Wales and Northern Ireland have their own local council areas.
 
-### Human vs Physical Features
-| Human features | Physical features |
-|---|---|
-| Cities and towns | Mountains and hills |
-| Roads and railways | Rivers and lakes |
-| Factories and farms | Forests and coastline |
-| Bridges and ports | Valleys and cliffs |
+### Physical and Human Features
+- **Physical features** include the Pennines (the "backbone of England"), the Scottish Highlands, Snowdonia in Wales, and the coastlines around all four countries.
+- **Human features** include major cities (London, Manchester, Glasgow), motorways, ports, and farmland. Northern cities grew during the Industrial Revolution thanks to coal, iron and cotton.
 
-### Counties
-Each region contains several **counties** — for example, the South West includes Devon, Cornwall, Somerset, and Dorset.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. Name the four countries of the UK. → *England, Scotland, Wales, Northern Ireland*
-2. What is a human feature? → *Something made by people, like a city or road*
-3. What is a physical feature? → *A natural feature, like a mountain or river*
-4. What is the capital of Scotland? → *Edinburgh*
+**Question 1:** Name the four countries of the United Kingdom.
+<details><summary>Answer</summary>England, Scotland, Wales and Northern Ireland.</details>
 
-## Geography in the Real World
-Understanding regions helps with planning journeys, studying weather patterns, and understanding why industries are based in certain areas. Local councils govern at the county level.
+**Question 2:** What is the capital city of Scotland?
+<details><summary>Answer</summary>Edinburgh.</details>
+
+**Question 3:** Give an example of a physical feature found in the UK.
+<details><summary>Answer</summary>Any suitable example, e.g. the Pennines, the Scottish Highlands, Snowdonia, the Lake District, the White Cliffs of Dover.</details>
+
+**Question 4:** What is the difference between a physical feature and a human feature?
+<details><summary>Answer</summary>A physical feature is natural (mountains, rivers, coastlines). A human feature is made or changed by people (cities, roads, farms).</details>
+
+**Question 5:** In which region of England would you find Cornwall?
+<details><summary>Answer</summary>The South West.</details>
+
+## Did You Know? 🌟
+The UK has over 19,000 miles of coastline. If you walked it all without stopping, it would take you over two years!
 
 ## Learning Checklist
+
 - [ ] I can name the four countries of the UK and their capitals
-- [ ] I can explain the difference between human and physical features
-- [ ] I know some English regions and counties
+- [ ] I can identify some counties and regions
+- [ ] I can describe physical features of different UK regions
+- [ ] I understand the difference between physical and human geography

@@ -1,78 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Playscripts — Year 4 English | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playscripts — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 4 · English</p>
 <h1>Playscripts</h1>
-<p class="subtitle">Learn the features of a playscript!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Playscript Quiz</p>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">Next Question</button>
-</div>
-
+<p class="subtitle">Year 4 English — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var QS=[
-{q:'How do you show who is speaking in a playscript?',ans:'Character name and a colon',opts:['Character name and a colon','Speech marks','A full stop']},
-{q:'What are stage directions?',ans:'Instructions in brackets for actors',opts:['Instructions in brackets for actors','The title of the play','A type of punctuation']},
-{q:'Do playscripts use speech marks?',ans:'No',opts:['No','Yes','Sometimes']},
-{q:'What does a scene heading tell us?',ans:'Where and when the scene takes place',opts:['Where and when the scene takes place','Who wrote the play','How many actors are needed']},
-{q:'"(whispering nervously)" is an example of…',ans:'A stage direction',opts:['A stage direction','Dialogue','A scene heading']},
-{q:'In a playscript, each new speaker starts on…',ans:'A new line',opts:['A new line','The same line','A new page']},
-{q:'A narrator…',ans:'Tells the audience what is happening',opts:['Tells the audience what is happening','Acts out a part','Writes the play']},
-{q:'Dialogue in a playscript is…',ans:'The words characters say',opts:['The words characters say','The title','Stage directions']}
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"What are stage directions in a playscript?",answer:"Instructions telling actors what to do",options:["Instructions telling actors what to do","The title of the play","The spoken words","The list of characters"]},
+{text:"How is dialogue written in a playscript?",answer:"Character name followed by a colon, then words",options:["Character name followed by a colon, then words","Inside speech marks like a story","In capital letters","As a list of sentences"]},
+{text:"Stage directions are usually written in…",answer:"Brackets and italics",options:["Brackets and italics","Speech marks","Bold capital letters","Footnotes"]},
+{text:"What is a scene in a playscript?",answer:"A section of the play set in one place or time",options:["A section of the play set in one place or time","The final part of the play","A character's name","A type of stage direction"]},
+{text:"What does 'Enter' mean in a stage direction?",answer:"A character comes onto the stage",options:["A character comes onto the stage","A character speaks loudly","The audience claps","The scene changes"]},
+{text:"What does 'Exit' mean in a stage direction?",answer:"A character leaves the stage",options:["A character leaves the stage","The play ends","A character enters","The lights go off"]},
+{text:"Does a playscript use speech marks for dialogue?",answer:"No, it uses character names and colons",options:["No, it uses character names and colons","Yes, always","Only sometimes","Only for the narrator"]},
+{text:"What is a narrator in a play?",answer:"Someone who tells the audience what is happening",options:["Someone who tells the audience what is happening","The main character","The person who writes the play","A stage manager"]},
+{text:"Which of these is a stage direction?",answer:"(She picks up the book nervously)",options:["(She picks up the book nervously)","Anna: I love this story!","Scene 3: The Library","Cast: Anna, Ben, Teacher"]},
+{text:"What is a cast list?",answer:"A list of all the characters in the play",options:["A list of all the characters in the play","The title page","The stage directions","The script's final page"]}
 ];
-var pool=shuffle(QS);var idx=0;var sc=0;
-function show(){
-  if(idx>=pool.length) pool=shuffle(QS),idx=0;
-  var q=pool[idx];
-  document.getElementById('qTxt').textContent=q.q;
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  shuffle(q.opts).forEach(function(o){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-  idx++;
-}
-document.getElementById('next').addEventListener('click',show);show();
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

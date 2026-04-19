@@ -3,62 +3,87 @@ year: 2
 subject: geography
 topic: Continents and Oceans
 slug: continents-oceans
-key_concepts: [7 continents, 5 oceans, globe, atlas]
+key_concepts:
+  - seven continents
+  - five oceans
+  - globe
+  - atlas
 age_range: "6-7"
-animation: ../../animations/year-2/geography/continents-oceans.html
+animation: /animations/year-2/geography/continents-oceans.html
 ---
 
-# Continents and Oceans — Year 2 Geography
-
-## Big Question
-What are the seven continents and five oceans, and where are they on a map?
+# Continents and Oceans 🎯
 
 ## What We're Learning
-In this lesson you will learn the names and locations of the world's **seven continents** and **five oceans**, and how to use a **globe** and **atlas** to find them.
+We are learning about the seven continents and five oceans that make up our world. We will find out where they are on a globe and a map, and learn some interesting facts about each one.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| continent | a very large area of land (there are 7) |
-| ocean | a very large area of salt water (there are 5) |
+## Key Words
+
+| Word | Meaning |
+|------|---------|
+| continent | a very large area of land |
+| ocean | a very large area of salt water |
 | globe | a round model of the Earth |
 | atlas | a book of maps |
-| equator | an imaginary line around the middle of the Earth |
-| hemisphere | half of the Earth (Northern or Southern) |
 
-## The Geography Explained
+## Let's Explore! 🔍
 
-### The 7 Continents
-1. **Africa** — the second largest; has deserts and rainforests.
-2. **Antarctica** — the coldest; covered in ice, at the South Pole.
-3. **Asia** — the largest continent; includes China and India.
-4. **Europe** — includes the UK, France, and Germany.
-5. **North America** — includes the USA, Canada, and Mexico.
-6. **South America** — includes Brazil and the Amazon Rainforest.
-7. **Oceania (Australasia)** — includes Australia and New Zealand.
+### The Seven Continents
+A continent is a huge area of land. There are **seven** continents on Earth:
 
-### The 5 Oceans
-1. **Pacific Ocean** — the largest and deepest.
-2. **Atlantic Ocean** — between Europe/Africa and the Americas.
-3. **Indian Ocean** — south of Asia.
-4. **Southern Ocean** — surrounds Antarctica.
-5. **Arctic Ocean** — the smallest; around the North Pole.
+| Continent | Key Fact |
+|-----------|----------|
+| Africa | the hottest continent, home to lions and elephants |
+| Antarctica | the coldest continent, covered in ice |
+| Asia | the biggest continent |
+| Australia (Oceania) | the smallest continent, known for kangaroos |
+| Europe | where the United Kingdom is |
+| North America | where the USA and Canada are |
+| South America | home to the Amazon Rainforest |
+
+A fun way to remember them: use the first letters — **A, A, A, A, E, N, S**.
+
+### The Five Oceans
+An ocean is a huge body of salt water. There are **five** oceans:
+
+| Ocean | Key Fact |
+|-------|----------|
+| Pacific Ocean | the biggest and deepest ocean |
+| Atlantic Ocean | between Europe/Africa and the Americas |
+| Indian Ocean | south of Asia, warm waters |
+| Southern Ocean | around Antarctica, very cold |
+| Arctic Ocean | around the North Pole, partly frozen |
 
 ### Using a Globe and Atlas
-- A **globe** is a 3D model — spin it to find continents and oceans.
-- An **atlas** has flat maps — use the **contents** or **index** to look up a place.
-- The **equator** divides the Earth into the Northern and Southern Hemispheres.
+A **globe** is a round model of the Earth. It shows us where the continents and oceans are and how they fit together.
 
-## Quick Quiz
-1. How many continents are there? → *7*
-2. Name the largest continent. → *Asia*
-3. How many oceans are there? → *5*
-4. Which ocean is the biggest? → *Pacific Ocean*
+An **atlas** is a book of maps. You can find maps of the whole world, individual continents, or even single countries.
 
-## Geography in the Real World
-Understanding continents and oceans helps us plan travel, learn about different cultures, and understand weather patterns. Sailors, pilots, and explorers all need to know their way around the globe!
+The blue parts on a globe or map show **water** (oceans and seas). The coloured parts show **land** (continents and countries).
+
+## Try It Yourself! ✏️
+
+**Question 1:** How many continents are there?
+<details><summary>Answer</summary>Seven</details>
+
+**Question 2:** Which is the biggest continent?
+<details><summary>Answer</summary>Asia</details>
+
+**Question 3:** Which ocean is the biggest?
+<details><summary>Answer</summary>The Pacific Ocean</details>
+
+**Question 4:** Which continent do we live on in the United Kingdom?
+<details><summary>Answer</summary>Europe</details>
+
+**Question 5:** What is the difference between a globe and an atlas?
+<details><summary>Answer</summary>A globe is a round model of the Earth. An atlas is a book of maps.</details>
+
+## Did You Know? 🌟
+The Pacific Ocean is so big that it covers more area than **all the land on Earth put together**! You could fit all seven continents inside the Pacific Ocean and still have room left over.
 
 ## Learning Checklist
-- [ ] I can name the 7 continents
-- [ ] I can name the 5 oceans
-- [ ] I can find continents and oceans on a globe or atlas
+
+- [ ] I can name the seven continents
+- [ ] I can name the five oceans
+- [ ] I can find continents and oceans on a globe or in an atlas
+- [ ] I know which continent the United Kingdom is in

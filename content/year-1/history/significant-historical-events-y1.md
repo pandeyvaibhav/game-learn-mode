@@ -3,7 +3,7 @@ year: 1
 subject: history
 topic: Significant Historical Events
 slug: significant-historical-events-y1
-key_concepts: [Bonfire Night, Great Fire of London]
+key_concepts: [Bonfire Night, Great Fire of London, sequencing events]
 age_range: "5-6"
 animation: ../../animations/year-1/history/significant-historical-events-y1.html
 ---
@@ -11,77 +11,61 @@ animation: ../../animations/year-1/history/significant-historical-events-y1.html
 # Significant Historical Events — Year 1 History
 
 ## What We're Learning
-You are going to learn about two important events from British history: **Bonfire Night** (the Gunpowder Plot) and the **Great Fire of London**.
+In this lesson you will learn about two important events in British history: **Bonfire Night** and the **Great Fire of London**. You will practise putting events in **order**.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Plot | A secret plan |
-| Parliament | The building where laws are made in London |
-| Gunpowder | An explosive powder |
-| Bonfire Night | 5th November — we remember the Gunpowder Plot |
-| Great Fire | The huge fire that burned much of London in 1666 |
-| Samuel Pepys | A man who wrote about the Great Fire in his diary |
+| event | something that happened |
+| significant | important or special |
+| sequence | put things in the right order |
+| timeline | a line showing events in order |
+| Guy Fawkes | a man who tried to blow up Parliament in 1605 |
+| Great Fire | the huge fire in London in 1666 |
 
 ## Let's Explore
 
-### The Gunpowder Plot (1605)
+### Bonfire Night — 5th November 1605
+1. Guy Fawkes and his friends made a plan to blow up the Houses of Parliament.
+2. They hid barrels of gunpowder under Parliament.
+3. Guards found Guy Fawkes before he could light the gunpowder.
+4. Every year on 5th November, we have bonfires and fireworks to remember this event.
 
-```
-📅 5th November 1605
-```
-
-- A group of men were angry with **King James I**.
-- They made a secret **plot** to blow up the Houses of Parliament.
-- **Guy Fawkes** was found guarding barrels of gunpowder in the cellar.
-- The plot **failed** and Guy Fawkes was arrested.
-- Every year on **5th November** we have bonfires and fireworks to remember.
-
-### The Great Fire of London (1666)
-
-```
-📅 2nd September 1666
-```
-
-- The fire started in a **bakery** on Pudding Lane.
-- It spread quickly because the houses were made of **wood** and very close together.
-- The fire burned for **four days**.
-- About **13,000 houses** were destroyed.
-- **Samuel Pepys** wrote about it in his famous diary.
-- After the fire, houses were rebuilt with **brick and stone** instead of wood.
+### The Great Fire of London — 1666
+1. A small fire started in a bakery on Pudding Lane.
+2. The wind blew the fire from house to house.
+3. The fire burned for **four days**.
+4. Most of London was destroyed, but it was rebuilt with wider streets and stone buildings.
 
 ### Timeline
-
 ```
-1605                          1666
-  |                             |
-  Gunpowder Plot               Great Fire of London
+1605 — Bonfire Night (Guy Fawkes)
+           ↓
+1666 — Great Fire of London
 ```
 
 ## Try It Yourself
 
-1. Who was found with the gunpowder under Parliament?
-2. When is Bonfire Night?
-3. Where did the Great Fire of London start?
-4. Why did the fire spread so quickly?
-5. What were the new houses built with after the fire?
+**1. What did Guy Fawkes try to blow up?**
+<details><summary>Answer</summary>The Houses of Parliament</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Where did the Great Fire of London start?**
+<details><summary>Answer</summary>A bakery on Pudding Lane</details>
 
-1. Guy Fawkes
-2. 5th November
-3. A bakery on Pudding Lane
-4. The houses were made of wood and were very close together
-5. Brick and stone
+**3. How long did the Great Fire burn?**
+<details><summary>Answer</summary>Four days</details>
 
-</details>
+**4. Which event happened first — Bonfire Night or the Great Fire?**
+<details><summary>Answer</summary>Bonfire Night (1605 came before 1666)</details>
 
-## Did You Know? 🏛️
-Samuel Pepys was so worried about the Great Fire reaching his house that he buried his favourite cheese and wine in the garden to keep them safe!
+**5. Why do we have fireworks on 5th November?**
+<details><summary>Answer</summary>To remember the night Guy Fawkes was caught</details>
+
+## Did You Know?
+After the Great Fire, a man named Sir Christopher Wren designed a new St Paul's Cathedral. It took 35 years to build and still stands in London today!
 
 ## Learning Checklist
-- [ ] I can retell the story of the Gunpowder Plot
 - [ ] I know why we celebrate Bonfire Night
 - [ ] I can retell the story of the Great Fire of London
-- [ ] I know how London changed after the fire
+- [ ] I can put events in the correct order
+- [ ] I can use a simple timeline

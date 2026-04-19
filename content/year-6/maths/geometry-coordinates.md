@@ -1,68 +1,75 @@
 ---
 year: 6
 subject: maths
-topic: Geometry & Coordinates
+topic: "Geometry — Coordinates"
 slug: geometry-coordinates
-key_concepts: [coordinates, four quadrants, translation, reflection]
+key_concepts:
+  - four quadrants
+  - plotting coordinates
+  - translation
+  - reflection
 age_range: "10-11"
-animation: ../../animations/year-6/maths/geometry-coordinates.html
+animation: /animations/year-6/maths/geometry-coordinates.html
 ---
 
-# Geometry & Coordinates — Year 6 Maths
-
-## Big Question
-How do we describe position and movement on a coordinate grid?
+# Geometry — Coordinates 🎯
 
 ## What We're Learning
-In this lesson you will learn to plot and read **coordinates** in all **four quadrants**, and describe **translations** and **reflections**.
+In Year 6 we extend coordinates into all four quadrants, including negative numbers. We'll plot points, translate shapes, and reflect them across axes — essential skills for maps, design, and computer graphics.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| coordinate | a pair of numbers (x, y) that describe a position on a grid |
-| x-axis | the horizontal line on a grid |
-| y-axis | the vertical line on a grid |
-| origin | the point (0, 0) where the axes cross |
-| quadrant | one of the four sections of a coordinate grid |
-| translation | sliding a shape to a new position without rotating it |
-| reflection | flipping a shape over a mirror line |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| coordinates | A pair of numbers (x, y) that describe a position on a grid |
+| quadrant | One of the four sections created by the x-axis and y-axis |
+| translation | Sliding a shape to a new position without rotating or flipping it |
+| reflection | Flipping a shape over a mirror line to create a mirror image |
+
+## Let's Explore! 🔍
 
 ### The Four Quadrants
-When the axes extend into negative numbers, the grid has four quadrants:
+The x-axis goes left (−) and right (+). The y-axis goes down (−) and up (+). This creates four quadrants:
+- **Quadrant 1** (top-right): x positive, y positive → e.g. (3, 4)
+- **Quadrant 2** (top-left): x negative, y positive → e.g. (−2, 5)
+- **Quadrant 3** (bottom-left): x negative, y negative → e.g. (−3, −1)
+- **Quadrant 4** (bottom-right): x positive, y negative → e.g. (4, −2)
 
-| Quadrant | x | y | Example |
-|---|---|---|---|
-| 1st (top-right) | + | + | (3, 2) |
-| 2nd (top-left) | − | + | (−4, 1) |
-| 3rd (bottom-left) | − | − | (−2, −3) |
-| 4th (bottom-right) | + | − | (5, −1) |
-
-Remember: x comes first (along the corridor), then y (up the stairs).
+Always read the x-coordinate first: go **along** the corridor, then **up** the stairs.
 
 ### Translation
-A translation moves every point the **same distance** in the same direction:
-- (2, 3) translated 4 right and 1 up → (6, 4)
-- (1, 5) translated 3 left and 2 down → (−2, 3)
+Translation moves every point of a shape the same distance in the same direction. We describe it with a movement in x and y. For example, translating (2, 3) by 4 right and 2 down gives (2 + 4, 3 − 2) = **(6, 1)**.
+
+The shape stays exactly the same size and orientation — it just slides.
 
 ### Reflection
-Reflecting over the **y-axis** changes the sign of x:
-- (3, 2) → (−3, 2)
+To reflect a point across the **y-axis**, change the sign of the x-coordinate: (3, 5) becomes (−3, 5). To reflect across the **x-axis**, change the sign of the y-coordinate: (3, 5) becomes (3, −5).
 
-Reflecting over the **x-axis** changes the sign of y:
-- (3, 2) → (3, −2)
+Each point in the reflected shape is the same distance from the mirror line as the original.
 
-## Quick Quiz
-1. What are the coordinates of the origin? → *(0, 0)*
-2. In which quadrant is (−3, 4)? → *2nd (top-left)*
-3. Translate (1, 2) by 3 right and 2 up. → *(4, 4)*
-4. Reflect (5, 3) in the y-axis. → *(−5, 3)*
+## Try It Yourself! ✏️
 
-## Maths in the Real World
-GPS systems use coordinates to pinpoint locations. Game designers use coordinate grids to position characters. Architects use translation and reflection in building designs.
+**Question 1:** In which quadrant is the point (−4, 6)?
+<details><summary>Answer</summary>Quadrant 2 (top-left) — x is negative, y is positive.</details>
+
+**Question 2:** Plot the points A(1, 3), B(4, 3), C(4, 1), D(1, 1). What shape do they make?
+<details><summary>Answer</summary>A rectangle (3 units wide, 2 units tall).</details>
+
+**Question 3:** Translate the point (−2, 5) by 3 right and 4 down. What are the new coordinates?
+<details><summary>Answer</summary>(−2 + 3, 5 − 4) = (1, 1)</details>
+
+**Question 4:** Reflect the point (5, −3) in the y-axis.
+<details><summary>Answer</summary>(−5, −3)</details>
+
+**Question 5:** A triangle has vertices at (1, 2), (4, 2), and (4, 6). Reflect it in the x-axis. What are the new vertices?
+<details><summary>Answer</summary>(1, −2), (4, −2), and (4, −6)</details>
+
+## Did You Know? 🌟
+The coordinate system was invented by French mathematician René Descartes in the 17th century. Legend says the idea came to him while watching a fly crawl on his ceiling — he realised he could describe its position with two numbers!
 
 ## Learning Checklist
-- [ ] I can plot and read coordinates in all four quadrants
-- [ ] I can describe and perform translations
-- [ ] I can reflect shapes across an axis
+
+- [ ] I can read and plot coordinates in all four quadrants
+- [ ] I can identify which quadrant a point is in
+- [ ] I can translate shapes on a coordinate grid
+- [ ] I can reflect shapes across the x-axis and y-axis

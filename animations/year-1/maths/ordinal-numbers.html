@@ -5,93 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ordinal Numbers — Quiz</title>
 <style>
-  :root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}
-  h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}
-  .subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}
-  .score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}
-  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}
-  .q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}
-  .opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
-  .opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}
-  .opt-btn:hover:not(:disabled){border-color:var(--primary)}
-  .opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-  .opt-btn.correct{border-color:var(--success);background:#166534}
-  .opt-btn.wrong{border-color:var(--error);background:#991b1b}
-  .opt-btn:disabled{cursor:default;opacity:.85}
-  .feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}
-  .feedback.correct-fb{color:var(--success)}
-  .feedback.wrong-fb{color:var(--error)}
-  .next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}
-  .next-btn:hover{opacity:.9}
-  .result{display:none;text-align:center}
-  .result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}
-  .result .stars{font-size:2.5rem;margin:.75rem 0}
-  .result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}
-  .play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}
-  .play-again:hover{opacity:.9}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <h1>Ordinal Numbers</h1>
 <p class="subtitle">Year 1 Maths — Quiz Game</p>
 <div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
-<div class="qa" id="questionArea">
-  <div class="q-text" id="qText"></div>
-  <div class="opts" id="opts"></div>
-  <div class="feedback" id="feedback"></div>
-  <button class="next-btn" id="nextBtn">Next →</button>
-</div>
-<div class="result" id="result">
-  <h2>Quiz Complete!</h2>
-  <div class="stars" id="stars"></div>
-  <div class="score-msg" id="scoreMsg"></div>
-  <button class="play-again" id="playAgain">Play Again</button>
-</div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-(function(){
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-  const qs=[
-    {text:"What is the ordinal number for 1?",answer:"1st",options:["1st","2nd","3rd","1th"]},
-    {text:"If you are 3rd in a line, how many people are in front of you?",answer:"2",options:["1","2","3","0"]},
-    {text:"What ordinal number comes after 5th?",answer:"6th",options:["4th","5th","6th","7th"]},
-    {text:"In a race: cat, dog, frog. Who came 2nd?",answer:"Dog",options:["Cat","Dog","Frog","Nobody"]},
-    {text:"How do you write 'third' as a number?",answer:"3rd",options:["3th","3nd","3rd","3st"]},
-    {text:"There are 8 children. What position is the last child?",answer:"8th",options:["7th","8th","9th","1st"]},
-    {text:"What comes between 4th and 6th?",answer:"5th",options:["3rd","5th","7th","4th"]},
-    {text:"Who is first in this queue? Ali, Bo, Cal",answer:"Ali",options:["Ali","Bo","Cal","Nobody"]},
-    {text:"What is 'second' written as a number?",answer:"2nd",options:["2st","2th","2rd","2nd"]},
-    {text:"If Sam is 7th and Mia is 9th, who is closer to the front?",answer:"Sam",options:["Sam","Mia","They are equal","Cannot tell"]}
-  ];
-  let idx=0,sc=0;
-  const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
-  function show(){
-    fb.textContent='';fb.className='feedback';nextBtn.style.display='none';
-    const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;
-    optsEl.innerHTML='';
-    shuffle([...q.options]).forEach(o=>{
-      const b=document.createElement('button');b.className='opt-btn';b.textContent=o;
-      b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b);
-    });
-  }
-  function pick(btn,chosen,answer){
-    document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
-    if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc;}
-    else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')});}
-    nextBtn.style.display='block';
-  }
-  nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end();});
-  function end(){
-    qaEl.style.display='none';resultEl.style.display='block';
-    const pct=sc/qs.length;
-    document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';
-    document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!';
-  }
-  document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show();});
-  shuffle(qs);show();
-})();
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"What is the ordinal number for position 1?",answer:"1st",options:["1st","2nd","3rd","4th"]},
+{text:"If you are number 3 in a race, you came...",answer:"3rd",options:["1st","2nd","3rd","4th"]},
+{text:"What comes after 4th?",answer:"5th",options:["3rd","5th","6th","4th"]},
+{text:"The person who wins a race finishes...",answer:"1st",options:["1st","2nd","Last","10th"]},
+{text:"What is 2nd another way of saying?",answer:"Second",options:["First","Second","Third","Fourth"]},
+{text:"What position is 7th?",answer:"Seventh",options:["Sixth","Seventh","Eighth","Fifth"]},
+{text:"What comes right before 10th?",answer:"9th",options:["8th","9th","7th","10th"]},
+{text:"If five children line up, who is at the back?",answer:"5th",options:["1st","3rd","4th","5th"]},
+{text:"What ordinal number means position 6?",answer:"6th",options:["5th","6th","7th","8th"]},
+{text:"What comes after 1st?",answer:"2nd",options:["2nd","3rd","4th","1st"]}
+];
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

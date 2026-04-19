@@ -3,7 +3,7 @@ year: 1
 subject: english
 topic: Sentence Writing
 slug: sentence-writing
-key_concepts: [capital letters, full stops, finger spaces]
+key_concepts: [capital letters, full stops, finger spaces, conjunctions]
 age_range: "5-6"
 animation: ../../animations/year-1/english/sentence-writing.html
 ---
@@ -11,83 +11,56 @@ animation: ../../animations/year-1/english/sentence-writing.html
 # Sentence Writing — Year 1 English
 
 ## What We're Learning
-You are going to learn how to write sentences. Every sentence needs a **capital letter** at the start, **finger spaces** between words, and a **full stop** at the end.
+In this lesson you will learn how to write a **sentence**. Every sentence needs a **capital letter** at the start, a **full stop** at the end, and **finger spaces** between words.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Sentence | A group of words that makes sense |
-| Capital letter | A big letter used at the start of a sentence or for names |
-| Full stop | A dot at the end of a sentence (.) |
-| Finger space | A gap between words so we can read them easily |
-| Word | A group of letters with meaning |
-| Question mark | Used at the end of a question (?) |
+| sentence | a group of words that makes sense |
+| capital letter | a big letter at the start (A, B, C) |
+| full stop | a dot at the end of a sentence (.) |
+| finger space | a gap between words so we can read them |
+| conjunction | a joining word like "and" |
 
 ## Let's Explore
 
-### What makes a good sentence?
+### Parts of a Sentence
+**T**he cat sat on the mat **.**
+- ✅ Capital letter at the start (T)
+- ✅ Full stop at the end (.)
+- ✅ Finger spaces between each word
 
-A sentence must:
-1. Start with a **capital letter**
-2. Have **finger spaces** between each word
-3. End with a **full stop** (or ? or !)
-4. **Make sense**
+### Using "and"
+You can join two ideas with **and**:
+- I like apples **and** bananas.
+- The dog ran **and** jumped.
 
-### Example — A good sentence
-
-```
-The cat sat on the mat.
-^                      ^
-capital letter     full stop
-```
-
-### Example — Fixing a bad sentence
-
-❌ `thecatsatonthemat`
-
-What is wrong?
-- No capital letter
-- No spaces
-- No full stop
-
-✅ `The cat sat on the mat.`
-
-### Finger spaces
-Put your finger between each word when you write:
-
-```
-I ☝️ like ☝️ to ☝️ run.
-```
-
-### Capital letters are also used for:
-- Names: **Sam**, **London**
-- The word **I**
-- Days of the week: **Monday**
+### What is NOT a sentence?
+❌ "the cat" — no capital letter, no full stop, does not make sense on its own
+✅ "**T**he cat is fluffy**.**" — this is a sentence!
 
 ## Try It Yourself
 
-1. What goes at the start of every sentence?
-2. What goes at the end of a sentence?
-3. Fix this sentence: `i like dogs`
-4. How many words are in the sentence: "The dog is big."?
-5. Write a sentence about your favourite animal.
+**1. What must go at the start of every sentence?**
+<details><summary>Answer</summary>A capital letter</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. What goes at the end of a sentence?**
+<details><summary>Answer</summary>A full stop</details>
 
-1. A capital letter
-2. A full stop (or question mark or exclamation mark)
-3. I like dogs.
-4. 4 words
-5. (Your own sentence — remember capital letter, finger spaces, full stop!)
+**3. Why do we leave finger spaces?**
+<details><summary>Answer</summary>So we can read the words easily</details>
 
-</details>
+**4. Join these with "and": I have a dog. I have a cat.**
+<details><summary>Answer</summary>I have a dog and a cat.</details>
 
-## Did You Know? 📚
-The shortest sentence in the English language that still makes sense is "I am." or even just "Go!" — just one or two words!
+**5. Fix this sentence: "the sun is hot"**
+<details><summary>Answer</summary>The sun is hot.</details>
+
+## Did You Know?
+The longest sentence ever written in a novel is over 13,000 words long! But at Year 1, short and clear sentences are best.
 
 ## Learning Checklist
-- [ ] I start my sentences with a capital letter
-- [ ] I use finger spaces between words
-- [ ] I end my sentences with a full stop
-- [ ] My sentences make sense
+- [ ] I start every sentence with a capital letter
+- [ ] I end every sentence with a full stop
+- [ ] I leave finger spaces between words
+- [ ] I can use "and" to join ideas

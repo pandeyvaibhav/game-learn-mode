@@ -3,65 +3,75 @@ year: 6
 subject: english
 topic: Narrative Writing
 slug: narrative-writing-y6
-key_concepts: [story structure, characterisation, setting, tension]
+key_concepts:
+  - suspense
+  - characterisation
+  - dialogue
+  - show don't tell
 age_range: "10-11"
-animation: ../../animations/year-6/english/narrative-writing-y6.html
+animation: /animations/year-6/english/narrative-writing-y6.html
 ---
 
-# Narrative Writing — Year 6 English
-
-## Big Question
-How do we write a gripping narrative with well-developed characters and settings?
+# Narrative Writing 🎯
 
 ## What We're Learning
-In this lesson you will learn advanced **story structure**, how to create vivid **characters** and **settings**, and how to build **tension**.
+Year 6 is where your story writing really shines. We'll master advanced techniques like building suspense, developing characters, writing powerful dialogue, and showing emotions through actions instead of just telling the reader how someone feels.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| narrative | a story, real or imagined |
-| characterisation | how a writer reveals a character's personality |
-| setting | where and when a story takes place |
-| tension | a feeling of suspense or excitement in a story |
-| climax | the most exciting or turning point in a story |
-| resolution | how the problem in the story is solved |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| suspense | Creating tension that makes the reader want to keep reading |
+| characterisation | How a writer develops and reveals a character's personality |
+| dialogue | The spoken words between characters in a story |
+| show don't tell | Describing actions and details instead of stating emotions directly |
 
-### Story Structure
-1. **Opening** — introduce character, setting, and hint at the problem.
-2. **Build-up** — develop the situation, increase tension.
-3. **Climax** — the most dramatic moment.
-4. **Resolution** — the problem is solved or the character changes.
-5. **Ending** — reflect, look forward, or leave the reader thinking.
+## Let's Explore! 🔍
 
-### Characterisation Techniques
-- **Show, don't tell**: *She clenched her fists* (not "She was angry").
-- **Dialogue**: reveal personality through what characters say and how.
-- **Actions**: what a character does shows who they are.
-- **Thoughts**: inner monologue reveals feelings.
+### Building Suspense
+Suspense keeps readers on the edge of their seats. Techniques include:
+- **Short sentences** to increase pace: *He stopped. Listened. Nothing.*
+- **Ellipsis** to delay: *Behind the door was…*
+- **Rhetorical questions:** *Was she truly alone?*
+- **Sensory details:** Focus on what the character hears, sees, feels.
+- **Withholding information:** Don't reveal everything at once.
 
-### Creating Settings
-- Use the **five senses**: sight, sound, smell, touch, taste.
-- Use **figurative language**: similes, metaphors, personification.
-- Match the setting's **mood** to the scene (dark forest = danger).
+### Characterisation
+Great characters feel real. Reveal personality through:
+- **Actions:** *She carefully arranged every pencil in order* → shows she's organised or anxious.
+- **Speech:** *"Whatever. Do what you like"* → shows someone is dismissive.
+- **Reactions:** How they respond to events reveals their character.
+- **Appearance:** Small details (a worn-out coat, bitten nails) tell a story.
 
-### Building Tension
-- **Short sentences**: *He stopped. Silence.*
-- **Rhetorical questions**: *What was behind the door?*
-- **Ellipsis**: *The handle turned slowly…*
-- **Contrast**: peace → sudden noise.
+### Show Don't Tell
+Instead of writing "He was scared," **show** the fear:
+*His breath caught. He pressed his back against the wall, heart hammering so loudly he was sure it could be heard on the other side of the door.*
 
-## Quick Quiz
-1. What is the climax of a story? → *The most exciting or turning point*
-2. What does "show, don't tell" mean? → *Describe actions/feelings rather than stating emotions directly*
-3. Name two senses you could use to describe a setting. → *Any two: sight, sound, smell, touch, taste*
-4. How can short sentences build tension? → *They create a quick, urgent pace*
+This lets the reader **feel** the emotion rather than just being told about it.
 
-## English in the Real World
-Authors, screenwriters, and game designers all use narrative structure and tension. Good storytelling skills improve any form of communication.
+## Try It Yourself! ✏️
+
+**Question 1:** Rewrite "She was happy" using show don't tell.
+<details><summary>Answer</summary>A grin spread across her face as she leapt from her chair and punched the air. "Yes!" she whispered under her breath.</details>
+
+**Question 2:** Write two short sentences that create suspense about opening a mysterious box.
+<details><summary>Answer</summary>Example: Her fingers hovered over the clasp. The box was vibrating.</details>
+
+**Question 3:** What does this dialogue tell us about the character? "I don't need anyone's help. I never have."
+<details><summary>Answer</summary>The character is independent, possibly proud or stubborn. They may find it difficult to trust others or accept support.</details>
+
+**Question 4:** Name three ways you can reveal a character's personality without directly stating it.
+<details><summary>Answer</summary>Through their actions, their dialogue (how and what they speak), and their reactions to events or other characters.</details>
+
+**Question 5:** Why are short sentences effective for building suspense?
+<details><summary>Answer</summary>Short sentences speed up the pace, create a punchy rhythm, and make the reader feel urgency or tension — each sentence hits like a heartbeat.</details>
+
+## Did You Know? 🌟
+Author Roald Dahl rewrote the opening of *Charlie and the Chocolate Factory* completely — his first draft began with Charlie's mother, not the chocolate factory. Sometimes the best stories come from rewriting!
 
 ## Learning Checklist
-- [ ] I can plan a story with a clear structure
-- [ ] I can create characters through dialogue, action, and description
-- [ ] I can use techniques to build tension
+
+- [ ] I can build suspense using varied sentence structures
+- [ ] I can develop characters through actions, speech, and reactions
+- [ ] I can write effective dialogue with correct punctuation
+- [ ] I can show emotions through description instead of telling

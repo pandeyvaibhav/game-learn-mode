@@ -1,66 +1,79 @@
 ---
 year: 2
 subject: history
-topic: Great Fire of London
+topic: The Great Fire of London
 slug: great-fire-of-london
-key_concepts: [Samuel Pepys, Pudding Lane, rebuilding London, 1666]
+key_concepts:
+  - "1666"
+  - Samuel Pepys
+  - Thomas Farriner
+  - fire spread
 age_range: "6-7"
-animation: ../../animations/year-2/history/great-fire-of-london.html
+animation: /animations/year-2/history/great-fire-of-london.html
 ---
 
-# Great Fire of London — Year 2 History
-
-## Big Question
-What happened during the Great Fire of London and why is it important?
+# The Great Fire of London 🎯
 
 ## What We're Learning
-In this lesson you will learn about the **Great Fire of London** in **1666**: where it started, how it spread, who recorded it, and what changed afterwards.
+We are learning about the Great Fire of London, which happened in 1666. We will find out how the fire started, why it spread so quickly, and how London changed after the fire.
 
-## Key History Words
-| Word | What it means |
-|---|---|
-| Great Fire of London | a huge fire that burned much of London in 1666 |
-| Pudding Lane | the street where the fire started, in a bakery |
-| Samuel Pepys | a man who wrote a diary describing the fire |
-| timber | wood used to build houses |
-| firefighter | someone who puts out fires |
-| rebuild | to build again after destruction |
+## Key Words
 
-## The History Explained
+| Word | Meaning |
+|------|---------|
+| Pudding Lane | the street where the fire started |
+| Samuel Pepys | a man who wrote a diary about the fire |
+| Thomas Farriner | the baker whose bakery was where the fire began |
+| fire break | a gap made by pulling down buildings to stop fire spreading |
 
-### When and Where
-- **Date**: Sunday 2 September 1666
-- **Where it started**: Thomas Farriner's bakery on **Pudding Lane**
-- **How long it burned**: about 4 days
+## Let's Explore! 🔍
 
-### Why Did It Spread So Fast?
-1. Houses were made of **timber** (wood) — they burned easily.
-2. Houses were built very **close together**.
-3. A strong **wind** blew the flames from building to building.
-4. There were no **fire engines** — people used buckets and hand pumps.
+### How Did the Fire Start?
+In the early hours of **Sunday 2nd September 1666**, a fire started in a bakery on **Pudding Lane**. The bakery belonged to **Thomas Farriner**, the King's baker.
 
-### Samuel Pepys
-Samuel Pepys kept a **diary**. He wrote about what he saw:
-> *"…the fire was so great, I could not bear to stay and watch…"*
+Nobody is sure exactly how it started, but it was probably a spark from the oven that set fire to some firewood.
 
-His diary is one of the best records we have of the fire.
+### Why Did the Fire Spread?
+The fire spread very quickly for several reasons:
+
+- **Wooden buildings** — Most houses in London were made of wood and were close together.
+- **Thatched roofs** — Straw roofs caught fire easily.
+- **Narrow streets** — Buildings were so close that flames could jump from one to another.
+- **Strong wind** — A wind blew the flames from house to house.
+- **Dry summer** — There had been very little rain, so everything was dry.
+
+### How Was the Fire Stopped?
+The fire burned for **four days**. King Charles II ordered buildings to be pulled down to create **fire breaks** — gaps that the fire could not cross. Eventually, the wind died down and the fire was stopped.
 
 ### What Changed After the Fire?
-- New houses were built with **brick and stone** instead of wood.
-- Streets were made **wider** so fire could not jump across.
-- A fire **insurance** system began.
-- The **Monument** was built near Pudding Lane to remember the fire.
+- **Samuel Pepys** wrote about the fire in his diary, which is why we know so much about it today.
+- New buildings were made from **stone and brick** instead of wood.
+- Streets were made **wider**.
+- A better fire service was set up.
 
-## Quick Quiz
-1. In which year did the Great Fire happen? → *1666*
-2. Where did the fire start? → *A bakery on Pudding Lane*
-3. Who kept a famous diary about the fire? → *Samuel Pepys*
-4. What material were the old houses made from? → *Timber (wood)*
+## Try It Yourself! ✏️
 
-## History in the Real World
-The Great Fire changed how cities are built. Today we have fire services, building regulations, and fire-resistant materials — all lessons learned from 1666.
+**Question 1:** In which year did the Great Fire of London happen?
+<details><summary>Answer</summary>1666</details>
+
+**Question 2:** On which street did the fire start?
+<details><summary>Answer</summary>Pudding Lane</details>
+
+**Question 3:** Name two reasons why the fire spread so quickly.
+<details><summary>Answer</summary>Any two from: wooden buildings, thatched roofs, narrow streets, strong wind, dry weather</details>
+
+**Question 4:** Who wrote a famous diary about the fire?
+<details><summary>Answer</summary>Samuel Pepys</details>
+
+**Question 5:** How were buildings different after the fire?
+<details><summary>Answer</summary>They were built from stone and brick instead of wood, and streets were made wider.</details>
+
+## Did You Know? 🌟
+The fire destroyed over **13,000 houses** and **87 churches**, including the old St Paul's Cathedral. But amazingly, very few people are known to have died in the fire — probably fewer than 10.
 
 ## Learning Checklist
-- [ ] I know when and where the Great Fire started
+
+- [ ] I know when and where the Great Fire of London started
 - [ ] I can explain why the fire spread so quickly
-- [ ] I know what changed in London after the fire
+- [ ] I know who Samuel Pepys was and why his diary is important
+- [ ] I can describe how London changed after the fire

@@ -3,75 +3,67 @@ year: 4
 subject: maths
 topic: Place Value to 10,000
 slug: place-value-10000
-key_concepts: [thousands, hundreds, tens, ones, comparing, ordering]
+key_concepts:
+  - thousands
+  - hundreds
+  - tens
+  - ones
+  - ordering numbers
 age_range: "8-9"
-animation: ../../animations/year-4/maths/place-value-10000.html
+animation: /animations/year-4/maths/place-value-10000.html
 ---
 
-# Place Value to 10,000 — Year 4 Maths
-
-## Big Question
-How do we read, write, compare, and order numbers up to 10,000?
+# Place Value to 10,000 🎯
 
 ## What We're Learning
-In this lesson you will learn how each digit in a number up to **10,000** has a different value depending on its position. You will also learn to **compare** and **order** numbers.
+We are learning how to read, write and understand numbers up to 10,000. You'll discover what each digit in a number is worth depending on its position, and how to compare and order larger numbers.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| place value | the value of a digit depending on where it is |
-| thousands (Th) | the column worth 1,000 |
-| hundreds (H) | the column worth 100 |
-| tens (T) | the column worth 10 |
-| ones (O) | the column worth 1 |
-| compare | check which number is bigger or smaller |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| place value | The value of a digit depending on its position in a number |
+| thousands | The digit in the fourth column, worth groups of 1,000 |
+| partition | Breaking a number into its thousands, hundreds, tens and ones |
+| compare | Deciding which number is greater, smaller or equal |
 
-### Reading Place Value
-In the number **3,527**:
+## Let's Explore! 🔍
 
-| Th | H | T | O |
-|---|---|---|---|
-| 3 | 5 | 2 | 7 |
+### Understanding Thousands
+When we count past 999, we reach 1,000 — one thousand. The digit in the thousands column tells us how many groups of one thousand we have. For example, in the number 3,472 the digit 3 is worth 3,000.
 
-- 3 thousands = **3,000**
-- 5 hundreds = **500**
-- 2 tens = **20**
-- 7 ones = **7**
-- Total: 3,000 + 500 + 20 + 7 = **3,527**
+### Partitioning Numbers
+We can break any number into its parts. The number 6,185 can be partitioned as:
+- **6,000** + **100** + **80** + **5**
 
-### Comparing Numbers
-Use **>** (greater than), **<** (less than), **=** (equal to).
-1. Compare the **thousands** digit first.
-2. If the same, compare **hundreds**, then **tens**, then **ones**.
+This helps us understand exactly what each digit represents. The 6 is worth six thousand, the 1 is worth one hundred, the 8 is worth eighty, and the 5 is worth five.
 
-Example: 4,312 ? 4,289
-- Thousands: both 4 → same
-- Hundreds: 3 vs 2 → 3 > 2
-- So **4,312 > 4,289**
+### Comparing and Ordering
+To compare numbers, start with the largest place value column (thousands) and work right. For example, 4,321 is greater than 3,987 because 4 thousands is more than 3 thousands. We use the symbols **>** (greater than), **<** (less than) and **=** (equal to).
 
-### Ordering Numbers
-Put numbers in order from **smallest to largest** (ascending) or **largest to smallest** (descending).
+## Try It Yourself! ✏️
 
-Example (ascending): 2,145 → 3,008 → 3,120 → 5,999
+**Question 1:** What is the value of the digit 7 in 7,234?
+<details><summary>Answer</summary>7,000 (seven thousand)</details>
 
-### Rounding
-- Round to the nearest **10**: look at the ones digit.
-- Round to the nearest **100**: look at the tens digit.
-- Round to the nearest **1,000**: look at the hundreds digit.
-- If it's 5 or more, round **up**. Less than 5, round **down**.
+**Question 2:** Partition the number 5,609 into thousands, hundreds, tens and ones.
+<details><summary>Answer</summary>5,000 + 600 + 0 + 9</details>
 
-## Quick Quiz
-1. What is the value of the 6 in 6,482? → *6,000*
-2. Which is greater: 3,750 or 3,705? → *3,750*
-3. Round 4,567 to the nearest 1,000. → *5,000*
-4. Write 2,000 + 400 + 30 + 8 as one number. → *2,438*
+**Question 3:** Which is greater: 4,501 or 4,489?
+<details><summary>Answer</summary>4,501 is greater. Both have 4 thousands, but 5 hundreds is more than 4 hundreds.</details>
 
-## Maths in the Real World
-Place value is used whenever we deal with money, distances, and large populations. Understanding it makes mental arithmetic much easier.
+**Question 4:** Write these numbers in order from smallest to largest: 3,210 — 2,980 — 3,120
+<details><summary>Answer</summary>2,980, 3,120, 3,210</details>
+
+**Question 5:** What number is 100 more than 6,900?
+<details><summary>Answer</summary>7,000</details>
+
+## Did You Know? 🌟
+The ancient Egyptians used a picture of a lotus flower to represent 1,000. Imagine drawing a thousand lotus flowers to write 1,000,000!
 
 ## Learning Checklist
-- [ ] I can identify the value of each digit in a 4-digit number
-- [ ] I can compare numbers using > < =
-- [ ] I can round numbers to the nearest 10, 100, and 1,000
+
+- [ ] I can read and write numbers up to 10,000
+- [ ] I can say what each digit is worth in a four-digit number
+- [ ] I can partition numbers into thousands, hundreds, tens and ones
+- [ ] I can compare and order numbers up to 10,000

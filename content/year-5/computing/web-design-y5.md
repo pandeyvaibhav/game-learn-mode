@@ -3,81 +3,63 @@ year: 5
 subject: computing
 topic: Web Design
 slug: web-design-y5
-key_concepts: [HTML basics, web pages, content, layout]
+key_concepts:
+  - HTML basics
+  - web pages
+  - hyperlinks
+  - content structure
 age_range: "9-10"
-animation: ../../animations/year-5/computing/web-design-y5.html
+animation: /animations/year-5/computing/web-design-y5.html
 ---
 
-# Web Design — Year 5 Computing
-
-## Big Question
-How are web pages made and what is HTML?
+# Web Design 🎯
 
 ## What We're Learning
-In this lesson you will learn the basics of **HTML**, how web pages are structured with **tags**, and how **content** and **layout** work together.
+We're learning the basics of how web pages are built. You'll discover what HTML is, how web pages are structured with headings, paragraphs and images, how hyperlinks connect pages together, and how to plan and organise content for a simple website.
 
-## Key Computing Words
-| Word | What it means |
-|---|---|
-| HTML | HyperText Markup Language — the code used to build web pages |
-| tag | a code instruction wrapped in angle brackets, e.g. `<h1>` |
-| element | an opening tag, content, and closing tag together |
-| heading | a title on a web page, written with `<h1>` to `<h6>` |
-| paragraph | a block of text, written with `<p>` |
-| attribute | extra information inside a tag (e.g. `src` in an image tag) |
+## Key Words
 
-## The Computing Explained
+| Word | Meaning |
+|------|---------|
+| HTML | HyperText Markup Language — the code used to create the structure of web pages |
+| web page | A single document on the internet, viewed in a web browser |
+| hyperlink | A clickable link that takes you to another web page or a different part of the same page |
+| tag | A piece of HTML code that tells the browser how to display content, e.g. &lt;h1&gt; for a heading |
+
+## Let's Explore! 🔍
 
 ### What Is HTML?
-HTML is the language that **every web page** is built with. Your browser reads HTML and displays it as text, images, and links.
+HTML stands for HyperText Markup Language. It is the language used to create the structure of every web page you visit. HTML uses tags — special instructions wrapped in angle brackets — to tell the browser what each piece of content is. For example, `<h1>` marks a main heading, `<p>` marks a paragraph, and `<img>` places an image. You don't see the tags on the finished page — the browser reads them and displays the content correctly.
 
-### Basic Structure
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Page</title>
-  </head>
-  <body>
-    <h1>Welcome!</h1>
-    <p>This is my first web page.</p>
-  </body>
-</html>
-```
+### Structuring a Web Page
+Every HTML page has a basic structure. It starts with `<html>`, then has a `<head>` section (for the page title and settings) and a `<body>` section (for everything the visitor sees). Inside the body, you organise content using headings (`<h1>` to `<h6>`), paragraphs (`<p>`), lists (`<ul>` or `<ol>`) and images (`<img>`). Good structure makes a page easy to read and navigate.
 
-### Common Tags
-| Tag | What it does |
-|---|---|
-| `<h1>` to `<h6>` | Headings (h1 = biggest) |
-| `<p>` | Paragraph of text |
-| `<img>` | Displays an image |
-| `<a>` | Creates a link to another page |
-| `<ul>` / `<li>` | Bulleted list |
-| `<strong>` | Bold text |
+### Hyperlinks
+Hyperlinks are what make the web a "web." They connect pages together so visitors can click and move between them. In HTML, you create a link with the `<a>` tag: `<a href="about.html">About Us</a>`. The `href` attribute tells the browser where to go. Links can point to other pages on your site, to external websites, or even to a different section on the same page.
 
-### How Tags Work
-Every tag has an **opening** and a **closing** tag:
-```html
-<p>Hello world</p>
-```
-Some tags are self-closing: `<img src="photo.jpg" />`
+## Try It Yourself! ✏️
 
-### Planning a Web Page
-1. Decide on the **purpose** — what is the page about?
-2. Plan the **layout** — headings, paragraphs, images.
-3. Write the **HTML**.
-4. **Test** in a browser.
+**Question 1:** What does HTML stand for?
+<details><summary>Answer</summary>HyperText Markup Language.</details>
 
-## Quick Quiz
-1. What does HTML stand for? → *HyperText Markup Language*
-2. Which tag makes the biggest heading? → *`<h1>`*
-3. What does the `<p>` tag do? → *Creates a paragraph of text*
-4. What is an attribute? → *Extra information inside a tag*
+**Question 2:** Which HTML tag would you use for a main heading?
+<details><summary>Answer</summary>&lt;h1&gt;</details>
 
-## Computing in the Real World
-Every website you visit is built with HTML. Web developers use HTML alongside CSS (for styling) and JavaScript (for interactivity) to create the sites and apps you use every day.
+**Question 3:** What is the purpose of the &lt;body&gt; section in an HTML page?
+<details><summary>Answer</summary>It contains all the content that visitors see on the web page — text, images, links, etc.</details>
+
+**Question 4:** How do you create a hyperlink in HTML?
+<details><summary>Answer</summary>Using the &lt;a&gt; tag with an href attribute, e.g. &lt;a href="page.html"&gt;Click here&lt;/a&gt;.</details>
+
+**Question 5:** Why is it important to structure a web page with headings and paragraphs?
+<details><summary>Answer</summary>Good structure makes the page easy to read, helps visitors find information quickly, and makes the site accessible to everyone.</details>
+
+## Did You Know? 🌟
+The very first website ever made is still online! It was created by Tim Berners-Lee in 1991 at CERN in Switzerland and explained what the World Wide Web was. You can still visit it today.
 
 ## Learning Checklist
-- [ ] I can explain what HTML is and why it is used
-- [ ] I can identify common HTML tags
-- [ ] I can plan and describe the structure of a simple web page
+
+- [ ] I can explain what HTML is and what it is used for
+- [ ] I can identify common HTML tags like &lt;h1&gt;, &lt;p&gt; and &lt;img&gt;
+- [ ] I can create a hyperlink using the &lt;a&gt; tag
+- [ ] I can plan and structure content for a simple web page

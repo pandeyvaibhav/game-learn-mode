@@ -1,94 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Rivers — Year 4 Geography | Game Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rivers — Quiz</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0f172a;--surface:#1e293b;--surface2:#273344;--border:rgba(148,163,184,.15);--primary:#fbbf24;--accent:#38bdf8;--success:#34d399;--error:#f87171;--text:#e2e8f0;--text-muted:#94a3b8;--radius:16px;--radius-sm:8px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem}
-header{text-align:center;max-width:640px;width:100%}
-.tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-.subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-.card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-.diff-row{display:flex;gap:.4rem;justify-content:center;margin-bottom:1rem}
-.diff-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.35rem .8rem;font-size:.8rem;cursor:pointer;color:var(--text)}
-.diff-btn.active{border-color:var(--primary);color:var(--primary);font-weight:700}
-.q-text{font-size:.95rem;font-weight:600;text-align:center;margin-bottom:.5rem}
-.num-row{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;cursor:pointer;color:var(--text);min-width:100px;text-align:center}
-.opt-btn:hover{border-color:var(--accent)}
-.score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-top:.5rem}.score-bar span{color:var(--primary);font-weight:700}
-.fb{text-align:center;font-size:.95rem;min-height:1.2em;margin-top:.5rem;font-weight:600}
-.new-btn{display:block;margin:.5rem auto 0;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.4rem 1rem;color:var(--text);font-size:.85rem;cursor:pointer}
-@media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--primary:#818cf8;--accent:#38bdf8;--success:#4ade80;--error:#f87171;--text:#f1f5f9;--text-muted:#94a3b8;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;font-size:var(--child-font-base);line-height:1.5}h1{font-size:1.6rem;margin-bottom:.25rem;text-align:center;color:var(--primary)}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;font-size:1rem}.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1.25rem;margin-bottom:1.5rem;font-size:1rem;display:flex;gap:1rem;justify-content:center}.qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:540px}.q-text{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;text-align:center;min-height:2.5em;display:flex;align-items:center;justify-content:center}.opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}.opt-btn{min-height:var(--tap-primary);border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;justify-content:center;padding:.5rem;text-align:center}.opt-btn:hover:not(:disabled){border-color:var(--primary)}.opt-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.opt-btn.correct{border-color:var(--success);background:#166534}.opt-btn.wrong{border-color:var(--error);background:#991b1b}.opt-btn:disabled{cursor:default;opacity:.85}.feedback{text-align:center;font-size:1.1rem;font-weight:600;min-height:1.5em;margin-bottom:.75rem}.feedback.correct-fb{color:var(--success)}.feedback.wrong-fb{color:var(--error)}.next-btn{display:none;margin:0 auto;min-height:var(--tap-min);padding:.5rem 2rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1.05rem;font-weight:600;cursor:pointer}.next-btn:hover{opacity:.9}.result{display:none;text-align:center}.result h2{font-size:1.5rem;color:var(--primary);margin-bottom:.5rem}.result .stars{font-size:2.5rem;margin:.75rem 0}.result .score-msg{font-size:1.15rem;margin-bottom:1.25rem}.play-again{min-height:var(--tap-primary);padding:.6rem 2.5rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;font-size:1.1rem;font-weight:700;cursor:pointer}.play-again:hover{opacity:.9}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="tag">Year 4 · Geography</p>
 <h1>Rivers</h1>
-<p class="subtitle">From source to mouth!</p>
-</header>
-
-<div class="card">
-<p class="card-title">Rivers Quiz</p>
-<div class="diff-row">
-<button class="diff-btn active" data-d="1">Easy</button>
-<button class="diff-btn" data-d="2">Medium</button>
-<button class="diff-btn" data-d="3">Hard</button>
-</div>
-<p class="q-text" id="qTxt"></p>
-<div class="num-row" id="opts"></div>
-<p class="fb" id="fb" aria-live="polite"></p>
-<div class="score-bar">Score: <span id="sc">0</span></div>
-<button class="new-btn" id="next">Next</button>
-</div>
-
+<p class="subtitle">Year 4 Geography — Quiz Game</p>
+<div class="score-bar">Question <span id="qNum">1</span>/10 &nbsp;|&nbsp; Score <span id="score">0</span></div>
+<div class="qa" id="questionArea"><div class="q-text" id="qText"></div><div class="opts" id="opts"></div><div class="feedback" id="feedback"></div><button class="next-btn" id="nextBtn">Next →</button></div>
+<div class="result" id="result"><h2>Quiz Complete!</h2><div class="stars" id="stars"></div><div class="score-msg" id="scoreMsg"></div><button class="play-again" id="playAgain">Play Again</button></div>
 <script>
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var E=[
-{q:'What is the source of a river?',ans:'Where it begins',opts:['Where it begins','Where it meets the sea','A type of fish']},
-{q:'What is the mouth of a river?',ans:'Where it meets the sea',opts:['Where it meets the sea','Where it begins','The deepest part']},
-{q:'What is a tributary?',ans:'A smaller river joining a larger one',opts:['A smaller river joining a larger one','A waterfall','A lake']},
-{q:'What is erosion?',ans:'Water wearing away rock and soil',opts:['Water wearing away rock and soil','Water freezing','Fish swimming']}
+(function(){function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const qs=[
+{text:"What is the source of a river?",answer:"The place where a river begins, often in hills or mountains",options:["The place where a river begins, often in hills or mountains","Where the river meets the sea","The widest part of the river","A lake in the middle of the river"]},
+{text:"What is the mouth of a river?",answer:"Where the river flows into the sea or a lake",options:["Where the river flows into the sea or a lake","Where the river starts","The deepest point","A waterfall"]},
+{text:"What is a tributary?",answer:"A smaller river that flows into a larger one",options:["A smaller river that flows into a larger one","A type of bridge","A waterfall","The bank of a river"]},
+{text:"What is erosion?",answer:"The wearing away of rock and soil by water",options:["The wearing away of rock and soil by water","Building a dam","Planting trees by a river","Fishing in a river"]},
+{text:"What is a meander?",answer:"A bend in a river",options:["A bend in a river","A straight stretch of river","A waterfall","A lake"]},
+{text:"What is the longest river in the UK?",answer:"The River Severn",options:["The River Severn","The River Thames","The River Trent","The River Mersey"]},
+{text:"What is deposition?",answer:"When a river drops the material it is carrying",options:["When a river drops the material it is carrying","When a river flows faster","When it rains heavily","When a river dries up"]},
+{text:"What is a floodplain?",answer:"The flat area of land either side of a river that may flood",options:["The flat area of land either side of a river that may flood","A plan for preventing floods","A type of boat","The source of a river"]},
+{text:"What is a waterfall?",answer:"Where water flows over a steep drop in the river bed",options:["Where water flows over a steep drop in the river bed","Where two rivers meet","The mouth of a river","A type of dam"]},
+{text:"Why do many towns and cities grow near rivers?",answer:"Rivers provide water, transport and fertile land",options:["Rivers provide water, transport and fertile land","Rivers are beautiful","There are no other places to build","Rivers are always warm"]}
 ];
-var M=[
-{q:'What is a meander?',ans:'A bend in a river',opts:['A bend in a river','A straight section','A waterfall']},
-{q:'What is deposition?',ans:'A river dropping material it carried',opts:['A river dropping material it carried','Water evaporating','Rocks falling in']},
-{q:'In the upper course a river is…',ans:'Fast and steep',opts:['Fast and steep','Wide and slow','Frozen']},
-{q:'What is the longest river in the UK?',ans:'The Severn',opts:['The Severn','The Thames','The Trent']}
-];
-var H=[
-{q:'A floodplain forms because…',ans:'The river deposits sediment on flat land',opts:['The river deposits sediment on flat land','Rain falls only there','Trees block the water']},
-{q:'Meanders form because the river erodes…',ans:'The outer bank and deposits on the inner bank',opts:['The outer bank and deposits on the inner bank','Both banks equally','Only the riverbed']},
-{q:'An estuary is…',ans:'Where a river widens as it meets the sea',opts:['Where a river widens as it meets the sea','A mountain lake','The fastest part of a river']},
-{q:'Which river flows through London?',ans:'The Thames',opts:['The Thames','The Severn','The Trent']}
-];
-var BANKS={1:E,2:M,3:H};var diff=1,sc=0;
-document.querySelectorAll('.diff-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.diff-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');diff=parseInt(b.dataset.d);newQ();});});
-var pool,idx;function reset(){pool=shuffle(BANKS[diff]);idx=0;}reset();
-function newQ(){
-  reset();var q=pool[idx%pool.length];idx++;
-  document.getElementById('qTxt').textContent=q.q;
-  document.getElementById('fb').textContent='';
-  var opts=document.getElementById('opts');opts.innerHTML='';
-  shuffle(q.opts).forEach(function(o){
-    var btn=document.createElement('button');btn.className='opt-btn';btn.textContent=o;
-    btn.addEventListener('click',function(){
-      opts.querySelectorAll('.opt-btn').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});
-      btn.style.opacity='1';
-      if(o===q.ans){btn.style.borderColor='var(--success)';btn.classList.add('bounce');sc++;document.getElementById('sc').textContent=sc;document.getElementById('fb').textContent='✓ '+q.ans+'!';document.getElementById('fb').style.color='var(--success)';}
-      else{btn.style.borderColor='var(--error)';btn.classList.add('shake');document.getElementById('fb').textContent='✗ '+q.ans;document.getElementById('fb').style.color='var(--error)';}
-    });opts.appendChild(btn);
-  });
-}
-document.getElementById('next').addEventListener('click',newQ);newQ();
+let idx=0,sc=0;const qNum=document.getElementById('qNum'),scEl=document.getElementById('score'),qText=document.getElementById('qText'),optsEl=document.getElementById('opts'),fb=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),resultEl=document.getElementById('result'),qaEl=document.getElementById('questionArea');
+function show(){fb.textContent='';fb.className='feedback';nextBtn.style.display='none';const q=qs[idx];qNum.textContent=idx+1;qText.textContent=q.text;optsEl.innerHTML='';shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.className='opt-btn';b.textContent=o;b.addEventListener('click',()=>pick(b,o,q.answer));optsEl.appendChild(b)})}
+function pick(btn,chosen,answer){document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);if(chosen===answer){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='feedback correct-fb';sc++;scEl.textContent=sc}else{btn.classList.add('wrong');fb.textContent='✗ The answer is '+answer;fb.className='feedback wrong-fb';document.querySelectorAll('.opt-btn').forEach(b=>{if(b.textContent===answer)b.classList.add('correct')})}nextBtn.style.display='block'}
+nextBtn.addEventListener('click',()=>{idx++;if(idx<qs.length)show();else end()});
+function end(){qaEl.style.display='none';resultEl.style.display='block';const pct=sc/qs.length;document.getElementById('stars').textContent=pct>=.8?'⭐⭐⭐':pct>=.5?'⭐⭐':'⭐';document.getElementById('scoreMsg').textContent='You got '+sc+' out of '+qs.length+'!'}
+document.getElementById('playAgain').addEventListener('click',()=>{idx=0;sc=0;scEl.textContent='0';qaEl.style.display='';resultEl.style.display='none';shuffle(qs);show()});shuffle(qs);show()})();
 </script>
 </body>
 </html>

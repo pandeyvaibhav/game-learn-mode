@@ -3,7 +3,7 @@ year: 1
 subject: science
 topic: Seasonal Changes
 slug: seasonal-changes
-key_concepts: [four seasons, daylight hours, weather]
+key_concepts: [four seasons, daylight hours, weather patterns]
 age_range: "5-6"
 animation: ../../animations/year-1/science/seasonal-changes.html
 ---
@@ -11,74 +11,54 @@ animation: ../../animations/year-1/science/seasonal-changes.html
 # Seasonal Changes — Year 1 Science
 
 ## What We're Learning
-You are going to learn about the four seasons and how the weather and daylight change throughout the year.
+In this lesson you will learn about the **four seasons** and how the weather and daylight change throughout the year.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Season | A time of year with its own weather pattern |
-| Spring | The season after winter when things start to grow |
-| Summer | The warmest season with the longest days |
-| Autumn | The season when leaves fall and days get shorter |
-| Winter | The coldest season with the shortest days |
-| Daylight | The hours of light during the day |
+| season | a time of year with its own weather |
+| spring | the season when plants start to grow (March–May) |
+| summer | the warmest season (June–August) |
+| autumn | when leaves fall (September–November) |
+| winter | the coldest season (December–February) |
+| daylight | the time when it is light outside |
 
 ## Let's Explore
 
-### The four seasons
-
-```
-🌸 Spring → ☀️ Summer → 🍂 Autumn → ❄️ Winter → 🌸 Spring ...
-```
-
-The seasons repeat every year in the same order.
-
-### What happens in each season?
-
-| Season | Weather | Nature | Daylight |
+### The Four Seasons
+| Season | Weather | Daylight | What Happens |
 |---|---|---|---|
-| Spring 🌸 | Getting warmer, showers | Flowers bloom, baby animals born | Getting longer |
-| Summer ☀️ | Warm and sunny | Trees full of green leaves | Longest days |
-| Autumn 🍂 | Getting cooler, windy | Leaves change colour and fall | Getting shorter |
-| Winter ❄️ | Cold, frost, snow | Trees bare, animals hibernate | Shortest days |
+| 🌸 Spring | Warmer, rainy | Getting longer | Flowers bloom, lambs are born |
+| ☀️ Summer | Hot, sunny | Longest days | Long days, holidays |
+| 🍂 Autumn | Cooler, windy | Getting shorter | Leaves change colour and fall |
+| ❄️ Winter | Cold, frosty | Shortest days | Some animals hibernate |
 
-### Daylight hours
-In summer, the sun rises early and sets late — there is lots of daylight.
-In winter, the sun rises late and sets early — there is less daylight.
-
-```
-Summer:  ☀️ ☀️ ☀️ ☀️ ☀️ ☀️ ☀️ ☀️ (long day)
-Winter:  ☀️ ☀️ ☀️ ☀️ (short day)
-```
-
-### Example — What season is it?
-The leaves are falling off the trees and it is getting windy.
-It is **autumn**.
+### Daylight Hours
+In **summer**, days are very long — it is light until bedtime!
+In **winter**, it gets dark early — you might go home from school in the dark.
 
 ## Try It Yourself
 
-1. Name the four seasons in order starting with spring.
-2. Which season has the longest days?
-3. What happens to the trees in autumn?
-4. In which season might you see snow?
-5. Is it light for longer in summer or winter?
+**1. How many seasons are there?**
+<details><summary>Answer</summary>4</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Which season is the coldest?**
+<details><summary>Answer</summary>Winter</details>
 
-1. Spring, summer, autumn, winter
-2. Summer
-3. Their leaves change colour and fall off
-4. Winter
-5. Summer
+**3. In which season do leaves change colour and fall?**
+<details><summary>Answer</summary>Autumn</details>
 
-</details>
+**4. Are the days longer in summer or winter?**
+<details><summary>Answer</summary>Summer</details>
 
-## Did You Know? 🔬
-Some animals sleep through the whole winter! This is called hibernation. Hedgehogs, dormice and some bats all hibernate to save energy when it is cold and food is hard to find.
+**5. Which season comes after winter?**
+<details><summary>Answer</summary>Spring</details>
+
+## Did You Know?
+In some countries near the North Pole, the sun does not set at all during the middle of summer! This is called the "midnight sun."
 
 ## Learning Checklist
 - [ ] I can name the four seasons in order
-- [ ] I know what the weather is like in each season
-- [ ] I understand that daylight hours change with the seasons
-- [ ] I can describe what happens in nature in each season
+- [ ] I know which season is hottest and coldest
+- [ ] I understand that daylight hours change
+- [ ] I can describe the weather in each season

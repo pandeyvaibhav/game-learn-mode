@@ -3,57 +3,84 @@ year: 2
 subject: english
 topic: Reading Fiction
 slug: reading-fiction-y2
-key_concepts: [predicting, sequencing, character feelings, favourite words]
+key_concepts:
+  - story structure
+  - prediction
+  - inference
 age_range: "6-7"
-animation: ../../animations/year-2/english/reading-fiction-y2.html
+animation: /animations/year-2/english/reading-fiction-y2.html
 ---
 
-# Reading Fiction — Year 2 English
-
-## Big Question
-How can we understand and enjoy stories we read?
+# Reading Fiction 🎯
 
 ## What We're Learning
-In this lesson you will learn skills that make reading fiction more fun and meaningful: **predicting** what might happen next, **sequencing** events, understanding how **characters feel**, and finding favourite words.
+We are learning how to enjoy and understand fiction stories. Fiction means stories that are made up. We will learn about how stories are put together, how to guess what might happen next, and how to work out how characters are feeling.
 
-## Key English Words
-| Word | What it means |
-|---|---|
+## Key Words
+
+| Word | Meaning |
+|------|---------|
 | fiction | a story that is made up (not real) |
-| predict | guess what will happen next using clues |
-| sequence | the order events happen in a story |
-| character | a person or animal in the story |
-| feeling | an emotion — happy, sad, scared, excited |
-| author | the person who wrote the story |
+| prediction | a sensible guess about what will happen next |
+| inference | working out something the author hasn't said directly |
+| character | a person or animal in a story |
 
-## The English Explained
+## Let's Explore! 🔍
 
-### Predicting
-Before you turn the page, stop and think: *What might happen next?* Use clues from the words and pictures.
+### Story Structure
+Most stories have three main parts:
 
-### Sequencing
-Stories happen in order — **first**, **then**, **next**, **finally**. Retelling a story in the right order shows you understood it.
+1. **Beginning** — We meet the characters and find out where the story takes place (the setting).
+2. **Middle** — A problem happens and the characters try to solve it.
+3. **End** — The problem is solved and the story finishes.
 
-### Character Feelings
-Look for clues about how characters feel:
-- "Mia smiled and jumped up and down." → **happy / excited**
-- "Tom's eyes were wide and he hid behind the door." → **scared**
+```
+Beginning → Middle → End
+  (Who?      (What       (How is it
+   Where?)    goes         sorted
+              wrong?)      out?)
+```
 
-### Favourite Words and Phrases
-Authors choose words carefully:
-- "The dragon **roared** so loudly the castle **trembled**."
-The words *roared* and *trembled* make the story exciting!
+### Making Predictions
+A prediction is a clever guess about what might happen next. Good readers use **clues** in the story and **pictures** to predict.
 
-## Quick Quiz
-1. What does "predict" mean? → *Guess what will happen next*
-2. What is the correct order: first, finally, next, then? → *First, then, next, finally*
-3. If a character is "trembling and hiding", how do they feel? → *Scared*
-4. What is fiction? → *A made-up story*
+For example, if a story says "Dark clouds filled the sky and the wind began to howl…" you might predict that a storm is coming!
 
-## English in the Real World
-Reading fiction builds imagination and empathy — understanding how others feel. Authors, filmmakers, and game designers all use these story skills.
+Always start your prediction with: *"I think… because…"*
+
+### Making Inferences
+Sometimes the author doesn't tell us everything. We have to be like detectives and work it out!
+
+If a story says: *"Lily's eyes filled with tears and she ran to her room"* — the author doesn't say Lily is sad, but we can **infer** that she is upset.
+
+We use clues in the words and pictures to work out:
+- How a character feels
+- Why a character does something
+- What might have happened before
+
+## Try It Yourself! ✏️
+
+**Question 1:** What are the three main parts of a story?
+<details><summary>Answer</summary>Beginning, middle and end</details>
+
+**Question 2:** What is a prediction?
+<details><summary>Answer</summary>A sensible guess about what will happen next in a story</details>
+
+**Question 3:** "Tom slammed the door and threw his bag on the floor." How do you think Tom is feeling?
+<details><summary>Answer</summary>Tom is probably feeling angry or frustrated (we can infer this from his actions).</details>
+
+**Question 4:** What is the difference between fiction and non-fiction?
+<details><summary>Answer</summary>Fiction is a made-up story. Non-fiction is about real things and facts.</details>
+
+**Question 5:** Why is it a good idea to look at the pictures in a book?
+<details><summary>Answer</summary>Pictures give us extra clues about the characters, setting and what is happening in the story.</details>
+
+## Did You Know? 🌟
+Some of the most famous children's fiction books were written by Roald Dahl, who lived in Great Missenden in Buckinghamshire, England. You can visit the Roald Dahl Museum there to see where he wrote books like *Charlie and the Chocolate Factory*!
 
 ## Learning Checklist
-- [ ] I can predict what might happen next in a story
-- [ ] I can retell events in the right sequence
-- [ ] I can describe how a character feels using evidence
+
+- [ ] I know that fiction means a made-up story
+- [ ] I can describe the beginning, middle and end of a story
+- [ ] I can make predictions using clues in the text
+- [ ] I can make inferences about how characters feel

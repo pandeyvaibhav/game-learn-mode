@@ -1,69 +1,76 @@
 ---
 year: 6
 subject: history
-topic: British Empire
+topic: The British Empire
 slug: british-empire
-key_concepts: [colonisation, Commonwealth, trade, legacy, independence]
+key_concepts:
+  - colonisation
+  - trade
+  - Commonwealth
+  - impact on world
 age_range: "10-11"
-animation: ../../animations/year-6/history/british-empire.html
+animation: /animations/year-6/history/british-empire.html
 ---
 
-# British Empire — Year 6 History
-
-## Big Question
-What was the British Empire, and what is its lasting impact on the world?
+# The British Empire 🎯
 
 ## What We're Learning
-In this lesson you will learn about the growth of the **British Empire**, **colonisation**, **trade**, the movement for **independence**, and the **Commonwealth** today.
+The British Empire was once the largest empire in history, covering about a quarter of the world. We'll explore how it grew through trade and colonisation, its wide-ranging impacts — both positive and deeply harmful — and how it evolved into the modern Commonwealth.
 
-## Key History Words
-| Word | What it means |
-|---|---|
-| empire | a group of countries or territories ruled by one power |
-| colonisation | taking control of another country and settling there |
-| Commonwealth | a group of 56 nations, mostly former British colonies, that cooperate today |
-| trade | buying and selling goods between countries |
-| independence | when a country gains the right to govern itself |
-| legacy | something left behind that still affects us today |
+## Key Words
 
-## The History Explained
+| Word | Meaning |
+|------|---------|
+| colonisation | Taking control of another country and settling people there |
+| empire | A group of countries or territories ruled by one nation |
+| Commonwealth | A voluntary association of 56 nations, most with historical ties to Britain |
+| trade | The buying, selling, and exchange of goods between countries |
+
+## Let's Explore! 🔍
 
 ### Growth of the Empire
-- From the 1600s, Britain established colonies across the world.
-- By the early 1900s, the British Empire was the largest in history — covering about a quarter of the world's land.
-- Key regions: India, parts of Africa, Australia, Canada, Caribbean islands.
+From the 1600s, Britain established colonies and trading posts around the world — in the Americas, Africa, Asia, and Australasia. The empire grew through:
+- **Trade:** The East India Company traded in spices, tea, and textiles.
+- **Military conquest:** Britain used its powerful navy to control territories.
+- **Settlement:** British people moved to colonies like Australia, Canada, and New Zealand.
 
-### Trade and Resources
-- Britain traded goods like tea, spices, cotton, sugar, and minerals.
-- The empire brought wealth to Britain but often exploited local people and resources.
-- The transatlantic slave trade was a deeply unjust part of this history.
+By the early 1900s, the phrase "the sun never sets on the British Empire" reflected its vast global reach.
 
-### Resistance and Independence
-- Many peoples resisted colonisation from the start.
-- After World War II, independence movements grew stronger.
-- India gained independence in 1947; many African nations in the 1950s–60s.
-- By the late 20th century, most colonies had become independent.
+### Impact on the World
+The Empire had far-reaching consequences — some constructive, many destructive:
+- **Infrastructure:** Railways, schools, and legal systems were built in some colonies.
+- **Language:** English spread globally and is now spoken in over 60 countries.
+- **Exploitation and suffering:** Many colonised people were enslaved, had land taken, and were denied their rights. The transatlantic slave trade forcibly transported millions of African people. Indigenous cultures and languages were suppressed.
+- **Famine and conflict:** Colonial policies caused famines and conflicts with lasting effects.
 
-### The Commonwealth Today
-- 56 member nations cooperate on trade, education, and human rights.
-- Membership is voluntary.
-- The Commonwealth Games bring nations together in sport.
+It is important to understand both sides of this history to learn from it.
 
-### Legacy
-- English language spread worldwide.
-- Legal and education systems in many countries influenced by Britain.
-- The history of empire includes both achievements and injustices that are still debated today.
+### The Commonwealth
+Most colonies gained independence during the 20th century. Many chose to join the **Commonwealth of Nations** — a voluntary group of 56 countries that cooperate on issues like trade, education, and human rights. The Commonwealth Games, held every four years, celebrate this connection through sport.
 
-## Quick Quiz
-1. What is colonisation? → *Taking control of another country and settling there*
-2. When did India gain independence? → *1947*
-3. How many nations are in the Commonwealth? → *56*
-4. Name one resource traded by the British Empire. → *Tea / spices / cotton / sugar / minerals*
+## Try It Yourself! ✏️
 
-## History in the Real World
-Understanding empire helps us understand modern global relationships, cultural diversity in Britain, and ongoing debates about history and justice.
+**Question 1:** What does "colonisation" mean?
+<details><summary>Answer</summary>Colonisation means taking control of another country, settling people there, and often exploiting its resources and people.</details>
+
+**Question 2:** Name two ways the British Empire grew.
+<details><summary>Answer</summary>Through trade (e.g. the East India Company) and military conquest using its powerful navy.</details>
+
+**Question 3:** Give one positive and one negative impact of the British Empire.
+<details><summary>Answer</summary>Positive: infrastructure like railways and schools were built. Negative: millions of people were enslaved and had their lands, rights, and cultures taken from them.</details>
+
+**Question 4:** What is the Commonwealth?
+<details><summary>Answer</summary>The Commonwealth is a voluntary association of 56 nations, most of which were once part of the British Empire. They cooperate on shared goals including trade, education, and human rights.</details>
+
+**Question 5:** Why is it important to study the British Empire, including its negative aspects?
+<details><summary>Answer</summary>Understanding the full history — including exploitation, slavery, and the destruction of cultures — helps us learn from past mistakes, understand the world today, and work towards greater fairness and equality.</details>
+
+## Did You Know? 🌟
+At its height in 1920, the British Empire governed around 412 million people — roughly a quarter of the world's population at the time. India, often called "the jewel in the crown," gained independence in 1947 after a long campaign led by figures including Mahatma Gandhi.
 
 ## Learning Checklist
-- [ ] I can describe the growth and extent of the British Empire
-- [ ] I can explain colonisation and its effects
-- [ ] I can discuss the legacy and the Commonwealth today
+
+- [ ] I can explain how the British Empire grew through trade and colonisation
+- [ ] I understand both positive and negative impacts of the Empire
+- [ ] I know what the Commonwealth is and how it relates to the Empire
+- [ ] I can discuss why it's important to study all aspects of this history

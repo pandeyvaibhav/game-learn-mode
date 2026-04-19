@@ -3,7 +3,7 @@ year: 1
 subject: english
 topic: Storytelling
 slug: storytelling
-key_concepts: [beginning, middle, end, characters, setting]
+key_concepts: [story structure, beginning, middle, end, characters, setting]
 age_range: "5-6"
 animation: ../../animations/year-1/english/storytelling.html
 ---
@@ -11,73 +11,65 @@ animation: ../../animations/year-1/english/storytelling.html
 # Storytelling — Year 1 English
 
 ## What We're Learning
-You are going to learn about the parts of a story. Every good story has a **beginning**, a **middle** and an **end**. It also has **characters** and a **setting**.
+In this lesson you will learn about **story structure**. Every story has a **beginning**, a **middle** and an **end**. You will also learn about **characters** and **settings**.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Beginning | The start of the story — we meet the characters |
-| Middle | The main part where something happens (the problem) |
-| End | How the story finishes (the problem is solved) |
-| Character | A person or animal in the story |
-| Setting | Where and when the story happens |
-| Plot | What happens in the story |
+| story | a tale with a beginning, middle and end |
+| character | a person or animal in the story |
+| setting | where and when the story happens |
+| beginning | the start — we meet the characters |
+| middle | the problem or adventure happens |
+| end | the problem is solved |
 
 ## Let's Explore
 
-### The three parts of a story
-
+### Story Structure
 ```
-📖 Beginning  →  📖 Middle  →  📖 End
-  (Who? Where?)  (What happens?)  (How does it end?)
+📖 Beginning → Middle → End
 ```
 
-### Example — The Three Little Pigs
+**Beginning:** Once upon a time, a little bear lived in a forest.
+**Middle:** One day he got lost and could not find his way home.
+**End:** A friendly owl showed him the path, and he got home safely.
 
-**Beginning:** Three little pigs leave home to build their own houses.
-**Middle:** A wolf blows down the straw house and the stick house.
-**Middle:** The pigs run to the brick house.
-**End:** The wolf cannot blow down the brick house. The pigs are safe!
+### Characters
+Characters are **who** the story is about:
+- 🐻 Little Bear (the main character)
+- 🦉 Friendly Owl (the helper)
 
-### Characters and setting
-- **Characters:** The three pigs and the wolf
-- **Setting:** In the countryside, near a forest
+### Setting
+The setting is **where** it happens:
+- 🌲 A forest
 
-### Story starters
-Good stories often start with:
-- "Once upon a time …"
-- "One sunny morning …"
-- "Long, long ago …"
-
-### Story endings
-- "… and they lived happily ever after."
-- "… and from that day on …"
-- "The end."
+### Story Openers
+- Once upon a time…
+- One sunny morning…
+- Long, long ago…
 
 ## Try It Yourself
 
-1. What are the three parts of a story?
-2. Who are the characters in "Goldilocks and the Three Bears"?
-3. What is the setting of "Jack and the Beanstalk"?
-4. Think of a story you know — what happens in the middle?
-5. Write a sentence to start your own story.
+**1. What are the three parts of a story?**
+<details><summary>Answer</summary>Beginning, middle, end</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. What is a "character"?**
+<details><summary>Answer</summary>A person or animal in the story</details>
 
-1. Beginning, middle, end
-2. Goldilocks, Daddy Bear, Mummy Bear, Baby Bear
-3. Jack's house and the giant's castle in the clouds
-4. (Your own answer!)
-5. (Your own answer — remember a capital letter and full stop!)
+**3. What is the "setting"?**
+<details><summary>Answer</summary>Where and when the story happens</details>
 
-</details>
+**4. Which part of the story has the problem?**
+<details><summary>Answer</summary>The middle</details>
 
-## Did You Know? 📚
-People have been telling stories for thousands of years — even before writing was invented! Stories were told around campfires and passed from parents to children.
+**5. Think of a story opener. What could it be?**
+<details><summary>Answer</summary>Once upon a time… (or any suitable opener)</details>
+
+## Did You Know?
+The oldest story ever written down is called *The Epic of Gilgamesh*. It was scratched onto clay tablets over 4,000 years ago in ancient Mesopotamia!
 
 ## Learning Checklist
-- [ ] I know that stories have a beginning, middle and end
+- [ ] I know stories have a beginning, middle and end
 - [ ] I can name the characters in a story
 - [ ] I can describe the setting of a story
-- [ ] I can retell a story in my own words
+- [ ] I can use a story opener

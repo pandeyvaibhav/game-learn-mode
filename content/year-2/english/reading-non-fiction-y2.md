@@ -3,60 +3,81 @@ year: 2
 subject: english
 topic: Reading Non-Fiction
 slug: reading-non-fiction-y2
-key_concepts: [contents page, index, glossary, finding information]
+key_concepts:
+  - contents page
+  - index
+  - glossary
+  - headings
 age_range: "6-7"
-animation: ../../animations/year-2/english/reading-non-fiction-y2.html
+animation: /animations/year-2/english/reading-non-fiction-y2.html
 ---
 
-# Reading Non-Fiction — Year 2 English
-
-## Big Question
-How do we find information in non-fiction books?
+# Reading Non-Fiction 🎯
 
 ## What We're Learning
-In this lesson you will learn how non-fiction books are organised. You will use a **contents page**, **index**, and **glossary** to find facts quickly.
+We are learning how to read non-fiction books. Non-fiction books are about real things and give us facts. They are set out differently from story books, with special features that help us find information quickly.
 
-## Key English Words
-| Word | What it means |
-|---|---|
-| non-fiction | writing about real things and true facts |
-| contents page | a page at the front that lists chapters and page numbers |
-| index | an alphabetical list at the back showing where topics are |
-| glossary | a mini-dictionary at the back explaining tricky words |
-| heading | a title that tells you what a section is about |
-| fact | something that is true and can be proved |
+## Key Words
 
-## The English Explained
+| Word | Meaning |
+|------|---------|
+| non-fiction | writing about real things and facts |
+| contents page | a page at the front that lists all the chapters and page numbers |
+| index | an alphabetical list at the back that helps you find topics |
+| glossary | a mini dictionary at the back explaining tricky words |
 
-### Fiction vs Non-Fiction
-| Fiction | Non-Fiction |
-|---|---|
-| Made-up stories | True facts and information |
-| Characters and settings | Headings, diagrams, photos |
-| Once upon a time… | Did you know…? |
+## Let's Explore! 🔍
 
-### Using Non-Fiction Features
-1. **Contents page** — Look here first to find the right chapter.
-2. **Index** — Use this to find a specific word or topic fast.
-3. **Glossary** — Check here if you don't know what a word means.
-4. **Headings and subheadings** — These tell you what each section is about.
+### What Makes Non-Fiction Different?
+Non-fiction books don't tell a made-up story. Instead, they give us **facts** and **information** about real topics like animals, space, or history.
 
-### Example
-You want to find out about sharks:
-1. Check the **contents** → Chapter 5: Sea Creatures, page 28.
-2. Check the **index** → "Sharks … 30–32".
-3. Turn to page 30 and read!
+Non-fiction features include:
+- **Headings** — titles that tell us what each section is about
+- **Photographs** and **diagrams** — pictures of real things
+- **Captions** — short sentences explaining a picture
+- **Labels** — words pointing to parts of a picture
 
-## Quick Quiz
-1. What is non-fiction? → *Writing about real things and true facts*
-2. Where would you look to find out which chapter to read? → *Contents page*
-3. What does a glossary do? → *Explains tricky words*
-4. Where in a non-fiction book is the index? → *At the back*
+### Using a Contents Page
+The contents page is near the **front** of the book. It lists all the chapters and tells you what **page** each one starts on.
 
-## English in the Real World
-We read non-fiction every day — instruction leaflets, recipe books, websites, and encyclopaedias. Knowing how to find information quickly is a superpower!
+```
+Contents
+1. What are Dinosaurs? ..... 2
+2. Meat Eaters ............. 6
+3. Plant Eaters ........... 10
+4. Where Did They Go? ..... 14
+```
+
+If you want to read about plant eaters, go to page **10**.
+
+### Using an Index and Glossary
+The **index** is at the **back** of the book. It lists topics in **alphabetical order** with page numbers.
+
+The **glossary** is also at the back. It explains **difficult words** used in the book, like a mini dictionary.
+
+## Try It Yourself! ✏️
+
+**Question 1:** Where would you find the contents page in a book?
+<details><summary>Answer</summary>Near the front of the book</details>
+
+**Question 2:** What is a glossary?
+<details><summary>Answer</summary>A mini dictionary at the back of a book that explains tricky words</details>
+
+**Question 3:** If you wanted to find out about a specific topic quickly, would you use the contents page or the index?
+<details><summary>Answer</summary>The index, because it lists topics in alphabetical order with page numbers</details>
+
+**Question 4:** What is the difference between a heading and a caption?
+<details><summary>Answer</summary>A heading is a title for a section of writing. A caption is a short sentence explaining a picture.</details>
+
+**Question 5:** Is a book about how volcanoes work fiction or non-fiction?
+<details><summary>Answer</summary>Non-fiction, because it is about real facts</details>
+
+## Did You Know? 🌟
+The largest library in the world is the **British Library** in London. It has over 170 million items, including books, magazines, maps, and music! Most of those are non-fiction.
 
 ## Learning Checklist
-- [ ] I know the difference between fiction and non-fiction
-- [ ] I can use a contents page, index, and glossary
-- [ ] I can find specific information in a non-fiction book
+
+- [ ] I know that non-fiction gives facts about real things
+- [ ] I can use a contents page to find a chapter
+- [ ] I can use an index to find a topic
+- [ ] I know what a glossary is and how to use it

@@ -3,7 +3,7 @@ year: 1
 subject: english
 topic: Phonics — Phase 3
 slug: phonics-phase3
-key_concepts: [digraphs, ch sh th, vowel digraphs]
+key_concepts: [digraphs, ch, sh, th, vowel digraphs, ai, ee, oa]
 age_range: "5-6"
 animation: ../../animations/year-1/english/phonics-phase3.html
 ---
@@ -11,77 +11,61 @@ animation: ../../animations/year-1/english/phonics-phase3.html
 # Phonics — Phase 3 — Year 1 English
 
 ## What We're Learning
-You are going to learn Phase 3 phonics. These are special sounds made by two letters working together — we call them **digraphs**. You will also learn vowel digraphs like "ai", "ee" and "oo".
+In this lesson you will learn about **digraphs** — that is when two letters work together to make **one sound**. You will meet consonant digraphs like **ch**, **sh**, **th** and vowel digraphs like **ai**, **ee**, **oa**.
 
 ## Key Words
 | Word | What it means |
 |---|---|
-| Digraph | Two letters that make one sound |
-| Consonant digraph | Two consonant letters making one sound (ch, sh, th) |
-| Vowel digraph | Two vowel letters making one sound (ai, ee, oo) |
-| Blend | Saying the sounds together to read a word |
-| Segment | Breaking a word into its sounds to spell it |
-| Trigraph | Three letters that make one sound (igh, ear) |
+| phonics | learning the sounds that letters make |
+| digraph | two letters that make one sound |
+| consonant | letters like b, c, d, f (not a, e, i, o, u) |
+| vowel | the letters a, e, i, o, u |
+| blend | say sounds together to read a word |
+| segment | break a word into its sounds |
 
 ## Let's Explore
 
-### Consonant digraphs
-
-| Digraph | Sound | Example words |
+### Consonant Digraphs
+| Digraph | Sound | Example |
 |---|---|---|
-| ch | "ch" | chip, chat, much |
-| sh | "sh" | ship, shop, fish |
-| th | "th" | this, that, with |
-| ng | "ng" | ring, song, king |
+| ch | "ch" | **ch**ip, **ch**at |
+| sh | "sh" | **sh**op, fi**sh** |
+| th | "th" | **th**in, wi**th** |
 
-### Vowel digraphs
-
-| Digraph | Sound | Example words |
+### Vowel Digraphs
+| Digraph | Sound | Example |
 |---|---|---|
-| ai | "ay" | rain, wait, tail |
-| ee | "ee" | tree, feet, see |
-| oo | "oo" | moon, spoon, zoo |
-| oa | "oh" | boat, coat, road |
-| oi | "oy" | coin, join, oil |
+| ai | long a | r**ai**n, p**ai**nt |
+| ee | long e | tr**ee**, s**ee** |
+| oa | long o | b**oa**t, c**oa**t |
+| oo | long oo | m**oo**n, sp**oo**n |
 
-### Example — Reading a word with a digraph
-The word **shop**:
-```
-sh - o - p
-```
-Blend the sounds: "sh" + "o" + "p" = **shop**
-
-### Example — Spelling with a digraph
-How do you spell **rain**?
-```
-r - ai - n
-```
-The "ai" in the middle makes the long "ay" sound.
+### Sound it out!
+The word **sheep**:
+**sh** + **ee** + **p** → sheep 🐑
 
 ## Try It Yourself
 
-1. What sound do the letters "sh" make together?
-2. Which digraph is in the word "chip"?
-3. Read this word: f-ee-t. What is the word?
-4. Which vowel digraph is in the word "boat"?
-5. Segment the word "thin" into its sounds.
+**1. What digraph do you hear at the start of "shop"?**
+<details><summary>Answer</summary>sh</details>
 
-<details>
-<summary>Check your answers</summary>
+**2. Which vowel digraph is in the word "rain"?**
+<details><summary>Answer</summary>ai</details>
 
-1. The "sh" sound (like in "ship")
-2. ch
-3. feet
-4. oa
-5. th-i-n
+**3. Sound out this word: ch-i-p. What is the word?**
+<details><summary>Answer</summary>chip</details>
 
-</details>
+**4. What digraph do you hear at the end of "with"?**
+<details><summary>Answer</summary>th</details>
 
-## Did You Know? 📚
-The English language has about 44 different sounds but only 26 letters! That is why we need digraphs — to make extra sounds from the letters we have.
+**5. Which word has the "ee" sound — tree or cat?**
+<details><summary>Answer</summary>tree</details>
+
+## Did You Know?
+The English language has over 40 different sounds, but only 26 letters! That is why we need digraphs — two letters working as a team.
 
 ## Learning Checklist
-- [ ] I can read consonant digraphs: ch, sh, th, ng
-- [ ] I can read vowel digraphs: ai, ee, oo, oa, oi
-- [ ] I can blend sounds to read words with digraphs
-- [ ] I can segment words with digraphs to spell them
+- [ ] I can read the digraphs ch, sh, th
+- [ ] I can read the vowel digraphs ai, ee, oa, oo
+- [ ] I can blend sounds to read words
+- [ ] I can hear digraphs in spoken words

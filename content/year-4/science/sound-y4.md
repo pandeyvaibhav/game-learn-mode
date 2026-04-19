@@ -3,60 +3,64 @@ year: 4
 subject: science
 topic: Sound
 slug: sound-y4
-key_concepts: [vibrations, pitch, volume, ear]
+key_concepts:
+  - vibrations
+  - pitch
+  - volume
+  - sound waves
+  - ear
 age_range: "8-9"
-animation: ../../animations/year-4/science/sound-y4.html
+animation: /animations/year-4/science/sound-y4.html
 ---
 
-# Sound — Year 4 Science
-
-## Big Question
-How is sound made and how does it travel to our ears?
+# Sound 🎯
 
 ## What We're Learning
-In this lesson you will learn that sounds are caused by **vibrations**, how sound travels, and what affects **pitch** and **volume**.
+We are learning about how sounds are made, how they travel, and what makes sounds different from each other. You'll explore vibrations, pitch and volume, and find out how our ears pick up sound waves.
 
-## Key Science Words
-| Word | What it means |
-|---|---|
-| vibration | a rapid back-and-forth movement |
-| sound wave | the way vibrations travel through the air |
-| pitch | how high or low a sound is |
-| volume | how loud or quiet a sound is |
-| ear drum | a thin skin inside the ear that vibrates when sound reaches it |
+## Key Words
 
-## The Science Explained
+| Word | Meaning |
+|------|---------|
+| vibration | A rapid back-and-forth movement that creates sound |
+| pitch | How high or low a sound is |
+| volume | How loud or quiet a sound is |
+| sound wave | A vibration that travels through air (or another material) to our ears |
 
-### How Is Sound Made?
-All sounds are made by **vibrations**. When an object vibrates, it makes the air around it vibrate too. These vibrations travel through the air as **sound waves** and reach our ears.
+## Let's Explore! 🔍
 
-### How We Hear
-1. A vibrating object sends sound waves through the air.
-2. The waves enter the ear canal.
-3. They hit the **ear drum**, which vibrates.
-4. The brain interprets these vibrations as sound.
+### How Sounds Are Made
+All sounds are caused by **vibrations**. When you pluck a guitar string it vibrates, pushing the air around it back and forth. These vibrations travel through the air as invisible **sound waves** until they reach your ears.
 
 ### Pitch
-- **High pitch** — fast vibrations (e.g. a whistle, a short guitar string).
-- **Low pitch** — slow vibrations (e.g. a drum, a long guitar string).
+Pitch tells us how high or low a sound is. A thin, tight guitar string vibrates quickly and makes a **high-pitched** sound. A thick, loose string vibrates slowly and makes a **low-pitched** sound. Faster vibrations = higher pitch.
 
 ### Volume
-- **Loud** — big vibrations (more energy).
-- **Quiet** — small vibrations (less energy).
+Volume tells us how loud or quiet a sound is. If you pluck a string gently, the vibration is small and the sound is **quiet**. Pluck it hard and the vibration is bigger, making a **louder** sound. Sound also gets quieter the further you are from the source.
 
-### Sound and Distance
-Sound gets **quieter** as it travels further from the source because the vibrations spread out and lose energy.
+## Try It Yourself! ✏️
 
-## Quick Quiz
-1. What causes sound? → *Vibrations*
-2. What is pitch? → *How high or low a sound is*
-3. What happens to sound as it travels further away? → *It gets quieter*
-4. What part of the ear vibrates when sound reaches it? → *The ear drum*
+**Question 1:** What causes all sounds?
+<details><summary>Answer</summary>Vibrations.</details>
 
-## Science in the Real World
-Musicians control pitch and volume to make music. Soundproofing in buildings uses insulating materials to block vibrations. Doctors use stethoscopes to hear sounds inside the body.
+**Question 2:** A short ruler hanging over the edge of a table is twanged. It makes a high-pitched sound. What happens to the pitch if you make more ruler stick out?
+<details><summary>Answer</summary>The pitch gets lower because the longer length vibrates more slowly.</details>
+
+**Question 3:** Why does a sound get quieter when you move further away from it?
+<details><summary>Answer</summary>The sound waves spread out and lose energy as they travel, so the vibrations reaching your ear are weaker.</details>
+
+**Question 4:** Can sound travel through water?
+<details><summary>Answer</summary>Yes — sound can travel through solids, liquids and gases, not just air.</details>
+
+**Question 5:** How could you make a drum sound louder?
+<details><summary>Answer</summary>Hit it harder — this makes bigger vibrations, which produce a louder sound.</details>
+
+## Did You Know? 🌟
+Sound cannot travel through space because there is no air for the vibrations to move through. In space, no one can hear you shout!
 
 ## Learning Checklist
-- [ ] I know that sounds are caused by vibrations
-- [ ] I can explain the difference between pitch and volume
-- [ ] I understand how sound travels to our ears
+
+- [ ] I can explain that sounds are made by vibrations
+- [ ] I know what pitch means and what affects it
+- [ ] I know what volume means and what affects it
+- [ ] I understand that sound travels as waves through air to our ears

@@ -3,67 +3,73 @@ year: 6
 subject: geography
 topic: Sustainability
 slug: sustainability-y6
-key_concepts: [renewable energy, recycling, climate change, carbon footprint]
+key_concepts:
+  - renewable energy
+  - recycling
+  - carbon footprint
+  - climate change
 age_range: "10-11"
-animation: ../../animations/year-6/geography/sustainability-y6.html
+animation: /animations/year-6/geography/sustainability-y6.html
 ---
 
-# Sustainability — Year 6 Geography
-
-## Big Question
-What does sustainability mean and how can we protect our planet for the future?
+# Sustainability 🎯
 
 ## What We're Learning
-In this lesson you will learn about **sustainability**, **renewable energy**, **climate change**, **recycling**, and how to reduce your **carbon footprint**.
+Sustainability means living in a way that meets our needs today without damaging the planet for future generations. We'll explore renewable energy, how to reduce our carbon footprint, and the actions we can all take to tackle climate change.
 
-## Key Geography Words
-| Word | What it means |
-|---|---|
-| sustainability | meeting our needs without harming the ability of future generations to meet theirs |
-| renewable energy | energy from sources that won't run out (solar, wind, hydro) |
-| non-renewable energy | energy from sources that will run out (coal, oil, gas) |
-| climate change | long-term changes in temperature and weather patterns, largely caused by burning fossil fuels |
-| carbon footprint | the amount of greenhouse gases produced by a person, organisation, or activity |
-| recycling | processing waste materials into new products |
+## Key Words
 
-## The Geography Explained
+| Word | Meaning |
+|------|---------|
+| sustainability | Using resources in a way that doesn't run out or damage the environment for the future |
+| renewable energy | Energy from sources that won't run out, like wind, solar, and hydroelectric |
+| carbon footprint | The total amount of greenhouse gases produced by our actions |
+| climate change | Long-term changes in global temperature and weather patterns, largely caused by human activity |
 
-### What is Sustainability?
-Using resources carefully so they last for future generations. It covers **environmental**, **economic**, and **social** aspects.
-
-### Renewable vs Non-Renewable Energy
-| Renewable | Non-renewable |
-|---|---|
-| Solar (sun) | Coal |
-| Wind (turbines) | Oil |
-| Hydro (water) | Natural gas |
-| Geothermal (earth's heat) | Nuclear (uranium) |
+## Let's Explore! 🔍
 
 ### Climate Change
-- Burning fossil fuels releases CO₂ (a greenhouse gas).
-- Greenhouse gases trap heat in the atmosphere → global temperatures rise.
-- Effects: melting ice caps, rising sea levels, extreme weather, habitat loss.
+Earth's climate is warming because of greenhouse gases (mainly carbon dioxide and methane) released by burning fossil fuels, farming, and deforestation. Effects include rising sea levels, more extreme weather, loss of habitats, and threats to food and water supplies.
 
-### Reducing Your Carbon Footprint
-- Walk, cycle, or use public transport.
-- Reduce, reuse, recycle.
-- Save energy (turn off lights, insulate homes).
-- Eat locally-grown food.
-- Plant trees — they absorb CO₂.
+The UK has committed to reaching **net zero** carbon emissions by 2050, meaning any remaining emissions will be balanced by removing the same amount from the atmosphere.
 
-### The Three Rs
-**Reduce** → use less. **Reuse** → use again. **Recycle** → make into something new.
+### Renewable Energy
+Fossil fuels (coal, oil, gas) will eventually run out and produce greenhouse gases. Renewable alternatives include:
+- **Solar** — panels convert sunlight into electricity
+- **Wind** — turbines generate power from wind (the UK is a global leader in offshore wind)
+- **Hydroelectric** — flowing water drives turbines
+- **Tidal and wave** — energy from the movement of the sea
 
-## Quick Quiz
-1. What is sustainability? → *Meeting our needs without harming future generations' ability to meet theirs*
-2. Name two renewable energy sources. → *Any two: solar, wind, hydro, geothermal*
-3. What causes climate change? → *Burning fossil fuels releases greenhouse gases that trap heat*
-4. What are the three Rs? → *Reduce, Reuse, Recycle*
+### What Can We Do?
+Everyone can reduce their carbon footprint:
+- **Reduce, Reuse, Recycle** — buy less, repair items, sort waste for recycling
+- **Travel smart** — walk, cycle, use public transport
+- **Save energy** — turn off lights, insulate homes
+- **Eat sustainably** — eat seasonal food, reduce food waste
 
-## Geography in the Real World
-Sustainability affects every industry — from farming to fashion. Governments, businesses, and individuals all play a role in protecting the planet.
+## Try It Yourself! ✏️
+
+**Question 1:** What does "sustainability" mean in your own words?
+<details><summary>Answer</summary>Living in a way that looks after the planet so that future generations can enjoy the same resources and environment that we do today.</details>
+
+**Question 2:** Name three types of renewable energy.
+<details><summary>Answer</summary>Solar, wind, and hydroelectric (also: tidal, wave, geothermal, biomass).</details>
+
+**Question 3:** What is a carbon footprint?
+<details><summary>Answer</summary>The total amount of greenhouse gases (especially CO₂) produced by a person, organisation, or activity. It includes energy use, transport, food, and products we buy.</details>
+
+**Question 4:** Why are fossil fuels problematic?
+<details><summary>Answer</summary>They release greenhouse gases when burned, contributing to climate change. They are also non-renewable, meaning they will eventually run out.</details>
+
+**Question 5:** List three actions a school could take to become more sustainable.
+<details><summary>Answer</summary>Install solar panels, set up recycling bins in every classroom, start a school garden to grow food, reduce energy by turning off lights and computers when not in use.</details>
+
+## Did You Know? 🌟
+The UK generated over 40% of its electricity from renewable sources in 2023, with wind power being the biggest contributor. On some particularly windy days, wind turbines alone have powered more than half the country!
 
 ## Learning Checklist
-- [ ] I can explain what sustainability means
-- [ ] I can compare renewable and non-renewable energy
-- [ ] I can describe ways to reduce my carbon footprint
+
+- [ ] I can explain what sustainability and climate change mean
+- [ ] I can describe different types of renewable energy
+- [ ] I understand what a carbon footprint is and how to reduce it
+- [ ] I can suggest actions to make my school or home more sustainable

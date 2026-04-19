@@ -3,73 +3,64 @@ year: 4
 subject: history
 topic: Ancient Greece
 slug: ancient-greece
-key_concepts: [democracy, Olympics, gods, Athens, Sparta]
+key_concepts:
+  - democracy
+  - Athens
+  - Sparta
+  - Greek gods
+  - Olympics
 age_range: "8-9"
-animation: ../../animations/year-4/history/ancient-greece.html
+animation: /animations/year-4/history/ancient-greece.html
 ---
 
-# Ancient Greece — Year 4 History
-
-## Big Question
-Why is Ancient Greece so important, and how does it still affect our lives today?
+# Ancient Greece 🎯
 
 ## What We're Learning
-In this lesson you will learn about **Ancient Greek** civilisation, including **democracy**, the **Olympic Games**, Greek **gods**, and the rival city-states of **Athens** and **Sparta**.
+We are learning about the civilisation of Ancient Greece, which thrived thousands of years ago and still influences our lives today. You'll explore Greek city-states, their invention of democracy, their gods and myths, and the first Olympic Games.
 
-## Key History Words
-| Word | What it means |
-|---|---|
-| civilisation | an advanced society with laws, culture, and cities |
-| democracy | a system where citizens vote on decisions |
-| city-state | an independent city with its own government (called a polis) |
-| Olympics | athletic games held every four years in honour of Zeus |
-| myth | a traditional story explaining the world, often involving gods |
-| philosopher | a thinker who asks big questions about life |
+## Key Words
 
-## The History Explained
+| Word | Meaning |
+|------|---------|
+| democracy | A system where people vote to make decisions |
+| city-state | An independent city and the land around it, e.g. Athens or Sparta |
+| mythology | A collection of traditional stories about gods and heroes |
+| philosopher | A thinker who asks big questions about life and knowledge |
 
-### When and Where?
-Ancient Greece thrived from about **800 BC to 146 BC** around the Mediterranean Sea, in what is now modern Greece and Turkey.
+## Let's Explore! 🔍
 
-### Athens vs Sparta
-| Athens | Sparta |
-|---|---|
-| Birthplace of democracy | Military society |
-| Valued education, art, philosophy | Valued strength and discipline |
-| Citizens voted on laws | Ruled by two kings |
-| Famous for the Parthenon | Famous for its army |
+### Athens and Sparta
+Ancient Greece was not one country — it was made up of many **city-states**. The two most famous were **Athens**, known for art, learning and democracy, and **Sparta**, known for its powerful army and strict way of life. Athenian citizens could vote on laws, while Sparta focused on military training from a young age.
 
-### Democracy
-Athens invented **democracy** — the idea that citizens could vote on laws. Only free adult men could vote (women, enslaved people, and foreigners could not).
+### Greek Gods and Myths
+The Greeks believed in many gods who lived on **Mount Olympus**. Zeus was king of the gods, Athena was the goddess of wisdom, and Poseidon ruled the sea. Greek myths — like the stories of Heracles, Theseus and the Minotaur — were used to explain the world and teach moral lessons.
 
 ### The Olympic Games
-- First held in **776 BC** in Olympia.
-- Events included running, wrestling, chariot racing.
-- A truce was declared so athletes could travel safely.
+The first Olympic Games were held in **776 BC** at Olympia in honour of Zeus. Athletes competed in running, wrestling, chariot racing and more. The modern Olympics, revived in 1896, are inspired by these ancient games.
 
-### Greek Gods
-| God | Role |
-|---|---|
-| Zeus | King of the gods, ruler of the sky |
-| Athena | Goddess of wisdom and war |
-| Poseidon | God of the sea |
-| Apollo | God of the sun, music, and poetry |
-| Artemis | Goddess of hunting and the moon |
+## Try It Yourself! ✏️
 
-### Legacy
-Ancient Greece gave us democracy, the Olympics, theatre, philosophy (Socrates, Plato, Aristotle), and advances in maths and science.
+**Question 1:** What does "democracy" mean?
+<details><summary>Answer</summary>A system of government where people vote to make decisions.</details>
 
-## Quick Quiz
-1. What is democracy? → *A system where citizens vote on decisions*
-2. Name one difference between Athens and Sparta. → *Athens valued education; Sparta valued military strength*
-3. When were the first Olympic Games? → *776 BC*
-4. Who was the king of the Greek gods? → *Zeus*
+**Question 2:** Name one difference between Athens and Sparta.
+<details><summary>Answer</summary>Athens focused on education, art and democracy, while Sparta focused on military training and strength.</details>
 
-## History in the Real World
-Many countries today use democracy. The modern Olympic Games were inspired by the ancient ones. Words like "marathon", "echo", and "atlas" come from Greek myths.
+**Question 3:** Who was the king of the Greek gods?
+<details><summary>Answer</summary>Zeus.</details>
+
+**Question 4:** When were the first Olympic Games held?
+<details><summary>Answer</summary>776 BC, in Olympia, Greece.</details>
+
+**Question 5:** Why are the Ancient Greeks still important today?
+<details><summary>Answer</summary>They gave us democracy, the Olympics, great works of art, philosophy and scientific thinking that still influence our world.</details>
+
+## Did You Know? 🌟
+The word "marathon" comes from Ancient Greece. A messenger called Pheidippides is said to have run about 26 miles from the battlefield at Marathon to Athens to announce a Greek victory!
 
 ## Learning Checklist
-- [ ] I know when and where Ancient Greece existed
-- [ ] I can compare Athens and Sparta
-- [ ] I can explain what democracy means
-- [ ] I can name key Greek gods and their roles
+
+- [ ] I can explain what a Greek city-state was
+- [ ] I can describe how Athenian democracy worked
+- [ ] I can name some Greek gods and a famous myth
+- [ ] I know when and where the first Olympic Games took place

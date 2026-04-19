@@ -3,65 +3,72 @@ year: 6
 subject: maths
 topic: SATs Problem Solving
 slug: sats-problem-solving
-key_concepts: [multi-step problems, reasoning, working backwards, checking answers]
+key_concepts:
+  - multi-step problems
+  - reasoning
+  - working systematically
+  - checking answers
 age_range: "10-11"
-animation: ../../animations/year-6/maths/sats-problem-solving.html
+animation: /animations/year-6/maths/sats-problem-solving.html
 ---
 
-# SATs Problem Solving — Year 6 Maths
-
-## Big Question
-How can we tackle multi-step maths problems confidently?
+# SATs Problem Solving 🎯
 
 ## What We're Learning
-In this lesson you will practise strategies for **multi-step problems**, **reasoning**, **working backwards**, and **checking answers** — all key skills for SATs.
+The Year 6 SATs test your ability to solve mathematical problems — not just arithmetic. We'll practise breaking down tricky questions, reasoning through problems step by step, and building the confidence to tackle anything.
 
-## Key Maths Words
-| Word | What it means |
-|---|---|
-| multi-step | a problem that needs more than one calculation |
-| reasoning | explaining how you know or why something is true |
-| working backwards | starting from the answer and reversing the steps |
-| estimate | a rough calculation to check your answer makes sense |
-| inverse | the opposite operation (+ ↔ −, × ↔ ÷) |
+## Key Words
 
-## The Maths Explained
+| Word | Meaning |
+|------|---------|
+| multi-step | A problem that needs more than one calculation to solve |
+| reasoning | Explaining your thinking and why an answer makes sense |
+| systematic | Working through a problem in an organised way |
+| estimate | Making a rough calculation to check your answer is sensible |
 
-### Problem-Solving Steps
-1. **Read** the question carefully — twice.
-2. **Identify** what you need to find.
-3. **Choose** the operations needed.
-4. **Calculate** step by step, showing your working.
-5. **Check** — does the answer make sense? Use estimation or inverse.
+## Let's Explore! 🔍
 
-### Multi-Step Example
-> A shop sells 3 packs of pencils at £1.25 each and 2 rubbers at 45p each. What is the total?
+### Breaking Down Multi-Step Problems
+Read the question carefully and identify what you need to find. Underline the key information and work out what operations to use.
 
-Step 1: 3 × £1.25 = £3.75
-Step 2: 2 × £0.45 = £0.90
-Step 3: £3.75 + £0.90 = **£4.65**
+**Example:** A school trip costs £4.50 per child. There are 28 children. The school has a budget of £150. How much more money is needed?
+1. Total cost: 28 × £4.50 = £126
+2. Extra needed: £150 − £126 = £24 left over — so actually, no more money is needed! (Careful — read the question again!)
 
-### Working Backwards
-> I think of a number, double it, and add 5. The answer is 17. What was my number?
+Always re-read the question to make sure you're answering what's actually asked.
 
-- 17 − 5 = 12
-- 12 ÷ 2 = **6**
+### Reasoning and Proof
+Some questions ask you to explain, prove, or show whether something is true. Use examples, diagrams, or calculations to support your answer.
 
-### Reasoning Prompts
-- *"Explain how you know…"* — show your calculation or give a rule.
-- *"Is this always, sometimes, or never true?"* — test with examples.
-- *"Prove that…"* — use a calculation or diagram.
+**Example:** "Tom says all multiples of 4 are even. Is he correct? Explain how you know."
+Yes — any multiple of 4 can be written as 4 × n. Since 4 is even, any number multiplied by an even number gives an even result.
 
-## Quick Quiz
-1. What is the first step when solving a word problem? → *Read the question carefully*
-2. A book costs £3.50. I buy 4 and pay with £20. What change? → *£6*
-3. I think of a number, multiply by 3, subtract 4. Answer is 14. Number? → *6*
-4. How can you check a subtraction? → *Use addition (inverse)*
+### Working Systematically
+When a question has many possible answers, organise your work. Use tables, lists, or try values in order so you don't miss any or repeat.
 
-## Maths in the Real World
-Problem-solving skills are used in every career — budgeting, engineering, science, cooking, and running a business all require breaking big problems into smaller steps.
+## Try It Yourself! ✏️
+
+**Question 1:** A shop sells books for £3.75 each and pens for £1.20 each. Mia buys 4 books and 6 pens. How much change does she get from £30?
+<details><summary>Answer</summary>Books: 4 × £3.75 = £15. Pens: 6 × £1.20 = £7.20. Total: £22.20. Change: £30 − £22.20 = £7.80.</details>
+
+**Question 2:** A number rounded to the nearest 10 is 350. Rounded to the nearest 100 it is 400. What could the number be?
+<details><summary>Answer</summary>It must be 345–354 (rounds to 350) and also 350–449 (rounds to 400). So it must be 350, 351, 352, 353, or 354.</details>
+
+**Question 3:** Sarah says "If I double a number and add 3, the answer is 19." What number did she start with?
+<details><summary>Answer</summary>19 − 3 = 16. 16 ÷ 2 = 8. She started with 8.</details>
+
+**Question 4:** A rectangle has a perimeter of 36 cm. Its length is twice its width. What are the dimensions?
+<details><summary>Answer</summary>Let width = w. Length = 2w. Perimeter = 2(w + 2w) = 6w = 36. w = 6 cm. Length = 12 cm. The rectangle is 12 cm × 6 cm.</details>
+
+**Question 5:** Is this statement true or false? "The sum of three odd numbers is always odd." Explain.
+<details><summary>Answer</summary>True. Odd + odd = even. Even + odd = odd. So three odd numbers always give an odd total.</details>
+
+## Did You Know? 🌟
+The KS2 SATs were first introduced in England in 1995. About 600,000 children take them each year. The reasoning papers were added in 2016 to test problem-solving alongside arithmetic.
 
 ## Learning Checklist
-- [ ] I can solve multi-step word problems
-- [ ] I can work backwards to find an unknown
-- [ ] I can check my answers using estimation or inverse operations
+
+- [ ] I can break multi-step problems into individual steps
+- [ ] I can explain my reasoning clearly
+- [ ] I can work systematically to find all possible answers
+- [ ] I can estimate to check whether my answer is sensible

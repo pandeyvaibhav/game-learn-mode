@@ -1,77 +1,79 @@
 ---
 year: 6
 subject: computing
-topic: Binary & Data
+topic: Binary and Data
 slug: binary-data
-key_concepts: [binary, bits, bytes, data representation]
+key_concepts:
+  - binary numbers
+  - bits and bytes
+  - data representation
+  - encoding
 age_range: "10-11"
-animation: ../../animations/year-6/computing/binary-data.html
+animation: /animations/year-6/computing/binary-data.html
 ---
 
-# Binary & Data — Year 6 Computing
-
-## Big Question
-How do computers store and represent data using only 0s and 1s?
+# Binary and Data 🎯
 
 ## What We're Learning
-In this lesson you will learn about **binary**, **bits**, **bytes**, and how computers **represent data**.
+Computers don't understand English or numbers the way we do — they only understand **binary**: patterns of 0s and 1s. We'll discover how computers use binary to represent numbers, text, images, and sound.
 
-## Key Computing Words
-| Word | What it means |
-|---|---|
-| binary | a number system using only 0 and 1 |
-| bit | the smallest unit of data (a single 0 or 1) |
-| byte | 8 bits grouped together |
-| data | information stored or processed by a computer |
-| pixel | a tiny dot of colour on a screen |
-| ASCII | a system that assigns a number to each character (A = 65) |
+## Key Words
 
-## The Computing Explained
+| Word | Meaning |
+|------|---------|
+| binary | A number system using only two digits: 0 and 1 |
+| bit | A single binary digit — either a 0 or a 1 |
+| byte | A group of 8 bits (e.g. 01001010) |
+| encoding | The process of converting data into a format a computer can store |
 
-### Why Binary?
-Computers use electrical signals that are either **on** (1) or **off** (0). Everything — numbers, text, images, sound — is stored as patterns of 0s and 1s.
+## Let's Explore! 🔍
 
-### Counting in Binary
-| Binary | Decimal |
-|---|---|
-| 0000 | 0 |
-| 0001 | 1 |
-| 0010 | 2 |
-| 0011 | 3 |
-| 0100 | 4 |
-| 0101 | 5 |
-| 0110 | 6 |
-| 0111 | 7 |
-| 1000 | 8 |
+### Binary Numbers
+We normally count in **denary** (base 10) using digits 0–9. Computers use **binary** (base 2) using only 0 and 1. Each position in a binary number represents a power of 2:
 
-Each column is worth **double** the one before: 8, 4, 2, 1.
-Example: 1011 = 8 + 0 + 2 + 1 = **11**.
+| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+|-----|----|----|----|----|---|---|---|
+|  0  |  1 |  0 |  1 |  0 | 0 | 1 | 0 |
+
+This binary number = 64 + 16 + 2 = **82**
+
+To convert denary to binary, find the largest power of 2 that fits, write a 1, and continue with the remainder.
 
 ### Bits and Bytes
-- 1 bit = one 0 or 1.
-- 1 byte = 8 bits = can represent values 0–255.
-- 1 kilobyte (KB) ≈ 1,000 bytes.
-- 1 megabyte (MB) ≈ 1,000 KB.
-- 1 gigabyte (GB) ≈ 1,000 MB.
+- A **bit** is the smallest unit of data: a single 0 or 1.
+- A **byte** = 8 bits, which can represent 256 different values (0–255).
+- A **kilobyte (KB)** ≈ 1,000 bytes; a **megabyte (MB)** ≈ 1,000 KB; a **gigabyte (GB)** ≈ 1,000 MB.
 
-### How Data is Represented
-| Data type | How it's stored |
-|---|---|
-| Numbers | Binary place values |
-| Text | Each character = a number (ASCII/Unicode) |
-| Images | Grid of pixels, each with colour values |
-| Sound | Samples of sound waves as numbers |
+A typical photo is about 3 MB, a song is about 4 MB, and a film might be 4 GB.
 
-## Quick Quiz
-1. What is a bit? → *The smallest unit of data — a single 0 or 1*
-2. How many bits in a byte? → *8*
-3. What is 1010 in decimal? → *10 (8+0+2+0)*
-4. Why do computers use binary? → *Because they use electrical signals that are on or off*
+### How Computers Store Different Data
+- **Text:** Each character has a number code. In ASCII, A = 65 (01000001 in binary), B = 66, and so on.
+- **Images:** Broken into tiny squares called **pixels**. Each pixel's colour is stored as a binary number.
+- **Sound:** Sound waves are sampled thousands of times per second, and each sample is stored as a binary value.
 
-## Computing in the Real World
-Every photo, song, game, and message on your devices is stored as binary data. Understanding binary is the foundation of computer science.
+## Try It Yourself! ✏️
+
+**Question 1:** Convert the binary number 1101 to denary.
+<details><summary>Answer</summary>8 + 4 + 0 + 1 = 13</details>
+
+**Question 2:** Convert the denary number 25 to binary.
+<details><summary>Answer</summary>25 = 16 + 8 + 1 = 11001</details>
+
+**Question 3:** How many different values can a single byte represent?
+<details><summary>Answer</summary>256 values (from 0 to 255), because 2⁸ = 256.</details>
+
+**Question 4:** In ASCII, if A = 65 and B = 66, what number represents the letter E?
+<details><summary>Answer</summary>69 (A=65, B=66, C=67, D=68, E=69).</details>
+
+**Question 5:** Why do computers use binary instead of denary?
+<details><summary>Answer</summary>Computers are built from electronic switches (transistors) that can only be in two states — on (1) or off (0). Binary is the simplest way to represent these two states.</details>
+
+## Did You Know? 🌟
+The first electronic computers filled entire rooms and had less computing power than a modern calculator! ENIAC (1945) weighed 27 tonnes and used 18,000 vacuum tubes. Today, a single smartphone chip contains billions of tiny transistors, each one switching between 0 and 1 billions of times per second.
 
 ## Learning Checklist
-- [ ] I can convert simple binary numbers to decimal
-- [ ] I can explain bits, bytes, and data sizes
-- [ ] I can describe how computers represent different types of data
+
+- [ ] I can convert between binary and denary numbers
+- [ ] I understand what bits and bytes are
+- [ ] I can explain how computers represent text, images, and sound
+- [ ] I know why computers use binary
