@@ -16,7 +16,49 @@
       },
       "validated_date": "2026-04-23",
       "validated_by": "real 7-year-old, unprompted engagement with interactive SVG plant + 5-prompt quest",
-      "reason": "Gold-standard reference for doc/topic-build-runbook.md — the only validated exemplar as of delivery"
+      "reason": "Gold-standard reference for doc/topic-build-runbook.md — first validated exemplar"
+    },
+    {
+      "slug": "forces-magnets",
+      "paths": [
+        "content/year-3/science/forces-magnets.md",
+        "animations/year-3/science/forces-magnets.html"
+      ],
+      "sha256": {
+        "content/year-3/science/forces-magnets.md": "1fd9b99968274bb02be68da16e5df51ec1de08aa15b3159735ecc0e0070d83c7",
+        "animations/year-3/science/forces-magnets.html": "810df6c1b0efba2be06fc50669e94c9cfdcfa8992e6d04d7b58193f89cdba9c7"
+      },
+      "validated_date": "2026-04-23",
+      "validated_by": "real 7-year-old played all 4 Y3 science topics in one session, returned asking for more",
+      "reason": "Identify-perspective for the Forces concept — validated by child-return signal"
+    },
+    {
+      "slug": "light-shadows",
+      "paths": [
+        "content/year-3/science/light-shadows.md",
+        "animations/year-3/science/light-shadows.html"
+      ],
+      "sha256": {
+        "content/year-3/science/light-shadows.md": "fe6034e1a6c2ecbfb330509ec6f7d263ab19c0f47e5c74bbcc385f467d605a43",
+        "animations/year-3/science/light-shadows.html": "b8fbc4ff014159c7ce99b0e6daec1bffa7387e67f630e8916872f993c8e3af6d"
+      },
+      "validated_date": "2026-04-23",
+      "validated_by": "real 7-year-old played all 4 Y3 science topics in one session, returned asking for more",
+      "reason": "Identify-perspective for the Light concept — validated by child-return signal"
+    },
+    {
+      "slug": "rocks-fossils",
+      "paths": [
+        "content/year-3/science/rocks-fossils.md",
+        "animations/year-3/science/rocks-fossils.html"
+      ],
+      "sha256": {
+        "content/year-3/science/rocks-fossils.md": "d53d280ec3d1b988368c9abb078310a7d81c990db8c2336e2dee76bf0683f45d",
+        "animations/year-3/science/rocks-fossils.html": "d97e1ac9905f4648f54527adec2d4dceb8fbd6686c148372f15c178f3177508f"
+      },
+      "validated_date": "2026-04-23",
+      "validated_by": "real 7-year-old played all 4 Y3 science topics in one session, returned asking for more",
+      "reason": "Identify-perspective for the Rocks concept — validated by child-return signal"
     }
   ]
 }

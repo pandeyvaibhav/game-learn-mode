@@ -163,7 +163,7 @@ def cmd_update(args: argparse.Namespace) -> int:
     print(f"Updating manifest for slug '{args.slug}':")
     for p, old, new in changes:
         print(f"  {p}")
-        print(f"    {old} → {new}")
+        print(f"    {old} -> {new}")
     _save_manifest(manifest)
     _ok(f"manifest updated for {args.slug}")
     return 0
