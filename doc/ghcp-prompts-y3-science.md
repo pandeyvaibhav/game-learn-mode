@@ -1,12 +1,208 @@
 # GHCP Handoff — Year 3 Science Batch
 
-Three ready-to-paste prompts for GitHub Copilot Workspace (or Claude Code, or any coding agent that can read the repo). Do them **in order**. After each one, open the result in the browser, play-test with a child, and iterate if the child doesn't engage before moving to the next.
+**Two options:**
+1. **§ 0 Combined batch prompt** — one prompt that builds all three topics in a single GHCP run, one commit per topic. Fastest path. Use this unless GHCP struggles with the length.
+2. **§ 1–3 Individual prompts** — fallback if the batch prompt fails or GHCP needs to retry a single topic.
 
-The agent must read [doc/topic-build-runbook.md](topic-build-runbook.md) and [animations/year-3/science/plants-functions-y3.html](../animations/year-3/science/plants-functions-y3.html) before writing anything. That's the pattern. Without it the output will revert to a quiz.
+**Either way**, the agent must read [doc/topic-build-runbook.md](topic-build-runbook.md) and [animations/year-3/science/plants-functions-y3.html](../animations/year-3/science/plants-functions-y3.html) before writing anything. That's the pattern. Without it the output will revert to a quiz.
 
 ---
 
-## Prompt 1 — `forces-magnets`
+## § 0 — Batch prompt (recommended)
+
+Paste the entire block below into Copilot Chat (Agent mode) after adding three `#file:` references:
+
+```
+#file:doc/topic-build-runbook.md
+#file:animations/year-3/science/plants-functions-y3.html
+#file:content/year-3/science/plants-functions-y3.md
+
+You are building three Year 3 Science topic exemplars for the
+game-learn-mode platform, in a single run.
+
+RULES (non-negotiable)
+- Read doc/topic-build-runbook.md in full before writing anything.
+- Study animations/year-3/science/plants-functions-y3.html + its
+  paired .md. This is the ONLY pattern. The old quiz-only templates
+  in the Y3 folder are NOT the pattern.
+- Build one topic at a time, in the listed order.
+- Make ONE git commit per topic with message:
+    feat(y3/science): hand-built {slug} exemplar
+  Do NOT bundle multiple topics in one commit.
+- After each topic, tick every box in runbook §7 acceptance checklist
+  before moving on. If any box is unticked, fix it before committing.
+- V1 palette only (see runbook §2.1). No new hex literals outside the
+  palette except as explicitly-declared illustration tokens.
+- Feedback: ✓ / ○ (circle-pause), not ✗. Error language is "Not quite",
+  never "Wrong".
+- postMessage hooks required: anim:ready / anim:attempt / anim:complete
+  with topic = {slug}.
+
+DELIVERABLE PER TOPIC
+- animations/year-3/science/{slug}.html — self-contained, three
+  sections: intro card, illustration, exercise. Five quest prompts.
+- content/year-3/science/{slug}.md — one frontmatter block, 3 short
+  paragraphs, mandatory ## Sources with ≥ 2 citations.
+
+═══════════════════════════════════════════════════════════════════
+TOPIC 1 — forces-magnets
+═══════════════════════════════════════════════════════════════════
+
+Archetype: tap-to-identify with a magnet + six objects.
+
+Illustration SVG:
+- A bar magnet at centre: left half red labelled "N", right half
+  blue labelled "S", poles clearly coloured.
+- Six objects arranged around the magnet, each a tappable
+  <g class="part" data-part="{slug}">:
+    1. paperclip       (metal, magnetic)
+    2. iron-nail       (metal, magnetic)
+    3. coin            (metal, NOT magnetic — copper/nickel)
+    4. wooden-block    (not magnetic)
+    5. rubber          (not magnetic)
+    6. plastic-cup     (not magnetic)
+- Flat-geometric. Declare extra tokens (--c-metal, --c-wood,
+  --c-rubber, --c-plastic) at the top of <style>.
+
+Five prompts (implement answer as an array where multiple parts are
+valid, using `current.answer.includes(partName)`):
+  1. "Tap a material the magnet will attract" → [paperclip, iron-nail]
+  2. "Tap an object that is metal but NOT magnetic" → [coin]
+  3. "Tap a material that is NOT magnetic" → [wooden-block, rubber, plastic-cup]
+  4. "Tap the north pole of the magnet" → [n-pole]
+  5. "Tap the south pole of the magnet" → [s-pole]
+
+Content.md body (3 paragraphs):
+  (1) Pushes and pulls are forces. Magnets pull certain metals without
+      touching them.
+  (2) Magnets attract iron and steel, not all metals. Every magnet has
+      a north pole and a south pole. Opposite poles pull together; the
+      same poles push apart.
+  (3) "Open the game and tap each object to see if the magnet pulls it
+      — then try the quest."
+
+Sources:
+  - UK National Curriculum — Science, Year 3: Forces and magnets
+  - BBC Bitesize KS2 — "Forces and magnets"
+
+COMMIT #1: feat(y3/science): hand-built forces-magnets exemplar
+
+═══════════════════════════════════════════════════════════════════
+TOPIC 2 — light-shadows
+═══════════════════════════════════════════════════════════════════
+
+NOTE: animations/year-3/science/light-shadows.html currently contains
+a concatenated double-document (old quiz + older simulator). REPLACE
+THE ENTIRE FILE with the new single 3-part structure.
+
+Archetype: tap-to-identify with light / object / wall / shadow / glass.
+
+Illustration SVG:
+- Left: sun (yellow circle + rays), the light source.
+- Between sun and object (slightly right): a clear-glass pane
+  (transparent rectangle, very thin stroke, subtle fill).
+- Middle: an opaque object (a ball or simple tree — pick one
+  flat-geometric shape).
+- Right: a wall (light-grey rounded rectangle) with a grey shadow
+  shape projected onto it from the object.
+
+Tappable parts:
+  1. sun     (the light source)
+  2. object  (the opaque body)
+  3. shadow  (the grey shape on the wall)
+  4. wall    (the surface the shadow falls on)
+  5. glass   (transparent — light passes through)
+
+Five prompts:
+  1. "Tap the light source"                     → [sun]
+  2. "Tap what blocks the light"                → [object]
+  3. "Tap where the shadow forms"               → [wall, shadow]
+  4. "Tap the object light passes through"      → [glass]
+  5. "Tap the shadow"                           → [shadow]
+
+Content.md body:
+  (1) Light travels from a source in straight lines. We see things
+      when light from a source reaches our eyes.
+  (2) Shadows form when an opaque object blocks light from reaching
+      a surface. Transparent materials (like glass) let light through,
+      so they cast little or no shadow. Translucent materials let some
+      light through.
+  (3) "Open the game and tap each part of the scene to learn its role
+      — then try the quest."
+
+Sources:
+  - UK National Curriculum — Science, Year 3: Light
+  - BBC Bitesize KS2 — "Light and shadows"
+
+COMMIT #2: feat(y3/science): hand-built light-shadows exemplar
+
+═══════════════════════════════════════════════════════════════════
+TOPIC 3 — rocks-fossils
+═══════════════════════════════════════════════════════════════════
+
+NOTE: animations/year-3/science/rocks-fossils.html is a quiz-only
+vintage file — REPLACE it entirely.
+
+Archetype: tap-to-identify labelled cross-section of Earth's crust.
+
+Illustration SVG:
+- Four horizontal bands, top to bottom:
+    1. soil         — thin dark-brown band at top with grass tufts
+    2. sedimentary  — layered tan/cream bands, with a fossil
+                      silhouette (an ammonite spiral or dinosaur
+                      bone outline) embedded
+    3. igneous      — dark speckled grey block, with a magma chute
+                      rising from below (suggesting volcanic origin)
+    4. metamorphic  — banded swirl pattern (pink/grey) at the bottom
+
+Tappable parts:
+  1. soil
+  2. sedimentary
+  3. fossil          (shape inside the sedimentary layer)
+  4. igneous
+  5. metamorphic
+
+Five prompts:
+  1. "Tap the rock made when lava cools"         → [igneous]
+  2. "Tap the rock that has layers"              → [sedimentary]
+  3. "Tap the fossil"                            → [fossil]
+  4. "Tap the rock changed by heat and pressure" → [metamorphic]
+  5. "Tap where plants grow"                     → [soil]
+
+Content.md body:
+  (1) There are three main types of rock: igneous (formed when hot
+      lava cools and hardens), sedimentary (formed from layers of
+      sand, mud or shells pressed together over time), and
+      metamorphic (older rock changed by heat or pressure deep
+      underground).
+  (2) Fossils are the preserved remains or impressions of plants
+      and animals that lived long ago. They are usually found in
+      sedimentary rock because the layers can trap them before
+      they decay.
+  (3) "Open the game and tap each layer to learn what it is — then
+      try the quest."
+
+Sources:
+  - UK National Curriculum — Science, Year 3: Rocks
+  - BBC Bitesize KS2 — "Rocks and fossils"
+
+COMMIT #3: feat(y3/science): hand-built rocks-fossils exemplar
+
+═══════════════════════════════════════════════════════════════════
+
+END OF BATCH. Three topics, three commits. After this, the user will
+play-test each with a real child before marking them protected via
+tools/protected-exemplars.json.
+```
+
+After GHCP finishes, you will have three new commits on top of the
+current branch, one per topic. Play-test each in the browser with a
+child; if any fails, `git revert <commit>` just that one and
+re-prompt GHCP using the individual prompt in §1–3 below.
+
+---
+
+## § 1 — Individual prompt — `forces-magnets`
 
 ```
 You are building a topic exemplar for the game-learn-mode platform.
@@ -80,7 +276,7 @@ ACCEPTANCE — tick every box in runbook §7 before declaring done:
 
 ---
 
-## Prompt 2 — `light-shadows`
+## § 2 — Individual prompt — `light-shadows`
 
 ```
 You are building a topic exemplar for the game-learn-mode platform.
@@ -142,7 +338,7 @@ ACCEPTANCE: same checklist as runbook §7.
 
 ---
 
-## Prompt 3 — `rocks-fossils`
+## § 3 — Individual prompt — `rocks-fossils`
 
 ```
 You are building a topic exemplar for the game-learn-mode platform.
