@@ -33,12 +33,18 @@ Safety gates land first so new content is generated under review; mobile fixes c
 4. ~~**M1** — Wrap lesson tables for mobile overflow~~ ✅ done 2026-04-18
 5. ~~**M2** — Enforce 44px touch targets + 16px text baseline~~ ✅ done 2026-04-18 (new animations only; M6 retrofits existing 20)
 6. ~~**S10** — Game-playability reviewer agent~~ ✅ done 2026-04-18
-7. **C2** — Fill Year 1/2/4/5/6 lesson content *(now unblocked — runs under S1/S2/S10 gates)*
-8. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
-9. **P3 + L2** — Progress tracking + gamification as one reusable module ([design](doc/feature-design-progress-gamification.md))
-10. **L1** — Quiz mode (feeds progress events)
-11. **M6** — Retrofit existing animations to child-baseline.css
-12. **B1–B3** — Backend adapter, auth, multi-device sync *(phased evolution, not blockers for v1)*
+7. ~~**C2** — Fill Year 1/2/4/5/6 lesson content~~ ✅ done 2026-04-19 (234 files committed; review gap tracked as **C4**)
+8. **X3 + X4 + X5** — Fix pipeline integrity: truthful report, backfill 77 missing Sources sections, mechanical §9 check in S2 *(blocks C4 — cannot "pass review" files that fail the mechanical rule)*
+9. **C4** — Retro-run safety gates on Y2/Y4/Y5/Y6 + Y1 re-review under corrected S10 bars
+10. **X6** — Diff-before-regen guard so we never blindly overwrite prior work again
+11. **V1 + V2 + V3** — Child visual standard, token additions to baseline CSS, icon/SVG symbol library *(prerequisite to A1 so archetype shells inherit one look)*
+12. **A1 + A2 + A3** — Animation archetype catalog, archetype-aware generator, retro-regen 117 animations *(fixes the "everything is a quiz" problem)*
+12. **P3 + L2** — Progress tracking + gamification as one reusable module ([design](doc/feature-design-progress-gamification.md))
+13. **L1** — Quiz mode (feeds progress events)
+14. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
+15. **M6** — Retrofit existing animations to child-baseline.css
+16. **A4–A7** — SVG primitives, canvas helper, vendored-lib policy, Lottie rewards
+17. **B1–B3** — Backend adapter, auth, multi-device sync *(phased evolution, not blockers for v1)*
 
 ---
 
@@ -74,9 +80,10 @@ Child-facing product with LLM-generated content — these controls are non-negot
 
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| C2 | Generate Year 1, 2, 4, 5, 6 lesson content | P0 | todo | Only Year 3 is populated; curriculum covers Years 1–6. Product is effectively single-year without this. |
+| C2 | Generate Year 1, 2, 4, 5, 6 lesson content | P0 | done | 117/117 content + 117/117 animations live across Years 1–6 (committed 26df753, 2026-04-19). C4 tracks the S1/S2/S10 retro-review gap on Y2/Y4/Y5/Y6. |
+| C4 | Retro-run S1/S2/S10 gates on Y2/Y4/Y5/Y6 (pre-safety-gate vintage) + Y1 re-review under corrected S10 bars | P0 | todo | Only Y3 has fully passed all three gates. Y1 passed but S10 applied Y3 bars by mistake. 76 Y2/4/5/6 files never reviewed. Blocks "ship" claim until cleared. |
 | C1 | Rewrite Year 3 lessons into shorter `Learn → Try → Play → Check` cards | P1 | todo | Current pages read as content sheets, not child-led lessons. |
-| C3 | Use [counting-to-100](animations/year-1/maths/counting-to-100.html) + [light-shadows](animations/year-3/science/light-shadows.html) as the gold-standard template for new animations | P2 | todo | Responsive containers, feedback, alt controls. |
+| C3 | Use [counting-to-100](animations/year-1/maths/counting-to-100.html) + [light-shadows](animations/year-3/science/light-shadows.html) as the gold-standard template for new animations | P2 | todo | Responsive containers, feedback, alt controls. Partly superseded by **A1** archetype catalog. |
 
 ## Platform & shell
 
@@ -101,6 +108,33 @@ Child-facing product with LLM-generated content — these controls are non-negot
 | L3 | Parent / teacher dashboard view | P3 | parked | Out of scope for self-serve child product unless requested. |
 | L5 | **Adaptive learning** — difficulty branches per child based on performance (serve easier variant on 2 wrong, harder on 3 right in a row) | P2 | parked | Concept is P1, build depends on **P3** (progress tracking) landing first. Lightweight v1 = rule-based on per-topic streaks; real v2 = per-child difficulty model. No design doc yet — revisit once P3 ships. |
 
+## Animation richness & archetypes
+
+**Context:** current generator produces one archetype only — a 10-question multiple-choice quiz. Phonics, forces-and-magnets, and shapes all ship the same shell with a different `QUESTIONS` array. This section fixes the sameness. All items stay within the `no-CDN / no-npm / static-files` policy (A6 is the only exception, scoped to *self-hosted* vendored libs). Design: [feature-design-animation-system.md](doc/feature-design-animation-system.md).
+
+| # | Item | Priority | Status | Notes |
+|---|---|---|---|---|
+| A1 | **Animation archetype catalog** — define 8–12 interaction patterns with example shells (drag-to-match, number-line slider, shape-sorter, phoneme-tap, volume-pour, sequence-builder, canvas-paint, shadow-mover, story-reorder, count-and-tap, magnet-force-pull, fraction-fold). Each archetype documents year fit, rubric mapping, and a reference HTML. | P1 | todo | Catalog lives at `animations/_shared/archetypes/` + a design doc. Replaces the implicit "quiz-only" default. |
+| A2 | Animation generator picks archetype per topic from a decision tree (topic type × year × concept kind), not free-form codegen | P1 | todo | Update [animation-generator.agent.md](.github/agents/animation-generator.agent.md) with the decision table. Quiz stays as the *fallback*, not the default. |
+| A3 | Retro-regen all 117 existing animations through the archetype-aware generator so variety lands across Years 1–6 | P1 | todo | Depends on A1 + A2. Run year-by-year under `--force` with S1 + S10 gates. |
+| A4 | SVG-first diagram primitives (`animations/_shared/svg/`) — body parts, shadow geometry, volcano cutaway, force vectors, fraction bars — reusable `<symbol>` set | P2 | todo | Pure SVG + CSS keyframes, no JS dependency. Pulls visual richness into science/geography without new libs. |
+| A5 | Canvas helper micro-lib (`animations/_shared/anim.js`, ~200 lines) for sprite/tween primitives used by motion-heavy archetypes (volume-pour, magnet-force-pull) | P2 | todo | Self-hosted, vendored, no external deps. |
+| A6 | **Safety-policy §7 amendment** — allow locally vendored libs under `animations/_shared/lib/` (explicitly *not* CDNs, *not* npm installs); add allowlist (e.g. Lottie-web) | P2 | todo | Prerequisite for A7. Requires S1 reviewer update so vendored paths don't trip the "no external URLs" check. |
+| A7 | Vendored **Lottie-web** (~80KB, self-hosted) for reward moments (level-up burst, badge-earned, topic-complete celebration) | P2 | todo | Depends on A6. Richer reward loop than CSS bounce without breaking offline-first. |
+| A8 | Archetype coverage report — per-subject/year breakdown of which archetypes are used; flag over-reliance on any one archetype (>40% of a year) | P3 | todo | Run after A3. Prevents regression back to "everything is a quiz". |
+
+## Visual design standard
+
+**Context:** we have a technical baseline (`child-baseline.css`: tap sizes, motion safety, font floors) but no *visual* design language — no agreed illustration style, palette, type system, icon set, motion vocabulary, or celebration language. Every animation picked its own look by copy-paste, producing visual whiplash across 117 topics. V1 fixes that before A1 archetype shells bake inconsistency into the retrofit. Design: [feature-design-child-visual-standard.md](doc/feature-design-child-visual-standard.md).
+
+| # | Item | Priority | Status | Notes |
+|---|---|---|---|---|
+| V1 | **Child visual standard v1** — illustration style, colour system, typography, iconography, motion vocabulary, feedback/celebration patterns, layout grid, accessibility floors | P1 | todo | Prerequisite to A1 archetype shells. Land as design doc + token additions to `child-baseline.css`. |
+| V2 | Extend `child-baseline.css` with the V1 token set — semantic colours (primary/success/warn/error/celebrate), type scale, motion durations + easings, spacing rhythm | P1 | todo | Pure token additions; no behavioural changes to existing selectors. |
+| V3 | **Icon + SVG symbol library** (`animations/_shared/svg/icons.svg`) — ~20 named symbols at 24px base, 2px stroke, consistent corner radius per V1 | P1 | todo | Merges with A4 (diagram primitives): icons go in `icons.svg`, diagrams stay per-topic. |
+| V4 | **Mascot** — one recurring friendly character, pure SVG, used in reward/consolation moments only (not required in every animation) | P2 | todo | Optional per-archetype; reward overlay (L6) always uses it. Ties product identity together without adding per-topic production load. |
+| V5 | Retrofit existing 21 Y1 + 19 Y3 animations visually to V1 — colour roles, typography, motion easings — once V2 tokens land | P2 | todo | Style-only pass, no interaction changes. Pairs naturally with M6. |
+
 ## Backend & sync
 
 All items here are phased evolution of the **P3 ProgressStore adapter boundary** — the module contract never changes, only the adapter does. See [feature-design-progress-gamification.md](doc/feature-design-progress-gamification.md) §6.
@@ -114,9 +148,15 @@ All items here are phased evolution of the **P3 ProgressStore adapter boundary**
 
 ## Content pipeline
 
+**Pipeline integrity findings (2026-04-19 review):** 77/117 content files are missing the `## Sources` section required by safety-policy §9, yet [PIPELINE_REPORT.md](content/PIPELINE_REPORT.md) claims "sources present" for Year 1. S2 reviewer is not catching its own §9 rule, and the report appears to be written without enforcing it. X3–X6 below fix that class of problem. Earlier GHCP work on Year 1 (commit eb72cf7) was also blindly overwritten by the 26df753 full regen without a quality lift — X6 prevents that recurring.
+
 | # | Item | Priority | Status | Notes |
 |---|---|---|---|---|
-| X2 | Automated validation that every `curriculum.json` topic has a matching `.md` + animation + passes S1/S2 review | P1 | todo | Prevents broken "available" badges. Blocks C2 from silently shipping gaps or unreviewed content. |
+| X3 | **PIPELINE_REPORT.md truth-check** — orchestrator must derive report claims from actual reviewer verdicts on disk, not from self-narrated summaries. Each claim links to the verdict file that proves it | P0 | todo | Current report falsely claims "sources present §9" for Y1 while 0/21 files have Sources. Fix: reviewers write their verdict to `.review-verdicts/{year}/{subject}/{slug}.json`; report aggregates those files. No narrative-only summaries. |
+| X4 | **Backfill `## Sources` on 77 files** — Y1 (21), Y2 (20), Y4 (19), Y5 (19), Y6 (19) content files currently ship without Sources. Targeted append-only pass per topic (no full regen), citing UK National Curriculum + one trusted secondary per policy §9 | P0 | todo | Immediate unblocker for C4 retro-review. Fastest path: single-purpose agent that reads each file, identifies topic + year, adds `## Sources` section with 2+ citations, leaves the rest untouched. |
+| X5 | **Mechanical §9 check in S2 reviewer** — before the LLM review kicks in, run a `grep "^## Sources$"` gate. No Sources = immediate FAIL, no LLM spend, no rubber-stamping possible | P0 | todo | Add to [factual-accuracy-reviewer.agent.md](.github/agents/factual-accuracy-reviewer.agent.md) Step 1. Mirrors X3's principle: structural claims get structural checks, not prose ones. |
+| X6 | **Diff-before-regen guard** in orchestrator — before overwriting an existing file under `--force`, compare the current file to what the agent would produce; only rewrite sections that fail gates, or require explicit `--nuke` to overwrite wholesale | P1 | todo | Lesson from eb72cf7 → 26df753: GHCP's Year 1 refactor had richer examples; pipeline nuked it for no quality lift. Prevents future regens from silently destroying human/other-agent contributions. |
+| X2 | Automated validation that every `curriculum.json` topic has a matching `.md` + animation + passes S1/S2 review | P1 | todo | Prevents broken "available" badges. Blocks C2 from silently shipping gaps or unreviewed content. Depends on X3's verdict-file scheme. |
 | X1 | Agent-driven content refresh workflow documented end-to-end | P2 | todo | Agents exist in `.github/agents/`; a runbook would help contributors. |
 
 ---

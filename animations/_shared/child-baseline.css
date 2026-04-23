@@ -25,19 +25,86 @@
 /* 44 as the absolute floor for any interactive element.       */
 
 :root {
-  --tap-min: 44px;       /* hard floor for any clickable */
-  --tap-primary: 56px;   /* all primary answer/game controls */
-  --tap-gap: 12px;       /* min spacing between tap targets */
-  --child-font-base: 18px;   /* base body text */
-  --child-font-prompt: 20px; /* instruction / question text */
-  --child-font-answer: 22px; /* answer buttons */
+  /* Tap targets (M2) */
+  --tap-min: 44px;
+  --tap-primary: 56px;
+  --tap-gap: 12px;
   --radius-child: 16px;
+
+  /* --- V1 Visual Standard — see doc/feature-design-child-visual-standard.md --- */
+
+  /* Neutral canvas (light default — child-facing) */
+  --c-bg:            #FFF9F2;
+  --c-surface:       #FFFFFF;
+  --c-surface-alt:   #F5EEE3;
+  --c-border:        #E8DCC7;
+  --c-ink:           #1E1E2A;
+  --c-ink-muted:     #5A5566;
+
+  /* Semantic roles */
+  --c-primary:       #4A5FDB;
+  --c-primary-ink:   #2B38A0;
+  --c-accent:        #FF8A3D;
+  --c-success:       #1FA66A;
+  --c-warn:          #E0A020;
+  --c-error:         #D8452B;
+  --c-celebrate:     #B24EE0;
+
+  /* Typography — system stack, offline-first */
+  --font-body:       ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display:    ui-rounded, "SF Pro Rounded", "Fredoka", "Nunito", system-ui, sans-serif;
+
+  /* Fluid type scale (360→540px reference) */
+  --fs-xs:           clamp(13px, 3.5vw, 14px);
+  --fs-sm:           clamp(15px, 4vw, 16px);
+  --fs-body:         clamp(17px, 4.5vw, 18px);
+  --fs-prompt:       clamp(19px, 5vw, 21px);
+  --fs-answer:       clamp(20px, 5.5vw, 22px);
+  --fs-display:      clamp(24px, 7vw, 32px);
+  --fs-xl:           clamp(32px, 10vw, 44px);
+
+  /* Legacy aliases — keep prior generator output working */
+  --child-font-base:   var(--fs-body);
+  --child-font-prompt: var(--fs-prompt);
+  --child-font-answer: var(--fs-answer);
+
+  /* Motion — easing + duration scale */
+  --ease-out:        cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:         cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-both:       cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --d-instant:       80ms;
+  --d-fast:          180ms;
+  --d-med:           320ms;
+  --d-slow:          560ms;
+  --d-ambient:       2400ms;
+
+  /* Spacing rhythm (8px base) */
+  --space-1:         4px;
+  --space-2:         8px;
+  --space-3:         12px;
+  --space-4:         16px;
+  --space-6:         24px;
+  --space-8:         32px;
+}
+
+/* Dark variant (opt-in — parent-controlled, not default) */
+[data-theme="dark"] {
+  --c-bg:            #15131F;
+  --c-surface:       #1F1C2B;
+  --c-surface-alt:   #2A2637;
+  --c-border:        #3A3548;
+  --c-ink:           #F0EAD8;
+  --c-ink-muted:     #B8AEA0;
 }
 
 html { font-size: 100%; }
 
 body {
-  font-size: var(--child-font-base);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
   line-height: 1.55;
   -webkit-text-size-adjust: 100%;   /* iOS Safari */
   text-size-adjust: 100%;
@@ -85,8 +152,8 @@ button.primary,
 /* --- Focus visibility (keyboard + switch access) ----------- */
 
 :focus-visible {
-  outline: 3px solid #ffd166;
-  outline-offset: 3px;
+  outline: 3px solid var(--c-primary);
+  outline-offset: 2px;
   border-radius: var(--radius-child);
 }
 
@@ -129,7 +196,8 @@ html, body { overflow-x: hidden; }
 /* --- Feedback affordances (colour + icon, not colour alone) */
 
 .feedback--ok,
-.feedback--bad {
+.feedback--bad,
+.feedback--warn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -137,8 +205,12 @@ html, body { overflow-x: hidden; }
   padding: 0.4rem 0.7rem;
   border-radius: var(--radius-child);
 }
-.feedback--ok::before { content: "✓"; }
-.feedback--bad::before { content: "!"; }
+.feedback--ok   { background: var(--c-success); color: #FFFFFF; }
+.feedback--bad  { background: var(--c-error);   color: #FFFFFF; }
+.feedback--warn { background: var(--c-warn);    color: var(--c-ink); }
+.feedback--ok::before   { content: "✓"; }
+.feedback--bad::before  { content: "○"; }   /* softer than ✗ */
+.feedback--warn::before { content: "!"; }
 
 /* --- Utility: aria-live region for score/feedback announces -- */
 .sr-live {

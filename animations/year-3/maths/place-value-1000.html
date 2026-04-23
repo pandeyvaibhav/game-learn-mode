@@ -6,9 +6,9 @@
 <title>Place Value to 1000 — Quiz Game</title>
 <style>
   :root {
-    --bg: #0f172a; --surface: #1e293b; --surface2: #334155;
-    --border: #475569; --primary: #818cf8; --accent: #38bdf8;
-    --success: #4ade80; --error: #f87171; --text: #f1f5f9; --text-muted: #94a3b8;
+    --bg: #FFF9F2; --surface: #FFFFFF; --surface2: #F5EEE3;
+    --border: #E8DCC7; --primary: #4A5FDB; --accent: #FF8A3D;
+    --success: #1FA66A; --error: #D8452B; --text: #1E1E2A; --text-muted: #5A5566;
     --tap-min: 44px; --tap-primary: 56px; --child-font-base: 18px;
     --radius: 12px; font-family: system-ui, -apple-system, sans-serif;
   }
@@ -23,8 +23,8 @@
   .options { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
   .options button { min-height: var(--tap-primary); font-size: 1.1rem; border: 2px solid var(--border); border-radius: var(--radius); background: var(--surface2); color: var(--text); cursor: pointer; transition: .15s; font-family: inherit; }
   .options button:hover, .options button:focus-visible { border-color: var(--primary); outline: none; }
-  .options button.correct { border-color: var(--success); background: #166534; }
-  .options button.wrong { border-color: var(--error); background: #7f1d1d; }
+  .options button.correct { border-color: var(--success); background: #1FA66A; }
+  .options button.wrong { border-color: var(--error); background: #D8452B; }
   .options button:disabled { cursor: default; opacity: .85; }
   .feedback { min-height: 2rem; margin-top: 1rem; font-weight: 600; }
   .next-btn { margin-top: 1rem; min-height: var(--tap-primary); padding: 0 2rem; font-size: 1.1rem; border: none; border-radius: var(--radius); background: var(--primary); color: #fff; cursor: pointer; font-family: inherit; display: none; }
@@ -80,7 +80,7 @@
     let oSet=new Set(q.options);oSet.add(q.answer);let oArr=shuffle([...oSet]).slice(0,4);if(!oArr.includes(q.answer)){oArr[0]=q.answer;oArr=shuffle(oArr);}
     oArr.forEach(o=>{const b=document.createElement('button');b.textContent=o;b.addEventListener('click',()=>{if(answered)return;answered=true;
       opts.querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.textContent===q.answer)btn.classList.add('correct');});
-      if(o===q.answer){score++;scoreEl.textContent='Score: '+score;feedback.textContent='✓ Correct!';feedback.style.color='var(--success)';}
+      if(o===q.answer){score++;scoreEl.textContent='Score: '+score;feedback.textContent='Correct!';feedback.style.color='var(--success)';}
       else{b.classList.add('wrong');feedback.textContent='✗ The answer is '+q.answer;feedback.style.color='var(--error)';}
       nextBtn.style.display='inline-block';});opts.appendChild(b);});
   }
@@ -103,18 +103,18 @@
     /* ── Child Baseline (animations/_shared/child-baseline.css) ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface2: #273344;
+      --bg: #FFF9F2;
+      --surface: #FFFFFF;
+      --surface2: #F5EEE3;
       --border: rgba(148,163,184,0.15);
-      --primary: #fbbf24;
+      --primary: #4A5FDB;
       --primary-dark: #d97706;
-      --accent: #38bdf8;
+      --accent: #FF8A3D;
       --accent2: #a78bfa;
-      --success: #34d399;
-      --error: #f87171;
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
+      --success: #1FA66A;
+      --error: #D8452B;
+      --text: #1E1E2A;
+      --text-muted: #5A5566;
       --radius: 16px;
       --radius-sm: 8px;
       --tap-min: 44px; --tap-primary: 56px; --tap-gap: 12px;
@@ -189,8 +189,8 @@
       cursor: pointer; transition: background .12s, border-color .12s;
     }
     .quiz-opt:hover { border-color: var(--accent); }
-    .quiz-opt.correct { background: var(--success); color: #0f172a; border-color: var(--success); font-weight: 700; }
-    .quiz-opt.wrong { background: var(--error); color: #0f172a; border-color: var(--error); }
+    .quiz-opt.correct { background: var(--success); color: #FFFFFF; border-color: var(--success); font-weight: 700; }
+    .quiz-opt.wrong { background: var(--error); color: #FFFFFF; border-color: var(--error); }
     .quiz-opt.disabled { pointer-events: none; opacity: .6; }
     .quiz-feedback { font-size: .85rem; min-height: 1.2em; }
 
@@ -357,7 +357,7 @@
             btn.classList.add('correct', 'bounce');
             score++;
             scoreEl.textContent = score;
-            feedbackEl.textContent = '✓ Correct!';
+            feedbackEl.textContent = 'Correct!';
             feedbackEl.style.color = 'var(--success)';
           } else {
             btn.classList.add('wrong', 'shake');
