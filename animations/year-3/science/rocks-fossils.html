@@ -3,208 +3,520 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rocks &amp; Fossils — Quiz Game</title>
+<title>Rocks and Fossils - Year 3 Science</title>
 <style>
-  :root{--bg:#FFF9F2;--surface:#FFFFFF;--surface2:#F5EEE3;--border:#E8DCC7;--primary:#4A5FDB;--accent:#FF8A3D;--success:#1FA66A;--error:#D8452B;--text:#1E1E2A;--text-muted:#5A5566;--tap-min:44px;--tap-primary:56px;--child-font-base:18px;--radius:12px;font-family:system-ui,-apple-system,sans-serif;}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-size:var(--child-font-base);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem;}
-  h1{font-size:1.5rem;margin-bottom:.5rem;text-align:center;}.subtitle{color:var(--text-muted);margin-bottom:1.5rem;text-align:center;}
-  .score-bar{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-weight:600;}.score-bar span{padding:.4rem .8rem;background:var(--surface);border-radius:var(--radius);}
-  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:560px;text-align:center;margin-bottom:1rem;}
-  .q-text{font-size:1.1rem;margin-bottom:1.2rem;line-height:1.5;}
-  .options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
-  .options button{min-height:var(--tap-primary);font-size:1rem;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface2);color:var(--text);cursor:pointer;transition:.15s;font-family:inherit;padding:.5rem;}
-  .options button:hover,.options button:focus-visible{border-color:var(--primary);outline:none;}
-  .options button.correct{border-color:var(--success);background:#1FA66A;}.options button.wrong{border-color:var(--error);background:#D8452B;}
-  .options button:disabled{cursor:default;opacity:.85;}.feedback{min-height:2rem;margin-top:1rem;font-weight:600;}
-  .next-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;cursor:pointer;font-family:inherit;display:none;}.next-btn:hover{filter:brightness(1.15);}
-  .result{text-align:center;}.result h2{font-size:1.8rem;margin-bottom:.5rem;}.result .star{font-size:3rem;}
-  .restart-btn{margin-top:1rem;min-height:var(--tap-primary);padding:0 2rem;font-size:1.1rem;border:none;border-radius:var(--radius);background:var(--accent);color:#0f172a;cursor:pointer;font-weight:600;font-family:inherit;}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+:root {
+  --c-bg: #FFF9F2;
+  --c-surface: #FFFFFF;
+  --c-border: #E8DCC7;
+  --c-ink: #1E1E2A;
+  --c-ink-muted: #5A5566;
+  --c-primary: #4A5FDB;
+  --c-accent: #FF8A3D;
+  --c-success: #1FA66A;
+  --c-warn: #E0A020;
+  --c-error: #D8452B;
+  --c-celebrate: #B24EE0;
+
+  --c-soil: #8B5A3C;
+  --c-sediment-a: #E8D4B8;
+  --c-sediment-b: #D9C09E;
+  --c-igneous: #6C7078;
+  --c-metamorphic-a: #BDAAC5;
+  --c-metamorphic-b: #8E8898;
+
+  --font-body: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --fs-body: clamp(17px, 4.5vw, 18px);
+  --fs-prompt: clamp(19px, 5vw, 22px);
+  --fs-display: clamp(24px, 7vw, 32px);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-both: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --d-instant: 80ms;
+  --d-fast: 180ms;
+  --d-med: 320ms;
+  --d-slow: 560ms;
+  --d-ambient: 2400ms;
+
+  --tap-min: 44px;
+  --tap-primary: 56px;
+  --radius: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 4rem;
+  gap: 1rem;
+}
+header { text-align: center; max-width: 540px; width: 100%; }
+.year-tag { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-muted); margin-bottom: 0.25rem; }
+h1 { font-size: var(--fs-display); }
+.card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); padding: 1.25rem; width: 100%; max-width: 540px; }
+.intro p { margin-bottom: 0.75rem; max-width: 45ch; }
+.intro p:last-child { margin-bottom: 0; color: var(--c-ink-muted); font-style: italic; }
+
+.stage { padding: 0.5rem; }
+.stage-wrap { position: relative; }
+.scene-svg { width: 100%; height: auto; display: block; border-radius: 12px; }
+.scene-svg .part { cursor: pointer; outline: none; }
+.scene-svg .part:focus-visible .hit { stroke: var(--c-primary); stroke-width: 3; fill: rgb(74 95 219 / 10%); }
+.scene-svg .hit { fill: transparent; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scene-svg .part.correct .visual { animation: pulseOk var(--d-slow) var(--ease-bounce); }
+  .scene-svg .part.wrong .visual { animation: shakeWarn var(--d-fast) var(--ease-both); }
+  .scene-svg .part.reveal .visual { animation: pulseReveal var(--d-med) var(--ease-out); }
+}
+@keyframes pulseOk {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0 rgb(31 166 106 / 0%)); }
+  45% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgb(31 166 106 / 60%)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0 rgb(31 166 106 / 0%)); }
+}
+@keyframes shakeWarn {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+@keyframes pulseReveal {
+  0% { filter: drop-shadow(0 0 0 rgb(31 166 106 / 0%)); }
+  100% { filter: drop-shadow(0 0 10px rgb(31 166 106 / 70%)); }
+}
+
+.label-bubble {
+  background: var(--c-surface);
+  border: 2px solid var(--c-border);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgb(30 30 42 / 12%);
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-out);
+}
+.label-bubble.show { opacity: 1; }
+.label-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--c-border);
+}
+
+.quest { display: flex; flex-direction: column; gap: 0.75rem; }
+.quest-head { display: flex; align-items: center; gap: 0.75rem; }
+.bix { flex: 0 0 auto; width: 48px; height: 48px; }
+.quest-prompt { flex: 1 1 auto; font-size: var(--fs-prompt); font-weight: 600; }
+.quest-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--c-ink-muted); }
+.score-dots { display: inline-flex; gap: 4px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-border); }
+.dot.on { background: var(--c-success); }
+.feedback {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+}
+.feedback.show { display: flex; }
+.feedback.ok { background: var(--c-success); color: #FFFFFF; }
+.feedback.bad { background: var(--c-warn); color: var(--c-ink); }
+.feedback .icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 25%);
+  font-weight: 700;
+}
+.complete { text-align: center; display: none; }
+.complete.show { display: block; }
+.complete h2 { font-size: var(--fs-display); color: var(--c-celebrate); margin-bottom: 0.5rem; }
+.complete .stars { font-size: 2.5rem; margin: 0.5rem 0 1rem; }
+.complete button {
+  min-height: var(--tap-primary);
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--c-primary);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; border-radius: var(--radius); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 </style>
 </head>
 <body>
-<h1>Rocks &amp; Fossils</h1>
-<p class="subtitle">Year 3 Science — Quiz Game</p>
-<div class="score-bar"><span id="scoreEl">Score: 0</span><span id="qNum">1 / 10</span></div>
-<div class="qa" id="questionArea">
-  <p class="q-text" id="qText"></p>
-  <div class="options" id="opts"></div>
-  <p class="feedback" id="feedback"></p>
-  <button class="next-btn" id="nextBtn">Next →</button>
-</div>
-<div class="result" id="result" style="display:none"></div>
+<header>
+  <p class="year-tag">Year 3 · Science</p>
+  <h1>Rocks and Fossils</h1>
+</header>
+
+<section class="card intro" aria-label="About this lesson">
+  <p>There are three main rock types: <strong>igneous</strong>, <strong>sedimentary</strong>, and <strong>metamorphic</strong>.</p>
+  <p><strong>Fossils</strong> are usually found in sedimentary rock, where layers can trap remains of plants and animals over time.</p>
+  <p>Tap each layer first, then try the 5-step rock quest.</p>
+</section>
+
+<section class="card stage" aria-label="Interactive rocks and fossils illustration">
+  <div class="stage-wrap">
+    <svg class="scene-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sceneTitle sceneDesc">
+      <title id="sceneTitle">Rock layers cross-section</title>
+      <desc id="sceneDesc">A cross-section with soil on top, sedimentary rock containing a fossil, igneous rock, and metamorphic rock below.</desc>
+
+      <rect x="0" y="0" width="400" height="300" fill="var(--c-bg)"/>
+
+      <g class="part" data-part="soil" role="button" tabindex="0" aria-label="Soil layer">
+        <rect class="hit" x="0" y="24" width="400" height="58"/>
+        <g class="visual">
+          <rect x="0" y="34" width="400" height="40" fill="var(--c-soil)"/>
+          <path d="M 10 34 Q 16 24 22 34 M 34 34 Q 40 24 46 34 M 58 34 Q 64 24 70 34 M 300 34 Q 306 24 312 34 M 324 34 Q 330 24 336 34 M 348 34 Q 354 24 360 34" stroke="var(--c-success)" stroke-width="2" fill="none"/>
+        </g>
+      </g>
+
+      <g class="part" data-part="sedimentary" role="button" tabindex="0" aria-label="Sedimentary rock layer">
+        <rect class="hit" x="0" y="74" width="400" height="76"/>
+        <g class="visual">
+          <rect x="0" y="74" width="400" height="76" fill="var(--c-sediment-a)"/>
+          <rect x="0" y="90" width="400" height="10" fill="var(--c-sediment-b)"/>
+          <rect x="0" y="110" width="400" height="10" fill="var(--c-sediment-b)"/>
+          <rect x="0" y="130" width="400" height="10" fill="var(--c-sediment-b)"/>
+        </g>
+      </g>
+
+      <g class="part" data-part="fossil" role="button" tabindex="0" aria-label="Fossil in sedimentary layer">
+        <rect class="hit" x="170" y="82" width="72" height="60"/>
+        <g class="visual" fill="none" stroke="var(--c-ink)" stroke-width="2.8">
+          <path d="M 174 132 Q 176 96 210 96 Q 236 98 236 118 Q 234 138 206 136 Q 190 133 192 120 Q 195 110 206 110 Q 216 111 216 118 Q 215 124 210 126"/>
+        </g>
+      </g>
+
+      <g class="part" data-part="igneous" role="button" tabindex="0" aria-label="Igneous rock layer">
+        <rect class="hit" x="0" y="150" width="400" height="72"/>
+        <g class="visual">
+          <rect x="0" y="150" width="400" height="72" fill="var(--c-igneous)"/>
+          <circle cx="44" cy="176" r="3" fill="var(--c-border)"/>
+          <circle cx="84" cy="198" r="2.5" fill="var(--c-border)"/>
+          <circle cx="146" cy="184" r="3" fill="var(--c-border)"/>
+          <circle cx="220" cy="190" r="2.8" fill="var(--c-border)"/>
+          <circle cx="282" cy="174" r="2.5" fill="var(--c-border)"/>
+          <circle cx="346" cy="204" r="3" fill="var(--c-border)"/>
+        </g>
+      </g>
+
+      <path d="M 198 238 L 176 150 L 220 150 Z" fill="var(--c-accent)" opacity="0.5"/>
+
+      <g class="part" data-part="metamorphic" role="button" tabindex="0" aria-label="Metamorphic rock layer">
+        <rect class="hit" x="0" y="222" width="400" height="78"/>
+        <g class="visual">
+          <rect x="0" y="222" width="400" height="78" fill="var(--c-metamorphic-a)"/>
+          <path d="M 0 236 Q 36 228 72 236 T 144 236 T 216 236 T 288 236 T 360 236 T 400 236" stroke="var(--c-metamorphic-b)" stroke-width="4" fill="none"/>
+          <path d="M 0 262 Q 44 252 88 262 T 176 262 T 264 262 T 352 262 T 400 262" stroke="var(--c-metamorphic-b)" stroke-width="4" fill="none"/>
+        </g>
+      </g>
+    </svg>
+    <div class="label-bubble" id="labelBubble" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="card quest" aria-label="Rocks and fossils quest">
+  <div class="quest-head">
+    <svg class="bix" viewBox="-40 -60 80 100" aria-hidden="true">
+      <line x1="-10" y1="-30" x2="-14" y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10" y1="-30" x2="14" y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-14" cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="14" cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="0" cy="-16" r="18" fill="var(--c-primary)"/>
+      <circle cx="-6" cy="-18" r="2" fill="var(--c-bg)"/>
+      <circle cx="6" cy="-18" r="2" fill="var(--c-bg)"/>
+      <path d="M-5 -11 Q 0 -7 5 -11" stroke="var(--c-bg)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="14" r="22" fill="var(--c-primary)"/>
+    </svg>
+    <p class="quest-prompt" id="prompt">Loading quest...</p>
+  </div>
+
+  <div class="quest-meta">
+    <span id="progressText">Question 1 of 5</span>
+    <span class="score-dots" id="dots" aria-label="Progress">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </span>
+  </div>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite">
+    <span class="icon" id="fbIcon"></span>
+    <span id="fbText"></span>
+  </div>
+</section>
+
+<section class="card complete" id="complete" aria-label="Quest complete">
+  <h2>Rock expert!</h2>
+  <div class="stars" id="stars">&#9733; &#9733; &#9733;</div>
+  <p id="completeMsg">You solved every rock clue.</p>
+  <p style="margin-top: 1rem;"><button id="playAgain">Play again</button></p>
+</section>
+
+<div class="sr-only" aria-live="polite" id="srOut"></div>
+
 <script>
-(function(){
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-  const qs=[
-    {text:'What type of rock is formed when magma cools?',answer:'Igneous',options:['Igneous','Sedimentary','Metamorphic','Limestone']},
-    {text:'Which rock type is most likely to contain fossils?',answer:'Sedimentary',options:['Sedimentary','Igneous','Metamorphic','Granite']},
-    {text:'What is magma?',answer:'Hot liquid rock underground',options:['Hot liquid rock underground','A type of fossil','Cold solid rock','A mineral crystal']},
-    {text:'Granite is an example of which rock type?',answer:'Igneous',options:['Igneous','Sedimentary','Metamorphic','Fossil']},
-    {text:'Metamorphic rock is formed by…',answer:'Heat and pressure',options:['Heat and pressure','Cooling magma','Layers of sediment','Wind erosion']},
-    {text:'What is a fossil?',answer:'Preserved remains of ancient life',options:['Preserved remains of ancient life','A type of crystal','A living organism','A shiny mineral']},
-    {text:'Which is an example of sedimentary rock?',answer:'Sandstone',options:['Sandstone','Granite','Marble','Basalt']},
-    {text:'Marble is which type of rock?',answer:'Metamorphic',options:['Metamorphic','Igneous','Sedimentary','Mineral']},
-    {text:'A permeable rock…',answer:'Lets water soak through',options:['Lets water soak through','Floats on water','Is always black','Contains gold']},
-    {text:'Why don\'t fossils form in igneous rock?',answer:'Magma is too hot',options:['Magma is too hot','It\'s too soft','It\'s underwater','It\'s too cold']},
+(function() {
+  const TOPIC = "rocks-fossils";
+
+  const PART_INFO = {
+    soil: "Soil - where plants grow",
+    sedimentary: "Sedimentary rock - forms in layers",
+    fossil: "Fossil - remains trapped in rock",
+    igneous: "Igneous rock - cooled from lava",
+    metamorphic: "Metamorphic rock - changed by heat and pressure"
+  };
+
+  const PROMPTS = [
+    { text: "Tap the rock made when lava cools", answer: ["igneous"] },
+    { text: "Tap the rock that has layers", answer: ["sedimentary"] },
+    { text: "Tap the fossil", answer: ["fossil"] },
+    { text: "Tap the rock changed by heat and pressure", answer: ["metamorphic"] },
+    { text: "Tap where plants grow", answer: ["soil"] }
   ];
-  shuffle(qs);
-  let idx=0,score=0;
-  const qText=document.getElementById('qText'),opts=document.getElementById('opts'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),scoreEl=document.getElementById('scoreEl'),qNum=document.getElementById('qNum'),questionArea=document.getElementById('questionArea'),resultDiv=document.getElementById('result');
-  function show(){if(idx>=qs.length){end();return;}const q=qs[idx];qText.textContent=q.text;opts.innerHTML='';feedback.textContent='';nextBtn.style.display='none';qNum.textContent=`${idx+1} / ${qs.length}`;let done=false;
-    shuffle([...q.options]).forEach(o=>{const b=document.createElement('button');b.textContent=o;b.addEventListener('click',()=>{if(done)return;done=true;opts.querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.textContent===q.answer)btn.classList.add('correct');});if(o===q.answer){score++;scoreEl.textContent='Score: '+score;feedback.textContent='Correct!';feedback.style.color='var(--success)';}else{b.classList.add('wrong');feedback.textContent='Answer: '+q.answer;feedback.style.color='var(--error)';}nextBtn.style.display='inline-block';});opts.appendChild(b);});}
-  nextBtn.addEventListener('click',()=>{idx++;show();});
-  function end(){questionArea.style.display='none';const pct=Math.round(score/qs.length*100);let s=pct>=90?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐';resultDiv.style.display='block';resultDiv.innerHTML=`<div class="star">${s}</div><h2>${score} / ${qs.length}</h2><p>${pct>=90?'Rock star!':pct>=60?'Solid work!':'Keep digging!'}</p><button class="restart-btn" onclick="location.reload()">Play Again</button>`;}
-  show();
-})();
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rocks and Fossils — Year 3 Science | Game Learn</title>
-  <style>
-    /* ── Child Baseline (animations/_shared/child-baseline.css) ── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#FFF9F2;--surface:#FFFFFF;--surface2:#F5EEE3;--border:rgba(148,163,184,.15);--primary:#4A5FDB;--accent:#FF8A3D;--accent2:#a78bfa;--success:#1FA66A;--error:#D8452B;--text:#1E1E2A;--text-muted:#5A5566;--radius:16px;--radius-sm:8px;--tap-min:44px;--tap-primary:56px;--tap-gap:12px;--child-font-base:18px;--child-font-prompt:20px;--child-font-answer:22px;--radius-child:16px}
-    html{font-size:100%}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 3rem;gap:1.5rem;font-size:var(--child-font-base);line-height:1.55;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-    button,[role="button"],a.btn,.tap,[tabindex]:not([tabindex="-1"]),input[type="button"],input[type="submit"]{min-height:var(--tap-min);min-width:var(--tap-min);padding:.65rem 1rem;font-size:var(--child-font-answer);border-radius:var(--radius-child);touch-action:manipulation}
-    .primary-tap,button.primary,[role="button"].primary{min-height:var(--tap-primary);min-width:var(--tap-primary);font-size:var(--child-font-answer);font-weight:700}
-    :focus-visible{outline:3px solid #ffd166;outline-offset:3px;border-radius:var(--radius-child)}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
-    p,li,label,.prompt,.instruction{font-size:var(--child-font-prompt);line-height:1.55;max-width:42ch}
-    img,svg,canvas{max-width:100%;height:auto}
-    html,body{overflow-x:hidden}
-    header{text-align:center;max-width:640px;width:100%}
-    .tag{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem}
-    h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--primary)}
-    .subtitle{color:var(--text-muted);font-size:.9rem;margin-top:.5rem}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:640px}
-    .card-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
 
-    /* Rock Cycle Spinner */
-    .cycle{display:flex;flex-direction:column;align-items:center;gap:1rem}
-    .cycle-ring{position:relative;width:280px;height:280px}
-    .rock-node{position:absolute;width:100px;text-align:center;cursor:pointer;transition:transform .2s}
-    .rock-node:hover{transform:scale(1.08)}
-    .rock-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto .3rem;border:3px solid var(--border);transition:border-color .2s}
-    .rock-node.active .rock-icon{border-color:var(--primary)}
-    .rock-name{font-size:.82rem;font-weight:700;color:var(--accent)}
-    .rock-info{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;font-size:.88rem;line-height:1.5;min-height:70px}
+  function shuffle(arr) {
+    const next = [...arr];
+    for (let i = next.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [next[i], next[j]] = [next[j], next[i]];
+    }
+    return next;
+  }
 
-    /* Quiz */
-    .quiz-area{display:flex;flex-direction:column;gap:1rem}
-    .q-text{font-size:.95rem;font-weight:600}
-    .opts{display:flex;flex-direction:column;gap:.4rem}
-    .opt-btn{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;cursor:pointer;color:var(--text);text-align:left;transition:background .12s}
-    .opt-btn:hover{border-color:var(--accent)}
-    .opt-btn.correct{background:var(--success);color:#FFFFFF;font-weight:700}
-    .opt-btn.wrong{background:var(--error);color:#FFFFFF}
-    .opt-btn.disabled{pointer-events:none;opacity:.5}
-    .fb{text-align:center;font-size:.88rem;min-height:1.2em;margin-top:.5rem}
-    .score-bar{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:.5rem}.score-bar span{color:var(--primary);font-weight:700}
+  function isCorrect(answer, partName) {
+    return Array.isArray(answer) ? answer.includes(partName) : answer === partName;
+  }
 
-    @media(prefers-reduced-motion:no-preference){.bounce{animation:bounce .4s ease}.shake{animation:shake .35s ease}}
-    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-  </style>
-</head>
-<body>
-  <header>
-    <p class="tag">Year 3 · Science</p>
-    <h1>Rocks and Fossils</h1>
-    <p class="subtitle">Explore the rock cycle and test your knowledge!</p>
-  </header>
+  let prompts = shuffle(PROMPTS);
+  let idx = 0;
+  let score = 0;
+  let locked = false;
 
-  <!-- Rock Cycle -->
-  <div class="card">
-    <p class="card-title">Rock Cycle Explorer</p>
-    <div class="cycle">
-      <div class="cycle-ring" id="cycleRing">
-        <div class="rock-node" data-rock="igneous" style="top:0;left:90px;">
-          <div class="rock-icon" style="background:#e74c3c22;">🌋</div>
-          <div class="rock-name">Igneous</div>
-        </div>
-        <div class="rock-node" data-rock="sedimentary" style="bottom:0;left:0;">
-          <div class="rock-icon" style="background:#f39c1222;">🏖️</div>
-          <div class="rock-name">Sedimentary</div>
-        </div>
-        <div class="rock-node" data-rock="metamorphic" style="bottom:0;right:0;">
-          <div class="rock-icon" style="background:#9b59b622;">💎</div>
-          <div class="rock-name">Metamorphic</div>
-        </div>
-      </div>
-      <div class="rock-info" id="rockInfo" aria-live="polite">Click a rock type to learn more!</div>
-    </div>
-  </div>
+  const promptEl = document.getElementById("prompt");
+  const progressEl = document.getElementById("progressText");
+  const dotsEl = document.getElementById("dots");
+  const feedbackEl = document.getElementById("feedback");
+  const fbIconEl = document.getElementById("fbIcon");
+  const fbTextEl = document.getElementById("fbText");
+  const labelEl = document.getElementById("labelBubble");
+  const completeEl = document.getElementById("complete");
+  const starsEl = document.getElementById("stars");
+  const completeMsgEl = document.getElementById("completeMsg");
+  const playAgainEl = document.getElementById("playAgain");
+  const svgEl = document.querySelector(".scene-svg");
+  const srOutEl = document.getElementById("srOut");
+  const questSectionEl = document.querySelector(".quest");
 
-  <!-- Quiz -->
-  <div class="card">
-    <p class="card-title">Rock Quiz</p>
-    <div class="score-bar">Score: <span id="score">0</span> / <span id="maxS">0</span></div>
-    <div class="quiz-area" id="quiz"></div>
-    <p class="fb" id="fb" aria-live="polite"></p>
-  </div>
+  function postReady() {
+    try { parent.postMessage({ type: "anim:ready", topic: TOPIC }, "*"); } catch (e) {}
+  }
 
-  <script>
-    /* ── Rock Cycle Explorer ── */
-    const ROCK_DATA = {
-      igneous: { title:'Igneous Rock', desc:'Formed when hot magma or lava cools and hardens. Examples: granite (cooled slowly, big crystals) and basalt (cooled quickly, small crystals). Igneous means "made by fire"!' },
-      sedimentary: { title:'Sedimentary Rock', desc:'Formed when layers of sediment (sand, mud, shells) are squashed together over millions of years. Examples: limestone, sandstone, chalk. This is where fossils are found!' },
-      metamorphic: { title:'Metamorphic Rock', desc:'Formed when existing rocks are changed by extreme heat and pressure underground. Examples: marble (from limestone) and slate (from mudstone). "Metamorphic" means "changed form"!' }
-    };
+  function postAttempt(payload) {
+    try { parent.postMessage({ type: "anim:attempt", topic: TOPIC, ...payload }, "*"); } catch (e) {}
+  }
 
-    const infoEl = document.getElementById('rockInfo');
-    document.getElementById('cycleRing').addEventListener('click', function(e) {
-      const node = e.target.closest('.rock-node');
-      if (!node) return;
-      const rock = node.dataset.rock;
-      const data = ROCK_DATA[rock];
-      document.querySelectorAll('.rock-node').forEach(function(n) { n.classList.remove('active'); });
-      node.classList.add('active');
-      infoEl.innerHTML = '<strong style="color:var(--primary);">' + data.title + '</strong><br>' + data.desc;
+  function postComplete(payload) {
+    try { parent.postMessage({ type: "anim:complete", topic: TOPIC, ...payload }, "*"); } catch (e) {}
+  }
+
+  function announce(msg) {
+    srOutEl.textContent = "";
+    requestAnimationFrame(function() { srOutEl.textContent = msg; });
+  }
+
+  function renderDots() {
+    const dots = dotsEl.querySelectorAll(".dot");
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle("on", i < score);
+    });
+  }
+
+  function renderPrompt() {
+    if (idx >= prompts.length) {
+      renderComplete();
+      return;
+    }
+
+    promptEl.textContent = prompts[idx].text;
+    progressEl.textContent = "Question " + (idx + 1) + " of " + prompts.length;
+    feedbackEl.className = "feedback";
+    locked = false;
+  }
+
+  function showLabel(partEl, text) {
+    const visualEl = partEl.querySelector(".visual");
+    if (!visualEl) return;
+
+    const bbox = visualEl.getBoundingClientRect();
+    const wrapBox = svgEl.parentElement.getBoundingClientRect();
+    const left = bbox.left + (bbox.width / 2) - wrapBox.left;
+    const top = bbox.top - wrapBox.top;
+
+    labelEl.textContent = text;
+    labelEl.style.left = left + "px";
+    labelEl.style.top = top + "px";
+    labelEl.classList.add("show");
+
+    clearTimeout(showLabel.timer);
+    showLabel.timer = setTimeout(function() {
+      labelEl.classList.remove("show");
+    }, 2000);
+  }
+
+  function flashPart(partEl, className) {
+    partEl.classList.remove("correct", "wrong", "reveal");
+    void partEl.offsetWidth;
+    partEl.classList.add(className);
+  }
+
+  function handlePartActivate(partEl, partName) {
+    showLabel(partEl, PART_INFO[partName]);
+
+    if (locked) return;
+
+    const current = prompts[idx];
+    const ok = isCorrect(current.answer, partName);
+    postAttempt({ part: partName, correct: ok });
+
+    if (ok) {
+      locked = true;
+      score += 1;
+      renderDots();
+      flashPart(partEl, "correct");
+
+      feedbackEl.className = "feedback ok show";
+      fbIconEl.textContent = "✓";
+      fbTextEl.textContent = "Correct! - " + PART_INFO[partName] + ".";
+      announce("Correct. " + PART_INFO[partName] + ".");
+
+      setTimeout(function() {
+        idx += 1;
+        renderPrompt();
+      }, 1400);
+      return;
+    }
+
+    locked = true;
+    flashPart(partEl, "wrong");
+
+    const revealPart = Array.isArray(current.answer) ? current.answer[0] : current.answer;
+    const revealEl = svgEl.querySelector('.part[data-part="' + revealPart + '"]');
+    if (revealEl) flashPart(revealEl, "reveal");
+
+    feedbackEl.className = "feedback bad show";
+    fbIconEl.textContent = "○";
+    fbTextEl.textContent = "Not quite - the answer is " + PART_INFO[revealPart] + ".";
+    announce("Not quite. The answer is " + PART_INFO[revealPart] + ".");
+
+    setTimeout(function() {
+      idx += 1;
+      renderPrompt();
+    }, 1900);
+  }
+
+  document.querySelectorAll(".scene-svg .part").forEach(function(partEl) {
+    const partName = partEl.getAttribute("data-part");
+
+    partEl.addEventListener("click", function() {
+      handlePartActivate(partEl, partName);
     });
 
-    /* ── Quiz ── */
-    function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+    partEl.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handlePartActivate(partEl, partName);
+      }
+    });
+  });
 
-    const QUESTIONS = [
-      { q:"How are fossils usually formed?", a:"Dead organisms are buried and slowly replaced by minerals", d:["Someone carves them from stone","They fall from space","Volcanoes create them"] },
-      { q:"What type of rock is formed from layers of sediment?", a:"Sedimentary", d:["Igneous","Metamorphic","Crystal"] },
-      { q:"Which rock forms when lava or magma cools?", a:"Igneous", d:["Sedimentary","Metamorphic","Chalk"] },
-      { q:"What does 'permeable' mean?", a:"Water can pass through it", d:["It is very hard","It changes colour","It floats"] },
-      { q:"Mary Anning is famous for:", a:"Finding ichthyosaur and plesiosaur fossils", d:["Inventing the telescope","Climbing mountains","Building bridges"] },
-      { q:"Soil is partly made from:", a:"Tiny broken-down pieces of rock", d:["Metal","Plastic","Glass"] }
-    ];
+  function renderComplete() {
+    const ratio = score / prompts.length;
 
-    let sc = 0, qi = 0;
-    const qs = shuffle(QUESTIONS).slice(0,5);
-    const quizEl = document.getElementById('quiz');
-    const fbEl = document.getElementById('fb');
-    const scEl = document.getElementById('score');
-    document.getElementById('maxS').textContent = qs.length;
-
-    function renderQ() {
-      if (qi >= qs.length) { quizEl.innerHTML = ''; const p = document.createElement('p'); p.className = 'q-text'; p.style.cssText = 'color:var(--primary);text-align:center;'; p.textContent = 'Rock star! ' + sc + ' / ' + qs.length + '!'; quizEl.appendChild(p); fbEl.textContent = ''; return; }
-      const q = qs[qi]; const opts = shuffle([q.a, ...q.d]); quizEl.innerHTML = ''; fbEl.textContent = '';
-      const qt = document.createElement('p'); qt.className = 'q-text'; qt.textContent = (qi+1) + '. ' + q.q; quizEl.appendChild(qt);
-      const od = document.createElement('div'); od.className = 'opts';
-      opts.forEach(function(o) {
-        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.textContent = o;
-        btn.addEventListener('click', function() {
-          od.querySelectorAll('.opt-btn').forEach(function(b){b.classList.add('disabled');});
-          if(o===q.a){btn.classList.add('correct','bounce');sc++;scEl.textContent=sc;fbEl.textContent='\u2713 Correct!';fbEl.style.color='var(--success)';}
-          else{btn.classList.add('wrong','shake');od.querySelectorAll('.opt-btn').forEach(function(b){if(b.textContent===q.a)b.classList.add('correct');});fbEl.textContent='\u2717 Answer: '+q.a;fbEl.style.color='var(--error)';}
-          qi++;setTimeout(renderQ,1100);
-        }); od.appendChild(btn);
-      }); quizEl.appendChild(od);
+    if (ratio >= 0.8) {
+      starsEl.innerHTML = "&#9733; &#9733; &#9733;";
+    } else if (ratio >= 0.6) {
+      starsEl.innerHTML = "&#9733; &#9733;";
+    } else {
+      starsEl.innerHTML = "&#9733;";
     }
-    renderQ();
-  </script>
+
+    completeMsgEl.textContent =
+      ratio === 1
+        ? "Brilliant spotting. You mastered rock layers!"
+        : ratio >= 0.6
+          ? "Great work. Play again to get three stars."
+          : "Good try. Tap each layer and try again.";
+
+    questSectionEl.style.display = "none";
+    completeEl.classList.add("show");
+
+    announce("Quest complete. Score " + score + " out of " + prompts.length + ".");
+    postComplete({ score: score, total: prompts.length });
+  }
+
+  playAgainEl.addEventListener("click", function() {
+    prompts = shuffle(PROMPTS);
+    idx = 0;
+    score = 0;
+    locked = false;
+
+    renderDots();
+    completeEl.classList.remove("show");
+    questSectionEl.style.display = "";
+    renderPrompt();
+  });
+
+  renderDots();
+  renderPrompt();
+  postReady();
+})();
+</script>
 </body>
 </html>
