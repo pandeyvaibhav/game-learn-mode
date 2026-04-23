@@ -221,8 +221,9 @@ After each subject: play-test at least one topic with a real child. If the child
 5. **Rewrite the intro card** to 2–3 short paragraphs about your topic.
 6. **Rewrite the content.md** to the §3 shape. Three paragraphs. Mandatory `## Sources`.
 7. **Self-check** against the acceptance list in §7.
-8. **Test with a real child.** A real child. Not your idea of a child.
-9. **Iterate** until the child engages for ≥ 5 minutes unprompted and taps "play again" at least once.
+8. **Sync the app shell** — run `python tools/seed_status_csv.py`. This regenerates `curriculum/status.csv` (production matrix) AND `app/curriculum.json` (what the app surfaces) from the current filesystem. Without this step the new topic will NOT appear in the browser even though its files are on disk. Commit the two regenerated files alongside your topic pair in the same commit.
+9. **Test with a real child.** A real child. Not your idea of a child.
+10. **Iterate** until the child engages for ≥ 5 minutes unprompted and taps "play again" at least once.
 
 ---
 
@@ -252,6 +253,9 @@ Before you commit, tick every box by reading your file. Agents that skip this ar
 - [ ] On wrong answer: part shakes softly, correct part reveals in green, amber "not quite" feedback.
 - [ ] Completion card shows 1/2/3 stars by score; `playAgain` resets state.
 - [ ] `postMessage` calls fire for `anim:ready`, `anim:attempt`, `anim:complete` with the topic slug.
+
+**Sync**
+- [ ] `python tools/seed_status_csv.py` has been run after creating the topic files, regenerating `curriculum/status.csv` and `app/curriculum.json`. Both regenerated files are staged for the same commit as the topic pair. (Without this, the app shell won't show the new topic in the browser.)
 
 **Content**
 - [ ] No banned topics (safety-policy §2).

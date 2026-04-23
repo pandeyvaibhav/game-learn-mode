@@ -4,228 +4,1123 @@
       "year": 1,
       "age_range": "5-6",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Counting to 100", "slug": "counting-to-100", "key_concepts": ["count forwards", "count backwards", "number lines"] },
-          { "title": "Addition and Subtraction", "slug": "addition-subtraction", "key_concepts": ["number bonds to 20", "part-whole model"] },
-          { "title": "2D and 3D Shapes", "slug": "shapes-2d-3d", "key_concepts": ["circle", "square", "triangle", "cube", "sphere"] },
-          { "title": "Measurement — Length", "slug": "measurement-length", "key_concepts": ["longer", "shorter", "non-standard units"] },
-          { "title": "Measurement — Weight", "slug": "measurement-weight", "key_concepts": ["heavier", "lighter", "balance scales"] },
-          { "title": "Ordinal Numbers", "slug": "ordinal-numbers", "key_concepts": ["1st to 10th", "position language"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "Phonics — Phase 3", "slug": "phonics-phase3", "key_concepts": ["digraphs", "ch sh th", "vowel digraphs"] },
-          { "title": "Phonics — Phase 4", "slug": "phonics-phase4", "key_concepts": ["adjacent consonants", "tricky words"] },
-          { "title": "Sentence Writing", "slug": "sentence-writing", "key_concepts": ["capital letters", "full stops", "finger spaces"] },
-          { "title": "Rhyme and Poetry", "slug": "rhyme-poetry", "key_concepts": ["nursery rhymes", "rhyming pairs", "rhythm"] },
-          { "title": "Storytelling", "slug": "storytelling", "key_concepts": ["beginning", "middle", "end", "characters", "setting"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Animals Including Humans", "slug": "animals-including-humans", "key_concepts": ["body parts", "senses", "basic needs"] },
-          { "title": "Seasonal Changes", "slug": "seasonal-changes", "key_concepts": ["four seasons", "daylight hours", "weather"] },
-          { "title": "Everyday Materials", "slug": "everyday-materials", "key_concepts": ["wood", "plastic", "glass", "metal", "properties"] },
-          { "title": "Plants", "slug": "plants-year1", "key_concepts": ["parts of a plant", "what plants need"] }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "Changes Within Living Memory", "slug": "changes-living-memory", "key_concepts": ["transport", "technology", "toys"] },
-          { "title": "Significant Historical Events", "slug": "significant-historical-events-y1", "key_concepts": ["Bonfire Night", "Great Fire of London"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Our Local Area", "slug": "local-area", "key_concepts": ["maps", "aerial photographs", "compass directions"] },
-          { "title": "Hot and Cold Places", "slug": "hot-cold-places", "key_concepts": ["North Pole", "South Pole", "equator"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Algorithms and Instructions", "slug": "algorithms-instructions", "key_concepts": ["ordering steps", "clear directions"] },
-          { "title": "Creating Digital Content", "slug": "creating-digital-content-y1", "key_concepts": ["drawing", "keyboard skills", "saving"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Addition and Subtraction",
+              "slug": "addition-subtraction",
+              "key_concepts": [
+                "number bonds",
+                "adding within 20",
+                "subtracting within 20",
+                "part-whole model"
+              ]
+            },
+            {
+              "title": "Counting to 100",
+              "slug": "counting-to-100",
+              "key_concepts": [
+                "counting forwards",
+                "counting backwards",
+                "number lines",
+                "one-to-one correspondence"
+              ]
+            },
+            {
+              "title": "Measurement — Length",
+              "slug": "measurement-length",
+              "key_concepts": [
+                "longer",
+                "shorter",
+                "taller",
+                "measuring with non-standard units"
+              ]
+            },
+            {
+              "title": "Measurement — Weight",
+              "slug": "measurement-weight",
+              "key_concepts": [
+                "heavier",
+                "lighter",
+                "balance scales",
+                "grams"
+              ]
+            },
+            {
+              "title": "Ordinal Numbers",
+              "slug": "ordinal-numbers",
+              "key_concepts": [
+                "1st to 10th",
+                "position language",
+                "first",
+                "last"
+              ]
+            },
+            {
+              "title": "2D and 3D Shapes",
+              "slug": "shapes-2d-3d",
+              "key_concepts": [
+                "circle",
+                "square",
+                "triangle",
+                "rectangle",
+                "cube",
+                "sphere",
+                "cylinder"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Phonics — Phase 3",
+              "slug": "phonics-phase3",
+              "key_concepts": [
+                "digraphs",
+                "ch",
+                "sh",
+                "th",
+                "vowel digraphs",
+                "ai",
+                "ee",
+                "oa"
+              ]
+            },
+            {
+              "title": "Phonics — Phase 4",
+              "slug": "phonics-phase4",
+              "key_concepts": [
+                "adjacent consonants",
+                "CCVC words",
+                "CVCC words",
+                "tricky words"
+              ]
+            },
+            {
+              "title": "Rhyme and Poetry",
+              "slug": "rhyme-poetry",
+              "key_concepts": [
+                "nursery rhymes",
+                "rhyming pairs",
+                "rhythm",
+                "clapping"
+              ]
+            },
+            {
+              "title": "Sentence Writing",
+              "slug": "sentence-writing",
+              "key_concepts": [
+                "capital letters",
+                "full stops",
+                "finger spaces",
+                "conjunctions"
+              ]
+            },
+            {
+              "title": "Storytelling",
+              "slug": "storytelling",
+              "key_concepts": [
+                "story structure",
+                "beginning",
+                "middle",
+                "end",
+                "characters",
+                "setting"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Animals Including Humans",
+              "slug": "animals-including-humans",
+              "key_concepts": [
+                "body parts",
+                "senses",
+                "basic needs",
+                "food",
+                "water",
+                "air"
+              ]
+            },
+            {
+              "title": "Everyday Materials",
+              "slug": "everyday-materials",
+              "key_concepts": [
+                "wood",
+                "plastic",
+                "glass",
+                "metal",
+                "water",
+                "properties"
+              ]
+            },
+            {
+              "title": "Plants",
+              "slug": "plants-year1",
+              "key_concepts": [
+                "parts of a plant",
+                "roots",
+                "stem",
+                "leaves",
+                "flowers",
+                "what plants need"
+              ]
+            },
+            {
+              "title": "Seasonal Changes",
+              "slug": "seasonal-changes",
+              "key_concepts": [
+                "four seasons",
+                "daylight hours",
+                "weather patterns"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "Changes Within Living Memory",
+              "slug": "changes-living-memory",
+              "key_concepts": [
+                "transport",
+                "technology",
+                "toys",
+                "then and now"
+              ]
+            },
+            {
+              "title": "Significant Historical Events",
+              "slug": "significant-historical-events-y1",
+              "key_concepts": [
+                "Bonfire Night",
+                "Great Fire of London",
+                "sequencing events"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Hot and Cold Places",
+              "slug": "hot-cold-places",
+              "key_concepts": [
+                "North Pole",
+                "South Pole",
+                "equator",
+                "Africa",
+                "Arctic animals"
+              ]
+            },
+            {
+              "title": "Our Local Area",
+              "slug": "local-area",
+              "key_concepts": [
+                "school surroundings",
+                "maps",
+                "aerial photographs",
+                "compass directions"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Algorithms and Instructions",
+              "slug": "algorithms-instructions",
+              "key_concepts": [
+                "ordering steps",
+                "giving clear directions",
+                "unplugged activities"
+              ]
+            },
+            {
+              "title": "Creating Digital Content",
+              "slug": "creating-digital-content-y1",
+              "key_concepts": [
+                "drawing with computers",
+                "keyboard skills",
+                "saving work"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
       "year": 2,
       "age_range": "6-7",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Place Value to 100", "slug": "place-value-100", "key_concepts": ["tens and ones", "comparing numbers"] },
-          { "title": "Times Tables 2, 5, 10", "slug": "times-tables-2-5-10", "key_concepts": ["multiplication", "arrays", "grouping"] },
-          { "title": "Fractions — Half and Quarter", "slug": "fractions-half-quarter", "key_concepts": ["half", "quarter", "equivalence"] },
-          { "title": "Measurement — Money", "slug": "measurement-money", "key_concepts": ["coins", "notes", "change"] },
-          { "title": "Statistics — Block Diagrams", "slug": "statistics-block-diagrams", "key_concepts": ["block graphs", "tally charts"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "Reading Fiction", "slug": "reading-fiction-y2", "key_concepts": ["inference", "character feelings"] },
-          { "title": "Reading Non-Fiction", "slug": "reading-non-fiction-y2", "key_concepts": ["contents", "headings", "glossary"] },
-          { "title": "Punctuation", "slug": "punctuation-y2", "key_concepts": ["exclamation marks", "question marks", "apostrophes"] },
-          { "title": "Grammar — Word Classes", "slug": "grammar-word-classes", "key_concepts": ["nouns", "verbs", "adjectives", "adverbs"] },
-          { "title": "Recount Writing", "slug": "recount-writing", "key_concepts": ["first person", "time connectives", "past tense"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Living Things and Habitats", "slug": "living-things-habitats", "key_concepts": ["micro-habitats", "food chains"] },
-          { "title": "Plants — Growth", "slug": "plants-growth", "key_concepts": ["germination", "growth conditions"] },
-          { "title": "Uses of Everyday Materials", "slug": "uses-materials-y2", "key_concepts": ["squash", "bend", "twist", "stretch"] }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "Great Fire of London", "slug": "great-fire-of-london", "key_concepts": ["1666", "Samuel Pepys"] },
-          { "title": "Florence Nightingale", "slug": "florence-nightingale", "key_concepts": ["nursing", "Crimean War"] },
-          { "title": "Neil Armstrong", "slug": "neil-armstrong", "key_concepts": ["Moon landing", "1969", "space"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Continents and Oceans", "slug": "continents-oceans", "key_concepts": ["7 continents", "5 oceans"] },
-          { "title": "UK Countries and Capital Cities", "slug": "uk-countries-capitals", "key_concepts": ["England", "Scotland", "Wales", "Northern Ireland"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Debugging Algorithms", "slug": "debugging-algorithms", "key_concepts": ["finding errors", "logical thinking"] },
-          { "title": "Online Safety", "slug": "online-safety-y2", "key_concepts": ["personal information", "safe websites"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Fractions \\u2014 Halves and Quarters",
+              "slug": "fractions-half-quarter",
+              "key_concepts": []
+            },
+            {
+              "title": "Measurement \\u2014 Money",
+              "slug": "measurement-money",
+              "key_concepts": []
+            },
+            {
+              "title": "Place Value to 100",
+              "slug": "place-value-100",
+              "key_concepts": []
+            },
+            {
+              "title": "Statistics \\u2014 Block Diagrams",
+              "slug": "statistics-block-diagrams",
+              "key_concepts": []
+            },
+            {
+              "title": "Times Tables (2, 5 and 10)",
+              "slug": "times-tables-2-5-10",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Grammar \\u2014 Word Classes",
+              "slug": "grammar-word-classes",
+              "key_concepts": []
+            },
+            {
+              "title": "Punctuation",
+              "slug": "punctuation-y2",
+              "key_concepts": []
+            },
+            {
+              "title": "Reading Fiction",
+              "slug": "reading-fiction-y2",
+              "key_concepts": []
+            },
+            {
+              "title": "Reading Non-Fiction",
+              "slug": "reading-non-fiction-y2",
+              "key_concepts": []
+            },
+            {
+              "title": "Recount Writing",
+              "slug": "recount-writing",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Living Things and Their Habitats",
+              "slug": "living-things-habitats",
+              "key_concepts": []
+            },
+            {
+              "title": "Plants and Growth",
+              "slug": "plants-growth",
+              "key_concepts": []
+            },
+            {
+              "title": "Uses of Everyday Materials",
+              "slug": "uses-materials-y2",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "Florence Nightingale",
+              "slug": "florence-nightingale",
+              "key_concepts": []
+            },
+            {
+              "title": "The Great Fire of London",
+              "slug": "great-fire-of-london",
+              "key_concepts": []
+            },
+            {
+              "title": "Neil Armstrong",
+              "slug": "neil-armstrong",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Continents and Oceans",
+              "slug": "continents-oceans",
+              "key_concepts": []
+            },
+            {
+              "title": "UK Countries and Capitals",
+              "slug": "uk-countries-capitals",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Debugging Algorithms",
+              "slug": "debugging-algorithms",
+              "key_concepts": []
+            },
+            {
+              "title": "Online Safety",
+              "slug": "online-safety-y2",
+              "key_concepts": []
+            }
+          ]
+        }
       ]
     },
     {
       "year": 3,
       "age_range": "7-8",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Place Value to 1000", "slug": "place-value-1000", "key_concepts": ["hundreds", "tens", "ones", "rounding"] },
-          { "title": "Multiplication and Division", "slug": "multiplication-division-y3", "key_concepts": ["times tables 3, 4, 8", "formal methods"] },
-          { "title": "Fractions", "slug": "fractions-y3", "key_concepts": ["unit fractions", "non-unit fractions", "adding fractions"] },
-          { "title": "Perimeter", "slug": "perimeter-y3", "key_concepts": ["measuring perimeter", "2D shapes"] },
-          { "title": "Statistics — Bar Charts", "slug": "statistics-bar-charts", "key_concepts": ["bar charts", "pictograms"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "Narrative Writing", "slug": "narrative-writing-y3", "key_concepts": ["story openings", "climax", "resolution"] },
-          { "title": "Poetry — Imagery", "slug": "poetry-imagery-y3", "key_concepts": ["similes", "personification", "imagery"] },
-          { "title": "Report Writing", "slug": "report-writing-y3", "key_concepts": ["formal tone", "sub-headings", "facts"] },
-          { "title": "Conjunctions and Clauses", "slug": "conjunctions-clauses", "key_concepts": ["subordinating conjunctions", "main clause"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Parts of a Plant", "slug": "plants-functions-y3", "key_concepts": ["flower", "leaves", "stem", "roots", "soil"], "concept": "plants", "perspective": "identify" },
-          { "title": "Types of Rock", "slug": "rocks-fossils", "key_concepts": ["igneous", "sedimentary", "metamorphic", "fossil"], "concept": "rocks-fossils", "perspective": "identify" },
-          { "title": "Sorting Rocks by Property", "slug": "rock-properties-sort", "key_concepts": ["hard", "soft", "porous", "granite", "chalk", "pumice"], "concept": "rocks-fossils", "perspective": "sort" },
-          { "title": "How a Fossil Forms", "slug": "fossil-formation", "key_concepts": ["alive", "dies", "buried", "pressed", "discovered"], "concept": "rocks-fossils", "perspective": "sequence" },
-          { "title": "What's in Soil?", "slug": "soil-composition", "key_concepts": ["rock bits", "rotted plants", "water", "air"], "concept": "rocks-fossils", "perspective": "compose" },
-          { "title": "Light and Shadows", "slug": "light-shadows", "key_concepts": ["light source", "object", "wall", "shadow", "transparent"], "concept": "light-shadows", "perspective": "identify" },
-          { "title": "Forces and Magnets", "slug": "forces-magnets", "key_concepts": ["push", "pull", "magnetic", "poles"], "concept": "forces-magnets", "perspective": "identify" }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "Stone Age to Iron Age", "slug": "stone-age-iron-age", "key_concepts": ["prehistoric Britain", "Stonehenge", "tools"] },
-          { "title": "Ancient Egypt", "slug": "ancient-egypt", "key_concepts": ["pharaohs", "mummies", "hieroglyphics", "pyramids"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Volcanoes and Earthquakes", "slug": "volcanoes-earthquakes", "key_concepts": ["tectonic plates", "structure of Earth"] },
-          { "title": "Mountains", "slug": "mountains-y3", "key_concepts": ["mountain ranges", "highest mountains", "climate"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Sequences and Selection", "slug": "sequences-selection", "key_concepts": ["if/then logic", "branching", "Scratch"] },
-          { "title": "Data and Information", "slug": "data-information-y3", "key_concepts": ["collecting data", "databases", "searching"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Fractions",
+              "slug": "fractions-y3",
+              "key_concepts": [
+                "unit fractions",
+                "non-unit fractions",
+                "adding fractions"
+              ]
+            },
+            {
+              "title": "Multiplication and Division",
+              "slug": "multiplication-division-y3",
+              "key_concepts": [
+                "times tables 3 4 8",
+                "formal methods"
+              ]
+            },
+            {
+              "title": "Perimeter",
+              "slug": "perimeter-y3",
+              "key_concepts": [
+                "measuring perimeter",
+                "2D shapes"
+              ]
+            },
+            {
+              "title": "Place Value to 1000",
+              "slug": "place-value-1000",
+              "key_concepts": [
+                "hundreds",
+                "tens",
+                "ones",
+                "rounding"
+              ]
+            },
+            {
+              "title": "Statistics — Bar Charts",
+              "slug": "statistics-bar-charts",
+              "key_concepts": [
+                "bar charts",
+                "pictograms"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Conjunctions and Clauses",
+              "slug": "conjunctions-clauses",
+              "key_concepts": [
+                "subordinating conjunctions",
+                "main clause"
+              ]
+            },
+            {
+              "title": "Narrative Writing",
+              "slug": "narrative-writing-y3",
+              "key_concepts": [
+                "story openings",
+                "climax",
+                "resolution"
+              ]
+            },
+            {
+              "title": "Poetry — Imagery",
+              "slug": "poetry-imagery-y3",
+              "key_concepts": [
+                "similes",
+                "personification",
+                "imagery"
+              ]
+            },
+            {
+              "title": "Report Writing",
+              "slug": "report-writing-y3",
+              "key_concepts": [
+                "formal tone",
+                "sub-headings",
+                "facts"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Forces and Magnets",
+              "slug": "forces-magnets",
+              "key_concepts": [
+                "push",
+                "pull",
+                "friction",
+                "magnets",
+                "poles"
+              ],
+              "concept": "forces-magnets",
+              "perspective": "identify"
+            },
+            {
+              "title": "Light and Shadows",
+              "slug": "light-shadows",
+              "key_concepts": [
+                "light source",
+                "shadow",
+                "opaque",
+                "transparent",
+                "translucent"
+              ],
+              "concept": "light-shadows",
+              "perspective": "identify"
+            },
+            {
+              "title": "Parts of a Plant",
+              "slug": "plants-functions-y3",
+              "key_concepts": [
+                "parts of a plant",
+                "roots",
+                "stem",
+                "leaves",
+                "flower",
+                "soil"
+              ],
+              "concept": "plants",
+              "perspective": "identify"
+            },
+            {
+              "title": "Rocks and Fossils",
+              "slug": "rocks-fossils",
+              "key_concepts": [
+                "igneous",
+                "sedimentary",
+                "metamorphic",
+                "fossils"
+              ],
+              "concept": "rocks-fossils",
+              "perspective": "identify"
+            },
+            {
+              "title": "Sorting Rocks by Property",
+              "slug": "rock-properties-sort",
+              "key_concepts": [
+                "rocks",
+                "properties",
+                "hard",
+                "soft",
+                "porous",
+                "sorting"
+              ],
+              "concept": "rocks-fossils",
+              "perspective": "sort"
+            },
+            {
+              "title": "How a Fossil Forms",
+              "slug": "fossil-formation",
+              "key_concepts": [
+                "fossils",
+                "rocks",
+                "sequence",
+                "sedimentary",
+                "palaeontology"
+              ],
+              "concept": "rocks-fossils",
+              "perspective": "sequence"
+            },
+            {
+              "title": "What's in Soil?",
+              "slug": "soil-composition",
+              "key_concepts": [
+                "soil",
+                "rocks",
+                "organic matter",
+                "water",
+                "air",
+                "composition"
+              ],
+              "concept": "rocks-fossils",
+              "perspective": "compose"
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "Ancient Egypt",
+              "slug": "ancient-egypt",
+              "key_concepts": [
+                "pharaohs",
+                "pyramids",
+                "mummification",
+                "River Nile"
+              ]
+            },
+            {
+              "title": "Stone Age to Iron Age",
+              "slug": "stone-age-iron-age",
+              "key_concepts": [
+                "chronology",
+                "Stone Age",
+                "Bronze Age",
+                "Iron Age"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Mountains",
+              "slug": "mountains-y3",
+              "key_concepts": [
+                "mountain formation",
+                "features",
+                "climate"
+              ]
+            },
+            {
+              "title": "Volcanoes and Earthquakes",
+              "slug": "volcanoes-earthquakes",
+              "key_concepts": [
+                "tectonic plates",
+                "eruption",
+                "earthquake"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Data and Information",
+              "slug": "data-information-y3",
+              "key_concepts": [
+                "collecting data",
+                "databases",
+                "searching"
+              ]
+            },
+            {
+              "title": "Sequences and Selection",
+              "slug": "sequences-selection",
+              "key_concepts": [
+                "algorithms",
+                "sequences",
+                "selection",
+                "debugging"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
       "year": 4,
       "age_range": "8-9",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Place Value to 10,000", "slug": "place-value-10000", "key_concepts": ["thousands", "ordering", "rounding"] },
-          { "title": "All Times Tables", "slug": "times-tables-all", "key_concepts": ["6, 7, 9, 11, 12 times tables"] },
-          { "title": "Decimals", "slug": "decimals-y4", "key_concepts": ["tenths", "hundredths", "comparing"] },
-          { "title": "Area", "slug": "area-y4", "key_concepts": ["area of rectangles", "counting squares"] },
-          { "title": "Roman Numerals", "slug": "roman-numerals", "key_concepts": ["I V X L C D M"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "Playscripts", "slug": "playscripts-y4", "key_concepts": ["stage directions", "dialogue punctuation"] },
-          { "title": "Persuasive Writing", "slug": "persuasive-writing-y4", "key_concepts": ["AFOREST", "rhetorical questions"] },
-          { "title": "Fronted Adverbials", "slug": "fronted-adverbials", "key_concepts": ["comma after fronted adverbial"] },
-          { "title": "Reading — Inference and Deduction", "slug": "reading-inference-y4", "key_concepts": ["evidence from text", "author intent"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Electricity", "slug": "electricity-y4", "key_concepts": ["simple circuits", "conductors", "insulators"] },
-          { "title": "Sound", "slug": "sound-y4", "key_concepts": ["vibrations", "pitch", "volume"] },
-          { "title": "Living Things — Classification", "slug": "living-things-classification-y4", "key_concepts": ["vertebrates", "invertebrates"] },
-          { "title": "States of Matter", "slug": "states-of-matter", "key_concepts": ["solid", "liquid", "gas", "melting", "freezing"] }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "Ancient Greece", "slug": "ancient-greece", "key_concepts": ["city states", "democracy", "Olympics", "mythology"] },
-          { "title": "Roman Britain", "slug": "roman-britain", "key_concepts": ["Roman invasion", "Boudicca", "roads"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Rivers", "slug": "rivers-y4", "key_concepts": ["source", "tributary", "mouth", "water cycle"] },
-          { "title": "UK Regions", "slug": "uk-regions", "key_concepts": ["counties", "OS maps", "physical features"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Repetition in Programming", "slug": "repetition-programming", "key_concepts": ["loops", "repeat", "forever", "Scratch"] },
-          { "title": "Creating Media — Animation", "slug": "creating-media-animation", "key_concepts": ["frame-by-frame", "flipbooks"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Area",
+              "slug": "area-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Decimals",
+              "slug": "decimals-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Place Value to 10,000",
+              "slug": "place-value-10000",
+              "key_concepts": []
+            },
+            {
+              "title": "Roman Numerals",
+              "slug": "roman-numerals",
+              "key_concepts": []
+            },
+            {
+              "title": "Times Tables (All to 12×12)",
+              "slug": "times-tables-all",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Fronted Adverbials",
+              "slug": "fronted-adverbials",
+              "key_concepts": []
+            },
+            {
+              "title": "Persuasive Writing",
+              "slug": "persuasive-writing-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Playscripts",
+              "slug": "playscripts-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Reading Inference",
+              "slug": "reading-inference-y4",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Electricity",
+              "slug": "electricity-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Living Things and Classification",
+              "slug": "living-things-classification-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "Sound",
+              "slug": "sound-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "States of Matter",
+              "slug": "states-of-matter",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "Ancient Greece",
+              "slug": "ancient-greece",
+              "key_concepts": []
+            },
+            {
+              "title": "Roman Britain",
+              "slug": "roman-britain",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Rivers",
+              "slug": "rivers-y4",
+              "key_concepts": []
+            },
+            {
+              "title": "UK Regions",
+              "slug": "uk-regions",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Creating Media — Animation",
+              "slug": "creating-media-animation",
+              "key_concepts": []
+            },
+            {
+              "title": "Repetition in Programming",
+              "slug": "repetition-programming",
+              "key_concepts": []
+            }
+          ]
+        }
       ]
     },
     {
       "year": 5,
       "age_range": "9-10",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Fractions, Decimals, Percentages", "slug": "fractions-decimals-percentages", "key_concepts": ["equivalences", "converting", "percentage of amounts"] },
-          { "title": "Geometry — Properties of Shapes", "slug": "geometry-properties", "key_concepts": ["angles", "acute", "obtuse", "polygons"] },
-          { "title": "Statistics — Line Graphs", "slug": "statistics-line-graphs", "key_concepts": ["reading line graphs", "interpreting data"] },
-          { "title": "Long Multiplication", "slug": "long-multiplication", "key_concepts": ["4-digit × 2-digit", "grid method"] },
-          { "title": "Negative Numbers", "slug": "negative-numbers", "key_concepts": ["number lines", "temperature", "differences"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "Biographies", "slug": "biographies-y5", "key_concepts": ["chronological structure", "formal language"] },
-          { "title": "Argument Writing", "slug": "argument-writing-y5", "key_concepts": ["for/against", "balanced argument", "modal verbs"] },
-          { "title": "Classic Literature", "slug": "classic-literature-y5", "key_concepts": ["inference", "themes", "vocabulary in context"] },
-          { "title": "Relative Clauses", "slug": "relative-clauses", "key_concepts": ["who", "which", "where", "embedded clauses"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Earth and Space", "slug": "earth-space-y5", "key_concepts": ["solar system", "day/night", "moon phases", "gravity"] },
-          { "title": "Forces", "slug": "forces-y5", "key_concepts": ["gravity", "air resistance", "water resistance", "levers"] },
-          { "title": "Properties of Materials", "slug": "properties-materials-y5", "key_concepts": ["conductivity", "solubility", "transparency"] },
-          { "title": "Living Things — Life Cycles", "slug": "life-cycles-y5", "key_concepts": ["mammals", "insects", "metamorphosis", "amphibians"] }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "Ancient Maya", "slug": "ancient-maya", "key_concepts": ["Maya civilisation", "calendar", "cities", "decline"] },
-          { "title": "Victorian Britain", "slug": "victorian-britain", "key_concepts": ["Industrial Revolution", "child labour", "inventions"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Biomes and Climate Zones", "slug": "biomes-climate-zones", "key_concepts": ["rainforest", "desert", "tundra", "grassland"] },
-          { "title": "Trade and Globalisation", "slug": "trade-globalisation", "key_concepts": ["supply chains", "fair trade", "interdependence"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Variables in Programming", "slug": "variables-programming", "key_concepts": ["storing values", "score counters", "Scratch games"] },
-          { "title": "Web Design", "slug": "web-design-y5", "key_concepts": ["HTML basics", "hyperlinks", "page structure"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Fractions, Decimals and Percentages",
+              "slug": "fractions-decimals-percentages",
+              "key_concepts": []
+            },
+            {
+              "title": "Geometry — Properties of Shapes",
+              "slug": "geometry-properties",
+              "key_concepts": []
+            },
+            {
+              "title": "Long Multiplication",
+              "slug": "long-multiplication",
+              "key_concepts": []
+            },
+            {
+              "title": "Negative Numbers",
+              "slug": "negative-numbers",
+              "key_concepts": []
+            },
+            {
+              "title": "Statistics — Line Graphs",
+              "slug": "statistics-line-graphs",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Argument Writing",
+              "slug": "argument-writing-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Biographies",
+              "slug": "biographies-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Classic Literature",
+              "slug": "classic-literature-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Relative Clauses",
+              "slug": "relative-clauses",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Earth and Space",
+              "slug": "earth-space-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Forces",
+              "slug": "forces-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Life Cycles",
+              "slug": "life-cycles-y5",
+              "key_concepts": []
+            },
+            {
+              "title": "Properties of Materials",
+              "slug": "properties-materials-y5",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "Ancient Maya",
+              "slug": "ancient-maya",
+              "key_concepts": []
+            },
+            {
+              "title": "Victorian Britain",
+              "slug": "victorian-britain",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Biomes and Climate Zones",
+              "slug": "biomes-climate-zones",
+              "key_concepts": []
+            },
+            {
+              "title": "Trade and Globalisation",
+              "slug": "trade-globalisation",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Variables in Programming",
+              "slug": "variables-programming",
+              "key_concepts": []
+            },
+            {
+              "title": "Web Design",
+              "slug": "web-design-y5",
+              "key_concepts": []
+            }
+          ]
+        }
       ]
     },
     {
       "year": 6,
       "age_range": "10-11",
       "subjects": [
-        { "name": "maths", "label": "Maths", "emoji": "➗", "topics": [
-          { "title": "Algebra", "slug": "algebra-y6", "key_concepts": ["formulae", "linear sequences", "unknowns", "substitution"] },
-          { "title": "Ratio and Proportion", "slug": "ratio-proportion", "key_concepts": ["ratio notation", "scale factors", "percentage problems"] },
-          { "title": "Geometry — Coordinates", "slug": "geometry-coordinates", "key_concepts": ["four quadrants", "translations", "reflections"] },
-          { "title": "Fractions Division", "slug": "fractions-division-y6", "key_concepts": ["dividing fractions", "mixed numbers"] },
-          { "title": "SATs Problem Solving", "slug": "sats-problem-solving", "key_concepts": ["multi-step problems", "reasoning", "proof"] }
-        ]},
-        { "name": "english", "label": "English", "emoji": "📖", "topics": [
-          { "title": "SATs Reading Preparation", "slug": "sats-reading-prep", "key_concepts": ["retrieval", "inference", "vocabulary", "author intent"] },
-          { "title": "Formal and Informal Writing", "slug": "formal-informal-writing", "key_concepts": ["register", "passive voice", "subjunctive"] },
-          { "title": "Narrative Writing — Y6", "slug": "narrative-writing-y6", "key_concepts": ["atmosphere", "tension", "literary devices"] },
-          { "title": "Speeches and Debate", "slug": "speeches-debate", "key_concepts": ["rhetoric", "structuring an argument"] }
-        ]},
-        { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Evolution and Inheritance", "slug": "evolution-inheritance", "key_concepts": ["adaptation", "natural selection", "Darwin"] },
-          { "title": "Living Things — Classification", "slug": "living-things-classification-y6", "key_concepts": ["taxonomic groups", "classification keys"] },
-          { "title": "Light", "slug": "light-y6", "key_concepts": ["reflection", "refraction", "colour spectrum", "lenses"] },
-          { "title": "Electricity — Circuits", "slug": "electricity-circuits-y6", "key_concepts": ["voltage", "resistance", "series vs parallel"] }
-        ]},
-        { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
-          { "title": "World War II", "slug": "world-war-ii", "key_concepts": ["causes", "Blitz", "evacuation", "key figures"] },
-          { "title": "The British Empire", "slug": "british-empire", "key_concepts": ["colonisation", "trade routes", "legacy"] }
-        ]},
-        { "name": "geography", "label": "Geography", "emoji": "🌍", "topics": [
-          { "title": "Sustainability", "slug": "sustainability-y6", "key_concepts": ["climate change", "deforestation", "renewable energy"] },
-          { "title": "Globalisation", "slug": "globalisation-y6", "key_concepts": ["migration", "cultural exchange", "international organisations"] }
-        ]},
-        { "name": "computing", "label": "Computing", "emoji": "💻", "topics": [
-          { "title": "Binary and Data Representation", "slug": "binary-data", "key_concepts": ["binary numbers", "ASCII", "file sizes"] },
-          { "title": "Networks and Cybersafety", "slug": "networks-cybersafety", "key_concepts": ["how the internet works", "passwords", "phishing"] }
-        ]}
+        {
+          "name": "maths",
+          "label": "Maths",
+          "emoji": "➗",
+          "topics": [
+            {
+              "title": "Algebra",
+              "slug": "algebra-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "Fractions and Division",
+              "slug": "fractions-division-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "Geometry — Coordinates",
+              "slug": "geometry-coordinates",
+              "key_concepts": []
+            },
+            {
+              "title": "Ratio and Proportion",
+              "slug": "ratio-proportion",
+              "key_concepts": []
+            },
+            {
+              "title": "SATs Problem Solving",
+              "slug": "sats-problem-solving",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "english",
+          "label": "English",
+          "emoji": "📖",
+          "topics": [
+            {
+              "title": "Formal and Informal Writing",
+              "slug": "formal-informal-writing",
+              "key_concepts": []
+            },
+            {
+              "title": "Narrative Writing",
+              "slug": "narrative-writing-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "SATs Reading Preparation",
+              "slug": "sats-reading-prep",
+              "key_concepts": []
+            },
+            {
+              "title": "Speeches and Debate",
+              "slug": "speeches-debate",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "science",
+          "label": "Science",
+          "emoji": "🔬",
+          "topics": [
+            {
+              "title": "Electricity and Circuits",
+              "slug": "electricity-circuits-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "Evolution and Inheritance",
+              "slug": "evolution-inheritance",
+              "key_concepts": []
+            },
+            {
+              "title": "Light",
+              "slug": "light-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "Living Things and Classification",
+              "slug": "living-things-classification-y6",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "label": "History",
+          "emoji": "🏛️",
+          "topics": [
+            {
+              "title": "The British Empire",
+              "slug": "british-empire",
+              "key_concepts": []
+            },
+            {
+              "title": "World War II",
+              "slug": "world-war-ii",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "geography",
+          "label": "Geography",
+          "emoji": "🌍",
+          "topics": [
+            {
+              "title": "Globalisation",
+              "slug": "globalisation-y6",
+              "key_concepts": []
+            },
+            {
+              "title": "Sustainability",
+              "slug": "sustainability-y6",
+              "key_concepts": []
+            }
+          ]
+        },
+        {
+          "name": "computing",
+          "label": "Computing",
+          "emoji": "💻",
+          "topics": [
+            {
+              "title": "Binary and Data",
+              "slug": "binary-data",
+              "key_concepts": []
+            },
+            {
+              "title": "Networks and Cyber Safety",
+              "slug": "networks-cybersafety",
+              "key_concepts": []
+            }
+          ]
+        }
       ]
     }
   ]

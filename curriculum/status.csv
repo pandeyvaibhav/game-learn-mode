@@ -56,7 +56,7 @@ year,subject,concept,perspective,slug,content_status,animation_status,protected,
 3,maths,place-value-1000,,place-value-1000,done,done,no,,,420e0d22d11f6f63fb31c9c1117c2887ff23b21405d509dbca8b273277f92a1e,f91e1fe447eed6c0631fa5c98f13ad989d5b50f2e19fee815df8884a6ae5de3d
 3,maths,statistics-bar-charts,,statistics-bar-charts,done,done,no,,,98c50021fb55d1ed6c4fe87b529010e348b7db280638b99a3c470924618364eb,2b9aaa5282cb6eff5ee6730bad14733c28a0002518c6ea8edcaefe67c8acea60
 3,science,forces-magnets,identify,forces-magnets,done,done,yes,2026-04-23,,1fd9b99968274bb02be68da16e5df51ec1de08aa15b3159735ecc0e0070d83c7,810df6c1b0efba2be06fc50669e94c9cfdcfa8992e6d04d7b58193f89cdba9c7
-3,science,rocks-fossils,sequence,fossil-formation,todo,todo,no,,,,
+3,science,rocks-fossils,sequence,fossil-formation,done,done,no,,,41736968070fbde2907e05b5b9858bac1fba564d3091fd0bc6c2329d3e39d6a8,17d69295623f200682467944b749a9a17d261bf753cb3dff32d8577f82fcd4bd
 3,science,forces-magnets,apply,friction-surfaces,todo,todo,no,,,,
 3,science,light-shadows,apply,light-safety,todo,todo,no,,,,
 3,science,light-shadows,identify,light-shadows,done,done,yes,2026-04-23,,fe6034e1a6c2ecbfb330509ec6f7d263ab19c0f47e5c74bbcc385f467d605a43,b8fbc4ff014159c7ce99b0e6daec1bffa7387e67f630e8916872f993c8e3af6d
@@ -66,10 +66,10 @@ year,subject,concept,perspective,slug,content_status,animation_status,protected,
 3,science,plants,sequence,plant-lifecycle,todo,todo,no,,,,
 3,science,plants,identify,plants-functions-y3,done,done,yes,2026-04-23,,2c5e0a81f35e734cb45dd53608f35bf813bba3652e1276c3ceebf4c5d52c2230,171911f69e39ab851902fd853d1277176b074ac71b5e2066e94686779bc8ed9d
 3,science,forces-magnets,sort,push-pull-sort,todo,todo,no,,,,
-3,science,rocks-fossils,sort,rock-properties-sort,todo,todo,no,,,,
+3,science,rocks-fossils,sort,rock-properties-sort,done,done,no,,,4c4bc46bb26949a498a3d4a5ecbe1d2156ec55fdf4f7a962a4ae8e58ce8754de,8ebbb773f7f532063b959b3b604e719af61857da21d826dc09fd170942d24e85
 3,science,rocks-fossils,identify,rocks-fossils,done,done,yes,2026-04-23,,d53d280ec3d1b988368c9abb078310a7d81c990db8c2336e2dee76bf0683f45d,d97e1ac9905f4648f54527adec2d4dceb8fbd6686c148372f15c178f3177508f
 3,science,light-shadows,sequence,shadow-change,todo,todo,no,,,,
-3,science,rocks-fossils,compose,soil-composition,todo,todo,no,,,,
+3,science,rocks-fossils,compose,soil-composition,done,done,no,,,1e15b38ac52aee2765f5438606f0abbb4e3455625075c55ee558d6bb71a35a7b,ad73e23d2fe53e28664b299b67469f615f507ba1b3c21c3d5df95078ee111b4d
 3,science,plants,apply,water-transport,todo,todo,no,,,,
 4,computing,creating-media-animation,,creating-media-animation,done,done,no,,,4cc79a6f0c1be94e9fd1f9d22dd6a8d21beed528116f64f4325e65d3409d23fa,eb0c363c5098b5ac69c128b3c6c7be651f642569e4339211cc13912a8d1c27df
 4,computing,repetition-programming,,repetition-programming,done,done,no,,,de5d21e4f19c952dcadba58a405c6b6940cad4af4e29ddef3bfe6fb02a6abfc7,ff8288e57e54c12282aa6cc3c91358bc858e19b3d78215447e6b7dbf3b9acb9e
