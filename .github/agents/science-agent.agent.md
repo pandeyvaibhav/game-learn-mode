@@ -23,6 +23,18 @@ Every lesson MUST end with a `## Sources` section (see §9 of the policy) listin
 
 ---
 
+## Topic Build Method — MANDATORY
+
+Read [`doc/topic-build-runbook.md`](../../doc/topic-build-runbook.md) **before writing any `content.md`**. Your output must match §3 (content.md shape): exactly one frontmatter block, ≤ 25 body lines, mandatory `## Sources` with ≥ 2 citations.
+
+**Do not** produce key-words tables, duplicated quiz sections, or "Learning Checklist" checkboxes. The paired animation teaches; the `.md` gives 3 paragraphs of context.
+
+The reference implementation is [`content/year-3/science/plants-functions-y3.md`](../../content/year-3/science/plants-functions-y3.md) — validated with a real 7-year-old. Your output must look like this file with different subject content, **not** like older verbose `.md` files from earlier pipeline runs.
+
+Per-topic seed prompts for Year 3 Science are in runbook §5.1 — use them as starting points, not copy-paste.
+
+---
+
 ## Input you will receive
 
 ```

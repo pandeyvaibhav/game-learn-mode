@@ -21,6 +21,34 @@ The pipeline is **idempotent** — re-running it must not overwrite files that a
 
 ---
 
+## Topic Build Method — MANDATORY
+
+Read [`doc/topic-build-runbook.md`](../../doc/topic-build-runbook.md) **before dispatching any generator**. All downstream agents (subject agents, animation-generator) have been wired to this runbook and reference [`animations/year-3/science/plants-functions-y3.html`](../../animations/year-3/science/plants-functions-y3.html) as the validated pattern.
+
+### Hand-built exemplar protection
+
+Until backlog item **X6** (diff-before-regen guard) lands, the orchestrator must itself prevent `--force` runs from destroying hand-built, child-validated exemplars.
+
+**Protected list (do NOT re-generate, even under `--force`, without explicit user confirmation in the same message):**
+- `content/year-3/science/plants-functions-y3.md`
+- `animations/year-3/science/plants-functions-y3.html`
+
+Any topic listed as ✅ done in runbook §5 is added to this list as it is validated. When you encounter a protected path during iteration:
+1. Skip the subject agent dispatch and animation-generator dispatch for that topic.
+2. Log `SKIPPED-PROTECTED: {path}` in your progress report.
+3. Continue with the next topic.
+4. Only override if the user's invocation message explicitly names the slug AND includes `--overwrite-exemplar` or an equivalent explicit phrase.
+
+Blanket `--force` at year/subject scope is NOT explicit confirmation for protected paths.
+
+### Output expectations per topic
+
+- `content/{...}.md` — exactly one frontmatter block, ≤ 25 body lines, mandatory `## Sources` (runbook §3).
+- `animations/{...}.html` — three-section structure: intro + illustration + exercise (runbook §4). V1 visual standard throughout.
+- Both files must tick every box in runbook §7 before S1/S2/S10 gates run.
+
+---
+
 ## Step 0 — Parse the Curriculum
 
 Read `curriculum/curriculum.md` in full. Extract every topic row from every year × subject table into a flat working list. Each item in the list has:

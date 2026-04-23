@@ -32,6 +32,29 @@ Key points for animations specifically:
 
 ---
 
+## Topic Build Method — MANDATORY
+
+Read [`doc/topic-build-runbook.md`](../../doc/topic-build-runbook.md) **before writing any animation**. Your output must match §4 (animation.html shape): three visible sections — **intro card**, **interactive illustration**, **exercise** — in that order. Exactly five prompts in the quest. V1 visual standard throughout (see [`doc/feature-design-child-visual-standard.md`](../../doc/feature-design-child-visual-standard.md)).
+
+The reference implementation is [`animations/year-3/science/plants-functions-y3.html`](../../animations/year-3/science/plants-functions-y3.html) — validated with a real 7-year-old who engaged with it unprompted. **Study this file in full before writing.** Your output must look like this file with different subject content — **not** like older quiz-only animations from prior pipeline runs. The old quiz template is NOT the pattern.
+
+**Hard don'ts:**
+- No ASCII-art "diagrams" in `<pre>` blocks. If the answer is a diagram, it must be an SVG.
+- No hex literals outside the V1 palette (exception: explicitly-declared illustration-specific `--c-*` tokens at the top of `<style>`).
+- No harsh `✗` or red flash. Feedback is `✓` / `○` (circle-pause); error language is "Not quite", never "Wrong".
+- No request for the child's name, age, or any PII — safety-policy §8.
+
+**Required `postMessage` hooks** (for future ProgressStore integration):
+```js
+parent.postMessage({ type: 'anim:ready',    topic: '{slug}' }, '*');
+parent.postMessage({ type: 'anim:attempt',  topic: '{slug}', correct: {bool} }, '*');
+parent.postMessage({ type: 'anim:complete', topic: '{slug}', score: {n}, total: {n} }, '*');
+```
+
+Every output must tick every box in runbook §7 acceptance checklist before being declared done. Per-topic archetype + illustration + prompt seeds are in runbook §5 (grouped by subject).
+
+---
+
 ## Input you will receive
 
 ```
