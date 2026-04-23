@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's in Soil? — Year 3 Science</title>
+<style>
+/* ============================================================
+ * Rocks concept · COMPOSE perspective (build-the-soil-jar)
+ * Structure: intro → illustration → exercise
+ * ============================================================ */
+
+:root {
+  --c-bg:        #FFF9F2;
+  --c-surface:   #FFFFFF;
+  --c-border:    #E8DCC7;
+  --c-ink:       #1E1E2A;
+  --c-ink-muted: #5A5566;
+  --c-primary:   #4A5FDB;
+  --c-accent:    #FF8A3D;
+  --c-success:   #1FA66A;
+  --c-warn:      #E0A020;
+  --c-error:     #D8452B;
+  --c-celebrate: #B24EE0;
+
+  /* Illustration tokens */
+  --c-glass:       #E6F1F7;
+  --c-glass-stk:   #9CBAC9;
+  --c-rock-bit:    #8A7968;
+  --c-rock-bit-dk: #4A3E33;
+  --c-plants:      #5E3A22;
+  --c-plants-dk:   #3A2414;
+  --c-leaf:        #36C78F;
+  --c-water-drop:  #4A9FD4;
+  --c-air:         #FFFFFF;
+  --c-air-stk:     #BCD4E0;
+  --c-sprout:      #36C78F;
+
+  --font-body:    ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-body:      clamp(17px, 4.5vw, 18px);
+  --fs-prompt:    clamp(19px, 5vw, 22px);
+  --fs-display:   clamp(24px, 7vw, 32px);
+
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --d-fast:       180ms;
+  --d-med:        320ms;
+  --d-slow:       560ms;
+
+  --tap-min:      44px;
+  --tap-primary:  56px;
+  --radius:       16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1rem 1rem 4rem;
+  gap: 1rem;
+}
+
+header { text-align: center; max-width: 540px; width: 100%; }
+.year-tag { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-muted); margin-bottom: 0.25rem; }
+h1 { font-size: var(--fs-display); font-weight: 700; }
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  width: 100%; max-width: 540px;
+}
+
+.intro p { margin-bottom: 0.75rem; max-width: 45ch; }
+.intro p:last-child { margin-bottom: 0; color: var(--c-ink-muted); font-style: italic; }
+
+.stage { padding: 0.5rem; }
+.soil-svg { width: 100%; height: auto; display: block; border-radius: 12px; }
+.soil-svg .part { cursor: pointer; outline: none; }
+.soil-svg .part:focus-visible .hit { stroke: var(--c-primary); stroke-width: 3; fill: rgba(74,95,219,0.08); }
+.soil-svg .hit { fill: transparent; }
+
+/* Jar layers revealed as ingredients are added */
+.soil-svg .jar-layer { opacity: 0; transition: opacity var(--d-slow) var(--ease-out); }
+.soil-svg .jar-layer.in { opacity: 1; }
+.soil-svg .sprout { opacity: 0; transition: opacity var(--d-slow) var(--ease-out); transform-origin: 260px 200px; }
+.soil-svg .sprout.in { opacity: 1; }
+
+/* Ingredient card state */
+.soil-svg .part.added .visual { opacity: 0.45; }
+.soil-svg .part.added .check { opacity: 1; }
+.soil-svg .part .check { opacity: 0; transition: opacity var(--d-fast) var(--ease-out); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .soil-svg .part.correct .visual { animation: pulseOk var(--d-slow) var(--ease-bounce); }
+  .soil-svg .part.wrong   .visual { animation: shakeWarn var(--d-fast) ease; }
+  .soil-svg .part.reveal  .visual { animation: pulseReveal var(--d-med) var(--ease-out); }
+  .soil-svg .sprout.in { animation: sproutGrow var(--d-slow) var(--ease-bounce); }
+}
+@keyframes pulseOk {
+  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  40%  { transform: scale(1.06); filter: drop-shadow(0 0 12px rgba(31,166,106,0.6)); }
+  100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+}
+@keyframes shakeWarn {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+@keyframes pulseReveal {
+  0%   { filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  100% { filter: drop-shadow(0 0 10px rgba(31,166,106,0.7)); }
+}
+@keyframes sproutGrow {
+  0%   { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.label-bubble {
+  background: var(--c-surface);
+  border: 2px solid var(--c-border);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem; font-weight: 600; color: var(--c-ink);
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(30,30,42,0.12);
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-out);
+}
+.label-bubble.show { opacity: 1; }
+.label-bubble::after {
+  content: ""; position: absolute;
+  left: 50%; bottom: -8px;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--c-border);
+}
+.stage-wrap { position: relative; }
+
+.quest { display: flex; flex-direction: column; gap: 0.75rem; }
+.quest-head { display: flex; align-items: center; gap: 0.75rem; }
+.bix { flex: 0 0 auto; width: 48px; height: 48px; }
+.quest-prompt { flex: 1 1 auto; font-size: var(--fs-prompt); font-weight: 600; color: var(--c-ink); }
+.quest-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--c-ink-muted); }
+.quest-meta .score-dots { display: inline-flex; gap: 4px; }
+.quest-meta .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-border); }
+.quest-meta .dot.on { background: var(--c-success); }
+
+.feedback {
+  display: none; align-items: center; gap: 0.5rem;
+  font-size: 1rem; font-weight: 600;
+  padding: 0.6rem 0.9rem; border-radius: 12px;
+}
+.feedback.show { display: flex; }
+.feedback.ok  { background: var(--c-success); color: #FFFFFF; }
+.feedback.bad { background: var(--c-warn); color: var(--c-ink); }
+.feedback .icon {
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  font-weight: 700;
+}
+
+.complete {
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 100%; max-width: 540px;
+  display: none;
+}
+.complete.show { display: block; }
+.complete h2 { font-size: var(--fs-display); color: var(--c-celebrate); margin-bottom: 0.5rem; }
+.complete .stars { font-size: 2.5rem; margin: 0.5rem 0 1rem; }
+.complete button {
+  min-height: var(--tap-primary); padding: 0 1.5rem;
+  border: none; border-radius: 12px;
+  background: var(--c-primary); color: #FFFFFF;
+  font-family: inherit; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer;
+}
+:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; border-radius: var(--radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="year-tag">Year 3 · Science</p>
+  <h1>What's in Soil?</h1>
+</header>
+
+<section class="card intro" aria-label="About this lesson">
+  <p><strong>Soil is what plants grow in.</strong> It looks like brown dirt, but it's actually a <strong>mixture of four things</strong>.</p>
+  <p>Soil has <strong>rock bits</strong>, <strong>rotted plants</strong>, <strong>water</strong> and <strong>air</strong>. Plants need all four to grow well!</p>
+  <p>Tap each ingredient card to add it to the jar and build your own soil!</p>
+</section>
+
+<section class="card stage" aria-label="Interactive soil jar illustration">
+  <div class="stage-wrap">
+    <svg class="soil-svg" viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sTitle sDesc">
+      <title id="sTitle">Soil jar and four ingredient cards</title>
+      <desc id="sDesc">A large glass jar in the centre. Four ingredient cards around it: rock bits, rotted plants, water, and air. Tap each ingredient to add it to the jar.</desc>
+
+      <rect x="0" y="0" width="520" height="380" fill="#FFF9F2"/>
+
+      <!-- JAR (centre) -->
+      <g aria-hidden="true">
+        <!-- lip -->
+        <rect x="218" y="80" width="124" height="10" rx="3" fill="var(--c-glass)" stroke="var(--c-glass-stk)" stroke-width="2"/>
+        <!-- body -->
+        <path d="M 220 90 L 220 300 Q 220 320 240 320 L 320 320 Q 340 320 340 300 L 340 90 Z"
+              fill="var(--c-glass)" stroke="var(--c-glass-stk)" stroke-width="2.5" opacity="0.85"/>
+
+        <!-- Jar contents (layered, revealed when ingredients added) -->
+        <!-- Rock bits layer (bottom third) -->
+        <g class="jar-layer" data-layer="rock-bits">
+          <rect x="222" y="250" width="116" height="70" fill="var(--c-rock-bit)"/>
+          <!-- little rock chunks -->
+          <circle cx="240" cy="275" r="4" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="265" cy="295" r="3" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="290" cy="280" r="4" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="315" cy="290" r="3" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="260" cy="310" r="3" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="300" cy="265" r="3" fill="var(--c-rock-bit-dk)"/>
+        </g>
+        <!-- Rotted plants layer (middle third) -->
+        <g class="jar-layer" data-layer="rotted-plants">
+          <rect x="222" y="190" width="116" height="60" fill="var(--c-plants)"/>
+          <!-- bits of leaf -->
+          <path d="M 240 215 Q 250 210 260 215 Q 255 222 248 220 Z" fill="var(--c-leaf)" opacity="0.7"/>
+          <path d="M 290 230 Q 302 225 310 232 Q 302 238 294 236 Z" fill="var(--c-leaf)" opacity="0.7"/>
+          <line x1="250" y1="240" x2="260" y2="242" stroke="var(--c-plants-dk)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="300" y1="210" x2="312" y2="208" stroke="var(--c-plants-dk)" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <!-- Water droplets (sprinkled throughout) -->
+        <g class="jar-layer" data-layer="water">
+          <circle cx="245" cy="205" r="2.5" fill="var(--c-water-drop)"/>
+          <circle cx="285" cy="220" r="2" fill="var(--c-water-drop)"/>
+          <circle cx="318" cy="245" r="2.5" fill="var(--c-water-drop)"/>
+          <circle cx="255" cy="268" r="2" fill="var(--c-water-drop)"/>
+          <circle cx="300" cy="282" r="2.5" fill="var(--c-water-drop)"/>
+          <circle cx="270" cy="300" r="2" fill="var(--c-water-drop)"/>
+        </g>
+        <!-- Air bubbles -->
+        <g class="jar-layer" data-layer="air">
+          <circle cx="232" cy="228" r="3" fill="var(--c-air)" stroke="var(--c-air-stk)" stroke-width="1"/>
+          <circle cx="310" cy="208" r="2.5" fill="var(--c-air)" stroke="var(--c-air-stk)" stroke-width="1"/>
+          <circle cx="275" cy="260" r="3" fill="var(--c-air)" stroke="var(--c-air-stk)" stroke-width="1"/>
+          <circle cx="325" cy="275" r="2.5" fill="var(--c-air)" stroke="var(--c-air-stk)" stroke-width="1"/>
+          <circle cx="240" cy="290" r="2.5" fill="var(--c-air)" stroke="var(--c-air-stk)" stroke-width="1"/>
+        </g>
+
+        <!-- Sprout (appears when all 4 ingredients added) -->
+        <g class="sprout">
+          <rect x="278" y="70" width="4" height="20" fill="var(--c-sprout)" rx="2"/>
+          <path d="M 280 72 Q 268 66 266 56 Q 275 56 280 68 Z" fill="var(--c-sprout)"/>
+          <path d="M 280 72 Q 292 66 294 56 Q 285 56 280 68 Z" fill="var(--c-sprout)"/>
+        </g>
+
+        <!-- Jar label -->
+        <text x="280" y="350" text-anchor="middle" font-size="13" font-weight="600" fill="#5A5566">Soil Jar</text>
+      </g>
+
+      <!-- Ingredient cards -->
+      <!-- Rock bits (top-left) -->
+      <g class="part" data-part="rock-bits" role="button" tabindex="0" aria-label="Rock bits — tap to add to jar">
+        <rect class="hit" x="10" y="30" width="120" height="90"/>
+        <g class="visual">
+          <rect x="15" y="35" width="110" height="80" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <circle cx="50" cy="75" r="7" fill="var(--c-rock-bit)"/>
+          <circle cx="70" cy="68" r="5" fill="var(--c-rock-bit-dk)"/>
+          <circle cx="85" cy="82" r="6" fill="var(--c-rock-bit)"/>
+          <circle cx="95" cy="68" r="4" fill="var(--c-rock-bit-dk)"/>
+          <text x="70" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">rock bits</text>
+        </g>
+        <g class="check">
+          <circle cx="115" cy="45" r="10" fill="var(--c-success)"/>
+          <text x="115" y="49" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">✓</text>
+        </g>
+      </g>
+
+      <!-- Rotted plants (bottom-left) -->
+      <g class="part" data-part="rotted-plants" role="button" tabindex="0" aria-label="Rotted plants and leaves — tap to add to jar">
+        <rect class="hit" x="10" y="250" width="120" height="90"/>
+        <g class="visual">
+          <rect x="15" y="255" width="110" height="80" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <!-- leaf -->
+          <path d="M 45 290 Q 35 275 55 272 Q 70 280 62 292 Q 55 298 45 290 Z" fill="var(--c-leaf)"/>
+          <line x1="48" y1="288" x2="60" y2="280" stroke="var(--c-plants-dk)" stroke-width="1.2"/>
+          <!-- twig -->
+          <line x1="75" y1="285" x2="100" y2="295" stroke="var(--c-plants)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="88" y1="289" x2="95" y2="280" stroke="var(--c-plants)" stroke-width="2" stroke-linecap="round"/>
+          <text x="70" y="328" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">rotted plants</text>
+        </g>
+        <g class="check">
+          <circle cx="115" cy="265" r="10" fill="var(--c-success)"/>
+          <text x="115" y="269" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">✓</text>
+        </g>
+      </g>
+
+      <!-- Water (top-right) -->
+      <g class="part" data-part="water" role="button" tabindex="0" aria-label="Water — tap to add to jar">
+        <rect class="hit" x="390" y="30" width="120" height="90"/>
+        <g class="visual">
+          <rect x="395" y="35" width="110" height="80" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <!-- water droplets -->
+          <path d="M 440 60 Q 430 75 430 82 Q 430 92 440 92 Q 450 92 450 82 Q 450 75 440 60 Z" fill="var(--c-water-drop)"/>
+          <path d="M 465 72 Q 459 81 459 86 Q 459 93 465 93 Q 471 93 471 86 Q 471 81 465 72 Z" fill="var(--c-water-drop)"/>
+          <circle cx="437" cy="84" r="2" fill="#FFFFFF" opacity="0.7"/>
+          <text x="450" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">water</text>
+        </g>
+        <g class="check">
+          <circle cx="495" cy="45" r="10" fill="var(--c-success)"/>
+          <text x="495" y="49" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">✓</text>
+        </g>
+      </g>
+
+      <!-- Air (bottom-right) -->
+      <g class="part" data-part="air" role="button" tabindex="0" aria-label="Air — tap to add to jar">
+        <rect class="hit" x="390" y="250" width="120" height="90"/>
+        <g class="visual">
+          <rect x="395" y="255" width="110" height="80" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <!-- bubbles / air -->
+          <circle cx="435" cy="290" r="10" fill="#FFFFFF" stroke="var(--c-air-stk)" stroke-width="2"/>
+          <circle cx="460" cy="278" r="7" fill="#FFFFFF" stroke="var(--c-air-stk)" stroke-width="2"/>
+          <circle cx="475" cy="295" r="6" fill="#FFFFFF" stroke="var(--c-air-stk)" stroke-width="2"/>
+          <circle cx="455" cy="298" r="4" fill="#FFFFFF" stroke="var(--c-air-stk)" stroke-width="1.5"/>
+          <text x="450" y="328" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">air</text>
+        </g>
+        <g class="check">
+          <circle cx="495" cy="265" r="10" fill="var(--c-success)"/>
+          <text x="495" y="269" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">✓</text>
+        </g>
+      </g>
+    </svg>
+    <div class="label-bubble" id="labelBubble" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="card quest" aria-label="Build the soil jar quest">
+  <div class="quest-head">
+    <svg class="bix" viewBox="-40 -60 80 100" aria-hidden="true">
+      <line x1="-10" y1="-30" x2="-14" y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10"  y1="-30" x2="14"  y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-14" cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="14"  cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="0" cy="-16" r="18" fill="var(--c-primary)"/>
+      <circle cx="-6" cy="-18" r="2" fill="var(--c-bg)"/>
+      <circle cx="6"  cy="-18" r="2" fill="var(--c-bg)"/>
+      <path d="M-5 -11 Q 0 -7 5 -11" stroke="var(--c-bg)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="14" r="22" fill="var(--c-primary)"/>
+    </svg>
+    <p class="quest-prompt" id="prompt">Loading quest…</p>
+  </div>
+
+  <div class="quest-meta">
+    <span id="progressText">Question 1 of 5</span>
+    <span class="score-dots" id="dots" aria-label="Progress">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </span>
+  </div>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite">
+    <span class="icon" id="fbIcon"></span>
+    <span id="fbText"></span>
+  </div>
+</section>
+
+<section class="card complete" id="complete" aria-label="Quest complete">
+  <h2>Soil builder!</h2>
+  <div class="stars" id="stars">&#9733; &#9733; &#9733;</div>
+  <p id="completeMsg">You built a jar of soil. A sprout is growing!</p>
+  <p style="margin-top: 1rem;">
+    <button id="playAgain">Play again</button>
+  </p>
+</section>
+
+<div class="sr-only" aria-live="polite" id="srOut"></div>
+
+<script>
+(function(){
+  const TOPIC = 'soil-composition';
+
+  const PART_INFO = {
+    'rock-bits':     'Rock bits — from rocks breaking down',
+    'rotted-plants': 'Rotted plants — old leaves and twigs',
+    'water':         'Water — plants drink it',
+    'air':           'Air — plant roots need air too'
+  };
+
+  const PROMPTS = [
+    { text: 'Tap to add rock bits to the jar',          answer: ['rock-bits'],     mode: 'add' },
+    { text: 'Tap to add rotted plants and leaves',      answer: ['rotted-plants'], mode: 'add' },
+    { text: 'Tap to add water',                          answer: ['water'],         mode: 'add' },
+    { text: 'Tap to add air',                            answer: ['air'],           mode: 'add' },
+    { text: 'Which ingredient gives soil its crumbly feel?', answer: ['rotted-plants'], mode: 'recall' }
+  ];
+
+  let prompts = [...PROMPTS];
+  let idx = 0, score = 0, locked = false;
+  const added = new Set();
+
+  const promptEl   = document.getElementById('prompt');
+  const progressEl = document.getElementById('progressText');
+  const dotsEl     = document.getElementById('dots');
+  const feedbackEl = document.getElementById('feedback');
+  const fbIconEl   = document.getElementById('fbIcon');
+  const fbTextEl   = document.getElementById('fbText');
+  const labelEl    = document.getElementById('labelBubble');
+  const completeEl = document.getElementById('complete');
+  const starsEl    = document.getElementById('stars');
+  const completeMsg= document.getElementById('completeMsg');
+  const playAgain  = document.getElementById('playAgain');
+  const svgEl      = document.querySelector('.soil-svg');
+  const srOut      = document.getElementById('srOut');
+
+  function announce(msg){ srOut.textContent=''; requestAnimationFrame(()=> srOut.textContent = msg); }
+
+  function showLabel(el, text){
+    const vis = el.querySelector('.visual');
+    if (!vis) return;
+    const bbox = vis.getBoundingClientRect();
+    const wrap = svgEl.parentElement.getBoundingClientRect();
+    const left = bbox.left + bbox.width/2 - wrap.left;
+    const top  = bbox.top - wrap.top;
+    labelEl.textContent = text;
+    labelEl.style.left = left + 'px';
+    labelEl.style.top  = top + 'px';
+    labelEl.classList.add('show');
+    clearTimeout(showLabel._t);
+    showLabel._t = setTimeout(()=> labelEl.classList.remove('show'), 2000);
+  }
+
+  function flashPart(el, cls){
+    el.classList.remove('correct','wrong','reveal');
+    void el.offsetWidth;
+    el.classList.add(cls);
+  }
+
+  function addIngredient(name){
+    added.add(name);
+    const card = svgEl.querySelector(`.part[data-part="${name}"]`);
+    if (card) card.classList.add('added');
+    const layer = svgEl.querySelector(`.jar-layer[data-layer="${name}"]`);
+    if (layer) layer.classList.add('in');
+    if (added.size === 4) {
+      const sprout = svgEl.querySelector('.sprout');
+      if (sprout) sprout.classList.add('in');
+    }
+  }
+
+  function isCorrect(answer, partName){
+    return Array.isArray(answer) ? answer.includes(partName) : answer === partName;
+  }
+
+  function handlePartActivate(partEl, partName){
+    showLabel(partEl, PART_INFO[partName]);
+    if (locked) return;
+    const current = prompts[idx];
+    if (!current) return;
+
+    if (current.mode === 'add') {
+      // Already-added nudge
+      if (added.has(partName) && isCorrect(current.answer, partName)) {
+        // tapping the same thing that's already in AND is the current answer — treat as gentle reminder
+        feedbackEl.className = 'feedback bad show';
+        fbIconEl.textContent = '○';
+        fbTextEl.textContent = 'Already there!';
+        announce('That ingredient is already in the jar.');
+        return;
+      }
+      const correct = isCorrect(current.answer, partName);
+      postAttempt({ part: partName, correct });
+      if (correct) {
+        locked = true; score++; renderDots();
+        flashPart(partEl, 'correct');
+        addIngredient(partName);
+        feedbackEl.className = 'feedback ok show';
+        fbIconEl.textContent = '✓';
+        fbTextEl.textContent = 'Added! ' + PART_INFO[partName];
+        announce('Added. ' + PART_INFO[partName]);
+        setTimeout(()=> { idx++; renderPrompt(); }, 1400);
+      } else {
+        locked = true;
+        flashPart(partEl, 'wrong');
+        const correctName = current.answer[0];
+        const correctEl = svgEl.querySelector(`.part[data-part="${correctName}"]`);
+        if (correctEl) flashPart(correctEl, 'reveal');
+        feedbackEl.className = 'feedback bad show';
+        fbIconEl.textContent = '○';
+        fbTextEl.textContent = 'Not quite — tap ' + correctName.replace('-', ' ') + '.';
+        announce('Not quite. Tap ' + correctName.replace('-', ' ') + '.');
+        setTimeout(()=> {
+          // Still add the correct ingredient so the build progresses
+          if (correctEl) addIngredient(correctName);
+          idx++; renderPrompt();
+        }, 1900);
+      }
+    } else {
+      // recall mode
+      const correct = isCorrect(current.answer, partName);
+      postAttempt({ part: partName, correct });
+      if (correct) {
+        locked = true; score++; renderDots();
+        flashPart(partEl, 'correct');
+        feedbackEl.className = 'feedback ok show';
+        fbIconEl.textContent = '✓';
+        fbTextEl.textContent = 'Correct! Rotted plants make soil crumbly.';
+        announce('Correct. Rotted plants make soil crumbly.');
+        setTimeout(()=> { idx++; renderPrompt(); }, 1400);
+      } else {
+        locked = true;
+        flashPart(partEl, 'wrong');
+        const correctName = current.answer[0];
+        const correctEl = svgEl.querySelector(`.part[data-part="${correctName}"]`);
+        if (correctEl) flashPart(correctEl, 'reveal');
+        feedbackEl.className = 'feedback bad show';
+        fbIconEl.textContent = '○';
+        fbTextEl.textContent = 'Not quite — it\u2019s the rotted plants.';
+        announce('Not quite. It is the rotted plants.');
+        setTimeout(()=> { idx++; renderPrompt(); }, 1900);
+      }
+    }
+  }
+
+  function renderPrompt(){
+    if (idx >= prompts.length) { renderComplete(); return; }
+    promptEl.textContent = prompts[idx].text;
+    progressEl.textContent = `Question ${idx+1} of ${prompts.length}`;
+    feedbackEl.className = 'feedback';
+    locked = false;
+  }
+
+  function renderDots(){
+    const dots = dotsEl.querySelectorAll('.dot');
+    dots.forEach((d,i)=> d.classList.toggle('on', i < score));
+  }
+
+  document.querySelectorAll('.soil-svg .part').forEach(el => {
+    const name = el.getAttribute('data-part');
+    el.addEventListener('click', ()=> handlePartActivate(el, name));
+    el.addEventListener('keydown', (e)=> {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePartActivate(el, name); }
+    });
+  });
+
+  function renderComplete(){
+    const pct = score / prompts.length;
+    starsEl.innerHTML = pct >= 0.8 ? '&#9733; &#9733; &#9733;' : pct >= 0.6 ? '&#9733; &#9733;' : '&#9733;';
+    completeMsg.textContent =
+      pct === 1  ? 'You built a jar of soil and a sprout is growing. Brilliant!' :
+      pct >= 0.6 ? 'Nice work! Play again to remember every ingredient.' :
+                   'Good try! Tap each ingredient to learn, then play again.';
+    completeEl.classList.add('show');
+    announce('Quest complete. Score ' + score + ' out of ' + prompts.length + '.');
+    postComplete({ score, total: prompts.length });
+    document.querySelector('.quest').style.display = 'none';
+  }
+
+  playAgain.addEventListener('click', ()=> {
+    prompts = [...PROMPTS];
+    idx = 0; score = 0; locked = false;
+    added.clear();
+    renderDots();
+    completeEl.classList.remove('show');
+    document.querySelector('.quest').style.display = '';
+    document.querySelectorAll('.soil-svg .part').forEach(el => el.classList.remove('added','correct','wrong','reveal'));
+    document.querySelectorAll('.soil-svg .jar-layer').forEach(el => el.classList.remove('in'));
+    const sprout = svgEl.querySelector('.sprout');
+    if (sprout) sprout.classList.remove('in');
+    renderPrompt();
+  });
+
+  function postReady(){     try { parent.postMessage({ type:'anim:ready',    topic: TOPIC }, '*'); } catch(e){} }
+  function postAttempt(p){  try { parent.postMessage({ type:'anim:attempt',  topic: TOPIC, ...p }, '*'); } catch(e){} }
+  function postComplete(p){ try { parent.postMessage({ type:'anim:complete', topic: TOPIC, ...p }, '*'); } catch(e){} }
+
+  renderDots();
+  renderPrompt();
+  postReady();
+})();
+</script>
+</body>
+</html>
