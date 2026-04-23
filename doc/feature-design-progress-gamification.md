@@ -3,21 +3,25 @@
 | | |
 |---|---|
 | **Document** | `doc/feature-design-progress-gamification.md` |
-| **Version** | 1.0 |
-| **Date** | 2026-04-19 |
+| **Version** | 2.0 |
+| **Date** | 2026-04-23 |
 | **Authors** | Vaibhav Pandey (Owner) · Claude Opus 4.7 (AI pair) |
 | **Status** | **Draft** — design only, no code yet |
-| **Related** | [BACKLOG.md](../BACKLOG.md) (P3, L1, L2, L5, P4, B1–B4) · [feature-design-s10-playability.md](feature-design-s10-playability.md) · safety-policy §8 (no PII) |
+| **Related** | [BACKLOG.md](../BACKLOG.md) (P3, L1, L2, L5, P4, B1–B4) · [architecture.md](architecture.md) · [feature-design-s10-playability.md](feature-design-s10-playability.md) · safety-policy §8 (no PII) |
 
 ---
 
 ## 1. Summary
 
-Introduce a **progress + gamification layer** that records what the child has done (topics viewed, quizzes attempted, scores, streaks) and turns it into a child-motivating loop (XP, badges, "continue where you left off"). Ship it as a **self-contained, framework-agnostic module** (`app/progress/`) that any future Vaibhav-Pandey app can drop in.
+Introduce a **progress + gamification layer** that treats the content library as a cognitive training corpus (see [architecture.md §1](architecture.md)) and the child's play as an **exposure matrix**: which concepts have been encountered, how many times, through which perspectives, how recently. From that, derive XP/badges/streaks and — critically — a **due-for-revisit** surface that drives retention.
 
-Storage is **localStorage-first** with a **pluggable adapter** so a backend can be added later without changing call sites.
+Ship it as a **self-contained, framework-agnostic module** (`app/progress/`) that any future Vaibhav-Pandey app can drop in. Storage is **localStorage-first** with a **pluggable adapter** so a backend can be added later without changing call sites.
 
-This is the core retention mechanic. Without it, children have no sense of progression, no reason to return, and no way to resume — the app is effectively stateless.
+Without this layer, the child has no sense of progression, no reason to return, and no way to resume — and more importantly, no spaced-revisit mechanism to drive long-term retention.
+
+### What v2 changes from v1
+
+v1 of this doc (2026-04-19) tracked **per-topic completion flags** — `{viewed, completed, attempts, bestScore}` per topic. That model doesn't capture the point of a training corpus: **same concept, many perspectives, many exposures over time**. v2 tracks at the **concept level** with an ordered list of attempts across all perspectives of that concept. Completion is no longer a flag; it's a quality score that decays with time since last exposure (the basis for "due for revisit").
 
 ---
 
@@ -56,31 +60,55 @@ app/progress/
 
 No framework, no build step, no dependency. Loaded as an ES module from the app shell.
 
-### 3.1 Public API
+### 3.1 Public API (v2 — concept-level)
 
 ```js
 // app/progress/progress.js
 export class ProgressStore {
   constructor({ adapter, rules, appId, schemaVersion }) { /* … */ }
 
-  // reads
-  getTopic(topicId)                 // { viewed, completed, attempts, bestScore, lastSeen }
-  getSummary()                      // { xp, level, badges[], streakDays, lastTopicId }
-  listCompleted()                   // [topicId, …]
+  // ── Recording exposure ──────────────────────────────────────
+  recordAttempt({ conceptId, topicId, perspective, score, total, durationMs })
+    // Appends one attempt to the concept's exposure array. This is
+    // the only "write" call animations fan into via postMessage.
 
-  // writes
-  markViewed(topicId)               // idempotent; sets lastSeen
-  recordQuizAttempt(topicId, { score, total, durationMs })
-  markCompleted(topicId)            // explicit completion (e.g. quiz ≥ threshold)
+  markTopicSeen({ conceptId, topicId, perspective })
+    // Lightweight exposure marker — fires on anim:ready even before
+    // the child interacts. Idempotent within a short window.
 
-  // lifecycle
-  reset()                           // wipes everything — parent setting later
-  on(event, handler)                // 'xp', 'badge', 'levelup', 'completed'
+  // ── Reads ───────────────────────────────────────────────────
+  getConcept(conceptId)
+    // { attempts: [...], firstSeen, lastSeen, exposureCount,
+    //   perspectivesTouched: Set, bestScorePerTopic: {...},
+    //   masteryScore: 0..1 — a function of exposure + recency + score }
+
+  getTopic(topicId)
+    // Filtered view onto the parent concept's attempts array where
+    // topicId matches. Returns { attempts, lastSeen, bestScore }.
+
+  getSummary()
+    // { xp, level, badges: [id], streakDays, lastConceptId, lastTopicId }
+
+  listDueForRevisit({ now = Date.now(), limit = 5 })
+    // The core retention query (§6). Concepts ranked by
+    // `due-score = masteryScore × decay(now − lastSeen)`. Lower = more due.
+
+  listNeverTouched({ year, subject })
+    // Concepts that have no attempts yet — drives the "try something
+    // new" surface on the home screen.
+
+  // ── Lifecycle ───────────────────────────────────────────────
+  reset()
+  on(event, handler)   // 'xp', 'badge', 'levelup', 'concept-mastered'
   off(event, handler)
+  export()             // returns JSON; basis for P7 export/import
+  import(data)
 }
 ```
 
 Events fire **after** state is persisted so UI can react safely.
+
+**Key API shift from v1:** writes are now `recordAttempt({ conceptId, topicId, perspective, … })` not `recordQuizAttempt(topicId, …)`. The animation's `postMessage` payload gains `conceptId` and `perspective`, which the app shell reads from `curriculum/status.csv` and passes to the store. Animations themselves don't need to know their own concept — the shell routes the message.
 
 ### 3.2 Storage adapter interface
 
@@ -129,16 +157,73 @@ The rules engine evaluates a small, sandboxed DSL — no `eval`. Supported predi
 
 ---
 
-## 4. Storage schema (v1)
+## 4. Storage schema (v2 — concept exposure matrix)
 
-All keys are namespaced: `glm.v1.*` (app id `glm` = game-learn-mode).
+All keys are namespaced: `glm.v2.*` (app id `glm` = game-learn-mode). Schema version 2 supersedes v1; a migration function in the module promotes existing v1 payloads to v2 by remapping each `topic.{topicId}` row into a `concept.{conceptId}` row (looking up the mapping from `curriculum/status.csv` bundled as `app/curriculum.json`).
 
 | Key | Shape |
 |---|---|
-| `glm.v1.meta` | `{ schemaVersion: 1, createdAt, lastOpenedAt }` |
-| `glm.v1.summary` | `{ xp, level, badges: [id], streakDays, streakLastDay, lastTopicId }` |
-| `glm.v1.topic.{topicId}` | `{ viewed: bool, completed: bool, attempts, bestScore, lastSeen }` |
-| `glm.v1.history` | Ring buffer (last 50 events) for debugging / future sync replay |
+| `glm.v2.meta` | `{ schemaVersion: 2, appId, createdAt, lastOpenedAt }` |
+| `glm.v2.summary` | `{ xp, level, badges: [id], streakDays, streakLastDay, lastConceptId, lastTopicId }` |
+| `glm.v2.concept.{conceptId}` | See below — the exposure record |
+| `glm.v2.history` | Ring buffer (last 50 attempts across all concepts) for debugging / future sync replay |
+
+### 4.1 The concept exposure record
+
+```jsonc
+{
+  "conceptId": "rocks-fossils",           // from curriculum.md
+  "firstSeen": 1714234567890,
+  "lastSeen":  1714435567890,
+  "attempts": [
+    {
+      "topicId":     "rocks-fossils",      // the identify perspective
+      "perspective": "identify",
+      "timestamp":   1714234567890,
+      "score":       5,
+      "total":       5,
+      "durationMs":  94000
+    },
+    {
+      "topicId":     "rock-properties-sort",
+      "perspective": "sort",
+      "timestamp":   1714321567890,
+      "score":       4,
+      "total":       5,
+      "durationMs":  102000
+    },
+    {
+      "topicId":     "fossil-formation",
+      "perspective": "sequence",
+      "timestamp":   1714435567890,
+      "score":       5,
+      "total":       5,
+      "durationMs":  87000
+    }
+    // attempts array is append-only within a concept; can grow large
+    // for a child who revisits. Trimmed to last 30 per concept.
+  ],
+  "perspectivesTouched": ["identify", "sort", "sequence"],
+  "bestScorePerTopic": {
+    "rocks-fossils": 5,
+    "rock-properties-sort": 4,
+    "fossil-formation": 5
+  }
+}
+```
+
+**Why append-only with trim:** every encounter matters; a child's 10th play of `rocks-fossils` is different signal from their 1st (mastery, boredom, drift). Keeping attempts (bounded at 30) lets the gamification engine compute spacing, improvement-over-time, and perspective breadth. Single "best score" buckets would throw this away.
+
+### 4.2 Derived values (not stored, computed on read)
+
+| Value | Formula |
+|---|---|
+| `exposureCount` | `attempts.length` |
+| `perspectiveBreadth` | `perspectivesTouched.size / perspectivesAvailable(conceptId)` — from curriculum.json |
+| `recencyMs` | `now − lastSeen` |
+| `avgScore` | mean of `attempts[].score / attempts[].total` |
+| `masteryScore` | `(perspectiveBreadth × 0.5) + (avgScore × 0.3) + (min(exposureCount / 5, 1) × 0.2)` — bounded 0..1 |
+| `dueScore` | `masteryScore × exp(−recencyMs / τ)` where τ = 3 days — **low = due for revisit** |
 
 Schema version bump triggers a migration function. Unknown version → reset with a backup copy in `glm.v1.backup.{timestamp}` before wipe.
 
@@ -146,13 +231,64 @@ Schema version bump triggers a migration function. Unknown version → reset wit
 
 ## 5. Integration points in the current app
 
-1. **[app/app.js](../app/app.js)** — on topic open, call `store.markViewed(topicId)`. On quiz completion (once L1 lands), call `recordQuizAttempt`.
-2. **Home screen** — render a "Continue where you left off" card from `store.getSummary().lastTopicId`.
-3. **Header** — show current level + XP bar (hidden until the child completes the first topic, to avoid an empty state).
-4. **Topic page footer** — show badges earned relating to this topic/subject.
-5. **Settings → Reset progress** — a clearly labelled, confirmation-gated button.
+1. **Animation side (already implemented in exemplars):**
+   ```js
+   parent.postMessage({ type:'anim:ready',    topic:'{slug}' }, '*');
+   parent.postMessage({ type:'anim:attempt',  topic:'{slug}', correct:true }, '*');
+   parent.postMessage({ type:'anim:complete', topic:'{slug}', score:5, total:5 }, '*');
+   ```
+2. **[app/app.js](../app/app.js) — shell routes events to the store, enriching with concept + perspective looked up from `app/curriculum.json`:**
+   ```js
+   window.addEventListener('message', (e) => {
+     if (e.origin !== location.origin) return;
+     const { type, topic, score, total, ...rest } = e.data || {};
+     const meta = curriculum.topicMeta(topic); // { conceptId, perspective, year, subject }
+     if (type === 'anim:ready')    store.markTopicSeen({ ...meta, topicId: topic });
+     if (type === 'anim:attempt')  { /* optional fine-grained log */ }
+     if (type === 'anim:complete') store.recordAttempt({ ...meta, topicId: topic, score, total });
+   });
+   ```
+3. **Home screen** — three surfaces driven by `ProgressStore`:
+   - 📍 **Continue where you left off** — `summary.lastConceptId` + last-played topic.
+   - ⏰ **Due for revisit** — `listDueForRevisit({ limit: 3 })` — concepts ranked by dueScore ascending.
+   - ✨ **Try something new** — `listNeverTouched({ year })` — concepts without any attempts.
+4. **Header** — level + XP bar, hidden until first `recordAttempt` to avoid empty-state.
+5. **Topic page footer** — badges earned related to this concept; a tiny "perspectives seen" indicator (e.g. 2 of 4 filled).
+6. **Settings → Reset progress** — clearly labelled, confirmation-gated. Export-then-reset is the safer default.
 
-No changes to `animations/` — animations stay self-contained; the app shell tracks progress based on quiz/completion events the animation already exposes (or fires its own).
+No changes to `animations/` — animations stay self-contained; the app shell enriches their messages with concept + perspective via the curriculum lookup. This keeps animations dumb and the store authoritative.
+
+---
+
+## 5a. Due-for-revisit algorithm (§6 in v1 renumbered below)
+
+The core retention feature. Implementation sketch:
+
+```js
+listDueForRevisit({ now = Date.now(), limit = 5 }) {
+  const concepts = this._adapter.keys()
+    .filter(k => k.startsWith('glm.v2.concept.'))
+    .map(k => this._adapter.read(k));
+
+  const τ = 3 * 24 * 3600 * 1000;  // 3 days half-life
+
+  return concepts
+    .filter(c => c.attempts.length > 0)            // only touched concepts
+    .map(c => ({
+      conceptId: c.conceptId,
+      mastery: this._mastery(c),                    // 0..1
+      recencyMs: now - c.lastSeen,
+      dueScore: this._mastery(c) * Math.exp(-(now - c.lastSeen) / τ),
+    }))
+    // Lower dueScore = more due (high mastery + long time since = ideal revisit)
+    .sort((a, b) => a.dueScore - b.dueScore)
+    .slice(0, limit);
+}
+```
+
+**Why mastery × decay, not just recency:** a child who barely touched a concept once 5 days ago isn't "due for revisit" — they need a *fresh* first pass, which is handled by `listNeverTouched` or by the shell surfacing the next unseen perspective of a partially-touched concept. The decay formula targets concepts the child *has* engaged with and are at risk of fading, which is precisely the spaced-retrieval sweet spot.
+
+**Tuning τ:** 3 days is a starting point. Real children's retention curves differ; τ should become a gamification rule (`rules.json`) tunable per deployment once we have real usage data.
 
 ---
 
@@ -225,3 +361,4 @@ For the module to drop into another app cleanly:
 | Version | Date | Authors | Change |
 |---|---|---|---|
 | 1.0 | 2026-04-19 | Vaibhav Pandey · Claude Opus 4.7 | Initial design. Module layout, adapter interface, rules config, backend phasing, portability checklist. |
+| **2.0** | **2026-04-23** | **Vaibhav Pandey · Claude Opus 4.7** | **Re-scoped to the training-corpus / concept-exposure-matrix model.** Summary rewritten. Public API (§3.1) moves from per-topic completion flags to concept-level `recordAttempt({ conceptId, topicId, perspective, ... })` + queries. Storage schema (§4) replaces `glm.v1.topic.{topicId}` with `glm.v2.concept.{conceptId}` holding an append-only trimmed attempts array. Added §4.2 derived values (`masteryScore`, `dueScore`). Added §5a due-for-revisit algorithm (mastery × exponential-decay). Integration contract (§5) specifies shell-side event enrichment via `app/curriculum.json`. |
