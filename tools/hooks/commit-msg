@@ -1,0 +1,79 @@
+#!/bin/sh
+#
+# X6 — commit-msg guard for hand-built exemplars.
+#
+# Blocks commits that modify a protected exemplar (see
+# tools/protected-exemplars.json) unless the commit message contains an
+# explicit `--overwrite-exemplar={slug}` marker.
+#
+# Runs as commit-msg (not pre-commit) so the actual commit message is
+# available — git commit -m populates this hook's $1, but not the
+# pre-commit hook's COMMIT_EDITMSG.
+#
+# Install: run `sh tools/install-hooks.sh` once per clone.
+#
+# Arg: $1 = path to commit message file (git provides this)
+
+set -e
+
+MSG_FILE="$1"
+REPO_ROOT=$(git rev-parse --show-toplevel)
+GUARD="$REPO_ROOT/tools/guard_exemplar.py"
+
+if [ ! -f "$GUARD" ]; then
+    echo "commit-msg: guard script not found at $GUARD -- skipping exemplar check"
+    exit 0
+fi
+
+# Collect files staged for commit.
+CHANGED=$(git diff --cached --name-only --diff-filter=ACMR -z | tr '\0' '\n' | grep -v '^$' || true)
+
+if [ -z "$CHANGED" ]; then
+    exit 0
+fi
+
+# Extract --overwrite-exemplar={slug} from the actual commit message.
+OVERRIDE_SLUG=""
+if [ -f "$MSG_FILE" ]; then
+    OVERRIDE_SLUG=$(grep -oE -- '--overwrite-exemplar=[a-zA-Z0-9_-]+' "$MSG_FILE" | head -n 1 | sed 's/^--overwrite-exemplar=//' || true)
+fi
+
+# Run the guard
+if [ -n "$OVERRIDE_SLUG" ]; then
+    # shellcheck disable=SC2086
+    set -- changed-files --allow "$OVERRIDE_SLUG" $CHANGED
+else
+    # shellcheck disable=SC2086
+    set -- changed-files $CHANGED
+fi
+
+if ! python "$GUARD" "$@"; then
+    cat <<EOF
+
+--------------------------------------------------------------------
+Commit blocked by exemplar guard (X6).
+
+One or more files in this commit are protected, hand-built,
+child-validated exemplars. Overwriting them unintentionally would
+destroy validated work and revert to the old quiz-only template.
+
+To override (deliberately update the exemplar), include this token
+in your commit message on its own line or in the body:
+
+    --overwrite-exemplar={slug}
+
+where {slug} is the one listed in the BLOCKED message above.
+
+After committing the override, refresh the manifest SHAs:
+
+    python tools/guard_exemplar.py update {slug}
+    git add tools/protected-exemplars.json
+    git commit --amend --no-edit
+
+Reference: doc/feature-design-x6-diff-before-regen.md
+--------------------------------------------------------------------
+EOF
+    exit 1
+fi
+
+exit 0

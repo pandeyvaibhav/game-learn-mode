@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "Hand-built, child-validated exemplars. Changes to these files require the commit message to contain '--overwrite-exemplar={slug}'. See doc/feature-design-x6-diff-before-regen.md.",
+  "sha_algorithm": "sha256",
+  "sha_normalisation": "line endings normalised to LF before hashing (cross-OS stability)",
+  "protected": [
+    {
+      "slug": "plants-functions-y3",
+      "paths": [
+        "content/year-3/science/plants-functions-y3.md",
+        "animations/year-3/science/plants-functions-y3.html"
+      ],
+      "sha256": {
+        "content/year-3/science/plants-functions-y3.md": "2c5e0a81f35e734cb45dd53608f35bf813bba3652e1276c3ceebf4c5d52c2230",
+        "animations/year-3/science/plants-functions-y3.html": "171911f69e39ab851902fd853d1277176b074ac71b5e2066e94686779bc8ed9d"
+      },
+      "validated_date": "2026-04-23",
+      "validated_by": "real 7-year-old, unprompted engagement with interactive SVG plant + 5-prompt quest",
+      "reason": "Gold-standard reference for doc/topic-build-runbook.md — the only validated exemplar as of delivery"
+    }
+  ]
+}

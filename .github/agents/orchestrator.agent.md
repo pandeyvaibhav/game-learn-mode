@@ -25,21 +25,40 @@ The pipeline is **idempotent** — re-running it must not overwrite files that a
 
 Read [`doc/topic-build-runbook.md`](../../doc/topic-build-runbook.md) **before dispatching any generator**. All downstream agents (subject agents, animation-generator) have been wired to this runbook and reference [`animations/year-3/science/plants-functions-y3.html`](../../animations/year-3/science/plants-functions-y3.html) as the validated pattern.
 
-### Hand-built exemplar protection
+### Hand-built exemplar protection (enforced by X6 guard)
 
-Until backlog item **X6** (diff-before-regen guard) lands, the orchestrator must itself prevent `--force` runs from destroying hand-built, child-validated exemplars.
+Protection is now **data-driven + tool-enforced**, not prose-driven. The list of protected paths lives in [`tools/protected-exemplars.json`](../../tools/protected-exemplars.json); the CLI guard is [`tools/guard_exemplar.py`](../../tools/guard_exemplar.py); a git pre-commit hook at [`tools/hooks/pre-commit`](../../tools/hooks/pre-commit) is the backstop. See [`doc/feature-design-x6-diff-before-regen.md`](../../doc/feature-design-x6-diff-before-regen.md).
 
-**Protected list (do NOT re-generate, even under `--force`, without explicit user confirmation in the same message):**
-- `content/year-3/science/plants-functions-y3.md`
-- `animations/year-3/science/plants-functions-y3.html`
+**Step 0.5 — Verify exemplars at pipeline start (BEFORE Step 0):**
+```
+result = bash("python tools/guard_exemplar.py verify")
+if result.exit_code != 0:
+    print result.stdout
+    abort the pipeline — protected files differ from manifest SHAs.
+    User must reconcile (update manifest or revert change) before re-running.
+```
 
-Any topic listed as ✅ done in runbook §5 is added to this list as it is validated. When you encounter a protected path during iteration:
-1. Skip the subject agent dispatch and animation-generator dispatch for that topic.
-2. Log `SKIPPED-PROTECTED: {path}` in your progress report.
-3. Continue with the next topic.
-4. Only override if the user's invocation message explicitly names the slug AND includes `--overwrite-exemplar` or an equivalent explicit phrase.
+**Before every subject-agent and animation-generator dispatch (Steps 2b and 2e):**
+```
+# Check both target paths (content .md and animation .html)
+result = bash("python tools/guard_exemplar.py check {path}")
+if result.exit_code != 0:
+    slug = the protected slug from the BLOCKED message
+    if the user's invocation contains "--overwrite-exemplar={slug}":
+        log "EXEMPLAR OVERRIDE: {slug}"
+        re-run check with --allow {slug} to confirm acceptance
+        proceed with dispatch
+    else:
+        log "SKIPPED-PROTECTED: {path}"
+        mark the todo as skipped-protected
+        continue with the next topic
+```
 
-Blanket `--force` at year/subject scope is NOT explicit confirmation for protected paths.
+**Hard rules:**
+1. Blanket `--force` at year/subject scope is NOT sufficient for protected paths. The invocation must name the specific slug: `--overwrite-exemplar=plants-functions-y3`.
+2. If the user omits the override but still passes `--force`, the orchestrator skips the protected topic and logs — it does NOT prompt interactively (pipeline runs unattended).
+3. After an intentional update that overwrites an exemplar, the user must refresh the manifest: `python tools/guard_exemplar.py update {slug}` followed by `git add tools/protected-exemplars.json`.
+4. The git pre-commit hook will also block — if layer 2 (this step) is bypassed, layer 3 catches it at commit.
 
 ### Output expectations per topic
 
