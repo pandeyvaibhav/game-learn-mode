@@ -7,12 +7,32 @@ This file is the **single source of truth** for the content-generation pipeline.
 
 ## How to read this file
 
-Each leaf topic is an **atomic unit** of content generation. The orchestrator iterates every topic entry and dispatches the appropriate subject agent to produce:
+### The two-level model (v2)
 
-1. `content/year-{Y}/{subject}/{topic-slug}.md` — lesson content
-2. `animations/year-{Y}/{subject}/{topic-slug}.html` — interactive animation
+Since 2026-04-23, the curriculum is structured at **two levels**:
 
-Topic slugs use kebab-case and match the file names agents must write.
+1. **Concept** — a statutory curriculum area (e.g. "Rocks", "Plants", "Forces & Magnets"). One concept can be explored from multiple angles.
+2. **Perspective topic** — a byte-sized game exercising one cognitive mode on that concept. Each concept gets **2–4 perspective topics**, each mapped to a **cognitive mode**:
+   - `identify` — recognise by appearance
+   - `sort` / compare — group by shared property
+   - `sequence` — temporal or causal ordering
+   - `compose` / decompose — part-whole relationships
+   - `apply` — real-world connection
+
+This is the "training corpus" model — many short self-contained encounters on the same concept, each from a different angle, rather than one long lesson. See [doc/architecture.md](../doc/architecture.md) §1 and [doc/topic-build-runbook.md](../doc/topic-build-runbook.md) §5.
+
+### Agent contract
+
+The orchestrator iterates every **perspective topic** row and dispatches the subject agent + animation-generator to produce:
+
+1. `content/year-{Y}/{subject}/{topic-slug}.md` — lesson content (3 paragraphs + Sources)
+2. `animations/year-{Y}/{subject}/{topic-slug}.html` — 3-part interactive (intro + illustration + exercise)
+
+Production status lives in [`curriculum/status.csv`](status.csv), not in this file. This file is *what should exist*; the CSV is *what has been produced*.
+
+### Migration state (2026-04-23)
+
+Only **Year 3 Science** has been migrated to the concept × perspective structure so far. All other year+subject combinations still use the flat "one topic = one curriculum area" v1 structure below. They will be migrated when their subject comes up in the production queue — see runbook §5.7 execution order.
 
 ---
 
@@ -132,13 +152,68 @@ Topic slugs use kebab-case and match the file names agents must write.
 | Report Writing | `report-writing-y3` | Formal tone, sub-headings, facts, present tense |
 | Conjunctions and Clauses | `conjunctions-clauses` | Subordinating (because, although, when), main/subordinate clause |
 
-### Science
-| Topic | Slug | Key Concepts |
-|---|---|---|
-| Rocks and Fossils | `rocks-fossils` | Types of rock (igneous, sedimentary, metamorphic), fossil formation |
-| Light and Shadows | `light-shadows` | Light sources, reflections, shadow formation, sundials |
-| Forces and Magnets | `forces-magnets` | Push, pull, friction, magnetic attraction/repulsion |
-| Plants — Functions | `plants-functions-y3` | Photosynthesis (intro), plant lifecycle, pollination, seed dispersal |
+### Science (concept × perspective — v2)
+
+#### Concept: Plants
+
+**Statutory scope (UK NC, Year 3 Science):**
+- Identify and describe the functions of different parts of flowering plants: roots, stem, leaves, flowers
+- Explore the requirements of plants for life and growth (air, light, water, nutrients, room to grow)
+- Investigate the way in which water is transported within plants
+- Explore the part that flowers play in the life cycle (pollination, seed formation, seed dispersal)
+
+| Perspective | Topic | Slug | Key Concepts |
+|---|---|---|---|
+| identify | Parts of a Plant | `plants-functions-y3` ✅ | Flower, leaves, stem, roots, soil — each part's job |
+| sort | What Plants Need to Grow | `plant-growth-needs` | Sort: needs vs doesn't need — water, light, air, love-of-a-teacher, soil |
+| sequence | Plant Lifecycle | `plant-lifecycle` | Seed → sprout → young plant → flowering → seeds again |
+| apply | How Water Travels Up a Plant | `water-transport` | From root to leaf — what happens, why it matters |
+
+#### Concept: Rocks and Fossils
+
+**Statutory scope (UK NC, Year 3 Science):**
+- Compare and group together different kinds of rocks on the basis of their appearance and simple physical properties
+- Describe in simple terms how fossils are formed when things that have lived are trapped within rock
+- Recognise that soils are made from rocks and organic matter
+
+| Perspective | Topic | Slug | Key Concepts |
+|---|---|---|---|
+| identify | Types of Rock | `rocks-fossils` ✅ | Igneous, sedimentary, metamorphic, fossil, soil — recognise each |
+| sort | Rock Properties Sort | `rock-properties-sort` | Drag rocks into hard/soft, rough/smooth, permeable/not |
+| sequence | How a Fossil Forms | `fossil-formation` | Animal dies → buried → layers → pressed → discovered |
+| compose | What's in Soil? | `soil-composition` | Rock bits + rotted plants + water + air — tap to build |
+
+#### Concept: Forces and Magnets
+
+**Statutory scope (UK NC, Year 3 Science):**
+- Compare how things move on different surfaces
+- Notice that some forces need contact between two objects, but magnetic forces can act at a distance
+- Observe how magnets attract or repel each other and attract some materials and not others
+- Predict whether two magnets will attract or repel each other, depending on which poles are facing
+
+| Perspective | Topic | Slug | Key Concepts |
+|---|---|---|---|
+| identify | Magnets and Magnetic Materials | `forces-magnets` ✅ | Poles, which materials a magnet attracts |
+| sort | Push or Pull? | `push-pull-sort` | Sort everyday actions into push / pull |
+| apply | How Surfaces Change Movement | `friction-surfaces` | Rough vs smooth — which makes a ball roll further? |
+| sequence | Magnets at a Distance | `magnet-distance-experiment` | Move magnet closer — what happens first, then, finally |
+
+#### Concept: Light and Shadows
+
+**Statutory scope (UK NC, Year 3 Science):**
+- Recognise that they need light in order to see things and that dark is the absence of light
+- Notice that light is reflected from surfaces
+- Recognise that shadows are formed when the light from a light source is blocked by an opaque object
+- Find patterns in the way that the size of shadows change
+
+| Perspective | Topic | Slug | Key Concepts |
+|---|---|---|---|
+| identify | Light and Shadows | `light-shadows` ✅ | Light source, object, wall, shadow, transparent |
+| sort | Transparent, Translucent, Opaque | `opaque-transparent-sort` | Drag materials into the three buckets |
+| sequence | How Shadows Change | `shadow-change` | Move the light — shadow gets bigger, smaller, moves |
+| apply | Light Around Us | `light-safety` | Safe/not-safe light sources — Sun never look at, torch OK |
+
+*(✅ = validated with a real 7-year-old on 2026-04-23. Next batch to build: all todo rows above.)*
 
 ### History
 | Topic | Slug | Key Concepts |
