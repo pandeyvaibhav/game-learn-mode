@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How a Fossil Forms — Year 3 Science</title>
+<style>
+/* ============================================================
+ * Rocks concept · SEQUENCE perspective
+ * Structure: intro → illustration → exercise
+ * ============================================================ */
+
+:root {
+  --c-bg:        #FFF9F2;
+  --c-surface:   #FFFFFF;
+  --c-border:    #E8DCC7;
+  --c-ink:       #1E1E2A;
+  --c-ink-muted: #5A5566;
+  --c-primary:   #4A5FDB;
+  --c-accent:    #FF8A3D;
+  --c-success:   #1FA66A;
+  --c-warn:      #E0A020;
+  --c-error:     #D8452B;
+  --c-celebrate: #B24EE0;
+
+  /* Illustration tokens */
+  --c-water:     #BCE0F0;
+  --c-water-dk:  #4A9FD4;
+  --c-sand:      #E8D5A8;
+  --c-sand-dk:   #B89968;
+  --c-mud:       #8B5A3C;
+  --c-mud-dk:    #5E3A22;
+  --c-rock:      #8A8A94;
+  --c-rock-dk:   #4A4A52;
+  --c-shell:     #D4A373;
+  --c-shell-dk:  #8B5A3C;
+  --c-skin:      #F5D0B0;
+
+  --font-body:    ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-body:      clamp(17px, 4.5vw, 18px);
+  --fs-prompt:    clamp(19px, 5vw, 22px);
+  --fs-display:   clamp(24px, 7vw, 32px);
+
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --d-fast:       180ms;
+  --d-med:        320ms;
+  --d-slow:       560ms;
+
+  --tap-min:      44px;
+  --tap-primary:  56px;
+  --radius:       16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1rem 1rem 4rem;
+  gap: 1rem;
+}
+
+header { text-align: center; max-width: 540px; width: 100%; }
+.year-tag { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-muted); margin-bottom: 0.25rem; }
+h1 { font-size: var(--fs-display); font-weight: 700; }
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  width: 100%; max-width: 540px;
+}
+
+.intro p { margin-bottom: 0.75rem; max-width: 45ch; }
+.intro p:last-child { margin-bottom: 0; color: var(--c-ink-muted); font-style: italic; }
+
+.stage { padding: 0.5rem; }
+.fossil-svg { width: 100%; height: auto; display: block; border-radius: 12px; }
+.fossil-svg .part { cursor: pointer; outline: none; }
+.fossil-svg .part:focus-visible .hit { stroke: var(--c-primary); stroke-width: 3; fill: rgba(74,95,219,0.08); }
+.fossil-svg .hit { fill: transparent; }
+
+/* Locked (already placed) cards */
+.fossil-svg .part.locked { cursor: default; opacity: 0.7; }
+.fossil-svg .part.locked .hit { pointer-events: none; }
+.fossil-svg .part .badge { opacity: 0; transition: opacity var(--d-fast) var(--ease-out); }
+.fossil-svg .part.locked .badge { opacity: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fossil-svg .part.correct .visual { animation: pulseOk var(--d-slow) var(--ease-bounce); }
+  .fossil-svg .part.wrong   .visual { animation: shakeWarn var(--d-fast) ease; }
+  .fossil-svg .part.reveal  .visual { animation: pulseReveal var(--d-med) var(--ease-out); }
+}
+@keyframes pulseOk {
+  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  40%  { transform: scale(1.06); filter: drop-shadow(0 0 12px rgba(31,166,106,0.6)); }
+  100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+}
+@keyframes shakeWarn {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+@keyframes pulseReveal {
+  0%   { filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  100% { filter: drop-shadow(0 0 10px rgba(31,166,106,0.7)); }
+}
+
+.label-bubble {
+  background: var(--c-surface);
+  border: 2px solid var(--c-border);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem; font-weight: 600; color: var(--c-ink);
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(30,30,42,0.12);
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-out);
+}
+.label-bubble.show { opacity: 1; }
+.label-bubble::after {
+  content: ""; position: absolute;
+  left: 50%; bottom: -8px;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--c-border);
+}
+.stage-wrap { position: relative; }
+
+.quest { display: flex; flex-direction: column; gap: 0.75rem; }
+.quest-head { display: flex; align-items: center; gap: 0.75rem; }
+.bix { flex: 0 0 auto; width: 48px; height: 48px; }
+.quest-prompt { flex: 1 1 auto; font-size: var(--fs-prompt); font-weight: 600; color: var(--c-ink); }
+.quest-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--c-ink-muted); }
+.quest-meta .score-dots { display: inline-flex; gap: 4px; }
+.quest-meta .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-border); }
+.quest-meta .dot.on { background: var(--c-success); }
+
+.feedback {
+  display: none; align-items: center; gap: 0.5rem;
+  font-size: 1rem; font-weight: 600;
+  padding: 0.6rem 0.9rem; border-radius: 12px;
+}
+.feedback.show { display: flex; }
+.feedback.ok  { background: var(--c-success); color: #FFFFFF; }
+.feedback.bad { background: var(--c-warn); color: var(--c-ink); }
+.feedback .icon {
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  font-weight: 700;
+}
+
+.complete {
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 100%; max-width: 540px;
+  display: none;
+}
+.complete.show { display: block; }
+.complete h2 { font-size: var(--fs-display); color: var(--c-celebrate); margin-bottom: 0.5rem; }
+.complete .stars { font-size: 2.5rem; margin: 0.5rem 0 1rem; }
+.complete button {
+  min-height: var(--tap-primary); padding: 0 1.5rem;
+  border: none; border-radius: 12px;
+  background: var(--c-primary); color: #FFFFFF;
+  font-family: inherit; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer;
+}
+:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; border-radius: var(--radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="year-tag">Year 3 · Science</p>
+  <h1>How a Fossil Forms</h1>
+</header>
+
+<section class="card intro" aria-label="About this lesson">
+  <p><strong>Fossils are the shapes of living things trapped in rock.</strong> They can be millions of years old!</p>
+  <p>A fossil forms in <strong>stages</strong>: a creature lives, then dies, gets buried in layers of mud or sand, the layers press into rock, and much later someone <strong>discovers</strong> it.</p>
+  <p>Tap a stage to see what happens. Then put the stages in the right order!</p>
+</section>
+
+<section class="card stage" aria-label="Five fossil-formation stage cards">
+  <div class="stage-wrap">
+    <svg class="fossil-svg" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fTitle fDesc">
+      <title id="fTitle">Five scene cards showing fossil formation</title>
+      <desc id="fDesc">Cards shown in a mixed-up order. Alive — a creature swimming. Dies — the creature resting still. Buried — covered with sand and mud. Pressed — layers have become rock. Discovered — a palaeontologist brushes the fossil clean.</desc>
+
+      <rect x="0" y="0" width="520" height="320" fill="#FFF9F2"/>
+
+      <!-- CARD: buried (position 1 visually — out of order) -->
+      <g class="part" data-part="buried" role="button" tabindex="0" aria-label="Stage: creature is buried under sand and mud">
+        <rect class="hit" x="10" y="20" width="100" height="280"/>
+        <g class="visual">
+          <rect x="15" y="30" width="90" height="140" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <!-- sky -->
+          <rect x="17" y="32" width="86" height="22" fill="var(--c-water)" opacity="0.5"/>
+          <!-- layered mud + sand -->
+          <rect x="17" y="54" width="86" height="22" fill="var(--c-sand)"/>
+          <rect x="17" y="76" width="86" height="22" fill="var(--c-mud)"/>
+          <rect x="17" y="98" width="86" height="22" fill="var(--c-sand)"/>
+          <rect x="17" y="120" width="86" height="48" fill="var(--c-mud-dk)"/>
+          <!-- shell buried inside -->
+          <g transform="translate(60 138)">
+            <path d="M -10 0 Q -10 -8 0 -8 Q 10 -8 10 0 Q 10 6 0 6 Q -10 6 -10 0 Z" fill="var(--c-shell)" opacity="0.85"/>
+            <path d="M -6 -2 Q -4 -5 0 -5 Q 4 -5 6 -2" stroke="var(--c-shell-dk)" stroke-width="1" fill="none"/>
+          </g>
+          <text x="60" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">buried</text>
+        </g>
+        <!-- number badge (hidden until locked) -->
+        <g class="badge">
+          <circle cx="95" cy="42" r="14" fill="var(--c-success)"/>
+          <text x="95" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF" data-slot>?</text>
+        </g>
+      </g>
+
+      <!-- CARD: alive -->
+      <g class="part" data-part="alive" role="button" tabindex="0" aria-label="Stage: creature is alive and swimming">
+        <rect class="hit" x="115" y="20" width="100" height="280"/>
+        <g class="visual">
+          <rect x="120" y="30" width="90" height="140" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <rect x="122" y="32" width="86" height="110" fill="var(--c-water)"/>
+          <rect x="122" y="142" width="86" height="26" fill="var(--c-sand)"/>
+          <!-- ammonite swimming happily -->
+          <g transform="translate(165 85)">
+            <circle cx="0" cy="0" r="18" fill="var(--c-shell)" stroke="var(--c-shell-dk)" stroke-width="1.5"/>
+            <path d="M 0 0 Q -6 -6 0 -10 Q 8 -8 8 0 Q 8 6 0 8 Q -6 6 -6 0 Q -6 -4 0 -4 Q 4 -4 4 0 Q 4 2 0 2" stroke="var(--c-shell-dk)" stroke-width="1.3" fill="none"/>
+            <!-- tentacles -->
+            <line x1="-16" y1="4" x2="-24" y2="6" stroke="var(--c-shell-dk)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="-16" y1="0" x2="-26" y2="-2" stroke="var(--c-shell-dk)" stroke-width="2" stroke-linecap="round"/>
+            <!-- friendly eye -->
+            <circle cx="-6" cy="-2" r="2" fill="#1E1E2A"/>
+          </g>
+          <!-- bubbles -->
+          <circle cx="140" cy="55" r="2.5" fill="#FFFFFF" opacity="0.7"/>
+          <circle cx="148" cy="45" r="1.8" fill="#FFFFFF" opacity="0.7"/>
+          <text x="165" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">alive</text>
+        </g>
+        <g class="badge">
+          <circle cx="200" cy="42" r="14" fill="var(--c-success)"/>
+          <text x="200" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF" data-slot>?</text>
+        </g>
+      </g>
+
+      <!-- CARD: discovered -->
+      <g class="part" data-part="discovered" role="button" tabindex="0" aria-label="Stage: a palaeontologist discovers the fossil">
+        <rect class="hit" x="220" y="20" width="100" height="280"/>
+        <g class="visual">
+          <rect x="225" y="30" width="90" height="140" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <rect x="227" y="32" width="86" height="40" fill="#D9ECF7"/>
+          <rect x="227" y="72" width="86" height="96" fill="var(--c-sand-dk)"/>
+          <!-- fossil in rock -->
+          <g transform="translate(270 120)">
+            <path d="M -10 0 Q -10 -8 0 -8 Q 10 -8 10 0 Q 10 6 0 6 Q -10 6 -10 0 Z" fill="var(--c-shell)" stroke="var(--c-shell-dk)" stroke-width="1.5"/>
+            <path d="M -6 -2 Q -4 -5 0 -5 Q 4 -5 6 -2" stroke="var(--c-shell-dk)" stroke-width="1" fill="none"/>
+          </g>
+          <!-- palaeontologist (simple figure on left) -->
+          <g transform="translate(240 108)">
+            <circle cx="0" cy="-10" r="7" fill="var(--c-skin)"/>
+            <rect x="-5" y="-3" width="10" height="14" rx="2" fill="var(--c-primary)"/>
+            <!-- brush -->
+            <line x1="5" y1="4" x2="20" y2="10" stroke="#8B5A3C" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="18" y="8" width="6" height="4" fill="#E0A020"/>
+          </g>
+          <text x="270" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">discovered</text>
+        </g>
+        <g class="badge">
+          <circle cx="305" cy="42" r="14" fill="var(--c-success)"/>
+          <text x="305" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF" data-slot>?</text>
+        </g>
+      </g>
+
+      <!-- CARD: pressed -->
+      <g class="part" data-part="pressed" role="button" tabindex="0" aria-label="Stage: layers squash into rock, the shape stays">
+        <rect class="hit" x="325" y="20" width="100" height="280"/>
+        <g class="visual">
+          <rect x="330" y="30" width="90" height="140" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <rect x="332" y="32" width="86" height="136" fill="var(--c-rock)"/>
+          <!-- pressure arrows top -->
+          <g stroke="var(--c-accent)" stroke-width="2" fill="var(--c-accent)">
+            <path d="M 350 36 L 350 46 L 346 46 L 350 52 L 354 46 L 350 46 Z"/>
+            <path d="M 375 36 L 375 46 L 371 46 L 375 52 L 379 46 L 375 46 Z"/>
+            <path d="M 400 36 L 400 46 L 396 46 L 400 52 L 404 46 L 400 46 Z"/>
+          </g>
+          <!-- rock strata -->
+          <line x1="334" y1="78" x2="418" y2="78" stroke="var(--c-rock-dk)" stroke-width="1.2" opacity="0.6"/>
+          <line x1="334" y1="94" x2="418" y2="94" stroke="var(--c-rock-dk)" stroke-width="1.2" opacity="0.6"/>
+          <line x1="334" y1="110" x2="418" y2="110" stroke="var(--c-rock-dk)" stroke-width="1.2" opacity="0.6"/>
+          <!-- fossil impression -->
+          <g transform="translate(375 128)">
+            <path d="M -10 0 Q -10 -8 0 -8 Q 10 -8 10 0 Q 10 6 0 6 Q -10 6 -10 0 Z" fill="var(--c-shell-dk)" opacity="0.85"/>
+          </g>
+          <text x="375" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">pressed</text>
+        </g>
+        <g class="badge">
+          <circle cx="410" cy="42" r="14" fill="var(--c-success)"/>
+          <text x="410" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF" data-slot>?</text>
+        </g>
+      </g>
+
+      <!-- CARD: dies (neutral — sleeping/still, closed eye) -->
+      <g class="part" data-part="dies" role="button" tabindex="0" aria-label="Stage: creature stops moving and rests on the sea floor">
+        <rect class="hit" x="430" y="20" width="80" height="280"/>
+        <g class="visual">
+          <rect x="435" y="30" width="70" height="140" rx="10" fill="#FFFFFF" stroke="var(--c-border)" stroke-width="2"/>
+          <rect x="437" y="32" width="66" height="90" fill="var(--c-water)" opacity="0.6"/>
+          <rect x="437" y="122" width="66" height="46" fill="var(--c-sand)"/>
+          <!-- ammonite resting on sea floor, closed eye -->
+          <g transform="translate(470 130)">
+            <circle cx="0" cy="0" r="15" fill="var(--c-shell)" stroke="var(--c-shell-dk)" stroke-width="1.5"/>
+            <path d="M 0 0 Q -5 -5 0 -8 Q 6 -6 6 0 Q 6 4 0 6 Q -5 4 -5 0" stroke="var(--c-shell-dk)" stroke-width="1.2" fill="none"/>
+            <!-- closed eye -->
+            <path d="M -7 -2 Q -5 0 -3 -2" stroke="#1E1E2A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          </g>
+          <!-- 'Z' zzz style stillness marker -->
+          <text x="470" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#1E1E2A">dies</text>
+        </g>
+        <g class="badge">
+          <circle cx="495" cy="42" r="14" fill="var(--c-success)"/>
+          <text x="495" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF" data-slot>?</text>
+        </g>
+      </g>
+    </svg>
+    <div class="label-bubble" id="labelBubble" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="card quest" aria-label="Fossil-formation sequence quest">
+  <div class="quest-head">
+    <svg class="bix" viewBox="-40 -60 80 100" aria-hidden="true">
+      <line x1="-10" y1="-30" x2="-14" y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10"  y1="-30" x2="14"  y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-14" cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="14"  cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="0" cy="-16" r="18" fill="var(--c-primary)"/>
+      <circle cx="-6" cy="-18" r="2" fill="var(--c-bg)"/>
+      <circle cx="6"  cy="-18" r="2" fill="var(--c-bg)"/>
+      <path d="M-5 -11 Q 0 -7 5 -11" stroke="var(--c-bg)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="14" r="22" fill="var(--c-primary)"/>
+    </svg>
+    <p class="quest-prompt" id="prompt">Loading quest…</p>
+  </div>
+
+  <div class="quest-meta">
+    <span id="progressText">Question 1 of 5</span>
+    <span class="score-dots" id="dots" aria-label="Progress">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </span>
+  </div>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite">
+    <span class="icon" id="fbIcon"></span>
+    <span id="fbText"></span>
+  </div>
+</section>
+
+<section class="card complete" id="complete" aria-label="Quest complete">
+  <h2>Fossil finder!</h2>
+  <div class="stars" id="stars">&#9733; &#9733; &#9733;</div>
+  <p id="completeMsg">You put every stage in the right order. Well done!</p>
+  <p style="margin-top: 1rem;">
+    <button id="playAgain">Play again</button>
+  </p>
+</section>
+
+<div class="sr-only" aria-live="polite" id="srOut"></div>
+
+<script>
+(function(){
+  const TOPIC = 'fossil-formation';
+
+  const PART_INFO = {
+    alive:      'Alive — the creature is swimming',
+    dies:       'Dies — the creature stops moving and rests',
+    buried:     'Buried — covered by sand and mud',
+    pressed:    'Pressed — layers become rock',
+    discovered: 'Discovered — someone finds the fossil'
+  };
+
+  // Ordered sequence (NOT shuffled — the answer order IS the sequence).
+  const PROMPTS = [
+    { text: 'Tap the very first stage — the creature is alive',  answer: ['alive'] },
+    { text: 'Tap what happens next — the creature dies',          answer: ['dies'] },
+    { text: 'Tap what happens next — it gets buried in layers',   answer: ['buried'] },
+    { text: 'Tap what happens next — layers squash into rock',    answer: ['pressed'] },
+    { text: 'Tap the last stage — someone finds the fossil',      answer: ['discovered'] }
+  ];
+
+  // Sequence prompts must stay in order — we do NOT shuffle these.
+  let prompts = [...PROMPTS];
+  let idx = 0, score = 0, locked = false;
+
+  const promptEl   = document.getElementById('prompt');
+  const progressEl = document.getElementById('progressText');
+  const dotsEl     = document.getElementById('dots');
+  const feedbackEl = document.getElementById('feedback');
+  const fbIconEl   = document.getElementById('fbIcon');
+  const fbTextEl   = document.getElementById('fbText');
+  const labelEl    = document.getElementById('labelBubble');
+  const completeEl = document.getElementById('complete');
+  const starsEl    = document.getElementById('stars');
+  const completeMsg= document.getElementById('completeMsg');
+  const playAgain  = document.getElementById('playAgain');
+  const svgEl      = document.querySelector('.fossil-svg');
+  const srOut      = document.getElementById('srOut');
+
+  function announce(msg){ srOut.textContent=''; requestAnimationFrame(()=> srOut.textContent = msg); }
+
+  function showLabel(el, text){
+    const vis = el.querySelector('.visual');
+    if (!vis) return;
+    const bbox = vis.getBoundingClientRect();
+    const wrap = svgEl.parentElement.getBoundingClientRect();
+    const left = bbox.left + bbox.width/2 - wrap.left;
+    const top  = bbox.top - wrap.top;
+    labelEl.textContent = text;
+    labelEl.style.left = left + 'px';
+    labelEl.style.top  = top + 'px';
+    labelEl.classList.add('show');
+    clearTimeout(showLabel._t);
+    showLabel._t = setTimeout(()=> labelEl.classList.remove('show'), 2000);
+  }
+
+  function flashPart(el, cls){
+    el.classList.remove('correct','wrong','reveal');
+    void el.offsetWidth;
+    el.classList.add(cls);
+  }
+
+  function lockPart(el, number){
+    el.classList.add('locked');
+    const slot = el.querySelector('[data-slot]');
+    if (slot) slot.textContent = String(number);
+  }
+
+  function isCorrect(answer, partName){
+    return Array.isArray(answer) ? answer.includes(partName) : answer === partName;
+  }
+
+  function handlePartActivate(partEl, partName){
+    showLabel(partEl, PART_INFO[partName]);
+    if (locked) return;
+    if (partEl.classList.contains('locked')) return;
+
+    const current = prompts[idx];
+    if (!current) return;
+    const correct = isCorrect(current.answer, partName);
+    postAttempt({ part: partName, correct });
+
+    if (correct) {
+      locked = true; score++; renderDots();
+      flashPart(partEl, 'correct');
+      lockPart(partEl, idx + 1);
+      feedbackEl.className = 'feedback ok show';
+      fbIconEl.textContent = '✓';
+      fbTextEl.textContent = 'Correct! ' + PART_INFO[partName];
+      announce('Correct. ' + PART_INFO[partName]);
+      setTimeout(()=> { idx++; renderPrompt(); }, 1400);
+    } else {
+      locked = true;
+      flashPart(partEl, 'wrong');
+      const correctName = current.answer[0];
+      const correctEl = svgEl.querySelector(`.part[data-part="${correctName}"]`);
+      if (correctEl) flashPart(correctEl, 'reveal');
+      feedbackEl.className = 'feedback bad show';
+      fbIconEl.textContent = '○';
+      fbTextEl.textContent = 'Not quite — the next stage is ' + correctName + '.';
+      announce('Not quite. The next stage is ' + correctName + '.');
+      // Auto-place correct stage so the sequence can continue
+      setTimeout(()=> {
+        if (correctEl) lockPart(correctEl, idx + 1);
+        idx++; renderPrompt();
+      }, 1900);
+    }
+  }
+
+  function renderPrompt(){
+    if (idx >= prompts.length) { renderComplete(); return; }
+    promptEl.textContent = prompts[idx].text;
+    progressEl.textContent = `Question ${idx+1} of ${prompts.length}`;
+    feedbackEl.className = 'feedback';
+    locked = false;
+  }
+
+  function renderDots(){
+    const dots = dotsEl.querySelectorAll('.dot');
+    dots.forEach((d,i)=> d.classList.toggle('on', i < score));
+  }
+
+  document.querySelectorAll('.fossil-svg .part').forEach(el => {
+    const name = el.getAttribute('data-part');
+    el.addEventListener('click', ()=> handlePartActivate(el, name));
+    el.addEventListener('keydown', (e)=> {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePartActivate(el, name); }
+    });
+  });
+
+  function renderComplete(){
+    const pct = score / prompts.length;
+    starsEl.innerHTML = pct >= 0.8 ? '&#9733; &#9733; &#9733;' : pct >= 0.6 ? '&#9733; &#9733;' : '&#9733;';
+    completeMsg.textContent =
+      pct === 1  ? 'You put every stage in the right order. Brilliant!' :
+      pct >= 0.6 ? 'Nice work! Try again to get them all.' :
+                   'Good try! Tap each stage to learn, then play again.';
+    completeEl.classList.add('show');
+    announce('Quest complete. Score ' + score + ' out of ' + prompts.length + '.');
+    postComplete({ score, total: prompts.length });
+    document.querySelector('.quest').style.display = 'none';
+  }
+
+  playAgain.addEventListener('click', ()=> {
+    prompts = [...PROMPTS];
+    idx = 0; score = 0; locked = false;
+    renderDots();
+    completeEl.classList.remove('show');
+    document.querySelector('.quest').style.display = '';
+    // Reset locked cards
+    document.querySelectorAll('.fossil-svg .part').forEach(el => {
+      el.classList.remove('locked','correct','wrong','reveal');
+      const slot = el.querySelector('[data-slot]');
+      if (slot) slot.textContent = '?';
+    });
+    renderPrompt();
+  });
+
+  function postReady(){     try { parent.postMessage({ type:'anim:ready',    topic: TOPIC }, '*'); } catch(e){} }
+  function postAttempt(p){  try { parent.postMessage({ type:'anim:attempt',  topic: TOPIC, ...p }, '*'); } catch(e){} }
+  function postComplete(p){ try { parent.postMessage({ type:'anim:complete', topic: TOPIC, ...p }, '*'); } catch(e){} }
+
+  renderDots();
+  renderPrompt();
+  postReady();
+})();
+</script>
+</body>
+</html>
