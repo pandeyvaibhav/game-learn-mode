@@ -37,14 +37,16 @@ Safety gates land first so new content is generated under review; mobile fixes c
 8. **X3 + X4 + X5** — Fix pipeline integrity: truthful report, backfill 77 missing Sources sections, mechanical §9 check in S2 *(blocks C4 — cannot "pass review" files that fail the mechanical rule)*
 9. **C4** — Retro-run safety gates on Y2/Y4/Y5/Y6 + Y1 re-review under corrected S10 bars
 10. ~~**X6** — Diff-before-regen guard so we never blindly overwrite prior work again~~ ✅ done 2026-04-23
-11. **V1 + V2 + V3** — Child visual standard, token additions to baseline CSS, icon/SVG symbol library *(prerequisite to A1 so archetype shells inherit one look)*
-12. **A1 + A2 + A3** — Animation archetype catalog, archetype-aware generator, retro-regen 117 animations *(fixes the "everything is a quiz" problem)*
-12. **P3 + L2** — Progress tracking + gamification as one reusable module ([design](doc/feature-design-progress-gamification.md))
-13. **L1** — Quiz mode (feeds progress events)
-14. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
-15. **M6** — Retrofit existing animations to child-baseline.css
-16. **A4–A7** — SVG primitives, canvas helper, vendored-lib policy, Lottie rewards
-17. **B1–B3** — Backend adapter, auth, multi-device sync *(phased evolution, not blockers for v1)*
+11. **SD1** — Content Studio v1 (read-only operator dashboard visualising `status.csv` + curriculum) *(makes the platform state legible; prerequisite to sensible operator decisions on what to build next)*
+12. **V1 + V2 + V3** — Child visual standard, token additions to baseline CSS, icon/SVG symbol library *(prerequisite to A1 so archetype shells inherit one look)*
+13. **A1 + A2 + A3** — Animation archetype catalog, archetype-aware generator, retro-regen 117 animations *(fixes the "everything is a quiz" problem)*
+14. **SD2** — Content Studio v1.5: trigger-from-UI + runner + pipeline stage strip *(makes the studio drive the pipeline live)*
+15. **P3 + L2** — Progress tracking + gamification as one reusable module ([design](doc/feature-design-progress-gamification.md))
+16. **L1** — Quiz mode (feeds progress events)
+17. **C1** — Rewrite lessons into Learn → Try → Play → Check cards
+18. **M6** — Retrofit existing animations to child-baseline.css
+19. **A4–A7** — SVG primitives, canvas helper, vendored-lib policy, Lottie rewards
+20. **B1–B3** — Backend adapter, auth, multi-device sync *(phased evolution, not blockers for v1)*
 
 ---
 
@@ -122,6 +124,18 @@ Child-facing product with LLM-generated content — these controls are non-negot
 | A6 | **Safety-policy §7 amendment** — allow locally vendored libs under `animations/_shared/lib/` (explicitly *not* CDNs, *not* npm installs); add allowlist (e.g. Lottie-web) | P2 | todo | Prerequisite for A7. Requires S1 reviewer update so vendored paths don't trip the "no external URLs" check. |
 | A7 | Vendored **Lottie-web** (~80KB, self-hosted) for reward moments (level-up burst, badge-earned, topic-complete celebration) | P2 | todo | Depends on A6. Richer reward loop than CSS bounce without breaking offline-first. |
 | A8 | Archetype coverage report — per-subject/year breakdown of which archetypes are used; flag over-reliance on any one archetype (>40% of a year) | P3 | todo | Run after A3. Prevents regression back to "everything is a quiz". |
+
+## Studio / operator tooling
+
+**Context:** the agent pipeline exists, `curriculum/status.csv` is the production matrix, X6 protects validated exemplars. What's missing is a way to *see* any of this without command-line archaeology. The studio is a separate operator-facing web surface — it reads the same source-of-truth files the pipeline writes, and visualises "what's done, what's in flight, what's blocked". Not a CMS, not a CI replacement, not a child surface. Design: [feature-design-content-studio.md](doc/feature-design-content-studio.md). Ready-to-paste GHCP prompt: [ghcp-prompt-content-studio.md](doc/ghcp-prompt-content-studio.md).
+
+| # | Item | Priority | Status | Notes |
+|---|---|---|---|---|
+| SD1 | **Content Studio v1** — read-only dashboard at `studio/`. Renders Year × Subject grid from `curriculum/status.csv`, opens a drawer per cell showing concepts + perspective topics with status/validated/protected badges + recent-activity feed. Pure static HTML+CSS+JS, no CDNs, no npm, keyboard-first. | P1 | todo | Scope intentionally excludes triggering runs or writing files — SD2 handles that. |
+| SD2 | **Content Studio v1.5** — "Rebuild this topic" button writes a task to `studio/data/queue.json`; separate Python runner (`tools/run-pipeline.py`) polls the queue, dispatches via orchestrator, writes `studio/data/run-state.json`. Dashboard polls run-state and animates the pipeline stage strip (subject-agent → S1 → S2 → animate → S1 → S10 → done). | P2 | todo | Requires SD1 shipped + at least one day of dogfood use on read-only. |
+| SD3 | **Content Studio v2 — live streaming** — runner becomes a long-running daemon, dashboard consumes server-sent events, one-click approve/reject/commit from the UI. | P3 | todo | Only after SD1 + SD2 prove the shape. |
+| SD4 | **Studio diff viewer** — when clicking an activity feed entry, show before/after diff for the two files in that commit, rendered inline. Depends on a small server endpoint to git-show the files. | P2 | todo | Pairs naturally with SD2 runner. |
+| SD5 | **Per-topic reviewer verdicts panel** — show S1/S2/S10 verdicts per topic row (not per run). Depends on X3 (verdict JSON files written by each reviewer). | P2 | todo | Blocked on backlog X3. |
 
 ## Visual design standard
 
