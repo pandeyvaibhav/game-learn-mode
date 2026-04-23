@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorting Rocks by Property — Year 3 Science</title>
+<style>
+/* ============================================================
+ * Rocks concept · SORT perspective
+ * Built against V1 Visual Standard + topic-build-runbook §2
+ * Structure: intro (byte-sized) → illustration → exercise
+ * ============================================================ */
+
+:root {
+  --c-bg:        #FFF9F2;
+  --c-surface:   #FFFFFF;
+  --c-border:    #E8DCC7;
+  --c-ink:       #1E1E2A;
+  --c-ink-muted: #5A5566;
+  --c-primary:   #4A5FDB;
+  --c-accent:    #FF8A3D;
+  --c-success:   #1FA66A;
+  --c-warn:      #E0A020;
+  --c-error:     #D8452B;
+  --c-celebrate: #B24EE0;
+
+  /* Illustration-specific tokens */
+  --c-granite:     #8A8A94;
+  --c-granite-dk:  #4A4A52;
+  --c-sandstone:   #D4A373;
+  --c-sandstone-dk:#8B5A3C;
+  --c-pumice:      #CFCAC1;
+  --c-pumice-dk:   #7A7469;
+  --c-marble:      #F4EFE8;
+  --c-marble-dk:   #E76AA5;
+  --c-slate:       #4F5A6A;
+  --c-slate-dk:    #2D3642;
+  --c-chalk:       #F8F2E4;
+  --c-chalk-dk:    #D9CFB8;
+  --c-bucket-hard: #D8E1F5;
+  --c-bucket-soft: #FCE3D1;
+  --c-bucket-poro: #D4E9F7;
+
+  --font-body:    ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-body:      clamp(17px, 4.5vw, 18px);
+  --fs-prompt:    clamp(19px, 5vw, 22px);
+  --fs-display:   clamp(24px, 7vw, 32px);
+
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --d-fast:       180ms;
+  --d-med:        320ms;
+  --d-slow:       560ms;
+
+  --tap-min:      44px;
+  --tap-primary:  56px;
+  --radius:       16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1rem 1rem 4rem;
+  gap: 1rem;
+}
+
+header { text-align: center; max-width: 540px; width: 100%; }
+.year-tag { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-muted); margin-bottom: 0.25rem; }
+h1 { font-size: var(--fs-display); font-weight: 700; }
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  width: 100%; max-width: 540px;
+}
+
+.intro p { margin-bottom: 0.75rem; max-width: 45ch; }
+.intro p:last-child { margin-bottom: 0; color: var(--c-ink-muted); font-style: italic; }
+
+.stage { padding: 0.5rem; }
+.rocks-svg { width: 100%; height: auto; display: block; border-radius: 12px; }
+.rocks-svg .part, .rocks-svg .rock { cursor: pointer; outline: none; }
+.rocks-svg .part:focus-visible .hit,
+.rocks-svg .rock:focus-visible .hit {
+  stroke: var(--c-primary); stroke-width: 3; fill: rgba(74,95,219,0.08);
+}
+.rocks-svg .hit { fill: transparent; }
+
+/* Current-rock highlight (the rock the prompt is asking about) */
+.rocks-svg .rock.current .visual { filter: drop-shadow(0 0 12px rgba(255,138,61,0.8)); }
+@media (prefers-reduced-motion: no-preference) {
+  .rocks-svg .rock.current .visual { animation: bobRock var(--d-ambient, 2400ms) ease-in-out infinite; }
+  .rocks-svg .part.correct .visual { animation: pulseOk var(--d-slow) var(--ease-bounce); }
+  .rocks-svg .part.wrong   .visual { animation: shakeWarn var(--d-fast) ease; }
+  .rocks-svg .part.reveal  .visual { animation: pulseReveal var(--d-med) var(--ease-out); }
+}
+@keyframes bobRock {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+@keyframes pulseOk {
+  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  40%  { transform: scale(1.06); filter: drop-shadow(0 0 12px rgba(31,166,106,0.6)); }
+  100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+}
+@keyframes shakeWarn {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+@keyframes pulseReveal {
+  0%   { filter: drop-shadow(0 0 0 rgba(31,166,106,0)); }
+  100% { filter: drop-shadow(0 0 10px rgba(31,166,106,0.7)); }
+}
+
+.label-bubble {
+  background: var(--c-surface);
+  border: 2px solid var(--c-border);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem; font-weight: 600; color: var(--c-ink);
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(30,30,42,0.12);
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-out);
+}
+.label-bubble.show { opacity: 1; }
+.label-bubble::after {
+  content: ""; position: absolute;
+  left: 50%; bottom: -8px;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--c-border);
+}
+.stage-wrap { position: relative; }
+
+.quest { display: flex; flex-direction: column; gap: 0.75rem; }
+.quest-head { display: flex; align-items: center; gap: 0.75rem; }
+.bix { flex: 0 0 auto; width: 48px; height: 48px; }
+.quest-prompt { flex: 1 1 auto; font-size: var(--fs-prompt); font-weight: 600; color: var(--c-ink); }
+.quest-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--c-ink-muted); }
+.quest-meta .score-dots { display: inline-flex; gap: 4px; }
+.quest-meta .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-border); }
+.quest-meta .dot.on { background: var(--c-success); }
+
+.feedback {
+  display: none; align-items: center; gap: 0.5rem;
+  font-size: 1rem; font-weight: 600;
+  padding: 0.6rem 0.9rem; border-radius: 12px;
+}
+.feedback.show { display: flex; }
+.feedback.ok  { background: var(--c-success); color: #FFFFFF; }
+.feedback.bad { background: var(--c-warn); color: var(--c-ink); }
+.feedback .icon {
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  font-weight: 700;
+}
+
+.complete {
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 100%; max-width: 540px;
+  display: none;
+}
+.complete.show { display: block; }
+.complete h2 { font-size: var(--fs-display); color: var(--c-celebrate); margin-bottom: 0.5rem; }
+.complete .stars { font-size: 2.5rem; margin: 0.5rem 0 1rem; }
+.complete button {
+  min-height: var(--tap-primary); padding: 0 1.5rem;
+  border: none; border-radius: 12px;
+  background: var(--c-primary); color: #FFFFFF;
+  font-family: inherit; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer;
+}
+:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; border-radius: var(--radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="year-tag">Year 3 · Science</p>
+  <h1>Sorting Rocks</h1>
+</header>
+
+<section class="card intro" aria-label="About this lesson">
+  <p><strong>Not all rocks are the same.</strong> We can sort them by how they feel and what they do with water.</p>
+  <p>Some rocks are <strong>hard</strong> — you can't scratch them easily. Some are <strong>soft</strong> — they crumble between your fingers. Some are <strong>porous</strong> — tiny holes let water soak in.</p>
+  <p>Tap any rock to learn its name, then help each rock find its bucket!</p>
+</section>
+
+<section class="card stage" aria-label="Interactive rock sorting illustration">
+  <div class="stage-wrap">
+    <svg class="rocks-svg" viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="rockTitle rockDesc">
+      <title id="rockTitle">Six rocks and three buckets</title>
+      <desc id="rockDesc">Six rocks arranged across the top — granite, sandstone, pumice, marble, slate, chalk — and three labelled buckets at the bottom: Hard, Soft, and Porous.</desc>
+
+      <rect x="0" y="0" width="520" height="480" fill="#FFF9F2"/>
+
+      <!-- Row label -->
+      <text x="260" y="22" text-anchor="middle" font-family="inherit" font-size="13" fill="#5A5566" font-weight="600">Rocks</text>
+
+      <!-- ROCKS (exploratory — tap to learn name) -->
+      <!-- Granite (speckled grey) -->
+      <g class="rock" data-rock="granite" role="button" tabindex="0" aria-label="Granite — a hard speckled grey rock">
+        <rect class="hit" x="15" y="35" width="70" height="85"/>
+        <g class="visual">
+          <ellipse cx="50" cy="80" rx="32" ry="28" fill="var(--c-granite)"/>
+          <circle cx="38" cy="72" r="3" fill="var(--c-granite-dk)"/>
+          <circle cx="58" cy="68" r="2.5" fill="var(--c-granite-dk)"/>
+          <circle cx="50" cy="86" r="3" fill="var(--c-granite-dk)"/>
+          <circle cx="64" cy="88" r="2" fill="var(--c-granite-dk)"/>
+          <circle cx="40" cy="92" r="2.5" fill="#FFFFFF"/>
+          <circle cx="56" cy="78" r="1.8" fill="#FFFFFF"/>
+        </g>
+        <text x="50" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">granite</text>
+      </g>
+
+      <!-- Sandstone (warm tan, rough layers) -->
+      <g class="rock" data-rock="sandstone" role="button" tabindex="0" aria-label="Sandstone — a tan rock with rough layers, porous">
+        <rect class="hit" x="100" y="35" width="70" height="85"/>
+        <g class="visual">
+          <path d="M 108 90 Q 110 65 135 62 Q 162 64 162 88 Q 162 100 150 104 Q 120 105 108 98 Z" fill="var(--c-sandstone)"/>
+          <path d="M 112 75 Q 135 72 158 76" stroke="var(--c-sandstone-dk)" stroke-width="1.4" fill="none" opacity="0.7"/>
+          <path d="M 110 85 Q 135 82 160 86" stroke="var(--c-sandstone-dk)" stroke-width="1.4" fill="none" opacity="0.7"/>
+          <path d="M 112 94 Q 135 91 158 95" stroke="var(--c-sandstone-dk)" stroke-width="1.4" fill="none" opacity="0.7"/>
+        </g>
+        <text x="135" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">sandstone</text>
+      </g>
+
+      <!-- Pumice (pale grey with holes) -->
+      <g class="rock" data-rock="pumice" role="button" tabindex="0" aria-label="Pumice — a pale grey rock full of tiny holes, porous">
+        <rect class="hit" x="185" y="35" width="70" height="85"/>
+        <g class="visual">
+          <ellipse cx="220" cy="80" rx="30" ry="26" fill="var(--c-pumice)"/>
+          <circle cx="210" cy="70" r="3" fill="var(--c-pumice-dk)"/>
+          <circle cx="225" cy="74" r="2" fill="var(--c-pumice-dk)"/>
+          <circle cx="215" cy="85" r="2.5" fill="var(--c-pumice-dk)"/>
+          <circle cx="230" cy="88" r="2" fill="var(--c-pumice-dk)"/>
+          <circle cx="220" cy="93" r="2.5" fill="var(--c-pumice-dk)"/>
+          <circle cx="232" cy="80" r="1.8" fill="var(--c-pumice-dk)"/>
+          <circle cx="205" cy="82" r="2" fill="var(--c-pumice-dk)"/>
+        </g>
+        <text x="220" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">pumice</text>
+      </g>
+
+      <!-- Marble (smooth white with pink veins) -->
+      <g class="rock" data-rock="marble" role="button" tabindex="0" aria-label="Marble — a smooth white rock with pink veins, hard">
+        <rect class="hit" x="270" y="35" width="70" height="85"/>
+        <g class="visual">
+          <ellipse cx="305" cy="80" rx="32" ry="28" fill="var(--c-marble)" stroke="#E0D7C4" stroke-width="1"/>
+          <path d="M 280 70 Q 300 82 328 75" stroke="var(--c-marble-dk)" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M 285 90 Q 310 85 330 94" stroke="var(--c-marble-dk)" stroke-width="1.2" fill="none" opacity="0.5"/>
+        </g>
+        <text x="305" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">marble</text>
+      </g>
+
+      <!-- Slate (dark grey-blue, flat layers) -->
+      <g class="rock" data-rock="slate" role="button" tabindex="0" aria-label="Slate — a dark grey rock with flat layers, hard">
+        <rect class="hit" x="355" y="35" width="70" height="85"/>
+        <g class="visual">
+          <path d="M 363 90 L 420 88 L 425 100 L 360 102 Z" fill="var(--c-slate-dk)"/>
+          <path d="M 360 80 L 420 78 L 420 90 L 363 90 Z" fill="var(--c-slate)"/>
+          <path d="M 365 70 L 422 68 L 420 80 L 360 80 Z" fill="var(--c-slate)"/>
+          <path d="M 368 62 L 418 60 L 422 70 L 365 72 Z" fill="var(--c-slate-dk)"/>
+        </g>
+        <text x="390" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">slate</text>
+      </g>
+
+      <!-- Chalk (soft off-white, crumbly) -->
+      <g class="rock" data-rock="chalk" role="button" tabindex="0" aria-label="Chalk — a soft off-white rock that crumbles easily">
+        <rect class="hit" x="440" y="35" width="70" height="85"/>
+        <g class="visual">
+          <path d="M 450 96 Q 448 68 475 62 Q 502 66 500 95 Q 498 104 488 105 Q 460 104 450 96 Z" fill="var(--c-chalk)" stroke="var(--c-chalk-dk)" stroke-width="1.2"/>
+          <circle cx="465" cy="102" r="2" fill="var(--c-chalk-dk)" opacity="0.7"/>
+          <circle cx="455" cy="104" r="1.5" fill="var(--c-chalk-dk)" opacity="0.7"/>
+          <circle cx="495" cy="103" r="1.8" fill="var(--c-chalk-dk)" opacity="0.7"/>
+          <circle cx="485" cy="106" r="1.3" fill="var(--c-chalk-dk)" opacity="0.7"/>
+        </g>
+        <text x="475" y="120" text-anchor="middle" font-family="inherit" font-size="11" fill="#5A5566">chalk</text>
+      </g>
+
+      <!-- Divider -->
+      <line x1="20" y1="160" x2="500" y2="160" stroke="#E8DCC7" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <text x="260" y="182" text-anchor="middle" font-family="inherit" font-size="13" fill="#5A5566" font-weight="600">Buckets</text>
+
+      <!-- BUCKETS (answer targets) -->
+      <!-- Hard bucket -->
+      <g class="part" data-part="hard" role="button" tabindex="0" aria-label="Hard bucket — for hard rocks">
+        <rect class="hit" x="25" y="200" width="145" height="240"/>
+        <g class="visual">
+          <!-- bucket body -->
+          <path d="M 45 260 L 60 420 L 135 420 L 150 260 Z" fill="var(--c-bucket-hard)" stroke="#6B7A9B" stroke-width="2"/>
+          <ellipse cx="97.5" cy="260" rx="52.5" ry="10" fill="#FFFFFF" stroke="#6B7A9B" stroke-width="2"/>
+          <ellipse cx="97.5" cy="260" rx="40" ry="6" fill="var(--c-bucket-hard)" opacity="0.6"/>
+          <!-- Hard icon: solid square -->
+          <rect x="80" y="305" width="35" height="35" rx="4" fill="#4A4A52"/>
+          <text x="97.5" y="375" text-anchor="middle" font-family="inherit" font-size="18" font-weight="700" fill="#1E1E2A">Hard</text>
+        </g>
+      </g>
+
+      <!-- Soft bucket -->
+      <g class="part" data-part="soft" role="button" tabindex="0" aria-label="Soft bucket — for soft rocks">
+        <rect class="hit" x="185" y="200" width="150" height="240"/>
+        <g class="visual">
+          <path d="M 210 260 L 225 420 L 295 420 L 310 260 Z" fill="var(--c-bucket-soft)" stroke="#B87A3A" stroke-width="2"/>
+          <ellipse cx="260" cy="260" rx="50" ry="10" fill="#FFFFFF" stroke="#B87A3A" stroke-width="2"/>
+          <ellipse cx="260" cy="260" rx="38" ry="6" fill="var(--c-bucket-soft)" opacity="0.6"/>
+          <!-- Soft icon: crumbly lighter circle -->
+          <circle cx="260" cy="322" r="18" fill="#E8C79A"/>
+          <circle cx="252" cy="318" r="3" fill="#C49B67"/>
+          <circle cx="266" cy="326" r="2.5" fill="#C49B67"/>
+          <circle cx="260" cy="314" r="2" fill="#C49B67"/>
+          <text x="260" y="375" text-anchor="middle" font-family="inherit" font-size="18" font-weight="700" fill="#1E1E2A">Soft</text>
+        </g>
+      </g>
+
+      <!-- Porous bucket -->
+      <g class="part" data-part="porous" role="button" tabindex="0" aria-label="Porous bucket — for rocks that soak up water">
+        <rect class="hit" x="350" y="200" width="145" height="240"/>
+        <g class="visual">
+          <path d="M 370 260 L 385 420 L 460 420 L 475 260 Z" fill="var(--c-bucket-poro)" stroke="#3D6B8E" stroke-width="2"/>
+          <ellipse cx="422.5" cy="260" rx="52.5" ry="10" fill="#FFFFFF" stroke="#3D6B8E" stroke-width="2"/>
+          <ellipse cx="422.5" cy="260" rx="40" ry="6" fill="var(--c-bucket-poro)" opacity="0.6"/>
+          <!-- Porous icon: blue droplet -->
+          <path d="M 422.5 298 Q 408 318 408 328 Q 408 344 422.5 344 Q 437 344 437 328 Q 437 318 422.5 298 Z" fill="#4A9FD4"/>
+          <circle cx="418" cy="326" r="3" fill="#FFFFFF" opacity="0.7"/>
+          <text x="422.5" y="375" text-anchor="middle" font-family="inherit" font-size="18" font-weight="700" fill="#1E1E2A">Porous</text>
+        </g>
+      </g>
+    </svg>
+    <div class="label-bubble" id="labelBubble" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="card quest" aria-label="Sort-the-rocks quest">
+  <div class="quest-head">
+    <svg class="bix" viewBox="-40 -60 80 100" aria-hidden="true">
+      <line x1="-10" y1="-30" x2="-14" y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10"  y1="-30" x2="14"  y2="-44" stroke="var(--c-primary)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-14" cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="14"  cy="-46" r="3.5" fill="var(--c-accent)"/>
+      <circle cx="0" cy="-16" r="18" fill="var(--c-primary)"/>
+      <circle cx="-6" cy="-18" r="2" fill="var(--c-bg)"/>
+      <circle cx="6"  cy="-18" r="2" fill="var(--c-bg)"/>
+      <path d="M-5 -11 Q 0 -7 5 -11" stroke="var(--c-bg)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="14" r="22" fill="var(--c-primary)"/>
+    </svg>
+    <p class="quest-prompt" id="prompt">Loading quest…</p>
+  </div>
+
+  <div class="quest-meta">
+    <span id="progressText">Question 1 of 5</span>
+    <span class="score-dots" id="dots" aria-label="Progress">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </span>
+  </div>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite">
+    <span class="icon" id="fbIcon"></span>
+    <span id="fbText"></span>
+  </div>
+</section>
+
+<section class="card complete" id="complete" aria-label="Quest complete">
+  <h2>Rock sorter!</h2>
+  <div class="stars" id="stars">&#9733; &#9733; &#9733;</div>
+  <p id="completeMsg">You sorted every rock. Well done!</p>
+  <p style="margin-top: 1rem;">
+    <button id="playAgain">Play again</button>
+  </p>
+</section>
+
+<div class="sr-only" aria-live="polite" id="srOut"></div>
+
+<script>
+(function(){
+  const TOPIC = 'rock-properties-sort';
+
+  const ROCK_INFO = {
+    granite:   'Granite — hard, speckled grey',
+    sandstone: 'Sandstone — porous, rough layers',
+    pumice:    'Pumice — porous, full of tiny holes',
+    marble:    'Marble — hard, smooth with veins',
+    slate:     'Slate — hard, flat layers',
+    chalk:     'Chalk — soft, crumbles easily'
+  };
+
+  const BUCKET_INFO = {
+    hard:   'Hard bucket',
+    soft:   'Soft bucket',
+    porous: 'Porous bucket'
+  };
+
+  const PROMPTS = [
+    { rock: 'granite',   text: 'Where does granite belong?',   answer: ['hard'] },
+    { rock: 'chalk',     text: 'Where does chalk belong?',     answer: ['soft'] },
+    { rock: 'pumice',    text: 'Where does pumice belong?',    answer: ['porous'] },
+    { rock: 'slate',     text: 'Where does slate belong?',     answer: ['hard'] },
+    { rock: 'sandstone', text: 'Where does sandstone belong?', answer: ['porous'] }
+  ];
+
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+  let prompts = shuffle([...PROMPTS]);
+  let idx = 0, score = 0, locked = false;
+
+  const promptEl   = document.getElementById('prompt');
+  const progressEl = document.getElementById('progressText');
+  const dotsEl     = document.getElementById('dots');
+  const feedbackEl = document.getElementById('feedback');
+  const fbIconEl   = document.getElementById('fbIcon');
+  const fbTextEl   = document.getElementById('fbText');
+  const labelEl    = document.getElementById('labelBubble');
+  const completeEl = document.getElementById('complete');
+  const starsEl    = document.getElementById('stars');
+  const completeMsg= document.getElementById('completeMsg');
+  const playAgain  = document.getElementById('playAgain');
+  const svgEl      = document.querySelector('.rocks-svg');
+  const srOut      = document.getElementById('srOut');
+
+  function announce(msg){ srOut.textContent=''; requestAnimationFrame(()=> srOut.textContent = msg); }
+
+  function showLabel(el, text){
+    const vis = el.querySelector('.visual');
+    if (!vis) return;
+    const bbox = vis.getBoundingClientRect();
+    const wrap = svgEl.parentElement.getBoundingClientRect();
+    const left = bbox.left + bbox.width/2 - wrap.left;
+    const top  = bbox.top - wrap.top;
+    labelEl.textContent = text;
+    labelEl.style.left = left + 'px';
+    labelEl.style.top  = top + 'px';
+    labelEl.classList.add('show');
+    clearTimeout(showLabel._t);
+    showLabel._t = setTimeout(()=> labelEl.classList.remove('show'), 2000);
+  }
+
+  function flashPart(el, cls){
+    el.classList.remove('correct','wrong','reveal');
+    void el.offsetWidth;
+    el.classList.add(cls);
+  }
+
+  function highlightCurrentRock(){
+    document.querySelectorAll('.rocks-svg .rock').forEach(r => r.classList.remove('current'));
+    const current = prompts[idx];
+    if (!current) return;
+    const rockEl = svgEl.querySelector(`.rock[data-rock="${current.rock}"]`);
+    if (rockEl) rockEl.classList.add('current');
+  }
+
+  function renderPrompt(){
+    if (idx >= prompts.length) { renderComplete(); return; }
+    promptEl.textContent = prompts[idx].text;
+    progressEl.textContent = `Question ${idx+1} of ${prompts.length}`;
+    feedbackEl.className = 'feedback';
+    locked = false;
+    highlightCurrentRock();
+  }
+
+  function renderDots(){
+    const dots = dotsEl.querySelectorAll('.dot');
+    dots.forEach((d,i)=> d.classList.toggle('on', i < score));
+  }
+
+  function isCorrect(answer, partName){
+    return Array.isArray(answer) ? answer.includes(partName) : answer === partName;
+  }
+
+  function handleBucket(partEl, partName){
+    showLabel(partEl, BUCKET_INFO[partName]);
+    if (locked) return;
+    const current = prompts[idx];
+    if (!current) return;
+    const correct = isCorrect(current.answer, partName);
+    postAttempt({ part: partName, correct });
+
+    if (correct) {
+      locked = true; score++; renderDots();
+      flashPart(partEl, 'correct');
+      feedbackEl.className = 'feedback ok show';
+      fbIconEl.textContent = '✓';
+      fbTextEl.textContent = 'Correct! ' + current.rock + ' is ' + partName + '.';
+      announce('Correct. ' + current.rock + ' is ' + partName + '.');
+      setTimeout(()=> { idx++; renderPrompt(); }, 1400);
+    } else {
+      locked = true;
+      flashPart(partEl, 'wrong');
+      const correctName = current.answer[0];
+      const correctEl = svgEl.querySelector(`.part[data-part="${correctName}"]`);
+      if (correctEl) flashPart(correctEl, 'reveal');
+      feedbackEl.className = 'feedback bad show';
+      fbIconEl.textContent = '○';
+      fbTextEl.textContent = 'Not quite — ' + current.rock + ' belongs in ' + correctName + '.';
+      announce('Not quite. ' + current.rock + ' belongs in ' + correctName + '.');
+      setTimeout(()=> { idx++; renderPrompt(); }, 1900);
+    }
+  }
+
+  // Rocks are exploratory only (show label, don't score)
+  document.querySelectorAll('.rocks-svg .rock').forEach(el => {
+    const name = el.getAttribute('data-rock');
+    const act = ()=> showLabel(el, ROCK_INFO[name]);
+    el.addEventListener('click', act);
+    el.addEventListener('keydown', (e)=> {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); }
+    });
+  });
+
+  // Buckets are the answer targets
+  document.querySelectorAll('.rocks-svg .part').forEach(el => {
+    const name = el.getAttribute('data-part');
+    el.addEventListener('click', ()=> handleBucket(el, name));
+    el.addEventListener('keydown', (e)=> {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBucket(el, name); }
+    });
+  });
+
+  function renderComplete(){
+    document.querySelectorAll('.rocks-svg .rock').forEach(r => r.classList.remove('current'));
+    const pct = score / prompts.length;
+    starsEl.innerHTML = pct >= 0.8 ? '&#9733; &#9733; &#9733;' : pct >= 0.6 ? '&#9733; &#9733;' : '&#9733;';
+    completeMsg.textContent =
+      pct === 1  ? 'You sorted every rock into the right bucket. Brilliant!' :
+      pct >= 0.6 ? 'Nice work! Try again to get them all.' :
+                   'Good try! Tap each rock to learn, then play again.';
+    completeEl.classList.add('show');
+    announce('Quest complete. Score ' + score + ' out of ' + prompts.length + '.');
+    postComplete({ score, total: prompts.length });
+    document.querySelector('.quest').style.display = 'none';
+  }
+
+  playAgain.addEventListener('click', ()=> {
+    prompts = shuffle([...PROMPTS]);
+    idx = 0; score = 0; locked = false;
+    renderDots();
+    completeEl.classList.remove('show');
+    document.querySelector('.quest').style.display = '';
+    renderPrompt();
+  });
+
+  function postReady(){     try { parent.postMessage({ type:'anim:ready',    topic: TOPIC }, '*'); } catch(e){} }
+  function postAttempt(p){  try { parent.postMessage({ type:'anim:attempt',  topic: TOPIC, ...p }, '*'); } catch(e){} }
+  function postComplete(p){ try { parent.postMessage({ type:'anim:complete', topic: TOPIC, ...p }, '*'); } catch(e){} }
+
+  renderDots();
+  renderPrompt();
+  postReady();
+})();
+</script>
+</body>
+</html>
