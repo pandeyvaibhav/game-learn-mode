@@ -32,8 +32,18 @@ Your output must match the runbook's §7 acceptance checklist. If any box is unt
 - Don't produce verbose `content.md` (key-words tables, duplicated quizzes, "Learning Checklist" checkboxes). The animation is the lesson; the `.md` is 3 paragraphs + `## Sources`.
 - Don't use ASCII-art "diagrams" in `<pre>` blocks. A real 7-year-old could not identify soil in one. If the answer is a diagram, it must be an SVG.
 - Don't copy-paste the older quiz-only animation template. Start from `plants-functions-y3.html`.
-- Don't let `--force` pipeline runs overwrite hand-built exemplars. Backlog item **X6** (diff-before-regen guard) is the fix; until it lands, this is a soft rule the orchestrator must uphold. Never re-run the pipeline over a topic marked ✅ in runbook §5 without explicit user confirmation.
+- Don't let `--force` pipeline runs overwrite hand-built exemplars. **X6 is now enforced** by [`tools/guard_exemplar.py`](tools/guard_exemplar.py) + a `commit-msg` git hook. Commits that modify protected files are rejected unless the message contains `--overwrite-exemplar={slug}`. See [doc/feature-design-x6-diff-before-regen.md](doc/feature-design-x6-diff-before-regen.md).
 - Don't skip `## Sources`. Backlog item **X5** (mechanical §9 check in S2) is incoming; without it, 98/117 files shipped without Sources because the reviewer wasn't enforcing its own rule.
+
+---
+
+## One-time setup on a fresh clone
+
+```bash
+sh tools/install-hooks.sh
+```
+
+Installs the X6 `commit-msg` hook into `.git/hooks/`. Without this, commits can still destroy protected exemplars. Script is idempotent — safe to re-run. Check status anytime with `python tools/guard_exemplar.py verify`.
 
 ---
 
