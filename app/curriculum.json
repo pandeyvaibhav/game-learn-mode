@@ -95,10 +95,13 @@
           { "title": "Conjunctions and Clauses", "slug": "conjunctions-clauses", "key_concepts": ["subordinating conjunctions", "main clause"] }
         ]},
         { "name": "science", "label": "Science", "emoji": "🔬", "topics": [
-          { "title": "Rocks and Fossils", "slug": "rocks-fossils", "key_concepts": ["igneous", "sedimentary", "metamorphic", "fossil formation"] },
-          { "title": "Light and Shadows", "slug": "light-shadows", "key_concepts": ["light sources", "reflections", "shadow formation"] },
-          { "title": "Forces and Magnets", "slug": "forces-magnets", "key_concepts": ["push", "pull", "friction", "magnetic attraction"] },
-          { "title": "Plants — Functions", "slug": "plants-functions-y3", "key_concepts": ["photosynthesis", "pollination", "seed dispersal"] }
+          { "title": "Parts of a Plant", "slug": "plants-functions-y3", "key_concepts": ["flower", "leaves", "stem", "roots", "soil"], "concept": "plants", "perspective": "identify" },
+          { "title": "Types of Rock", "slug": "rocks-fossils", "key_concepts": ["igneous", "sedimentary", "metamorphic", "fossil"], "concept": "rocks-fossils", "perspective": "identify" },
+          { "title": "Sorting Rocks by Property", "slug": "rock-properties-sort", "key_concepts": ["hard", "soft", "porous", "granite", "chalk", "pumice"], "concept": "rocks-fossils", "perspective": "sort" },
+          { "title": "How a Fossil Forms", "slug": "fossil-formation", "key_concepts": ["alive", "dies", "buried", "pressed", "discovered"], "concept": "rocks-fossils", "perspective": "sequence" },
+          { "title": "What's in Soil?", "slug": "soil-composition", "key_concepts": ["rock bits", "rotted plants", "water", "air"], "concept": "rocks-fossils", "perspective": "compose" },
+          { "title": "Light and Shadows", "slug": "light-shadows", "key_concepts": ["light source", "object", "wall", "shadow", "transparent"], "concept": "light-shadows", "perspective": "identify" },
+          { "title": "Forces and Magnets", "slug": "forces-magnets", "key_concepts": ["push", "pull", "magnetic", "poles"], "concept": "forces-magnets", "perspective": "identify" }
         ]},
         { "name": "history", "label": "History", "emoji": "🏛️", "topics": [
           { "title": "Stone Age to Iron Age", "slug": "stone-age-iron-age", "key_concepts": ["prehistoric Britain", "Stonehenge", "tools"] },
