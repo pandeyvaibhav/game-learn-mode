@@ -1,589 +1,387 @@
-# Game Learn Mode — System Architecture
+# Architecture — Game Learn Mode
 
-> How the agent pipeline generates lesson content, converts it to interactive animations, and exposes the learning library to an application.
+| | |
+|---|---|
+| **Version** | 2.0 |
+| **Date** | 2026-04-23 |
+| **Status** | Current (supersedes v1.0 pre-runbook architecture) |
+| **Reading order** | [CLAUDE.md](../CLAUDE.md) → this doc → [topic-build-runbook.md](topic-build-runbook.md) |
 
 ---
 
-## 1. System Overview
+## 1. Intent
 
-The platform is built around three layers: a **curriculum definition**, an **agent pipeline**, and a **learning library** of static files that any app can serve directly.
+**The platform is a cognitive training corpus for a child's developing mind — not a linear curriculum.**
+
+Each topic is a small, self-contained *training example*: a 3-part package (byte-sized description + interactive SVG illustration + visual exercise) that carries one clear signal. Many short encounters, from different perspectives, with spaced revisit. Same mechanism an AI is trained with. Different mechanism from a textbook.
+
+This reframing drives every design decision below.
+
+---
+
+## 2. Top-level flow
 
 ```mermaid
-flowchart TD
-    CM["📄 curriculum/curriculum.md\nSingle source of truth\n96 topics · Years 1–6"]
+flowchart TB
+    subgraph SOT["📚 Source of truth"]
+        CM["curriculum/curriculum.md<br/>concepts × perspectives<br/>(human-editable)"]
+        SC["curriculum/status.csv<br/>what's produced vs not<br/>(agent-maintained)"]
+    end
 
-    subgraph AGENTS["Agent Pipeline"]
-        OA["🎯 Orchestrator Agent\norchestrator.agent.md"]
+    subgraph CHAIN["🤖 Agent pipeline"]
+        ORCH["orchestrator.agent.md<br/>reads curriculum + status<br/>dispatches work"]
+        SUBJ["subject agents<br/>(6 — one per subject)<br/>write content .md"]
+        S1C["S1 content-safety<br/>reviewer"]
+        S2["S2 factual-accuracy<br/>reviewer (+ mechanical<br/>Sources §9 check)"]
+        ANIM["animation-generator<br/>writes .html"]
+        S1A["S1 animation-safety<br/>reviewer"]
+        S10["S10 playability<br/>reviewer"]
+        X6["🛡️ X6 guard<br/>protects exemplars<br/>before write + at commit"]
+    end
 
-        subgraph SUBJECT["Subject Agents"]
-            MA["➗ Maths Agent"]
-            EA["📖 English Agent"]
-            SA["🔬 Science Agent"]
-            HA["🏛️ History Agent"]
-            GA["🌍 Geography Agent"]
-            CA["💻 Computing Agent"]
+    subgraph LIB["📦 Generated library"]
+        CF["content/year-{N}/{subject}/{slug}.md<br/>3 paras + Sources"]
+        AF["animations/year-{N}/{subject}/{slug}.html<br/>intro + illustration + exercise"]
+        PR["content/PIPELINE_REPORT.md<br/>verdicts from reviewers"]
+    end
+
+    subgraph APP["🎮 App shell"]
+        INDEX["app/index.html<br/>random-access library<br/>+ due-for-revisit surface"]
+        PROG["app/progress/<br/>ProgressStore<br/>(exposure matrix)"]
+        REW["reward overlays<br/>(Bix, L2 gamification)"]
+    end
+
+    CHILD[("👦 Child on phone<br/>plays 3–5 topics<br/>per 10–15 min session")]
+
+    CM --> ORCH
+    SC --> ORCH
+    ORCH --> SUBJ --> S1C --> S2 --> ANIM --> S1A --> S10
+    S10 -.verdict.-> ORCH
+    X6 -.guard.-> SUBJ
+    X6 -.guard.-> ANIM
+    S2 --> CF
+    S10 --> AF
+    S10 -.summary.-> PR
+    CF --> INDEX
+    AF --> INDEX
+    SC --> INDEX
+    INDEX --> CHILD
+    CHILD --> PROG
+    PROG --> REW
+    PROG -.exposure signal.-> INDEX
+
+    classDef sot fill:#E8DCC7,stroke:#8B5A3C
+    classDef gate fill:#E0ECFF,stroke:#4A5FDB
+    classDef new fill:#FFF4CC,stroke:#E0A020
+    classDef pub fill:#E0F5E0,stroke:#1FA66A
+    class CM,SC sot
+    class S1C,S2,S1A,S10 gate
+    class X6 new
+    class CF,AF pub
+```
+
+Three flows worth tracing:
+
+- **New topic** — orchestrator sees `status.csv` row with `content_status=todo`, dispatches subject agent, chains through reviewers, updates status.csv row to `done` + SHA.
+- **Exemplar protected** — X6 guard rejects any write to a protected path unless invocation names `--overwrite-exemplar={slug}`. Works before the write (agent-level) and at commit (hook-level).
+- **Child play** — app reads `status.csv` for what's available, queries `ProgressStore` exposure matrix for what's due-for-revisit, serves a mixed set.
+
+---
+
+## 3. Source-of-truth files
+
+### 3.1 `curriculum/curriculum.md` — concepts × perspectives
+
+Human-authored list of what a child in each year should learn. Extended from the simple "topic per area" shape to include **perspective** per topic — which cognitive mode it exercises.
+
+Per row: year, subject, **concept** (e.g. "Rocks"), **perspective** (identify / sort / sequence / compose / apply), topic slug, key concepts.
+
+A single curriculum concept may produce 2–4 topics (one per perspective). Example:
+
+```markdown
+## Year 3 — Ages 7–8
+
+### Science
+
+#### Concept: Rocks
+| Perspective | Topic | Slug |
+|---|---|---|
+| Identify  | Rock types          | rock-types |
+| Sort      | Rock properties sort | rock-properties-sort |
+| Sequence  | How fossils form    | fossil-formation |
+| Compose   | What soil is made of | soil-composition |
+
+#### Concept: Plants
+| Perspective | Topic | Slug |
+|---|---|---|
+| Identify  | Parts of a plant    | plants-functions-y3 ✅ |
+| Sort      | Plant growth needs  | plant-growth-needs |
+| Sequence  | Plant lifecycle     | plant-lifecycle |
+```
+
+See [feedback_multiple_perspectives.md](../../../../Users/vaibh/.claude/projects/c--VP-GH-game-learn-mode/memory/feedback_multiple_perspectives.md) (memory) for the framework origin.
+
+### 3.2 `curriculum/status.csv` — production + validation matrix
+
+Agent-maintained. One row per **topic** (not per concept). Columns:
+
+| Column | Meaning |
+|---|---|
+| `year` | 1–6 |
+| `subject` | maths / english / science / history / geography / computing |
+| `concept` | Curriculum concept ID (e.g. "rocks", "plants", "forces") |
+| `perspective` | identify / sort / sequence / compose / apply |
+| `slug` | kebab-case topic slug |
+| `content_status` | `todo` / `in-progress` / `done` / `blocked-safety` / `blocked-accuracy` / `blocked-topic` |
+| `animation_status` | `todo` / `in-progress` / `done` / `blocked-safety-animation` / `blocked-playability` / `blocked-archetype` |
+| `protected` | `yes` / `no` — synced with `tools/protected-exemplars.json` |
+| `validated_with_child` | ISO date or empty |
+| `last_reviewed` | ISO date (set by the last successful reviewer pass) |
+| `content_sha` | SHA-256 of the .md (LF-normalised) — matches X6 manifest when protected |
+| `animation_sha` | SHA-256 of the .html — ditto |
+
+Example rows:
+
+```csv
+year,subject,concept,perspective,slug,content_status,animation_status,protected,validated_with_child,last_reviewed,content_sha,animation_sha
+3,science,plants,identify,plants-functions-y3,done,done,yes,2026-04-23,2026-04-23,2c5e0a81...,171911f6...
+3,science,rocks,identify,rocks-fossils,done,done,no,,2026-04-23,...,...
+3,science,rocks,sort,rock-properties-sort,todo,todo,no,,,,
+3,science,rocks,sequence,fossil-formation,todo,todo,no,,,,
+3,science,rocks,compose,soil-composition,todo,todo,no,,,,
+3,science,forces,identify,forces-magnets,done,done,no,,2026-04-23,...,...
+3,science,light,identify,light-shadows,done,done,no,,2026-04-23,...,...
+```
+
+Why CSV, not JSON?
+- Human-readable in git diff (essential for trust — this file records the product state).
+- Trivially grep-able (`grep ",todo,todo," status.csv` → find all un-produced topics).
+- Sorted rows are a stable diff (no JSON key-order drift).
+- Spreadsheet-editable if a human wants to bulk-update.
+
+One CSV, not one-per-year. Year is a column; you filter with `awk` or grep.
+
+### 3.3 Topic output files
+
+Each produced topic writes two files, following [topic-build-runbook.md](topic-build-runbook.md):
+
+```
+content/year-{N}/{subject}/{slug}.md
+  ├── YAML frontmatter (one block)
+  ├── 3 paragraphs
+  └── ## Sources (≥ 2 citations)
+
+animations/year-{N}/{subject}/{slug}.html
+  ├── <style> with inlined V1 tokens + bespoke --c-* illustration colours
+  ├── <section class="card intro"> — byte-sized paragraphs
+  ├── <section class="card stage"> — tappable SVG illustration
+  ├── <section class="card quest"> — 5 rotating prompts + feedback
+  ├── <section class="card complete"> — stars + play-again
+  └── <script> — PART_INFO + PROMPTS + postMessage hooks
+```
+
+Structure is non-negotiable (see runbook §7).
+
+---
+
+## 4. Agent chain — sequence
+
+Every new topic flows through the same chain. X6 guard fires twice: before agent dispatch, and again at commit via the git hook.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant O as Orchestrator
+    participant X as X6 guard
+    participant SA as Subject agent
+    participant R1 as S1 (content)
+    participant R2 as S2 (factual + §9 grep)
+    participant AG as Animation-generator
+    participant R1A as S1 (animation)
+    participant R10 as S10 (playability)
+    participant CSV as status.csv
+    participant G as Git (commit-msg hook)
+
+    U->>O: @orchestrator year=3 subject=science
+    O->>CSV: read rows where year=3, subject=science, status=todo
+    CSV-->>O: work queue
+
+    loop for each todo topic
+        O->>X: check {content_path}
+        alt protected without override
+            X-->>O: BLOCKED
+            O->>CSV: mark skipped-protected
+        else allowed
+            O->>SA: dispatch with topic brief
+            SA-->>O: DONE: content path
+            O->>R1: review content
+            alt PASS
+                O->>R2: review content
+                alt PASS
+                    O->>AG: dispatch with content file
+                    AG-->>O: DONE: animation path
+                    O->>R1A: review animation
+                    O->>R10: review animation
+                    alt all PASS
+                        O->>CSV: update row: content_status=done, animation_status=done, shas
+                        O->>G: git commit (via commit-msg hook runs X6 again)
+                    end
+                end
+            end
         end
-
-        AN["🎨 Animation Generator Agent\nanimation-generator.agent.md"]
     end
 
-    subgraph OUTPUT["Generated Library"]
-        CF["content/\nyear-{Y}/{subject}/{slug}.md\nLesson markdown files"]
-        AF["animations/\nyear-{Y}/{subject}/{slug}.html\nSelf-contained HTML games"]
-        PR["content/PIPELINE_REPORT.md\nRun summary"]
-    end
-
-    subgraph APP["Application Layer"]
-        WA["Web App / Static Server\nServes HTML animations directly"]
-        RI["Reading Interface\nRenders lesson markdown"]
-        NAV["Navigation / Index\nBrowse by year & subject"]
-    end
-
-    CM -->|"read on startup"| OA
-    OA -->|"dispatch per topic"| SUBJECT
-    SUBJECT -->|"write lesson file"| CF
-    CF -->|"read before generating"| AN
-    AN -->|"write game file"| AF
-    OA -->|"write after run"| PR
-    CF --> RI
-    AF --> WA
-    CM --> NAV
+    O->>CSV: finalise — write PIPELINE_REPORT.md from row verdicts
 ```
+
+Notes:
+- X6 runs twice by design. Layer 2 (agent call) catches honest generators; layer 3 (git hook) catches bypass attempts and manual edits.
+- Reviewers are separate agents — they NEVER edit files. They return `PASS` / `FAIL` / `BLOCKED`. On `FAIL`, orchestrator re-dispatches the generator with the findings (retry cap: 2). Third failure → row marked `blocked-*`.
+- `PIPELINE_REPORT.md` is derived from `status.csv` row verdicts — never self-narrated by the orchestrator. (This closes the integrity gap flagged earlier — commit 9b68269 notes 98/117 files shipped without Sources despite a false PIPELINE_REPORT claim.)
 
 ---
 
-## 2. Curriculum Structure
+## 5. Reviewer gates
 
-The curriculum markdown is the **only** file agents are allowed to read as their input definition. It encodes every year, subject, topic, slug, and key concepts in one place.
+| Gate | Scope | Lives in | Key check |
+|---|---|---|---|
+| **S1 content** | Content .md | [content-safety-reviewer.agent.md](../.github/agents/content-safety-reviewer.agent.md) | Banned topics, tone, imagery, PII. Reads safety-policy §§1–11. |
+| **S2 factual** | Content .md | [factual-accuracy-reviewer.agent.md](../.github/agents/factual-accuracy-reviewer.agent.md) | UK National Curriculum alignment + fact check. **Mechanical `grep '^## Sources$'` pre-check** (backlog X5) — zero LLM spend on §9 violations. |
+| **S1 animation** | Animation .html | Same agent, different input | No banned imagery, no external URLs, no PII prompts, `prefers-reduced-motion`, no out-of-palette hex literals. |
+| **S10 playability** | Animation .html | [playability-reviewer.agent.md](../.github/agents/playability-reviewer.agent.md) | 12-check rubric, year-scaled (see [feature-design-s10-playability.md](feature-design-s10-playability.md)). |
+| **X6 exemplar guard** | Any .md or .html | [guard_exemplar.py](../tools/guard_exemplar.py) + [commit-msg hook](../tools/hooks/commit-msg) | Protected paths require explicit `--overwrite-exemplar={slug}`. |
 
-```mermaid
-erDiagram
-    CURRICULUM ||--o{ YEAR : contains
-    YEAR ||--o{ SUBJECT : has
-    SUBJECT ||--o{ TOPIC : defines
-
-    CURRICULUM {
-        string pipeline_config
-        string output_root
-        string animation_root
-    }
-    YEAR {
-        int number "1 to 6"
-        string age_range "e.g. 5-6"
-    }
-    SUBJECT {
-        string name "maths | english | science | history | geography | computing"
-        string agent_file
-    }
-    TOPIC {
-        string title
-        string slug "kebab-case file name"
-        string key_concepts "comma-separated"
-        string content_path "content/year-Y/subject/slug.md"
-        string animation_path "animations/year-Y/subject/slug.html"
-    }
-```
-
-### Topic count by year and subject
-
-```mermaid
-xychart-beta
-    title "Topics per Year (all subjects)"
-    x-axis ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"]
-    y-axis "Number of topics" 0 --> 20
-    bar [17, 15, 17, 16, 16, 15]
-```
+Gates run **in sequence**, not parallel. A BLOCKED on any gate stops the topic; the row in status.csv records which gate blocked it so the human can intervene.
 
 ---
 
-## 3. Orchestrator Loop
+## 6. The app shell — library consumption
 
-The orchestrator is the entry point for the entire pipeline. It reads the curriculum, builds a task list, and loops through every topic — dispatching a subject agent then an animation agent for each one.
-
-```mermaid
-flowchart TD
-    START(["`**Start**
-    @orchestrator generate all content`"])
-    READ["Read curriculum/curriculum.md\nExtract all topics into flat list"]
-    TODO["Build TodoWrite task list\nOne entry per topic"]
-    LOOP{{"For each topic\nin the list"}}
-
-    CHECK{"content_path\nAND animation_path\nalready exist?"}
-    SKIP["Mark todo done\nSkip to next"]
-
-    DISPATCH_S["Dispatch Subject Agent\n— pass year, subject, topic_title,\nslug, key_concepts, output_file"]
-    WAIT_S{{"Wait for\nDONE: {content_path}"}  }
-    ERR_S["Log error\nMark todo BLOCKED\nContinue to next topic"]
-
-    DISPATCH_A["Dispatch Animation Generator Agent\n— pass content_file, output_file"]
-    WAIT_A{{"Wait for\nDONE: {animation_path}"}}
-    ERR_A["Log error\nMark todo BLOCKED\nContinue to next topic"]
-
-    DONE["Mark todo done\n✅ Both files written"]
-
-    MORE{"More topics?"}
-    REPORT["Write content/PIPELINE_REPORT.md\nTopics processed · Files written\nErrors · File tree"]
-    END([End])
-
-    START --> READ --> TODO --> LOOP
-    LOOP --> CHECK
-    CHECK -->|"yes (no --force)"| SKIP
-    CHECK -->|"no"| DISPATCH_S
-    DISPATCH_S --> WAIT_S
-    WAIT_S -->|"success"| DISPATCH_A
-    WAIT_S -->|"error"| ERR_S
-    DISPATCH_A --> WAIT_A
-    WAIT_A -->|"success"| DONE
-    WAIT_A -->|"error"| ERR_A
-    DONE --> MORE
-    ERR_S --> MORE
-    ERR_A --> MORE
-    SKIP --> MORE
-    MORE -->|"yes"| LOOP
-    MORE -->|"no"| REPORT --> END
-```
-
-### Scope filtering
-
-The orchestrator accepts optional filters so you can regenerate a subset without touching the full library:
+The app reads `status.csv` and the `ProgressStore` (P3) to decide what to show.
 
 ```mermaid
 flowchart LR
-    ARG["User argument"] --> P{Parse filter}
-    P -->|"year=3"| FY["Filter: Year 3 only\n17 topics"]
-    P -->|"subject=maths"| FS["Filter: Maths only\nAll years · ~30 topics"]
-    P -->|"year=2 subject=science"| FYS["Filter: Y2 Science\n3 topics"]
-    P -->|"topic=counting-to-100"| FT["Filter: Single topic\n1 topic"]
-    P -->|"--force"| FF["No skip check\nOverwrite existing files"]
-    P -->|"(none)"| FA["Full curriculum\n96 topics"]
+    CSV["curriculum/status.csv"] -->|only rows where<br/>content_status=done<br/>AND animation_status=done| LIB["visible library"]
+    PS["ProgressStore<br/>{conceptId: [attempts...]}"] -->|what concepts<br/>child has touched,<br/>how recently| DUE["due-for-revisit"]
+    DUE --> HOME["home screen:<br/>📍 continue where you left off<br/>⏰ revisit after gap<br/>✨ try something new"]
+    LIB --> HOME
+    HOME --> CHILD["child picks a topic"]
+    CHILD --> ANIM["animation iframe"]
+    ANIM -->|postMessage<br/>anim:attempt / anim:complete| PS
+    PS --> REW["reward overlays<br/>(Bix, badges, XP)"]
 ```
+
+Progress is tracked at **concept level** (not topic level) because the same concept has multiple perspective topics. See [feature-design-progress-gamification.md](feature-design-progress-gamification.md) for the ProgressStore design (pending revision to exposure-matrix model per training-corpus framing).
 
 ---
 
-## 4. Content Generation Pipeline
-
-Each subject agent receives a task prompt from the orchestrator and writes a single markdown lesson file. Every agent follows the same input/output contract.
-
-```mermaid
-sequenceDiagram
-    actor OA as Orchestrator Agent
-    participant SA as Subject Agent<br/>(e.g. Maths Agent)
-    participant FS as File System
-
-    OA->>SA: Dispatch task with context block:<br/>year · subject · topic_title · slug<br/>key_concepts · output_file
-
-    SA->>FS: Read curriculum/curriculum.md<br/>(validate topic exists)
-
-    note over SA: Compose lesson content:<br/>• What We're Learning<br/>• Key Words table<br/>• Worked Examples<br/>• Practice Questions + Answers<br/>• Fun Fact<br/>• Learning Checklist
-
-    SA->>FS: Write content/year-{Y}/{subject}/{slug}.md
-
-    SA-->>OA: DONE: content/year-{Y}/{subject}/{slug}.md
-```
-
-### Lesson file anatomy
-
-```mermaid
-block-beta
-    columns 1
-    FM["🗂️ YAML Frontmatter\nyear · subject · topic · slug · key_concepts · age_range · animation path"]
-    WL["📝 What We're Learning\n2–3 sentences · direct address · age-appropriate vocabulary"]
-    KW["🔑 Key Words Table\nTerm → child-friendly definition"]
-    EX["🔢 Let's Explore\nStep-by-step explanation · worked examples · ASCII diagrams"]
-    PQ["✏️ Try It Yourself\n5 graded practice questions · collapsible answer key"]
-    FF["💡 Fun Fact / Real-World Connection"]
-    CL["☑️ Learning Checklist\n3 concrete 'I can...' statements"]
-```
-
-### Subject agent specialisations
-
-```mermaid
-flowchart LR
-    subgraph AGENTS["Subject Agents"]
-        MA["➗ Maths\nNumber lines · arrays\ncolumn methods · ASCII art\nUK curriculum terminology"]
-        EA["📖 English\nPhonics phases · grammar glossary\nmodel texts · word banks\nwriting frames"]
-        SA2["🔬 Science\nInvestigation ideas\nhousehold materials only\nhypothesis → conclusion Y5+"]
-        HA2["🏛️ History\nNarrative storytelling\ntimeline ASCII art\nkey people table\nCE/BCE dating Y3+"]
-        GA2["🌍 Geography\nReal place names\nphysical + human geography\nmap activity every lesson"]
-        CA2["💻 Computing\nUnplugged first\nno installs\nScratch web · Notepad\npseudocode only"]
-    end
-```
-
----
-
-## 5. Animation Generation Pipeline
-
-After the content file is written, the orchestrator dispatches the animation generator agent. This agent reads the content, picks the best interaction archetype for the subject and year, and writes a fully self-contained HTML file.
-
-```mermaid
-sequenceDiagram
-    actor OA as Orchestrator Agent
-    participant AG as Animation Generator Agent
-    participant FS as File System
-    participant BR as Browser (child)
-
-    OA->>AG: Dispatch with: year · subject · topic_slug<br/>content_file · output_file
-
-    AG->>FS: Read content_file (the lesson markdown)
-
-    note over AG: Extract from content:<br/>• key_concepts from frontmatter<br/>• vocabulary from Key Words table<br/>• questions / examples for quiz data<br/>• core learning objective
-
-    note over AG: Select archetype by subject × year:<br/>e.g. Y1 Maths → click-and-count grid<br/>Y3 Science → shadow puppet canvas<br/>Y4 Computing → circuit builder drag-drop
-
-    note over AG: Compose single HTML file:<br/>• Inline <style> — CSS variables, keyframes<br/>• Interactive DOM / Canvas element<br/>• Embedded question data (from content)<br/>• Vanilla JS — no libraries<br/>• Score tracker · feedback · accessibility
-
-    AG->>FS: Write animations/year-{Y}/{subject}/{slug}.html
-
-    AG-->>OA: DONE: animations/year-{Y}/{subject}/{slug}.html
-
-    BR->>FS: Open .html file directly in browser
-    note over BR: Zero server needed —<br/>file:// protocol works fine
-```
-
-### Animation archetype selection
-
-```mermaid
-flowchart TD
-    READ["Read content file\nExtract: year · subject · topic type"]
-
-    READ --> MATHS{"Subject\n= Maths?"}
-    READ --> ENG{"Subject\n= English?"}
-    READ --> SCI{"Subject\n= Science?"}
-    READ --> HIST{"Subject\n= History?"}
-    READ --> GEO{"Subject\n= Geography?"}
-    READ --> COMP{"Subject\n= Computing?"}
-
-    MATHS -->|"Y1–2 counting"| A1["🔢 Click-and-count grid\n100-square with 4 game modes"]
-    MATHS -->|"Y1–2 shapes"| A2["🔷 Shape sorter\ndrag shapes to outlines"]
-    MATHS -->|"Y3–4 multiplication"| A3["✖️ Array builder\nclick rows/cols, see product"]
-    MATHS -->|"Y3–4 fractions"| A4["🍕 Pizza slicer\nclick to divide animated shape"]
-    MATHS -->|"Y4–5 place value"| A5["🃏 Number machine\ndrag digit cards to columns"]
-    MATHS -->|"Y5–6 statistics"| A6["📊 Bar chart builder\nclick +/- to change bars"]
-
-    ENG -->|"Y1–2 phonics"| B1["🔤 Word builder\nclick phoneme tiles to blend"]
-    ENG -->|"Y3–4 grammar"| B2["🗂️ Word class sorter\ndrag to noun/verb/adjective buckets"]
-    ENG -->|"Y3–4 punctuation"| B3["❓ Punctuation placer\nclick correct mark for sentence"]
-
-    SCI -->|"Y1–2 body/plants"| C1["🏷️ Label the diagram\ndrag labels to parts"]
-    SCI -->|"Y3–4 light"| C2["🔦 Shadow puppet simulator\ncanvas — drag object, shadow updates live"]
-    SCI -->|"Y4 electricity"| C3["⚡ Circuit builder\ndrag components, bulb lights when complete"]
-    SCI -->|"Y5 solar system"| C4["🪐 Orbit simulator\nplanets animate, click for facts"]
-
-    HIST -->|"All years"| D1["⏳ Timeline drag\ndrag events to correct position"]
-    HIST -->|"Y3–6"| D2["🃏 True/False quiz\nflipping cards with explanations"]
-
-    GEO -->|"Y1–2 maps"| E1["🗺️ Map maker\nclick to place landmarks on grid"]
-    GEO -->|"Y2–3 continents"| E2["🌍 Continent click quiz\nworld outline, click regions"]
-    GEO -->|"Y5–6 climate"| E3["🌡️ Climate zone explorer\nclick zone, scene animates"]
-
-    COMP -->|"Y1–2 algorithms"| F1["🤖 Robot programmer\narrow buttons, grid path"]
-    COMP -->|"Y5–6 binary"| F2["💡 Binary decoder\ntoggle bits, decimal updates live"]
-```
-
-### HTML file anatomy (every animation)
-
-```mermaid
-block-beta
-    columns 1
-    HD["📋 HTML Head\n<meta charset> · viewport · <title>"]
-    CSS["🎨 Inline <style>\n:root CSS variables (colours, radius)\nReset · Layout · Component styles\n@keyframes (bounce, shake, fadeInUp)\nprefers-reduced-motion guard"]
-    HDR["🏷️ Header\nYear tag · Topic title · One-line instruction"]
-    SCORE["📊 Score / Progress bar\nLive score · Round counter · Streak (where applicable)"]
-    STAGE["🎮 Interactive Stage\nCanvas or DOM interaction area\nDrag-drop / click / slider controls"]
-    FB["💬 Feedback Region\naria-live · Correct/wrong messages\nExplanation on wrong answer"]
-    DATA["📦 Embedded Data\nconst QUESTIONS = [...]\nExtracted from the lesson content file"]
-    JS["⚙️ Vanilla JavaScript\nState management · Event listeners\nFisher-Yates shuffle · requestAnimationFrame\nNo eval · No innerHTML with dynamic data\nNo external requests"]
-```
-
----
-
-## 6. Content Lifecycle Management
-
-After the initial pipeline run, content is managed through `content-updates/CONTENT_CHANGES.md` and the **Content Editor agent** — no need to re-run the full pipeline.
-
-```mermaid
-flowchart TD
-    EDIT["✏️ Edit\ncontent-updates/CONTENT_CHANGES.md\nAdd a change block with status: pending"]
-
-    subgraph TYPES["Change Types"]
-        T1["ADD_TOPIC\nNew topic → curriculum + content + animation"]
-        T2["ADD_SECTION\nNew section appended to existing lesson"]
-        T3["UPDATE_SECTION\nReplace a section in an existing lesson"]
-        T4["REMOVE_SECTION\nDelete a section from a lesson"]
-        T5["REMOVE_TOPIC\nDelete from curriculum + files"]
-        T6["REGENERATE\nForce-redo content and/or animation"]
-        T7["UPDATE_ANIMATION\nRegenerate animation only"]
-    end
-
-    CE["🛠️ Content Editor Agent\n@content-editor apply changes"]
-
-    EDIT --> CE
-    CE --> T1 & T2 & T3 & T4 & T5 & T6 & T7
-
-    T1 -->|"dispatches"| SA["Subject Agent\n+ Animation Agent"]
-    T6 -->|"dispatches"| SA
-    T7 -->|"dispatches"| AA["Animation Agent"]
-
-    CE -->|"updates status → done"| EDIT
-    CE -->|"appends entry"| CL["content-updates/CHANGE_LOG.md"]
-    T5 -->|"records deletion"| DL["content-updates/DELETION_LOG.md"]
-```
-
-### Content-updates directory
-
-```
-content-updates/
-├── CONTENT_CHANGES.md   ← you edit this — change manifest
-├── CHANGE_LOG.md        ← auto-written by Content Editor agent
-└── DELETION_LOG.md      ← audit log for removed topics
-```
-
-### Example change block (add a section)
-
-```
-type: ADD_SECTION
-status: pending
-year: 3
-subject: maths
-slug: place-value-1000
-section_title: Real World Connection
-after_section: Did You Know?
-content: |
-  ## Real World Connection
-  Place value is used every day — prices, distances, populations...
-```
-
-Select **Content Editor** in Copilot Chat and type: `apply changes`
-
----
-
-## 7. File Naming and Path Conventions
-
-Every file in the system is named by a consistent pattern derived from the curriculum slug.
-
-```mermaid
-flowchart LR
-    SLUG["topic slug\ne.g. counting-to-100"]
-
-    SLUG -->|"content agent writes"| CP["content/year-1/maths/\ncounting-to-100.md"]
-    SLUG -->|"animation agent writes"| AP["animations/year-1/maths/\ncounting-to-100.html"]
-
-    CP -->|"frontmatter links to"| AP
-    AP -->|"back-link in header"| CP
-```
-
-### Directory layout
+## 7. File tree
 
 ```
 game-learn-mode/
+├── CLAUDE.md                  # agent front door
+├── README.md                  # human entry point
+├── BACKLOG.md                 # priorities, status
 │
 ├── curriculum/
-│   └── curriculum.md              ← source of truth (read-only at runtime)
+│   ├── curriculum.md          # source of truth — concepts × perspectives
+│   └── status.csv             # production matrix (NEW, per §3.2)
 │
-├── .github/
-│   └── agents/                    ← GitHub Copilot agent definitions
-│       ├── orchestrator.agent.md      ← entry point
-│       ├── maths-agent.agent.md
-│       ├── english-agent.agent.md
-│       ├── science-agent.agent.md
-│       ├── history-agent.agent.md
-│       ├── geography-agent.agent.md
-│       ├── computing-agent.agent.md
-│       ├── animation-generator.agent.md
-│       ├── animation-designer.agent.md
-│       ├── ui-designer.agent.md       ← Phase 2: design system + styles.css
-│       └── app-generator.agent.md     ← Phase 2: SPA shell (index.html + app.js)
+├── content/
+│   ├── PIPELINE_REPORT.md     # derived from status.csv
+│   └── year-{N}/{subject}/{slug}.md
 │
-├── content/                       ← generated lesson markdown
-│   ├── PIPELINE_REPORT.md
-│   └── year-{1..6}/
-│       └── {subject}/
-│           └── {slug}.md
+├── animations/
+│   ├── _shared/
+│   │   ├── child-baseline.css # V1 tokens
+│   │   ├── archetypes/        # 12 shell templates (A1 backlog)
+│   │   └── svg/icons.svg      # V3 backlog
+│   └── year-{N}/{subject}/{slug}.html
 │
-├── animations/                    ← generated HTML games
-│   └── year-{1..6}/
-│       └── {subject}/
-│           └── {slug}.html
+├── app/
+│   ├── index.html             # shell, router
+│   ├── app.js                 # router, ProgressStore integration
+│   ├── styles.css             # shell chrome (separate from child-baseline)
+│   ├── curriculum.json        # built from status.csv for client read
+│   └── progress/              # P3 reusable module (pending)
+│
+├── .github/agents/
+│   ├── _shared/safety-policy.md
+│   ├── orchestrator.agent.md
+│   ├── {maths|english|science|history|geography|computing}-agent.agent.md
+│   ├── animation-generator.agent.md
+│   ├── content-safety-reviewer.agent.md     # S1
+│   ├── factual-accuracy-reviewer.agent.md   # S2
+│   └── playability-reviewer.agent.md        # S10
+│
+├── tools/
+│   ├── protected-exemplars.json
+│   ├── guard_exemplar.py      # X6 CLI
+│   ├── install-hooks.sh
+│   ├── hooks/
+│   │   └── commit-msg         # X6 backstop
+│   └── swap-y3-palette.py     # one-off, can archive
 │
 └── doc/
-    └── architecture.md            ← this file
+    ├── architecture.md        # THIS FILE
+    ├── topic-build-runbook.md # the method
+    ├── ghcp-prompts-y3-science.md
+    ├── feature-design-child-visual-standard.md
+    ├── feature-design-animation-system.md
+    ├── feature-design-progress-gamification.md
+    ├── feature-design-s10-playability.md
+    ├── feature-design-p0-safety-mobile.md
+    └── feature-design-x6-diff-before-regen.md
 ```
 
 ---
 
-## 7. Exposing Content to an Application
+## 8. Current state (2026-04-23)
 
-The generated library is **entirely static**. No build step, no server-side rendering, no database. An application consumes it in one of three ways:
+### What runs
+- Agent chain producing content + animations under gates
+- X6 guard active (manifest + CLI + commit-msg hook) — 1 topic protected
+- V1 visual standard landed in `child-baseline.css`
+- Runbook referenced from every subject agent + animation-generator + orchestrator
 
-```mermaid
-flowchart TD
-    LIB["📚 Generated Library\ncontent/ + animations/"]
+### What's validated with a real child
+- 1 topic: `plants-functions-y3` — 7-year-old engaged unprompted
 
-    LIB --> M1
-    LIB --> M2
-    LIB --> M3
+### What's produced but not child-validated
+- 3 topics: `forces-magnets`, `light-shadows`, `rocks-fossils` — GHCP-built, passed all mechanical checks, awaiting play-test
 
-    subgraph M1["Mode 1 — Static File Server"]
-        S1["Any static host\n(Nginx · Apache · GitHub Pages\nNetlify · Vercel · local file://)"]
-        S1A["Browser opens\nanimations/year-1/maths/counting-to-100.html\ndirectly — zero server logic"]
-    end
+### What's pre-methodology vintage
+- Years 1, 2, 4, 5, 6 — 98 content files exist but were built before the runbook/visual-standard/gates and don't ship `## Sources`. See backlog X4 (Sources backfill), C4 (retro-review).
 
-    subgraph M2["Mode 2 — Embedded in a Framework App"]
-        S2["Next.js / Astro / SvelteKit / plain HTML"]
-        S2A["Copy content/ and animations/\ninto the framework's public/ or static/ dir"]
-        S2B["App reads curriculum.md\nto build navigation index"]
-        S2C["Lesson page renders\ncontent markdown via MDX/marked"]
-        S2D["Animation loads inside\n<iframe src=animations/.../slug.html>"]
-        S2 --> S2A --> S2B
-        S2B --> S2C
-        S2B --> S2D
-    end
-
-    subgraph M3["Mode 3 — Claude Code Extension / Local Dev"]
-        S3["Open any .html file\nin browser or VSCode Live Preview"]
-        S3A["No server required\nfile:// protocol works for all animations"]
-    end
-```
-
-### Recommended integration pattern (Framework App)
-
-```mermaid
-sequenceDiagram
-    actor Child as 👦 Child (browser)
-    participant App as Web App
-    participant CM as curriculum.md
-    participant CF as content/*.md
-    participant AF as animations/*.html
-
-    Child->>App: Visit /learn/year-1/maths
-
-    App->>CM: Read curriculum.md\nFind all Y1 Maths topics
-    CM-->>App: [{title, slug, key_concepts}, ...]
-
-    App-->>Child: Render topic index page\n(list of topics with icons)
-
-    Child->>App: Click "Counting to 100"
-
-    App->>CF: Read content/year-1/maths/counting-to-100.md
-    CF-->>App: Lesson markdown + frontmatter
-
-    App-->>Child: Render lesson page:\n— Explanation · Key Words · Examples\n— "Play the game!" button
-
-    Child->>App: Click "Play the game!"
-
-    App-->>Child: Load animations/year-1/maths/counting-to-100.html\n(in <iframe> or new tab)
-
-    note over Child: Child plays the interactive game\nNo server calls · All logic in the HTML file
-```
-
-### iframe embedding pattern
-
-```html
-<!-- In your app's lesson page template -->
-<iframe
-  src="/animations/year-1/maths/counting-to-100.html"
-  title="Counting to 100 interactive game — Year 1 Maths"
-  width="100%"
-  style="border:none; border-radius:16px; aspect-ratio:4/3;"
-  loading="lazy"
-  sandbox="allow-scripts"
-></iframe>
-```
-
-> **Security note:** The `sandbox="allow-scripts"` attribute is sufficient because all animation files are fully self-contained — they make no external network requests, use no `localStorage`, and contain no user-generated content.
+### What's planned but not built
+- `curriculum/status.csv` — still only curriculum.md (no perspective column, no status tracking). Needs first-pass generation + sync with X6 manifest.
+- Perspective extension of curriculum.md — concept × perspective rows instead of flat topic list.
+- Progress/ProgressStore module (P3).
+- Gamification layer (L2, L6).
+- Archetype catalogue (A1) + SVG icon library (V3).
+- Bix mascot as reusable SVG (V4).
 
 ---
 
-## 8. End-to-End Data Flow Summary
+## 9. Links to detailed design
 
-```mermaid
-flowchart LR
-    NC["📝 National Curriculum\nUK KS1 + KS2"] -->|"manually encoded into"| CM
-
-    CM["curriculum/\ncurriculum.md"]
-    CM -->|"read by"| OA
-
-    subgraph OA["🎯 Orchestrator\n(loops 96 topics)"]
-        direction TB
-        LOOP1["Dispatch subject agent"] --> LOOP2["Receive DONE: content path"]
-        LOOP2 --> LOOP3["Dispatch animation agent"]
-        LOOP3 --> LOOP4["Receive DONE: animation path"]
-    end
-
-    OA -->|"writes"| CF["content/\nyear-Y/subject/slug.md\nLesson markdown"]
-
-    CF -->|"read by"| AG["🎨 Animation\nGenerator Agent"]
-    AG -->|"writes"| AF["animations/\nyear-Y/subject/slug.html\nVanilla HTML game"]
-
-    CF -->|"served as"| RI["📖 Reading interface\n(markdown rendered)"]
-    AF -->|"served as"| GI["🎮 Game interface\n(HTML opened directly)"]
-
-    RI -->|"child reads"| CHILD["👦 Child learns"]
-    GI -->|"child plays"| CHILD
-```
-
----
-
-## 9. Agent Responsibilities Summary
-
-```mermaid
-mindmap
-  root((game-learn-mode))
-    Curriculum
-      curriculum.md
-        96 topics
-        Years 1–6
-        6 subjects
-        Slugs + key concepts
-    Agents
-      Orchestrator
-        Reads curriculum
-        Drives the loop
-        Idempotent skip logic
-        Error recovery
-        Pipeline report
-      Subject Agents
-        Maths
-        English
-        Science
-        History
-        Geography
-        Computing
-      Animation Generator
-        Reads content file
-        Picks archetype
-        Writes HTML game
-        Zero dependencies
-    Output
-      content/
-        Lesson markdown
-        YAML frontmatter
-        Practice questions
-      animations/
-        Self-contained HTML
-        Canvas / DOM games
-        Score tracking
-        Accessibility
-    App Integration
-      Static file server
-      iframe embedding
-      Framework app
-      Navigation from curriculum.md
-```
-
----
-
-## 10. Security and Dependency Policy
-
-All generated files are subject to these hard constraints — enforced in every agent's system prompt:
-
-| Rule | Reason |
+| Topic | Doc |
 |---|---|
-| No external `<script src>` or `<link href>` | No CDN dependency risk, works offline, no supply chain exposure |
-| No `fetch` / `XMLHttpRequest` in animations | Games run in `sandbox="allow-scripts"` iframes; no data leaves the page |
-| No `eval()` or `new Function()` | Prevents code injection vectors |
-| `textContent` only for dynamic text (never `innerHTML`) | Prevents XSS even if data were somehow user-influenced |
-| No `localStorage` / `sessionStorage` | Children share devices; no cross-session data leakage |
-| No npm packages, no build tools | Zero dependency surface; any file is readable and auditable as-is |
-| Investigation materials: household items only | Science experiments are safe for unsupervised classroom use |
-| `sandbox="allow-scripts"` iframe attribute | Host app gets an extra defence layer when embedding animations |
+| **How to build a topic** (runbook) | [topic-build-runbook.md](topic-build-runbook.md) |
+| V1 visual standard (palette, type, motion, Bix) | [feature-design-child-visual-standard.md](feature-design-child-visual-standard.md) |
+| 12-archetype animation catalogue | [feature-design-animation-system.md](feature-design-animation-system.md) |
+| Progress + gamification (P3/L2) | [feature-design-progress-gamification.md](feature-design-progress-gamification.md) |
+| S10 playability reviewer | [feature-design-s10-playability.md](feature-design-s10-playability.md) |
+| P0 safety + mobile baseline | [feature-design-p0-safety-mobile.md](feature-design-p0-safety-mobile.md) |
+| X6 exemplar guard | [feature-design-x6-diff-before-regen.md](feature-design-x6-diff-before-regen.md) |
+| Safety policy (§§1–12) | [.github/agents/_shared/safety-policy.md](../.github/agents/_shared/safety-policy.md) |
+
+---
+
+## 10. Change log
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-04-18 | Initial arch doc — described pre-runbook pipeline with old verbose content shape + quiz-only animations. |
+| **2.0** | **2026-04-23** | **Full rewrite.** Training-corpus framing (intent). Adds `curriculum/status.csv` production matrix (§3.2). Pulls all reviewer gates into the flow (§5). Integrates X6 exemplar guard. Removes references to old "Key Words table / Learning Checklist / ASCII art" shape (now forbidden by runbook). Adds file tree + current-state sections. Links to all live design docs. |
